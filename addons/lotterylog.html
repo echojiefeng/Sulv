@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>我的中奖记录</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min1.js"></script>
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+<?php if(!empty($lotteryloglist)){?>
+<div class="help_list online-call">
+        <h2><em>我的中奖记录 （只显示中奖记录）</em></h2>       
+    </div>
+
+    {loop $lotteryloglist $row}
+        {if $row['awardtype'] != '5' }
+            <div class="weui_panel weui_panel_access">
+                    <div class="weui_panel_hd">奖品：{if $row['awardtype'] == '4' }{$row['awardname']} (将以快递方式寄送){else}{$row['awardname']} (系统已自动发放至您账户){/if}</div>
+                    <div class="weui_panel_bd">
+                       
+                      <div class="weui_media_box weui_media_appmsg">
+					{if $row['awardtype'] == '4' }  <div class="weui-mark-vip"><span class="weui-mark-lt bg-red">人品爆发</span></div>{/if}
+                            <div class="weui_media_hd">
+                                <img class="weui_media_appmsg_thumb" src="{$url}/{$row['awardpic']}" alt="">
+                            </div>
+                            <div class="weui_media_bd">
+                                <h4 class="weui_media_title">
+                                {if $row['awardtype'] == '1' }恭喜获得【{$row['awardquota']}积分】奖励{/if}
+                                {if $row['awardtype'] == '2' }恭喜获得【{$row['awardquota']}元余额】奖励{/if}
+                                {if $row['awardtype'] == '3' }恭喜获得【{$row['awardquota2'][0]['disname']}】奖励{/if}
+                                {if $row['awardtype'] == '4' }恭喜获得【{$row['awardname']}】奖励{/if}
+                                </h4>
+                                <p class="weui_media_desc" style="    line-height: 2;">中奖时间：<?php echo date('Y-m-d H:i:s',$row['addtime']) ?></p>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="weui_cell">
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>兑奖状态：
+                              {if $row['status'] == '0' }未兑奖{/if}
+                              {if $row['status'] == '1' }等待客服发放奖励{/if} 
+                              {if $row['status'] == '2' }已发放奖品{/if} 
+                              
+                            </p>
+                           
+                        </div>
+                    </div>
+					{if $row['awardtype'] == '4' }
+              {if $row['status'] == '2'}
+			    <div class="weui_cell">
+                      <div class="weui_cell_bd weui_cell_primary">
+                          <p>收件信息：{$row['username']}<br /><p></p>收件电话：{$row['usertel']} &nbsp;(请保持电话畅通)</p>
+                         
+                      </div>
+                  </div>
+      			     <div class="weui_cell">
+                      <div class="weui_cell_bd weui_cell_primary">
+                          <p>快递信息：已通过{$row['express']}寄送<br /><p></p>快递单号：{$row['expressnumber']} <a href="https://m.kuaidi100.com/index_all.html?type=&postid={$row['expressnumber']}&callbackurl=javascript:history.go(-1)"><span class="weui-badge" style="margin-left: 15px;">查询快件</span></a></p>
+                         
+                      </div>
+                  </div>
+              {/if}
+					{/if}
+            </div>  
+        {/if}
+	{/loop}
+   <br /> <br /> <br /> 
+   
+ <div class="footer1" style="background:#F4B322"><a href="javascript:;" id="tel"> <p>奖品没收到？联系客服反馈</p></a></div>
+
+ <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无您的中奖记录</a></center>
+        </div>
+		 <br /> <br /> <br /> <br />
+ <div class="footer1" style="background:#F4B322"><p>暂无您的中奖记录</p></div>
+<?php }?>
+
+<script>   
+						$(document).on("click", "#tel", function() {
+							$.actions({
+								title: "奖品没收到？联系电话： {$setting['set_fuwutel']}",
+								onClose: function() {
+								},
+								actions: [
+								{
+									text: "{$_W['uniaccount']['name']}",
+									className: "color-primary",
+									onClick: function() {
+										{
+											window.location.href = "tel:{$setting['set_fuwutel']}";
+										}
+									}
+								},
+								{if $setting['set_meiqia'] == null}{else}{
+									text: "在线客服",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{$setting['set_meiqia']}";
+										}
+									}
+								},{/if}
+								{
+									text: "意见反馈",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{php echo $this->createMobileUrl('feedback')}";
+										}
+									}
+								},
+								
+								]
+							});
+						});    
+					</script>
+				<style>
+				.weui_actionsheet {
+    position: fixed;
+    left: 0;
+    bottom: 52px;
+	</style>
+
+</body>
+</html>
+

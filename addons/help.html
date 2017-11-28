@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>{$title}</title>
+<link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+ <link href="../addons/wqtgd_jiudian/template/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+</head>
+<body class="android">
+
+<div class="help_list online-call">
+        <h2><em>{$pagetitle}</em></h2>
+        
+    </div>
+</div>
+	<div class="content" style="/*box-shadow: rgba(0, 0, 0, .50) 0 0 10px;transform: translate(50%, 0px);*/">
+	
+		<div class="scroll-content dwz-scroll" >
+			<div class="scroll">
+				<div class="m-panel">
+					<div class="panel-header">
+						<label class="panel-title"></label>
+					</div>
+					<div class="panel-content">
+						<div class="grids-contant">
+					{loop $category $row}
+							<a class="grids-grid" href="{php echo $this->createMobileUrl('helplist',array('id'=>$row['id'],'title'=>$row['title']))}">
+								<div class="grids-grid-icon"><img src="{$_W['siteroot']}attachment/{$row['thumb']}" alt="" width="32px" height="32px"></div>
+								<p class="grids-grid-label">{$row['title']}</p>
+							</a>
+						{/loop}
+						
+						</div>
+					</div>
+				</div>
+			<?php if(!empty($category)){?>
+		 <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无问答</a></center>
+        </div>
+<?php }?>		
+<div class="footer1"><a href="{php echo $this->createMobileUrl('feedback')}"> <p><i class="fa fa-pencil-square-o"></i> 意见反馈</p></a></div>
+</body>
+</html>

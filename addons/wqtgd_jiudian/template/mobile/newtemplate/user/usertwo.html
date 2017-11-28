@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>会员中心</title>
+
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/feedback.css">
+
+      <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min1.js"></script>
+
+<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+
+  <script src="../addons/wqtgd_jiudian/template/mobile/js/share.js"></script>
+
+</head>
+
+{template share}
+
+<body class="android">
+
+<div class="scroll-content" >
+
+    <div class="scroll">
+
+        <div class="header home-header">
+
+            <div class="toolbar statusbar-padding active">
+
+                <button class="bar-button current-city"><a href="{php echo $this->createMobileUrl('index')}"><i class="icon icon-set" style="background-image: url('/addons/wqtgd_jiudian/template/mobile/img/homeleft.png');"></i></a></button>
+
+                <button class="bar-button icon-button">
+
+                    <a href="{$News}"><i class="icon icon-msg"><span class="weui-badge" style="position: absolute;top: -.2em;">{$news_count}</span></i></a>
+
+                </button>
+
+            </div>
+
+        </div>
+
+       
+
+        <div class="my-info">
+
+            <div class="my-info-background" style="background-image: url('http://m.huazhu.com/Content/img/bg_topcolor.png?t=1122'); -webkit-filter:blur(0px)"></div>
+
+            <img class="my-avatar" src="{$res['headimgurl']}">
+
+            <span class="name">{$res["nickname"]}</span>
+
+           <a class="open-popup" href="javascript:" data-target="#popup" ><span class="my-vip" style="background:none;display: inline-block;padding: .15em .4em;min-width: 8px;border-radius: 18px;background-color: #E64340;color: #FFFFFF;line-height: 1.2;text-align: center;font-size: 12px;vertical-align: middle;margin-left: 5px;padding: 0.4em .8em;    left: 37%;width: 90px;">{$level[$res['level']]}</span>
+
+        </a>
+
+  <!--span class="my-vip" style="background:none">&nbsp;积分:{php echo $integration ? $integration : 0;}&nbsp;|&nbsp;余额:{php echo $balance ? $balance : 0;}元</span-->
+
+        </div>
+
+
+
+        <div class="my-car-shortcut" style="    background-color: #FFF;">
+
+            <div class="layout-column">
+
+             <a class="col" href="{php echo url('entry', array('m' => 'recharge', 'do' => 'pay'));}" rel="test">
+
+                            <span class="img-icon ">
+
+                                <img class="img-icon-home" src="/addons/wqtgd_jiudian/template/mobile/img/czye.png" />
+
+                            </span>
+
+                    <span class="img-icon-name">充值余额</span>
+
+                </a>
+
+                
+
+                <a class="col"  rel="test" href="{php echo $this->createMobileUrl('collecttwo')}">
+
+                            <span class="img-icon ">
+
+                                <img class="img-icon-home" src="/addons/wqtgd_jiudian/template/mobile/img/shoucang.png" />
+
+                            </span>
+
+                    <span class="img-icon-name">我的收藏</span>
+
+                </a>
+
+               <a class="col"  rel="test" href="{php echo $this->createMobileUrl('profile')}">
+
+                            <span class="img-icon ">
+
+                                <img class="img-icon-home" src="/addons/wqtgd_jiudian/template/mobile/img/ziliao.png" />
+
+                            </span>
+
+                    <span class="img-icon-name">我的资料</span>
+
+                </a>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="devider b-line"></div>
+
+        <!-- 个人中心 begin-->
+
+        
+
+
+
+        <div>
+
+            <div class="aui-list-cells">
+
+             {if $setting['alidayu_switch'] == 'on'}
+
+             <a href="{php echo $this->createMobileUrl('userbind')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/mobile.png"></div>
+
+                    <div class="aui-list-cell-cn">绑定手机号</div>
+
+                    {if $res['tel'] <= 1}<div class="aui-list-cell-fr">当前未绑定</div>{else}
+
+                    <div class="aui-list-cell-fr">当前绑定 {$res['tel']}</div>{/if}
+
+                </a>            
+
+                <div class="devider b-line"></div>
+
+            {/if}   
+
+             <a href="{php echo $this->createMobileUrl('usermoretwo')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/memberqy.png"></div>
+
+                    <div class="aui-list-cell-cn">我的权益</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a>
+
+                <a href="{php echo $this->createMobileUrl('moneytwo')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/qianbao.png"></div>
+
+                    <div class="aui-list-cell-cn">我的钱包</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a>
+
+             
+
+                <a href="{php echo $this->createMobileUrl('ordertwo')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/dingdan.png"></div>
+
+                    <div class="aui-list-cell-cn">酒店订单</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a>  
+
+                <a href="{php echo $this->createMobileUrl('vieworderlist')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/jd.png"></div>
+
+                    <div class="aui-list-cell-cn">景点订单</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a> 
+
+                <a href="{php echo $this->createMobileUrl('yhqlisttwo')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/yhqq.png"></div>
+
+                    <div class="aui-list-cell-cn">卡券中心</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a>                
+
+                <a href="{php echo $this->createMobileUrl('choujiang')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/choujiang.png"></div>
+
+                    <div class="aui-list-cell-cn">抽奖活动</div>
+
+                    <div class="aui-list-cell-fr">各类豪礼等你免费拿</div>
+
+                </a>                
+
+               {if $examine == '0'}
+{if $setting['ruzhu_switch'] == 'on'}
+                    {if $adminYes == 1}
+
+                    <a  href="{php echo $this->createMobileUrl('settled')}" class="aui-list-cell">
+
+                        <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/ruzhu.png"></div>
+
+                        
+
+                            <div class="aui-list-cell-cn">申请入驻</div>
+
+                            <div class="aui-list-cell-fr">免费申请</div>
+
+                    </a>
+
+                    {/if} {/if}
+
+                    {if $adminYes == 0}
+
+                    <a href="{php echo $this->createMobileUrl('adminzhong')}&admin=yes" class="aui-list-cell">
+
+                        <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/gly.png"></div>
+
+                        <div class="aui-list-cell-cn">管理员中心</div>
+
+                        <div class="aui-list-cell-fr">您已成功成为酒店管理员</div>
+
+                    </a>
+
+                    {/if}
+
+                {/if}
+
+
+            {if $examine == '1'}           
+
+                <a href="{php echo $this->createMobileUrl('shangjia')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/shangjia.png"></div>
+
+                    <div class="aui-list-cell-cn">商家管理</div>
+
+                    <div class="aui-list-cell-fr">您已成功成为商家</div>
+
+                </a>
+
+            {/if}
+
+            
+                <div class="devider b-line"></div>
+
+                <a href="{php echo $this->createMobileUrl('feedback')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/fankui.png"></div>
+
+                    <div class="aui-list-cell-cn">意见反馈</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a>
+
+                {if $setting['duiba_switch'] == 'on'}
+
+                <a href="{php echo $this->createMobileUrl('exchange')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/duihuan.png"></div>
+
+                    <div class="aui-list-cell-cn">兑换中心</div>
+
+                    <div class="aui-list-cell-fr">免费拿好礼</div>
+
+                </a>
+
+                {/if}
+
+                <a href="{php echo $this->createMobileUrl('help')}" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/bangzhu.png"></div>
+
+                    <div class="aui-list-cell-cn">帮助中心</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a>
+
+                 <div class="devider b-line"></div>
+
+        
+
+               
+
+        
+
+                <a href="javascript:;" class="aui-list-cell">
+
+                    <div class="aui-list-cell-fl"><img src="/addons/wqtgd_jiudian/template/mobile/img/share.png"></div>
+
+                    <div class="aui-list-cell-cn Share">分享给好友</div>
+
+                    <div class="aui-list-cell-fr"></div>
+
+                </a>
+
+              <div class="devider b-line"></div>
+
+   
+
+    
+
+</div>
+
+<!--div class="weui_btn_area">
+
+        <a id="formSubmitBtn" href="javascript:" class="weui_btn weui_btn_primary">退出账号</a>
+
+    </div-->
+
+    <style>
+
+    .weui-popup-overlay, .weui-popup-container {
+
+
+
+    position: absolute;
+
+}
+
+</style>
+
+  <div id="popup" class="weui-popup-container">
+
+  <div class="weui-popup-modal">
+
+  <div class="weui_article">
+
+    <div class="topbar">
+
+         <h2 class="title">会员等级介绍</h2>
+
+    </div>
+
+           <div class="timeline">
+
+  <ul>
+
+      <table class="weui-table weui-border-tb" style="    background-color: #EFEFF4;line-height: 62px;">
+
+                <thead>
+
+                    
+
+                <tr><th><b>等级名称</b></th><th><b>升级所需订单金额</b></th><th><b>会员折扣</b></th></tr>
+
+                </thead>
+
+                <tbody>
+
+                 {loop $levelintroduction $row}
+
+                <tr><td>{$row['level']}</td><td>订单金额/￥{$row['ordermoney']}</td><td>{$row['discount']}折</td></tr>
+
+              {/loop} 
+
+             
+
+                <div class="weui-form-preview-hd">
+
+                <label class="weui-form-preview-label">您当期累计消费了</label>
+
+                <em class="weui-form-preview-value">¥ {$ordermoney} 元</em>
+
+            </div>
+
+                </tbody>
+
+            </table>
+
+</ul> </div>
+
+
+
+    </div>
+
+  <p class='page-bd-15'><a href="javascript:;" class="weui_btn weui_btn_plain_primary Share" id="p1">分享给好友</a></p>
+
+  <br />
+
+  <p class='page-bd-15'><a href="javascript:;" class="weui_btn weui_btn_plain_primary close-popup" id="p1">关闭</a></p>
+
+  </div>
+
+ </div> 
+
+ <style>
+
+ .copyToWx a {
+
+    color: #000000;
+
+    line-height: 22px;
+
+    font-size: 13px;
+
+}
+
+</style>
+
+ <script type="text/javascript">
+
+ TY(function($){
+
+    
+
+    function share(){
+
+        function loader(cbk){
+
+            TY.loader("TY.m.shareV2",function(mod){
+
+                 new TY.m.shareV2.share({
+
+                    //分享的位置 top/center/bottom/
+
+                    "position":"left",
+
+                    //默认所有类别，ty:天涯/weixin:微信/qzone:QQ空间/tqq:腾讯微博/tsina:新浪/douban:豆瓣/tieba:贴吧/renren:人人/
+
+                    "via":["qzone","weixin","tsina","copy"],
+
+                    //是否显示复制
+
+                    "isCopy":true,
+
+                    //分享标题，默认为空
+
+                    "titile":"微擎多商家酒店",
+
+                    //分享摘要，默认为空
+
+                    "summary":"微擎多商家酒店，开发团队：微擎特工队~~",
+
+                    //分享链接，默认为空
+
+                    "url":"",
+
+                    //分享图片，默认为空
+
+                    "img":"{$res['headimgurl']}"
+
+                });
+
+                cbk&&cbk();//加载完之后的回调，也可以在点击时加载，但是浮层出现可能会慢一些
+
+            });
+
+        }
+
+        loader();
+
+        $('.Share').bind('click',function(){
+
+            if(typeof(TY.m.shareV2)=="undefined"){//还未加载完
+
+                loader(function(){
+
+                    TY.m.shareV2.showShare();
+
+                })
+
+            }else{
+
+                TY.m.shareV2.showShare();
+
+            }
+
+        })
+
+    }
+
+    
+
+    
+
+    share();
+
+}) 
+
+</script>
+
+</body>
+
+</html>
+

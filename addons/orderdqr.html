@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="apple-themes-web-app-capable" content="yes">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <meta name="format-detection" content="telephone=no">
+  <title>酒店订单</title> 
+  
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/order.css" type="text/css" media="all">
+</head>
+
+<style>
+    *{ padding:0; margin:0; list-style: none;}
+    header{ background: #f7483b; border-bottom: 1px solid #ccc}
+    header h2{ text-align: center; line-height: 54px; font-size: 16px; color: #fff}
+    .list-ul{ overflow: hidden}
+    .list-li{ line-height: 60px; border-bottom: 1px solid #fcfcfc; position:relative;padding: 0 12px; color: #666;
+      background: #f2f2f2;
+      -webkit-transform: translateX(0px);
+    }
+    .btn{ position: absolute; top: 0; right: -80px; text-align: center; background: #ffcb20; color: #fff; width: 80px;height: 100%;
+      line-height: 150px;}
+    </style>
+
+  </head>
+
+  <body>
+
+    <!--页面加载 开始-->
+     <!-- <div id="preloader">
+     <div id="status">
+      <p class="center-text"><span>拼命加载中···</span></p>
+     </div>
+ </div> -->
+ <!--页面加载 结束-->
+
+ <div id="content_div" style="margin-top: 0rem;">
+  
+
+<?php if(!empty($orderlist)){?>
+  <div class="yy_jl_box list">
+
+
+    <ul class="list-ul">
+     
+        
+        {loop $orderlist $val}
+         <li id="li" class="list-li">
+        <div class="yy_jl_db con">
+          <a href="{$Roomlist}&hotelname={$val['hotelname']}">
+          <ul data-role="listview">
+            <img src="{$val['hotelpic']}" /> 
+            <li>
+              <h2>{$val['hotelname']}</h2>
+              <p><span>房</span>型： {$val['roomtype']}</p>
+              <p><em>预</em><em>订</em>者： <label>{$val['truename']}</label></p>
+              <p><em>订</em><em>单</em>号：  <label>{$val['ordername']}</label></p>
+              <p>入住时间： {$val['checkin']}</p>
+              <p>离店时间： {$val['checkout']}</p>
+
+            </li>
+          </ul>
+          </a>
+          <div class="weui-form-preview-ft">
+              <?php if($val['order_status'] == '未付款'){?>
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="width:50%;color:black;font-size:14px;">去支付</a>
+              <?php }elseif($val['order_status'] == '预订成功'){?>
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="width:50%;color:black;font-size:14px;">预订成功</a>
+              <?php }elseif($val['order_status'] == '付款成功'){?>
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="width:50%;color:black;font-size:14px;">付款成功</a>
+              <?php }elseif($val['order_status'] == '交易完成'){?>
+
+                <?php if($val['evastatus'] == '0'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{$Evaluate}&hotelname={$val['hotelname']}&hotelpic={$val['hotelpic']}&roomtype={$val['roomtype']}&ordername={$val['ordername']}" style="width:50%;color:black;font-size:14px;">去点评</a>
+                <?php }else{?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{$Roomlist}&hotelname={$val['hotelname']}" style="width:50%;color:black;font-size:14px;">再次预定</a>
+                <?php }?>
+
+
+              <?php }?>
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{$Orderdetail}&ordername={$val['ordername']}" style="width:50%;color:black;font-size:14px;">订单详情</a>
+            </div>
+
+        </div>
+        <div class="btn">删  除</div>
+      </li>
+
+
+    {/loop}
+    </ul>
+</div>
+
+<?php }else{?>
+    <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+            <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="width:100%;color:black;">暂无待入住订单记录</a>
+            <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{$Index}" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;">快去找到喜欢的酒店下单吧！</a>
+        </div>
+<?php }?>
+</div>
+<style>
+.weui-form-preview-ft {
+display: -webkit-flex;
+    display: flex;
+    line-height: 50px;
+    position: relative;
+}
+.weui-form-preview-ft::after {
+    border-top: 1px solid #d5d5d6;
+    color: #d5d5d6;
+    content: " ";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scaleY(0.5);
+    transform-origin: 0 0 0;
+}
+.weui-form-preview-label {
+    color: #999999;
+    float: left;
+    margin-right: 1em;
+    min-width: 4em;
+    text-align: justify;
+    text-align-last: justify;
+}
+.weui-form-preview-value {
+    display: block;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+.weui-form-preview-btn {
+   
+    color: #3cc51f;
+    display: block;
+    flex: 1 1 0;
+    position: relative;
+    text-align: center;
+}
+button.weui-form-preview-btn {
+    background-color: transparent;
+    border: 0 none;
+    font-size: inherit;
+    outline: 0 none;
+}
+.weui-form-preview-btn:active {
+    background-color: #eeeeee;
+}
+.weui-form-preview-btn::after {
+    border-left: 1px solid #d5d5d6;
+    bottom: 0;
+    color: #d5d5d6;
+    content: " ";
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleX(0.5);
+    transform-origin: 0 0 0;
+    width: 1px;
+}
+.weui-form-preview-btn:first-child::after {
+    display: none;
+}
+.weui-form-preview-btn-default {
+    color: #999999;
+}
+.weui-form-preview-btn-primary {
+    color: #0bb20c;
+}
+/*gallery*/
+.weui-gallery {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  z-index: 1000;
+}
+.weui-gallery-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 60px;
+  left: 0;
+  background: center center no-repeat;
+  background-size: contain;
+}
+</style>
+
+
+    
+  <!--底部-->
+  <!--底部结束-->
+
+ <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/orderjquery.min.js"></script> 
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/ordercommon.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/zepto.min.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/zepto.touchWipe.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $('.list-li').touchWipe({itemDelete: '.btn'});
+
+    $(".btn").bind("touchstart", function(e){
+        e.stopPropagation();
+        console.log(1);
+    })
+  });
+
+
+
+</script>
+</body>
+
+</html>

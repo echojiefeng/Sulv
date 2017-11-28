@@ -1,0 +1,204 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{if $_GET['admin'] != 'yes'}商家管理{else}管理员中心{/if}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min1.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+    <div class="my-info">
+        <div class="my-info-background" style="background-color:#FF4700; -webkit-filter:blur(0px)"></div>
+        <img class="my-avatar" src="{$res['headimgurl']}">
+        <span class="name">{$res['nickname']}</span>
+        <span class="my-vip" style="background:none">{$hotel['hotelname']}<span class="weui-badge" style="margin-left: 5px;background:yellow;color:#49f;">已认证</span></span>
+    </div>
+	 {if $_GET['admin'] != 'yes'}<ul class="member">
+            	<li>
+            		
+            			<h2>{$hotel['hotelmoney']} 元</h2>
+            			<p>可提现余额</p>
+            		
+            	</li>
+            	
+            	<li1>
+            		
+            			<h2>{if $setting['set_shouxufei'] == 0}限时免费{else}{$setting['set_shouxufei']}%{/if}</h2>
+            			<p>提现手续费</p>
+            	
+            	</li1>
+            </ul>{/if}
+			<style>
+			.member {
+    width: 94%;
+    margin: 10px 3%;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+.member li {
+    width: 50%;
+    float: left;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    margin: 10px 0;
+}
+.member li1 {
+    width: 50%;
+    float: left;
+    text-align: center;
+    margin: 10px 0;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+.member li h2 {
+    font-weight: normal;
+    color: #ff2c4c;
+	
+}
+.member li1 h2 {
+    font-weight: normal;
+    color: #ff2c4c;}
+</style>
+    <div class="weui_grids"  >
+        <a href="{php echo $this->createMobileUrl('ordermanager')}&hotelname={$hotel['hotelname']}" class="weui_grid js_grid">
+            <div class="weui_grid_icon">
+                <img src="/addons/wqtgd_jiudian/template/mobile/img/ddgl.png" alt="">
+                <!--div class="weui-mark-vip"><span class="weui-mark-lt bg-red">有新订单</span></div-->
+            </div>
+            <p class="weui_grid_label">
+                订单管理
+            </p>
+        </a>
+            <!--a href="{php echo $this->createMobileUrl('orderdqr')}" class="weui_grid js_grid" >
+                <div class="weui_grid_icon">
+                
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/dqr.PNG" alt="">
+                     <div class="weui-mark-vip"><span class="weui-mark-lt bg-red">有新待入驻</span></div>
+
+                </div>
+                <p class="weui_grid_label">
+                    待确认入驻
+                </p>
+            </a-->
+            <a href="{php echo $this->createMobileUrl('shangjiaroom')}&hotelname={$hotel['hotelname']}" class="weui_grid js_grid" >
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/fxgl.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    我的房型
+                </p>
+            </a>
+            {if $_GET['admin'] != 'yes'}
+                {if $hotel['hotelmoney'] < 1}<a href="javascript:;" class="weui_grid js_grid" id="error">{else}<a href="javascript:;" class="weui_grid js_grid" id="tixian">{/if}
+                    <div class="weui_grid_icon">
+                        <img src="/addons/wqtgd_jiudian/template/mobile/img/zhtx.png" alt="">
+                    </div>
+                    <p class="weui_grid_label">
+                        账户提现
+                    </p>
+                </a>
+            {/if}
+            <!--a  href="javascript:" data-target="#popup" class="weui_grid js_grid open-popup" >
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/skxx.PNG" alt="">
+                
+                </div>
+                <p class="weui_grid_label">
+                    收款信息
+                </p>
+            </a-->
+            {if $_GET['admin'] != 'yes'}
+                <a href="{php echo $this->createMobileUrl('tixianlog')}" class="weui_grid js_grid" >
+                    <div class="weui_grid_icon">
+                        <img src="/addons/wqtgd_jiudian/template/mobile/img/zjls.png" alt="">
+                        <div class="weui-mark-vip"><span class="weui-mark-lt bg-red">进度查询</span></div>
+                    </div>
+                    <p class="weui_grid_label">
+                        提现记录
+                    </p>
+                </a>
+            {/if}
+            <a href="{php echo $this->createMobileUrl('shangjiahelp')}&admin={$_GET['admin']}" class="weui_grid js_grid" >
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/sjbz.png" alt="">
+                     {if $_GET['admin'] != 'yes'}<div class="weui-mark-vip"><span class="weui-mark-lt bg-red">账号查看</span></div>{/if}
+                </div>
+                <p class="weui_grid_label">
+                    {if $_GET['admin'] != 'yes'}商家帮助{else}管理员帮助{/if}
+                </p>
+            </a>
+
+            <a href="tel:{$setting['set_fuwutel']}" class="weui_grid js_grid" >
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/lxpt.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    联系平台
+                </p>
+            </a>
+        </div>
+        <br /><br />
+        <input type="hidden" id="hide" hotelmoney="{$hotel['hotelmoney']}" fee="{$setting['set_shouxufei']}" urll="{$Tixianac}" hotelname="{$hotel['hotelname']}">
+        <script>
+    $(document).on("click", "#error", function() {
+        $.toast("<br />可提现余额不足", "cancel");
+      });
+            $(document).on("click", "#tixian", function() {
+                //var yue=100;
+                var fee=$('#hide').attr('fee');
+                var hotelname=$('#hide').attr('hotelname');
+                var hotelmoney=$('#hide').attr('hotelmoney');
+                $.prompt("<strong>￥"+hotelmoney+"元</strong>{if $setting['set_shouxufei'] == 0}{else}<br /><br /><font color='red'>（ 收取"+fee+"%手续费 ）</font>{/if}<br/><br/><font color='#0bb20c'>提现前请先前往商家后台设置收款信息</font><br/><br/><font color='#0bb20c'>由于微信限制,实际到账金额必须大于1元，否则提现失败</font>", "可提现余额", function(money) {
+                    // if(paserInt(money) > )
+                    var input_val = parseInt($("#weui-prompt-input").val());
+                               if(input_val < parseInt(hotelmoney)){
+                                     $.alert("<br />您要提现的金额是:"+money,"实际到账金额："+(money-((money*fee/100)))+"元", function(){
+                                        $.ajax({
+                                            url: $('#hide').attr('urll'),
+                                            type:'post',
+                                            data:'money=' + money + '&fee='+ fee +'&actarr=' +(money-((money*fee/100)))+'&hotelname='+ hotelname,
+                                            success:function(result){
+                                                // console.log(result);
+                                                if(result != null){
+                                           
+                                                   window.location.href = "{php echo $this->createMobileUrl('Tixianok')}";
+                                                }
+                                               
+                                                },
+                                                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                                    
+                                                }
+                                                });
+                                    
+
+                                              });   
+                               }else{
+                                 $.toast("<br />金额输入有误", "cancel");
+                               }
+                   
+                             
+                          }, function() {       
+                                   //$.toast("已取消申请", "cancel");
+                                   });
+    });
+
+</script>
+<div class="weui-footer">          
+    <p class="weui-footer-text">Copyright &copy; 2008-2017 {$_W['uniaccount']['name']}版权所有</p>
+</div>
+
+</body>
+</html>
+

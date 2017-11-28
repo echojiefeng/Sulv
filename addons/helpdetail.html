@@ -1,0 +1,44 @@
+<html lang="zh-CN"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <title>{$titlebt}</title>
+	<link href="../addons/wqtgd_jiudian/template/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+
+</head>
+<body>
+ <div>
+    <div class="topbar top_header">
+        <h1 class="title"><span>{$xiangqing['title']}</span></h1>
+    </div>
+    <div class="help_ps">
+        <div class="p">
+		{$xiangqing['content']}
+		</div>
+    </div>
+    <div class="help_list online-call">
+        <h2><em>不能帮助到您？您还可以：</em></h2>
+        <ul>
+            <li class="xiaoxi">
+                <a href="tel:{$setting['set_fuwutel']}" class="btn online_kefu">
+                    联系{$_W['uniaccount']['name']}
+                    <span class="time">09:00-18:00</span>
+                    <em></em>
+                </a>
+            </li>
+            {if $setting['set_meiqia'] !== ''}<li class="xiaoxi">
+                <a href="{$setting['set_meiqia']}" class="btn call_kefu">
+                   在线联系
+                    <span class="time">09:00-18:00</span>
+                    <em></em>
+                </a>
+            </li>
+			{/if}
+        </ul>
+    </div>
+</div>
+
+<div class="footer1"><a href="{php echo $this->createMobileUrl('feedback')}"> <p><i class="fa fa-pencil-square-o"></i> 意见反馈</p></a></div>
+</body></html>

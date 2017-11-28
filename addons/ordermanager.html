@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>订单管理</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+    <script src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script> 
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+		      <script>
+  $(function(){	
+	   $('#tab2').tab({defaultIndex:0,activeClass:"tab-red"});
+
+	  });    
+      
+      </script>
+
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+ <div class="weui_tab "  style="height:44px;" id="tab2">
+            <div class="weui_navbar" style="height:44px;">
+                <div class="weui_navbar_item tab-red" id="nav1">
+                    全部订单
+                </div>
+                <div class="weui_navbar_item" id="nav2">
+                    待确认订单
+                </div>
+                <div class="weui_navbar_item" id="nav3">
+                    待确认入住
+                </div>
+              
+            </div>
+        </div>
+
+ <div class="weui-form-preview" id="preview1">
+        <?php if(!empty($orderlist)){?>
+            {loop $orderlist $row}
+            <div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">订单金额</label>
+                <em class="weui-form-preview-value">{$row['price']}</em>
+            </div>
+			<div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">实付金额</label>
+                <em class="weui-form-preview-value">{if $row["order_status"] == "预定待确认" || $row["order_status"] == "预定待入住"}到店付{else}{$row['discount']}{/if}</em>
+            </div>
+            <div class="weui-form-preview-bd">
+                <p>
+                    <label class="weui-form-preview-label">订单状态</label>
+                    <span class="weui-form-preview-value">{$row['order_status']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">房型</label>
+                    <span class="weui-form-preview-value">{$row['roomtype']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">预定人</label>
+                    <span class="weui-form-preview-value">{$row['truename']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">预定时间</label>
+                    <span class="weui-form-preview-value"><?php echo date('Y-m-d H:i:s',$row['create_time']);?></span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">入住时间</label>
+                    <span class="weui-form-preview-value"><?php echo date('Y-m-d',$row['checkin']);?> 至 <?php echo date('Y-m-d',$row['checkout']);?></span>
+                </p>
+            </div>
+            <div class="weui-form-preview-ft" style="border:1px solid #f8f8f8;">
+                <?php if($row['order_status'] == '未付款'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">未付款</a>
+                <?php }elseif($row['order_status'] == '交易完成'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">交易完成</a>
+                <?php }elseif($row['order_status'] == '订单取消'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">订单取消</a>
+                <?php }elseif($row['order_status'] == '待确认' || $row['order_status'] == '预定待确认'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">待确认</a>
+<!--                     <a class="weui-form-preview-btn weui-form-preview-btn-default" href="{$Ordermanagerac}&id={$row['id']}&ordername={$row['ordername']}&paytype={$row['paytype']}&credit1={$row['credit1']}&credit2={$row['credit2']}">确认订单</a> -->
+                <?php }elseif($row['order_status'] == '待入住'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">待入住</a>
+                <?php }elseif($row['order_status'] == '拒绝入住'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">拒绝入住</a>
+                <?php }elseif($row['order_status'] == '预定待入住'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">预定待入住</a>
+                <?php }elseif($row['order_status'] == '预定拒绝入住'){?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">预定拒绝入住</a>
+                <?php }else{?>
+                    <a class="weui-form-preview-btn weui-form-preview-btn-default" href="#">已入住</a>
+<!--                     <a class="weui-form-preview-btn weui-form-preview-btn-default" href="{$Ordermanagerac}&id={$row['id']}&ordername={$row['ordername']}&paytype={$row['paytype']}&credit1={$row['credit1']}&credit2={$row['credit2']}">确认入住</a> -->
+                <?php }?>
+                <button class="weui-form-preview-btn weui-form-preview-btn-primary" ><a href="{$Orderdetail}&ordername={$row['ordername']}">订单详情</a></button>
+            </div>
+			<br />
+        {/loop}
+       
+		  <?php }else{ ?>
+		     <div style="margin-top:0px;background:#f8f8f8">
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+     
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无订单</a></center>
+        </div>
+<?php }?>
+</div>
+
+ <div class="weui-form-preview" style="display: none" id="preview2">
+        <?php if(!empty($checklist)){?>
+            {loop $checklist $val}
+            <div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">订单金额</label>
+                <em class="weui-form-preview-value">{$val['price']}</em>
+            </div>
+            <div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">实付金额</label>
+                <em class="weui-form-preview-value">{if $val["order_status"] == "预定待确认"}到店付{else}{$val['discount']}{/if}</em>
+            </div>
+            <div class="weui-form-preview-bd">
+                <p>
+                    <label class="weui-form-preview-label">订单状态</label>
+                    <span class="weui-form-preview-value">{$val['order_status']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">房型</label>
+                    <span class="weui-form-preview-value">{$val['roomtype']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">预定人</label>
+                    <span class="weui-form-preview-value">{$val['truename']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">预定时间</label>
+                    <span class="weui-form-preview-value"><?php echo date('Y-m-d H:i:s',$val['create_time']);?></span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">入住时间</label>
+                    <span class="weui-form-preview-value"><?php echo date('Y-m-d',$val['checkin']);?> 至 <?php echo date('Y-m-d',$val['checkout']);?></span>
+                </p>
+            </div>
+            <div class="weui-form-preview-ft">
+            {if $val["order_status"] == "预定待确认"}
+                <a class="weui-form-preview-btn weui-form-preview-btn-default" href="javascript:;"  urll="{$Ordermanagerac}&id={$val['id']}&ordername={$val['ordername']}&op=submit_book_order" id="submit_book_order">确认订单</a>
+                <a class="weui-form-preview-btn weui-form-preview-btn-default" href="javascript:;"  urll="{$Ordermanagerac}&id={$val['id']}&ordername={$val['ordername']}&op=refuse_book_order" id="refuse_book_order">拒绝订单</a>
+                <button class="weui-form-preview-btn weui-form-preview-btn-primary" ><a href="{$Orderdetail}&ordername={$val['ordername']}">订单详情</a></button>
+            {else}
+                <a class="weui-form-preview-btn weui-form-preview-btn-default" href="javascript:;"  urll="{$Ordermanagerac}&id={$val['id']}&ordername={$val['ordername']}&op=submit_order" id="submit_order">确认订单</a>
+                <a class="weui-form-preview-btn weui-form-preview-btn-default" href="javascript:;"  urll="{$Ordermanagerac}&id={$val['id']}&ordername={$val['ordername']}&op=refuse_order" id="refuse_order">拒绝订单</a>
+                <button class="weui-form-preview-btn weui-form-preview-btn-primary" ><a href="{$Orderdetail}&ordername={$val['ordername']}">订单详情</a></button>
+            {/if}
+            </div>
+            {/loop}
+             <?php }else{ ?>
+             <div style="margin-top:0px;background:#f8f8f8">
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+     
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无待确认订单</a></center>
+        </div>
+<?php }?>
+
+        </div>
+
+ <div class="weui-form-preview" style="display: none" id="preview3">
+        <?php if(!empty($checklist2)){?>
+            {loop $checklist2 $val}
+            <div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">订单金额</label>
+                <em class="weui-form-preview-value">{$val['price']}</em>
+            </div>
+			<div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">实付金额</label>
+                <em class="weui-form-preview-value">{if $val["order_status"] == "预定待入住"}到店付{else}{$val['discount']}{/if}</em>
+            </div>
+            <div class="weui-form-preview-bd">
+                <p>
+                    <label class="weui-form-preview-label">订单状态</label>
+                    <span class="weui-form-preview-value">{$val['order_status']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">房型</label>
+                    <span class="weui-form-preview-value">{$val['roomtype']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">预定人</label>
+                    <span class="weui-form-preview-value">{$val['truename']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">预定时间</label>
+                    <span class="weui-form-preview-value"><?php echo date('Y-m-d H:i:s',$val['create_time']);?></span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">入住时间</label>
+                    <span class="weui-form-preview-value"><?php echo date('Y-m-d',$val['checkin']);?> 至 <?php echo date('Y-m-d',$val['checkout']);?></span>
+                </p>
+            </div>
+            <div class="weui-form-preview-ft">
+                <a class="weui-form-preview-btn weui-form-preview-btn-default" href="javascript:;" urll="{$Ordermanagerac}&id={$val['id']}&ordername={$val['ordername']}&op=submit_ruzhu&paytype={$val['paytype']}&credit1={$val['credit1']}&credit2={$val['credit2']}" id="submit_ruzhu">确认入住</a>
+                <button class="weui-form-preview-btn weui-form-preview-btn-primary" ><a href="{$Orderdetail}&ordername={$val['ordername']}">订单详情</a></button>
+            </div>
+            {/loop}
+             <?php }else{ ?>
+		     <div style="margin-top:0px;background:#f8f8f8">
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+     
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无待确认入住订单</a></center>
+        </div>
+<?php }?>
+
+        </div>
+
+
+        <script type="text/javascript">
+            $("#submit_order").click(function(){
+                $.confirm("确认用户的订单吗?","确认订单",function(){
+                    window.location.href = $("#submit_order").attr("urll");
+                });
+            });
+            $("#refuse_order").click(function(){
+                $.confirm("确认拒绝用户的订单吗?","拒绝订单",function(){
+                    window.location.href = $("#refuse_order").attr("urll");
+                });
+            });
+            $("#submit_book_order").click(function(){
+                $.confirm("确认用户的订单吗?","确认订单",function(){
+                    window.location.href = $("#submit_book_order").attr("urll");
+                });
+            });
+            $("#refuse_book_order").click(function(){
+                $.confirm("确认拒绝用户的订单吗?","拒绝订单",function(){
+                    window.location.href = $("#refuse_book_order").attr("urll");
+                });
+            });
+            $("#submit_ruzhu").click(function(){
+                $.confirm("确认用户入住吗?","确认入住",function(){
+                    window.location.href = $("#submit_ruzhu").attr("urll");
+                });
+            });
+
+            $('#nav1').bind("click", function(e){
+                $("#preview1").attr("style", "display:block");
+                $("#preview2").attr("style", "display:none");
+                $("#preview3").attr("style", "display:none");
+            });
+
+             $('#nav2').bind("click", function(e){
+                $("#preview2").attr("style", "display:block");
+                $("#preview1").attr("style", "display:none");
+                $("#preview3").attr("style", "display:none");
+            });
+             $('#nav3').bind("click", function(e){
+                $("#preview3").attr("style", "display:block");
+                $("#preview1").attr("style", "display:none");
+                $("#preview2").attr("style", "display:none");
+            });
+
+        </script>
+
+</body>
+</html>
+

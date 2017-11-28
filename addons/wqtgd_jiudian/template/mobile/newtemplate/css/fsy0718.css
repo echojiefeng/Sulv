@@ -1,0 +1,351 @@
+.CD_main .calendarbox-2016 {
+  margin-top: 0.21875rem; }
+  .CD_main .calendarbox-2016 .pure-u-1-8 {
+    width: 14.285%;
+    text-align: center; }
+  .CD_main .calendarbox-2016 .week {
+    font-size: 0.84375rem;
+    color: #666666;
+    line-height: 2.34375rem;
+    position: relative; }
+    .CD_main .calendarbox-2016 .week:after {
+      position: absolute;
+      content: '';
+      width: 90.625%;
+      height: 1px;
+      background-color: #efebea;
+      opacity: 0.97;
+      left: 4.6875%;
+      bottom: 0;
+      z-index: 2; }
+  .CD_main .calendarbox-2016 .month {
+    color: #333333;
+    line-height: 1.3125rem;
+    font-size: 0.875rem;
+    margin-top: 0.8125rem; }
+  .CD_main .calendarbox-2016 .calendar {
+    font-size: 0.875rem;
+    /*.curr {
+      color: $high-link-text;
+    }*/ }
+    .CD_main .calendarbox-2016 .calendar + .month {
+      margin-top: 0.5625rem; }
+    .CD_main .calendarbox-2016 .calendar .pure-g {
+      padding: 0.42188rem 0; }
+    .CD_main .calendarbox-2016 .calendar .day {
+      height: 32px;
+      line-height: 2rem;
+      text-align: center;
+      color: #c5c5c5; }
+      .CD_main .calendarbox-2016 .calendar .day i {
+        font-style: normal; }
+      .CD_main .calendarbox-2016 .calendar .day span {
+        display: none; }
+    .CD_main .calendarbox-2016 .calendar .enable {
+      color: #393836; }
+    .CD_main .calendarbox-2016 .calendar .pure-u-1-8 {
+      position: relative; }
+    .CD_main .calendarbox-2016 .calendar .choice {
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      margin-left: -16px;
+      background-color: #7f1f59;
+      border-radius: 50%;
+      color: #fff;
+      box-sizing: border-box;
+      line-height: 2rem;
+      display: inline-block; }
+    .CD_main .calendarbox-2016 .calendar .high {
+      background-color: #eee2e9; }
+      .CD_main .calendarbox-2016 .calendar .high .day.enable {
+        color: #fff; }
+    .CD_main .calendarbox-2016 .calendar .checkoutrange {
+      font-weight: bold; }
+    .CD_main .calendarbox-2016 .calendar .checkin:before, .CD_main .calendarbox-2016 .calendar .checkout:before {
+      width: 50%;
+      display: block;
+      position: absolute;
+      top: 0;
+      background-color: #eee2e9;
+      content: '';
+      height: 2rem; }
+    .CD_main .calendarbox-2016 .calendar .checkin:before {
+      right: 0; }
+    .CD_main .calendarbox-2016 .calendar .checkout:before {
+      left: 0; }
+.CD_main .inputtips2016 {
+  position: fixed;
+  z-index: 50;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  display: none;
+  text-align: center; }
+  .CD_main .inputtips2016.trans {
+    -webkit-transition: opacity 0.2s linear, bottom 0.2s linear;
+    transition: opacity 0.2s linear, bottom 0.2s linear; }
+  .CD_main .inputtips2016.fade {
+    opacity: 0;
+    bottom: 20px; }
+  .CD_main .inputtips2016 .cbox {
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 0.84375rem;
+    border-radius: 30px;
+    color: #FFF;
+    text-align: center;
+    height: 37px;
+    line-height: 37px;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 40%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto; }
+
+.page_hotelpictures_header .main {
+  background: none; }
+  .page_hotelpictures_header .main .return a i.icon-back {
+    color: #c4c4c3; }
+
+.hotel-pictures {
+  width: 85%;
+  margin: 4.03125rem auto 0 auto;
+  text-align: center; }
+  @media screen and (max-width: 360px) {
+    .hotel-pictures {
+      margin-top: 2.5rem; } }
+  .hotel-pictures__list {
+    -webkit-perspective: 6.25rem;
+    perspective: 6.25rem;
+    position: relative;
+    -webkit-perspective: 8.75rem;
+    perspective: 8.75rem;
+    -webkit-perspective-origin: 50% 0;
+    perspective-origin: 50% 0;
+    padding-bottom: 112%; }
+  .hotel-pictures__items {
+    background: #fff;
+    border-radius: 7px;
+    padding-bottom: 1.9375rem;
+    position: absolute;
+    z-index: 1;
+    will-change: opacity,transform;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+    opacity: 0; }
+    .hotel-pictures__items img {
+      width: 100%; }
+    .hotel-pictures__items.active {
+      z-index: 100;
+      box-shadow: 0 0 5px rgba(180, 180, 180, 0.3);
+      opacity: 1; }
+      .hotel-pictures__items.active + .hotel-pictures__items {
+        -webkit-transform: translate3d(0, -0.625rem, -0.625rem);
+        transform: translate3d(0, -0.625rem, -0.625rem);
+        box-shadow: 0 0 4px rgba(180, 180, 180, 0.2);
+        opacity: 0.8;
+        z-index: 50; }
+        .hotel-pictures__items.active + .hotel-pictures__items .hotel-pictures__title {
+          opacity: 0; }
+        .hotel-pictures__items.active + .hotel-pictures__items + .hotel-pictures__items {
+          -webkit-transform: translate3d(0, -1.25rem, -1.25rem);
+          transform: translate3d(0, -1.25rem, -1.25rem);
+          box-shadow: 0 0 3px rgba(180, 180, 180, 0.1);
+          z-index: 49;
+          opacity: 0.6; }
+          .hotel-pictures__items.active + .hotel-pictures__items + .hotel-pictures__items .hotel-pictures__title {
+            opacity: 0; }
+          .hotel-pictures__items.active + .hotel-pictures__items + .hotel-pictures__items + .hotel-pictures__items {
+            -webkit-transform: translate3d(0, -1.875rem, -1.875rem);
+            transform: translate3d(0, -1.875rem, -1.875rem);
+            box-shadow: 0 0 2px rgba(180, 180, 180, 0.1);
+            z-index: 48;
+            opacity: 0.4; }
+            .hotel-pictures__items.active + .hotel-pictures__items + .hotel-pictures__items + .hotel-pictures__items .hotel-pictures__title {
+              opacity: 0; }
+    .hotel-pictures__items.hotel-pictures__items--pushInFront {
+      -webkit-animation-play-state: running;
+      animation-play-state: running;
+      -webkit-animation-name: hotel-pictures-pushInFront;
+      animation-name: hotel-pictures-pushInFront; }
+    .hotel-pictures__items.hotel-pictures__items--pushInBack {
+      -webkit-animation-play-state: running;
+      animation-play-state: running;
+      -webkit-animation-name: hotel-pictures-pushInBack;
+      animation-name: hotel-pictures-pushInBack; }
+    .hotel-pictures__items.hotel-pictures__items--pushOutFront {
+      -webkit-animation-play-state: running;
+      animation-play-state: running;
+      -webkit-animation-duration: 0.1s;
+      animation-duration: 0.1s;
+      -webkit-animation-name: hotel-pictures-pushOutFront;
+      animation-name: hotel-pictures-pushOutFront; }
+    .hotel-pictures__items.hotel-pictures__items--pushOutBack {
+      -webkit-animation-play-state: running;
+      animation-play-state: running;
+      -webkit-animation-name: hotel-pictures-pushOutBack;
+      animation-name: hotel-pictures-pushOutBack; }
+  .hotel-pictures__title {
+    font-size: 0.875rem;
+    color: #333333;
+    padding-top: 1.5rem;
+    line-height: 2.3125rem;
+    position: relative;
+    margin-bottom: 1.125rem; }
+    .hotel-pictures__title:before {
+      width: 1.0625rem;
+      height: 2px;
+      background-color: #dbdbdb;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -0.53125rem; }
+  .hotel-pictures__pagination {
+    font-size: 0.9375rem;
+    color: #bfbfbf;
+    line-height: 1.125rem;
+    padding-top: 3.1875rem; }
+    .hotel-pictures__pagination span {
+      font-size: 1.125rem;
+      line-height: 1;
+      color: #651c4d; }
+
+@-webkit-keyframes hotel-pictures-pushInFront {
+  0% {
+    -webkit-transform: translate3d(0, -0.625rem, -0.625rem);
+    transform: translate3d(0, -0.625rem, -0.625rem);
+    z-index: 50;
+    opacity: 0.8; }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 100;
+    opacity: 1; } }
+
+@keyframes hotel-pictures-pushInFront {
+  0% {
+    -webkit-transform: translate3d(0, -0.625rem, -0.625rem);
+    transform: translate3d(0, -0.625rem, -0.625rem);
+    z-index: 50;
+    opacity: 0.8; }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 100;
+    opacity: 1; } }
+@-webkit-keyframes hotel-pictures-pushInBack {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0.625rem, 0.625rem);
+    transform: translate3d(0, 0.625rem, 0.625rem);
+    z-index: 2; }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 100; } }
+@keyframes hotel-pictures-pushInBack {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0.625rem, 0.625rem);
+    transform: translate3d(0, 0.625rem, 0.625rem);
+    z-index: 2; }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 100; } }
+@-webkit-keyframes hotel-pictures-pushOutBack {
+  0% {
+    z-index: 100;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translate3d(0, -0.625rem, -0.625rem);
+    transform: translate3d(0, -0.625rem, -0.625rem);
+    z-index: 50;
+    opacity: 0; } }
+@keyframes hotel-pictures-pushOutBack {
+  0% {
+    z-index: 100;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translate3d(0, -0.625rem, -0.625rem);
+    transform: translate3d(0, -0.625rem, -0.625rem);
+    z-index: 50;
+    opacity: 0; } }
+@-webkit-keyframes hotel-pictures-pushOutFront {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 100; }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0.625rem, 0.625rem);
+    transform: translate3d(0, 0.625rem, 0.625rem);
+    z-index: 2; } }
+@keyframes hotel-pictures-pushOutFront {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 100; }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0.625rem, 0.625rem);
+    transform: translate3d(0, 0.625rem, 0.625rem);
+    z-index: 2; } }
+.calendar__box .calendar_invalid_tip {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 40px;
+  display: none;
+  z-index: 100;
+  text-align: center;
+  opacity: 1; }
+  .calendar__box .calendar_invalid_tip.trans {
+    -webkit-transition: opacity 0.2s linear, bottom 0.2s linear;
+    transition: opacity 0.2s linear, bottom 0.2s linear; }
+  .calendar__box .calendar_invalid_tip.fade {
+    opacity: 0;
+    bottom: 20px; }
+  .calendar__box .calendar_invalid_tip .cbox {
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 0.84375rem;
+    border-radius: 5px;
+    color: #FFF;
+    height: 37px;
+    line-height: 37px;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 40%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto; }
+
+.amap_autocomplete {
+  width: 1px;
+  height: 1px;
+  display: none; }
+
+.page_filter [data-is="riot-slider"] .riot-slider__handler {
+  box-shadow: 0 0 0.15625rem 1px rgba(195, 195, 195, 0.35); }

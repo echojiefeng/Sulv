@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>修改绑定账号</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+ <link rel="stlesheet" href="../addons/wqtgd_jiudian/template/mobile/css/sjbz.css"/> 
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+
+<script type="text/javascript">
+function selectmenu(n){
+var eleMore = document.getElementById("menu_"+n);
+if(eleMore.style.display=="none"){
+eleMore.style.display = 'block';
+$("#cell_"+n).removeClass("icon-74");
+$("#cell_"+n).addClass("icon-35 ");
+}else{
+eleMore.style.display = 'none';
+$("#cell_"+n).removeClass("icon-35");
+$("#cell_"+n).addClass("icon-74");
+}
+}
+</script>    
+
+</head>
+
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>手机账号修改</em></h2>       
+    </div>
+
+
+<form id="form">
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+			<div class="weui_cell_hd"><label class="weui_label">当前微信：</label></div>
+                <div class="weui_cell_hd"><img src="{$res['headimgurl']}" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p><span class="weui_input">{$res['nickname']}</span></p>
+                </div>
+                
+            </div>
+			 <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">当前号码：</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input id="tel" value="{$res['tel']}" nickname="{$res['nickname']}" class="weui_input" type="tel" required pattern="^1[34678]\d{9}$" maxlength="11" placeholder="输入你的手机号" emptyTips="请输入手机号" disabled="disabled" notMatchTips="请输入正确的手机号">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+            </div>
+        </div>
+
+             
+
+        <div class="weui_cell weui_vcode">
+            <div class="weui_cell_hd"><label class="weui_label">验证码：</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input id="code" class="weui_input" type="tel" required 
+                       placeholder="请获取验证码" tips="请输入验证码" maxlength="4">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+                <a  href="javascript:;" class="weui-vcode-btn" onclick="on(this)" id="show-toast-3">获取验证码</a>
+            </div>
+        </div>
+    </div>
+
+  	</div>
+
+ <div class="weui_btn_area">
+        <a id="formSubmitBtn" href="javascript:" class="weui_btn weui_btn_primary">下一步</a>
+    </div>
+
+
+</form>
+<br />
+
+  
+             <div  style="display: none;" id="menu_1">
+      </div>
+    </div>
+                               
+  <span id="route" usepreg="{$Usepreg}" coderoute="{$Code}" userbind="{$Userbind}"></span>
+<script>
+
+function on(obj) {
+  var tel = $('#tel').val();
+  nickname = $('#tel').attr('nickname');
+  if(tel == '') {
+    $.toptips("请填写您的手机号");
+  }
+  // 准备正则
+  var preg = /^1[34678]\d{9}$/;
+  var result = preg.test(tel);//验证
+  if(result){
+      $.showLoading();
+      var usepreg = $('#route').attr('usepreg');
+      $.post(usepreg,{'tel':tel,'nickname':nickname},function(data){
+          // alert(data);
+          $.hideLoading();
+      },'json');
+      var i = 60
+      $(obj).attr('onclick','');
+      $(obj).attr('id','');
+      var timer = setInterval(function(){
+        if(i < 1 ){
+          //将定时器清除
+          clearInterval(timer);
+          $(obj).html('重新发送');
+          $(obj).attr('onclick','on(this)');
+          $(obj).attr('id','show-toast-3');
+          $(obj).css({'color':''});
+        }else{
+          $(obj).html(i+'s后重发');
+          $(obj).css({'color':'#A4B4BB;'});
+        }
+        i--;
+      },1000);
+  }
+} 
+var $form = $("#form");
+$form.form();
+$("#formSubmitBtn").on("click", function(){
+    $form.validate(function(error){
+        if(error){
+            
+        }else{
+          // $.toast("账号绑定成功");
+          var code = $('#code').val();
+          var tel = $('#tel').val();
+          var userbind = $('#route').attr('userbind') + '&gai=gai'
+          var coderoute = $('#route').attr('coderoute');
+          $.post(coderoute,{'code':code,'tel':tel,'gai':'gai'},function(data){
+            console.log(data);
+            switch(data){
+              case 'a' :
+                $.toptips("验证码错误");
+                break;
+              case 'b' :
+                $.toptips("验证失效,请重新验证");
+                break;
+              case 'ok' :
+                 window.location.href = userbind;
+    
+                break;
+            }
+          },'json');
+
+
+        }
+    });
+    
+});
+</script>
+
+</body>
+</html>
+

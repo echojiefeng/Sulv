@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>房型修改</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+ <link rel="stlesheet" href="../addons/wqtgd_jiudian/template/mobile/css/sjbz.css"/> 
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+        <script>
+  $(function(){
+       $("#d2").select({
+        title: "房态控制",
+        items: [
+          {
+            title: "无限制销售（永不关房）",
+            value: "001",
+          },
+          {
+            title: "按房间数量（订完关房）",
+            value: "002",
+          },
+          {
+            title: "暂停预订（关房）",
+            value: "003",
+          }
+        ],
+       
+      }); 
+	   $("#date").datetimePicker({title:"选择日期",m:1});
+$("#time").datetimePicker({title:"限时抢购结束日期",min:'2017-01-01',max:'2050-10-01'});
+$("#time2").picker({title:"选择时间",
+        cols: [
+          {
+            textAlign: 'center',
+            values: (function () {
+                var arr = [];
+                for (var i = 0; i <= 23; i++) { arr.push(i < 10 ? '0' + i : i); }
+                return arr;
+            })()
+            
+          },
+          
+        ]});          
+
+	  });    
+      
+      </script>
+	  
+</head>
+
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>【{$data['roomtype']}】房型信息修改</em></h2>       
+    </div>
+<form id="form" action="{php echo $this->createMobileUrl('Shangjiaroomform',array('id'=>$data['id']))}" method="post">
+
+	 <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">我的酒店</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                    
+                        <span>{$data['hotelname']}</span>                      
+                    
+                </div>
+
+            </div>
+                      
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">房型名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" placeholder="请输入房型名称" value="{$data['roomtype']}" name="roomtype"/>
+                </div>
+            </div>
+            
+        <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">房间数量</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="tel" value="{$data['roomnum']}" name="roomnum" placeholder="请输入房间数量" />
+                </div>
+            </div>
+            
+            
+                   <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">房态控制</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{if $data['roomstatus'] == 0}无限制销售(永不关房){/if}{if $data['roomstatus'] == 1}按房间数量(订完关房){/if}{if $data['roomstatus'] == 2}暂停预订(关房){/if}" id='d2' placeholder="房间状态设置" name="roomstatus"/>
+                </div>
+            </div>
+            
+             <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">限时预订价</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="number" placeholder="请输入限时预订价格" value="{if $data['saleprice'] > 0}{$data['saleprice']}{else}未设置活动{/if}" name="saleprice"/>
+                </div>
+            </div>
+			
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">限时时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="" value="" placeholder="<?php echo date('Y-m-d H:i:s',$data['end_time']);?>" name="end_time" id="time"/>
+                </div>
+            </div>
+            
+         <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">房间预订价</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="number" placeholder="请输入房间预订价格" value="{$data['roomprice']}" name="roomprice"/>
+                </div>
+            </div>
+			
+			
+                <div class="weui_cell_bd weui_cell_primary">
+               <div class="placeholder" style="background-color: #FFFFFF;color:#000;text-align: left;">房型图片不支持在手机端修改</div>
+                </div>
+          
+			
+                                {php $arr = explode(",",$data["roompic"]); for($i=0;$i<count($arr)-1;$i++): } 
+								<img onerror="this.src='./resource/images/nopic.jpg'; this.title='图片未找到.'" src="{php echo $url.'/'.$arr[$i]}" class="weui_uploader_input_wrp" style="    margin-right: 5px;">
+                                {php endfor }
+                           
+			</div>
+ <!--div class="placeholder"  style="background-color: #FFFFFF;color:#000;">团购价格设置 (二选一，只能设置一个)</div>
+        <div class="weui-flex">
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000">满N间减免N元/间:</div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="tel" placeholder="预订N间" style="text-align: center;" value="{$data['groupbuy_rooms']}" name="groupbuy_rooms"/></div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="number" placeholder="减多少元/间" style="text-align: center;" value="{$data['groupbuy_reduce']}" name="groupbuy_reduce"/></div></div>
+			
+        </div>				
+		<div class="weui-flex">
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000">满N天减免N元/间:</div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="tel" placeholder="预订N天" style="text-align: center;" value="{$data['groupbuy_days']}" name="groupbuy_days"/></div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="number" placeholder="减多少元/间" style="text-align: center;" value="{$data['groupbuy_reduce']}" name="groupbuy_reduce" id="groupbuy_reduce2"/></div></div>
+			
+        </div-->
+		
+		<div class="placeholder"  style="background-color: #FFFFFF;color:#000;">房型基本参数</div>
+        <div class="weui-flex">
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"><input class="weui_input" type="tel" placeholder="房间面积" style="text-align: center;" value="{$data['roomsize']}" name="roomsize"/></div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="text" placeholder="床铺尺寸" style="text-align: center;" value="{$data['bedsize']}" name="bedsize"/></div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="tel" placeholder="房间楼层" style="text-align: center;" value="{$data['floor']}" name="floor"/></div></div>
+			
+        </div> 
+	
+		
+          <div class="placeholder"  style="background-color: #FFFFFF;color:#000;">返现设置 (二选一，只能设置一个)</div>
+        <div class="weui-flex">
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000">预订返积分</div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="tel" placeholder="比例设置" value="{$data['credit1']}" name="credit1"/></div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000"> 返订单价格百分比</div></div>
+			
+        </div>
+		
+		
+		<div class="weui-flex">
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000">预订返余额:</div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000;"> <input class="weui_input" type="tel" placeholder="比例设置" value="{$data['credit2']}" name="credit2" /></div></div>
+            <div class="weui-flex-item"><div class="placeholder"  style="background-color: #FFFFFF;color:#000"> 返订单价格百分比</div></div>
+			
+        </div>    
+        <div class="weui_btn_area">
+         
+			 <button class="weui_btn weui_btn_primary" type="submit" value="提交" name="submit">保存修改</button>
+			<input type="hidden" name="token" value="{$_W['token']}" />
+			<br />
+        </div>
+		
+</form>
+
+<script type="text/javascript">
+
+//清空input框
+
+if($('input[name="groupbuy_rooms"]').val() != ""){
+   $('input[name="groupbuy_days"]').attr("readonly", true);
+    $('input[name="groupbuy_days"]').val("");
+    $('#groupbuy_reduce2').attr("readonly", true);
+    $('#groupbuy_reduce2').val("");
+}else if($('input[name="groupbuy_days"]').val() != ""){
+     $('input[name="groupbuy_rooms"]').attr("readonly", true);
+      $('input[name="groupbuy_rooms"]').val("");
+      $('input[name="groupbuy_reduce"]').attr("readonly", true);
+      $('input[name="groupbuy_reduce"]').val("");
+}
+
+
+$('input[name="groupbuy_rooms"]').bind("input propertychange", function(){
+  
+    if($(this).val().length>0){
+      $('input[name="groupbuy_days"]').attr("readonly", true);
+      $('input[name="groupbuy_days"]').val("");
+      $('#groupbuy_reduce2').attr("readonly", true);
+      $('#groupbuy_reduce2').val("");
+    }else{
+      $('input[name="groupbuy_days"]').removeAttr("readonly");
+      $('#groupbuy_reduce2').removeAttr("readonly");
+    }
+})
+
+$('input[name="groupbuy_days"]').bind("input propertychange", function(){
+
+    if($(this).val().length>0){
+      $('input[name="groupbuy_rooms"]').attr("readonly", true);
+      $('input[name="groupbuy_rooms"]').val("");
+       $('input[name="groupbuy_reduce"]').attr("readonly", true);
+      $('input[name="groupbuy_reduce"]').val("");
+    }else{
+      $('input[name="groupbuy_rooms"]').removeAttr("readonly");
+      $('input[name="groupbuy_reduce"]').removeAttr("readonly");
+    }
+})
+
+if($('input[name="credit1"]').val() != ""){
+   $('input[name="credit2"]').attr("readonly", true);
+    $('input[name="credit2"]').val("");
+}else if($('input[name="credit2"]').val() != ""){
+     $('input[name="credit1"]').attr("readonly", true);
+      $('input[name="credit1"]').val("");
+    
+}
+
+$('input[name="credit1"]').bind("input propertychange", function(){
+ 
+    if($(this).val().length>0){
+      $('input[name="credit2"]').attr("readonly", true);
+      $('input[name="credit2"]').val("");
+    }else{
+      $('input[name="credit2"]').removeAttr("readonly");
+    }
+})
+
+$('input[name="credit2"]').bind("input propertychange", function(){
+ 
+    if($(this).val().length>0){
+      $('input[name="credit1"]').attr("readonly", true);
+      $('input[name="credit1"]').val("");
+    }else{
+      $('input[name="credit1"]').removeAttr("readonly");
+    }
+})
+
+
+</script>
+</body>
+</html>
+

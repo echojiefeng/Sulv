@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+            评价完成
+    </title>	
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+		<link rel="stylesheet" href="/addons/wqtgd_jiudian/template/mobile/css/mainV2.css">
+   
+<style type="text/css">.validate-code-by-intercept{position:absolute;top:50%;left:50%;margin-top:-120px;margin-left:-153px;padding-top:10px;height:220px;width:306px;z-index:15000;background-color:#fff;text-align:center;font-size:16px;font-weight:700;color:#353535}.validate-code-by-intercept .form-li{clear:both;height:44px;line-height:44px;margin:3px 12px}.validate-code-by-intercept .form-li2{overflow:hidden;border-radius:5px;border:1px solid #ddd;background-clip:padding-box;margin-bottom:10px}.validate-code-by-intercept input.txt{width:100%;padding:11px 10px 11px 13px;display:block;margin:0;border:0;background:0;font:16px/1.4 Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif}.validate-code-by-intercept .submit{font-size:1.1rem;width:100%;height:40px;line-height:40px;text-align:center;color:#fff;border-radius:5px;border-width:0;background-color:#e65749;margin:0 0 10px}</style></head>
+<body>
+
+	<div class="pages">
+	<div data-blend="layer" data-blend-id="h5_finishorder" data-url="/hotel/finishorder/?cachekey=4fac91d5-5b9c-4a6a-a151-9f1e9a601e1e&amp;orderno=211454549" id="uniq23" class="page page-on-center" data-title="
+            评价完成
+    " style="top: 0px; left: 0px; right: 0px; bottom: 0px;"><header class="bar bar-nav flight-order-head">
+	                <h1 class="title">评价完成</h1>
+	            </header><div class="page-content new_finishorder">
+					<section class="comp-wrap">
+						<span class="t-shaft"></span>
+						<div class="sucess">
+							<span class="correct"></span>评价提交成功！
+						</div>
+						<div class="division">**********************************************************************************************************************************</div>
+
+						<div class="info">
+							<dl>
+								<dt>订&nbsp;单&nbsp;号&nbsp;：</dt>
+								<dd>{$res["ordername"]}</dd>							
+							</dl>
+							<dl>
+								<dt>酒店名称：</dt>
+								<dd>{$res["hotelname"]}</dd>
+							</dl>
+							<dl>
+								<dt>房&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：
+								</dt>
+								<dd>
+								{$res["roomtype"]}
+								</dd>
+							</dl>
+							<dl>
+								<dt>入离日期：</dt>
+								<dd>
+									{php echo date("Y-m-d",$res["checkin"])} - {php echo date("Y-m-d",$res["checkout"])} 
+									<span>共{$res["checkday"]}晚</span>
+								</dd>
+							</dl>
+						</div>
+						<div class="consume">
+							<p class="price">
+消费金额：								<span>
+￥{$res["discount"]}元								</span>
+							</p>
+							<!-- 高铁管家定制 -->
+						</div>
+						<span class="b-curve"></span>
+					</section>
+					<section class="comp-link">
+					       
+						<!-- 	<a href="javascript:void(0);" class="share" style="display:none;"><i class="share_bg"></i>分享订单</a>
+							<a href="javascript:void(0);" class="return" style="display:none;"><i class="return_bg"></i>申请返现</a> -->
+							<a href="{$Roomlist}&hotelname={$res['hotelname']}" class="book tjclick" data-tj="{&quot;cspot&quot;:&quot;bookingagain&quot;}"><i class="book_bg"></i>再订一间</a>
+					</section>
+                	<input type="hidden" id="orderDetailUrl" value="http://x.elong.com/hotel/orderdetail/211454549/">
+					<input type="hidden" id="hotelDetailUrl" value="http://x.elong.com/hotel/90823326/">
+			</div></div></div>
+
+</body>
+</html>

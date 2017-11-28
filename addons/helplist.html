@@ -1,0 +1,41 @@
+<html lang="zh-CN"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+     <link href="../addons/wqtgd_jiudian/template/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <title>{$_GPC['title']}</title>
+      <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+
+</head>
+<body>
+
+    <div class="notice hide">
+        <a href="#">
+        </a>
+    </div>
+    <div class="topbar">
+        <h1 class="title"><span>{$_GPC['title']}</span></h1>
+    </div>
+
+  
+    <div class="help_list help_container_39">
+        <h2><em>所有问题</em></h2>
+    <ul class="clear">
+	   
+		{loop $help $row}
+	<li> <a data_title="{$row['title']}" href="{php echo $this->createMobileUrl('helpdetail',array('id'=>$row['id']))}">{$row['title']}<em></em>   </a></li>
+        {/loop}
+		
+	</ul></div>
+</div>
+<?php if(!empty($help)){?>
+		 <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无{$_GPC['title']}相关问答</a></center>
+        </div>
+<?php }?>
+<div class="footer1"><a href="{php echo $this->createMobileUrl('feedback')}"> <p><i class="fa fa-pencil-square-o"></i> 意见反馈</p></a></div>
+</body></html>

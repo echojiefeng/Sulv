@@ -1,0 +1,322 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>酒店点评</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" /> 
+  <script src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script>  
+  <script src="../addons/wqtgd_jiudian/template/mobile/js/lrz.mobile.min.js"></script>  
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min1.js"></script>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+
+    <style type="text/css">
+      .ffen{
+        display: none;
+      }
+    </style>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+    <input type="hidden" value="{$Evaaction}" id="evaaction_url">
+    <input type="hidden" value="{$Evalsubsuccess}" id="evalsubsuccess_url">
+    <input type="hidden" value="{$_GPC['hotelname']}" id="hotelname">
+    <input type="hidden" value="{$_GPC['hotelpic']}" id="hotelpic">
+    <input type="hidden" value="{$_GPC['roomtype']}" id="roomtype">
+    <input type="hidden" value="{$_GPC['ordername']}" id="ordername">
+   <div class="help_list online-call">
+        <h2><em>{$_GPC['hotelname']}酒店评价</em></h2>       
+    </div>
+<div class="weui_cells weui_cells_form" style="margin-top:0em;">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+				<li class="weui_uploader_file" style="background-image:url({$res['headimgurl']})"></li>
+				
+                    <textarea id="textarea" class="weui_textarea" placeholder="亲爱的{$res['nickname']},请评价订单" rows="6"></textarea>
+					 <div class="weui_uploader_bd">
+                            <ul class="weui_uploader_files" id='img2'>
+                            
+                            
+                            </ul>
+                            <div class="weui_uploader_input_wrp" id="file2">
+
+                                <input class="weui_uploader_input" type="file" accept="image/jpg,image/jpeg,image/png,image/gif"  id='headimgurl2' onchange="previewImage1(this)" multiple />
+                                
+                            </div>
+                
+                </div>
+            </div>
+        </div>
+<div class="weui_cells weui_cells_form"  style="margin-top:0em;">
+</div>
+
+
+<div class="weui_cells">
+        
+        
+                    <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>酒店评分</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size:15px;">请真实评价</div>
+            </div>
+</div>
+
+<div class="weui_cell" style="    background: #FFF;">
+ <div class="weui_cell_bd weui_cell_primary"><p><img src="{$_W['siteroot']}addons/wqtgd_jiudian/template/mobile/img/facility.png" width="20px" height="20ox"> 设施</p> </div>
+  <div style="font-size: 0px;" class="weui_cell_ft weui-rater w1">
+  <a data-num="0" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="1" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="2" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="3" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="4" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+   <div id='fen1' class="weui_cells_title ffen"></div>
+ </div>  </div>
+<div class="weui_cell" style="    background: #FFF;">
+ <div class="weui_cell_bd weui_cell_primary"> <p> <img src="{$_W['siteroot']}addons/wqtgd_jiudian/template/mobile/img/service.png" width="20px" height="20ox"> 服务</p> </div>
+  <div style="font-size: 0px;" class="weui_cell_ft weui-rater w2">
+  <a data-num="0" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="1" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="2" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="3" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="4" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+    <div id='fen2' class="weui_cells_title ffen"></div>
+</div>  </div>
+	<div class="weui_cell" style="    background: #FFF;">
+ <div class="weui_cell_bd weui_cell_primary"> <p> <img src="{$_W['siteroot']}addons/wqtgd_jiudian/template/mobile/img/sanitation.png" width="20px" height="20ox"> 卫生</p> </div>
+  <div style="font-size: 0px;" class="weui_cell_ft weui-rater w3">
+  <a data-num="0" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="1" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="2" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="3" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="4" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+    <div id='fen3' class="weui_cells_title ffen"></div>
+</div>  </div>
+<div class="weui_cell" style="    background: #FFF;">
+ <div class="weui_cell_bd weui_cell_primary"> <p> <img src="{$_W['siteroot']}/addons/wqtgd_jiudian/template/mobile/img/position.png" width="20px" height="20ox"> 位置</p> </div>
+  <div style="font-size: 0px;" class="weui_cell_ft weui-rater w4">
+  <a data-num="0" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="1" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="2" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="3" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="4" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+    <div id='fen4' class="weui_cells_title ffen"></div>
+</div>  </div>
+	<div class="weui_cell" style="    background: #FFF;">
+ <div class="weui_cell_bd weui_cell_primary"> <p> <img src="{$_W['siteroot']}addons/wqtgd_jiudian/template/mobile/img/performance.png" width="20px" height="20ox"> 性价比</p> </div>
+  <div style="font-size: 0px;" class="weui_cell_ft weui-rater w5">
+  <a data-num="0" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="1" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="2" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="3" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+  <a data-num="4" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+<div id='fen5' class="weui_cells_title ffen"></div>
+</div>  </div>
+	<br />
+	<div class="page-bd-15">
+       <a href="javascript:;" id="evaluate_submit" class="weui_btn weui_btn_primary" style="background:#49f;">提交评价</a>
+ </div>       
+<br />
+
+<script>
+  var img_arr = new Array();
+  function previewImage1(file) {
+/*    var MAXWIDTH = 100;
+    var MAXHEIGHT = 200;
+    for(var i=0;i<file.files.length;i++){
+    
+    if (file.files && file.files[i]) {
+        var reader = new FileReader();
+        reader.onload = function (evt) {   
+            $('#img2').append('<li class="weui_uploader_file" style="background-image:url('+evt.target.result+')"></li>');          
+        };
+        reader.readAsDataURL(file.files[i]);
+    }*/
+    var files = document.querySelector("#headimgurl2").files;
+    if (window.File && window.FileList){
+      for(var i = 0; i < files.length; i++) {
+        lrz(files[i],{quality:0.5},function(rst){
+        console.log(rst);
+        img_arr.push(rst.base64);
+        //$('#img2').append('<li class="weui_uploader_file" style="background-image:url(' + rst.base64 + ')"></li>');
+         $('#img2').append('<li onclick="var delimg=$(this);$.confirm(\'您确定要删除吗?\', \'确认删除?\', function() {delimg.remove();},function(){$.toast(\'取消操作\', \'cancel\');});" class="weui_uploader_file weui_uploader_status" style="background-image:url('+rst.base64+')"><div class="weui_uploader_status_content"><i class="weui_icon_cancel"></i></div></li>');         
+        });
+
+      }
+    }  
+  }  
+
+  $(function(){
+ 
+ //评分js
+ var arr = ["1分","2分","3分","4分","5分"];
+	var num = 0;
+    $(".w1 a").mouseover(function(){
+        $(this).prevAll().each(function(index,el){
+            $(el).addClass('checked');
+        });
+        $(this).nextAll().each(function(index,el){
+            $(el).removeClass('checked');
+        });
+    });
+
+/*	$(".weui-rater a").mouseover(function(){
+		var thisL = $(this).index();
+		for(var i = 0;i < thisL;i++){
+			$(".weui-rater a").eq(i).addClass('checked');
+		}
+		for(var i = thisL; i < 5;i++){
+			$(".weui-rater a").eq(i).removeClass('checked');
+		}
+		$(this).addClass('checked');
+	})
+	$(".weui-rater a").mouseout(function(){
+		var thisL = $(this).index();
+		for(var i = thisL; i < 5;i++){
+			$(".weui-rater a").eq(i).removeClass('checked');
+		}
+	})
+	$(".weui-rater").mouseout(function(){
+		
+		for(var i = 0; i < num;i++){
+			$(".weui-rater a").eq(i).addClass('checked');
+		}
+	})*/
+  $(".w1 a").click(function(){
+		var thisL = $(this).index();
+		$("#fen1").html(arr[thisL]);
+    $("#fen1").attr("style","display:inline-block");
+		$(this).addClass('checked');
+		num = thisL+1;
+		//console.log(num);
+	})
+
+//2
+var num2 = 0;
+    $(".w2 a").mouseover(function(){
+        $(this).prevAll().each(function(index,el){
+            $(el).addClass('checked');
+        });
+        $(this).nextAll().each(function(index,el){
+            $(el).removeClass('checked');
+        });
+    });
+
+  $(".w2 a").click(function(){
+    var thisL = $(this).index();
+    $("#fen2").html(arr[thisL]);
+     $("#fen2").attr("style","display:inline-block");
+    $(this).addClass('checked');
+    num2 = thisL+1;
+    //console.log(num2);
+  })
+
+//3
+  var num3 = 0;
+    $(".w3 a").mouseover(function(){
+        $(this).prevAll().each(function(index,el){
+            $(el).addClass('checked');
+        });
+        $(this).nextAll().each(function(index,el){
+            $(el).removeClass('checked');
+        });
+    });
+
+  $(".w3 a").click(function(){
+    var thisL = $(this).index();
+    $("#fen3").html(arr[thisL]);
+     $("#fen3").attr("style","display:inline-block");
+    $(this).addClass('checked');
+    num3 = thisL+1;
+    //console.log(num3);
+  })
+
+//4
+  var num4 = 0;
+    $(".w4 a").mouseover(function(){
+        $(this).prevAll().each(function(index,el){
+            $(el).addClass('checked');
+        });
+        $(this).nextAll().each(function(index,el){
+            $(el).removeClass('checked');
+        });
+    });
+
+  $(".w4 a").click(function(){
+    var thisL = $(this).index();
+    $("#fen4").html(arr[thisL]);
+     $("#fen4").attr("style","display:inline-block");
+    $(this).addClass('checked');
+    num4 = thisL+1;
+    //console.log(num4);
+  })
+
+//5
+  var num5 = 0;
+    $(".w5 a").mouseover(function(){
+        $(this).prevAll().each(function(index,el){
+            $(el).addClass('checked');
+        });
+        $(this).nextAll().each(function(index,el){
+            $(el).removeClass('checked');
+        });
+    });
+
+  $(".w5 a").click(function(){
+    var thisL = $(this).index();
+    $("#fen5").html(arr[thisL]);
+     $("#fen5").attr("style","display:inline-block");
+    $(this).addClass('checked');
+    num5 = thisL+1;
+    //console.log(num5);
+  });
+  $(document).on("click", "#evaluate_submit", function() {      
+        var eva = $("#textarea").val();
+        var evaaction_url = $("#evaaction_url").val();
+        var evalsubsuccess_url = $("#evalsubsuccess_url").val();
+        var hotelname = $("#hotelname").val();
+        var hotelpic = $("#hotelpic").val();
+        var roomtype = $("#roomtype").val();
+        var ordername = $("#ordername").val();
+        if(eva == "" || num == 0 || num2 == 0 || num3 == 0 || num4 == 0 || num5 == 0){
+            $.toptips("您的评价填写不完整,请认真填写!");
+        }else{
+            $.showLoading();
+            $.ajax({
+                url:evaaction_url,
+                type:"post",
+                dataType:"json",
+                data:{
+                    "hotelname":hotelname,
+                    "hotelpic":hotelpic,
+                    "roomtype":roomtype,
+                    "ordername":ordername,
+                    "eva":eva,
+                    "img_arr":img_arr,
+                    "facilities":num,
+                    "service":num2,
+                    "hygiene":num3,
+                    "position":num4,
+                    "performance":num5
+                },
+                success:function(json){
+                    $.hideLoading();
+                    window.location=evalsubsuccess_url+"&ordername="+ordername;   
+                    sessionStorage["evaluate_status"] = json;
+                }
+            });
+        }
+            
+        
+  });
+	
+ });      
+
+
+      </script>
+
+</body>
+</html>
+

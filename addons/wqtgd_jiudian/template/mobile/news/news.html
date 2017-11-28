@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>消息管理</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+		<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+</head>
+<style>
+.weui-img-title span
+{
+text-shadow: 0 0 0px rgba(0, 0, 0, 0.5);
+color:#FFF;
+}
+</style>
+<body ontouchstart style="background-color: #f8f8f8;">
+  <div class="help_list help_container_39">
+        <h2><em>所有消息</em></h2>
+   </div>
+   <div class="weui_cells weui_cells_access">
+    {loop $news $value}
+    <div class="weui-img-box" >
+    <div class="weui-img" style="background-color:#ccc;"></div>
+    <div class="weui-img-title">{$value['title']}<br>  <span class="weui-img-time">回复时间：<?php echo date('Y-m-d H:i:s', $value['date']); ?>
+    </div> 
+	{if $value['state'] ==0}<div class="weui-mark-vip"><span class="weui-mark-lt bg-red">未读消息</span></div>{/if}
+  </div>
+  <div class="weui_cells weui_cells_access" style="    margin-top: 0em;">
+            <a class="weui_cell " href="{$Content}&id={$value['id']}&title={$value['title']}&sender={$value['sender']}&addressee={$value['addressee']}&reply={$value['reply']}&date={$value['date']}">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>查看详情</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+            </a>
+            
+
+        </div>
+		<br />
+	  {/loop}		
+			</div>
+		<?php if(!empty($news)){?>
+		 <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无新消息</a></center>
+        </div>
+<?php }?>	
+<script>
+// var page = 1;
+
+//     //创建gotop组件
+//     $('#gotop').gotop();
+//     //expand
+//     $('#expandBtn').click(function(e){
+// $('#navPos').toggle();
+// });
+//     (function () {
+//         /*组件初始化js begin*/
+//         $('.ui-refresh').refresh({
+//             load: function (dir, type) {
+//                 var me = this;
+//                 page++;
+//                 $.getJSON('/index.php?g=Wap&a=Index&d=wangpaiAjax', {page:page, rnd:Math.random()},function (data) {
+//                 	if(data.length < 1){
+// $('.ui-refresh-down').html('没有更多文章了');
+// return false;
+// }
+//                     var Array = $('.data-list'),
+//                            html = (function (data) {      //数据渲染
+//                                 var liArr = [];
+//                                 $.each(data, function (i,val) {
+//                                     var dataStr = '<li><a href="'+val.wap_url+'">';
+//                                     if($.trim(val.wap_pic) != ''){
+//                                     	dataStr += '<p class="img"><img src="'+val.wap_pic+'"></p>';
+//                                     }
+//                                     dataStr += '<h3>'+val.title;
+//                                     if(val.is_new){
+//                                     	dataStr += '<sup>New</sup></h3>';
+//                                     }else{
+//                                     	dataStr += '</h3>';
+//                                     }
+//                                     dataStr += '<p class="desc">'+val.desc+'</p></a>';
+
+//                                    	dataStr += '<p class="channel">'+val.cname+'</p>';
+//                                    	dataStr += '</li>';
+
+
+//                                     liArr.push(dataStr);
+//                                     //alert(val.id);
+//                                 });
+//                                 return liArr.join('');
+//                             })(data);
+
+//                     Array[dir == 'up' ? 'prepend' : 'append'](html);
+//                     me.afterDataLoading();    //数据加载完成后改变状态
+//                 });
+//             }
+//         });
+//         /*组件初始化js end*/
+//     })();
+
+
+    //读取短信改为以读
+    function read() {
+        alert('以读');
+    }
+</script>
+</body>
+</html>
+

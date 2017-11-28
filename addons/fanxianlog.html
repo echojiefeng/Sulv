@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>返现记录</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>订单返现记录</em></h2>       
+    </div>
+<?php if(!empty($orderlist)){?>
+
+{loop $orderlist $val}
+<?php if(!empty($val['credit1'])||!empty($val['credit2'])){?>
+<a href="{$Roomlist}&hotelname={$val['hotelname']}">
+<li class="hotel-item" data-url="http://x.elong.com/hotel/10101323/#indate=2017-03-30&amp;outdate=2017-03-31"> 
+    <div class="pic"> 
+        <img src="{php echo $url.'/'.explode(',',$val['hotelpic'])[0];}" onerror="this.src='../addons/wqtgd_jiudian/template/mobile/img/error.png'; this.title='图片未找到.'">  
+    </div> 
+    <div class="info">
+        <p class="name">
+        <em>{$val['hotelname']}</em> 
+        <i class="grade grade1"></i> 
+        </p>
+
+        <p class="comt"> 
+        <span class="comt_nmb">{$val['roomtype']}</span> 
+        </p>  
+        
+
+        <p class="comt">  
+        <span class="comt_nmb">酒店电话:{$val['hoteltel']}</span>
+        </p> 
+
+        <p class="comt">  
+        <span class="comt_nmb">单号:{$val['ordername']}</span>  
+        </p> 
+        </div>
+
+        <div class="right-wrap">
+        <div class="r-tab"> 
+        <p class="pri">
+        <b>  </b> 
+        <span><i>￥</i>{$val['price']}</span> </p>
+        <p class="tags" style="margin-top:5px;"> 
+        <?php if(!empty($val['credit1'])){?>     
+            <span style="color:#4499ff;border:1px solid #4499ff;">已返{$val['credit1']}积分</span></p>
+        <?php }else{ ?>
+            <span style="color:#4499ff;border:1px solid #4499ff;">已返{$val['credit2']}余额</span></p>
+        <?php } ?>
+        </div>
+     </div> 
+ </li>
+ </a>
+
+ <?php }?>
+{/loop}
+<?php }else{?>
+    <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/>
+        <div style="margin-top:10px;">
+            <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="width:100%;color:black;">暂无返现记录</a><br>
+            <div class="weui-form-preview-btn weui-form-preview-btn-primary"  style="margin-top:15px;width:100%;font-size:17px;color:lightgray;">快去找到喜欢的<a href="{$Index}" style="margin-top:15px;width:100%;color:red;font-size:17px;">酒店</a>下单吧！</div>
+        </div>
+        </center>
+<?php }?>
+ 
+						
+<style>
+						
+.hotel-item {
+    padding: 8px 0;
+    margin: 0 8px;
+    border-bottom: 1px solid #DDD;
+    position: relative;
+    overflow: hidden;
+    border-color: #ebebeb;
+}
+.hotel-item .pic {
+    width: 72px;
+    height: 72px;
+    float: left;
+    background-image: url(img/loadingimg.gif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.hotel-item .pic img {
+    width: 72px;
+    height: 72px;
+}
+.hotel-item .info {
+    margin-left: 80px;
+    line-height: 19px;
+}
+.hotel-item .info .name {
+    font-size: .938rem;
+    line-height: 1;
+    height: 16px;
+}
+ p {
+    color: #353535;
+    margin: 0;
+}
+.hotel-item .info .name em {
+    font-style: normal;
+    float: left;
+    display: inline-block;
+    max-width: 91%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: normal;
+}
+.hotel-item .info .comt {
+    font-size: .688rem;
+    height: 20px;
+    line-height: 20px;
+}
+.hotel-item .info .fac {
+    font-size: .688rem;
+    color: #999;
+}
+ .hotel-item .info .comt .comt_nmb {
+    font-size: .75rem;
+    color: #b2b2b2;
+}
+ .hotel-item .info .comt .comt_no {
+    color: #49f;
+    font-size: .75rem;
+}
+.hotel-item .info .district {
+    font-size: .688rem;
+    color: #999;
+    line-height: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.hotel-item .info .district .d1 {
+    margin-right: 4px;
+    display: inline-block;
+    max-width: 5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+ .hotel-item .info .district .d3 {
+    vertical-align: middle;
+position: relative;
+    border-left: 1px solid #999;
+    padding-left: 4px;
+}
+.hotel-item .right-wrap {
+    position: absolute;
+    right: 8px;
+    top: 33%;
+    text-align: right;
+    height: 34px;
+    display: table;
+}
+.hotel-item .right-wrap .r-tab {
+    display: table-cell;
+    vertical-align: middle;
+}
+ .right-wrap .r-tab .pri {
+    line-height: 12px;
+}
+.hotel-item .right-wrap .r-tab .pri b {
+    color: #777;
+    font-size: .688rem;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+.hotel-item .right-wrap .r-tab .pri span {
+    color: #f55;
+    font-size: 1.063rem;
+    margin-left: 8px;
+}
+
+
+</style>
+	
+
+</body>
+</html>
+

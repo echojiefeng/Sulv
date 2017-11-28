@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>提现管理</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min1.js"></script>
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+  <div class="my-info">
+            <div class="my-info-background" style="background-color:#FF4700; -webkit-filter:blur(0px)"></div>
+            <img class="my-avatar" src="{$res['headimgurl']}">
+            <span class="name">{$res['nickname']}</span>
+            <span class="my-vip" style="background:none">您目前累计提现金额：<?php if(empty($cashlist)){?>
+                暂无
+            <?php }else{?>
+                ¥{$cashnum['cashmoney']}
+            <?php }?>
+            </span>
+        </div>
+
+      {loop $cashlist $val}
+      <div class="weui-form-preview">
+            <div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">提现金额</label>
+                <em class="weui-form-preview-value">¥{$val['money']}</em>
+            </div>
+            <div class="weui-form-preview-bd">
+                <p>
+                    <label class="weui-form-preview-label">申请提现日期</label>
+                    <span class="weui-form-preview-value"><?php echo date('Y-m-d H:i:s',$val['time']);?></span>
+                </p>
+            
+                   <label class="weui-form-preview-label">申请提现单号</label>
+                    <span class="weui-form-preview-value">{$val['ordernum']}</span>
+                
+            
+            </div>
+            <div class="weui-form-preview-ft">
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary open-popup" href="javascript:" data-target="#popup" id="cash" onclick="openDf(this)" urll="{$Tixianlogac}" vid="{$val['id']}" >查看提现进度</a>
+            </div>
+      </div>
+
+      <br>
+      {/loop}
+
+
+  <?php if(!empty($cashlist)){?>
+		 <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> 
+        <div style="margin-top:10px;">
+          
+           <center> <span class="weui-form-preview-btn weui-form-preview-btn-primary" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无提现记录</span></center>
+        </div>
+<?php }?>
+
+  <div id="popup" class="weui-popup-container">
+  <div class="weui-popup-modal">
+  <div class="weui_article">
+    <div class="topbar">
+        <h1 class="title"><span>单号1111111111111111111111</span></h1>
+    </div>
+           <div class="timeline">
+  <ul>
+  <li class="timeline-item item1"> <div class="timeline-item-head-first"> <i class="weui_icon weui_icon_success_no_circle timeline-item-checked"></i> </div> <div class="timeline-item-tail"></div> <div class="timeline-item-content"> <h4 class="recent"></h4> <p class="recent"></p> </div> </li>
+
+   
+   <li class="timeline-item item2"> <div  class="timeline-item-head"> <i class="weui_icon weui_icon_success_no_circle timeline-item-checked hide" ></i> </div> <div class="timeline-item-tail" ></div> <div class="timeline-item-content"> <h4> 商家正在处理</h4> <p>2016-04-16 10:23:00</p> </div> </li>
+   
+    <li class="timeline-item item3"> <div  class="timeline-item-head"> <i class="weui_icon weui_icon_success_no_circle timeline-item-checked hide" ></i> </div> <div class="timeline-item-tail hide" ></div> <div class="timeline-item-content"> <h4> 申请提现</h4> <p>2016-04-15 9:00:00</p> </div> </li>
+  
+     </ul> </div>
+
+    </div>
+  <p class='page-bd-15'><a href="javascript:;" class="weui_btn weui_btn_plain_primary close-popup" id="p1">关闭</a></p>
+  </div>
+ </div> 
+ 
+</body>
+
+<script>
+// array(15) {
+//   ["id"]=>
+//   string(1) "1"
+//   ["openid"]=>
+//   string(28) "oOE0XwnE-DO-bcxaa2puhEAZcUvI"
+//   ["uniacid"]=>
+//   string(1) "6"
+//   ["ordernum"]=>
+//   string(4) "1111"
+//   ["nickname"]=>
+//   string(19) "Joanna_ _ huling洁"
+//   ["money"]=>
+//   string(5) "10000"
+//   ["fee"]=>
+//   string(1) "5"
+//   ["actarr"]=>
+//   string(4) "9500"
+//   ["type"]=>
+//   string(1) "0"
+//   ["accnum"]=>
+//   string(11) "15083988593"
+//   ["status"]=>
+//   string(1) "1" 0 申请中 1 通过 2不通过
+//   ["reply"]=>
+//   string(162) "积分活动时间开发好的撒开几号房间都是发生的合法货收到了开发和卢卡斯的弗兰克斯大林封建时代回复啥看法好的酸辣粉"
+//   ["replytime"]=>
+//   string(8) "77777777"
+//   ["passtime"]=>
+//   string(20) "99999999999999999999"
+//   ["time"]=>
+//   string(13) "7894561233669"
+// }
+
+  /*时间格式化*/
+  Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+
+  /*获取两个数间的随机数*/
+  function rnd(min, max){
+    return min + Math.floor(Math.random() * (max - min + 1));
+  }
+
+  
+    function openDf(that){
+        $.ajax({
+            url:$(that).attr('urll'),
+            data:'id='+$(that).attr('vid'),
+            type:'post',
+            dataType:'json',
+            success:function(result){
+              console.log(result);
+              //
+                setData(result);
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  
+              },
+          });
+    }
+    /*设置数据*/
+  function setData(data){
+
+    //设置单号
+    $(".topbar>.title>span").text("提现单号 " + data["ordernum"]);
+
+    //提现时间
+      var time =  new Date(parseInt(data["time"]) * 1000 ).Format("yyyy-MM-dd hh:mm:ss");
+      //console.log(new Date("2017-04-06 15:05:50"));
+      $(".timeline>ul>li:last-child>.timeline-item-content>p").text(time);
+      //处理完成时间
+      var passtime = new Date(parseInt(data["passtime"]) * 1000);
+      var replytime = new Date(parseInt(data["replytime"]) * 1000);
+      var t_time = new Date(parseInt(data["time"]) * 1000).getTime();
+      var diff_time = new Date(rnd(t_time, passtime.getTime())).Format("yyyy-MM-dd hh:mm:ss");
+      var rDiff_time = new Date(rnd(t_time, replytime.getTime())).Format("yyyy-MM-dd hh:mm:ss");   
+      // console.log("this_time:" + this_time);
+      // console.log("t_time:" + t_time);
+      // console.log(diff_time);
+
+      //处理状态
+      var status = data["status"];
+    
+      switch(status){
+
+        case '0'://申请中
+              $(".item1").attr("style","display:none;");
+              $(".item2>.timeline-item-head").attr("style", "width:20px;height:20px;left:-4px;");
+              $(".item2>.timeline-item-content>p").text("");
+              break;
+
+        case '1'://已审核通过时间
+               $(".item1").attr("style","display:block;");
+                $(".item2>.timeline-item-head").attr("style", "width:10px;height:10px;left:1px;");
+               $(".item1>.timeline-item-content>h4").text("已审核通过！请查收到款账户！");
+               passtime = passtime.Format("yyyy-MM-dd hh:mm:ss");
+               $("p.recent").text(passtime);
+               var _classname =  $(".timeline-item-head-first>i").attr("class");
+               if(_classname.indexOf("weui_icon weui_icon_success_no_circle timeline-item-checked") == -1){
+                   $(".timeline-item-head-first>i").addClass("weui_icon weui_icon_success_no_circle timeline-item-checked");
+               }
+              $(".recent").css('color','#EE82EE');
+              $(".item2>.timeline-item-content>p").text("");
+              break;
+
+        case '2'://不通过
+               $(".item1").attr("style","display:block;");
+                $(".item2>.timeline-item-head").attr("style", "width:10px;height:10px;left:1px;");
+               $(".item1>.timeline-item-content>h4").text("审核不通过！" + data["reply"]);
+               $(".item1>.timeline-item-content>p").text(new Date(parseInt(data["replytime"]) * 1000).Format("yyyy-MM-dd hh:mm:ss"));
+               $(".recent").css('color','red');
+               $(".timeline-item-head-first>i").removeClass("weui_icon weui_icon_success_no_circle timeline-item-checked").addClass("");
+               $(".item2>.timeline-item-content>p").text("");
+               break;
+
+         case '3'://申请失败
+               $(".item1").attr("style","display:block;");
+                $(".item2>.timeline-item-head").attr("style", "width:10px;height:10px;left:1px;");
+               $(".item1>.timeline-item-content>h4").text("提现失败，请联系平台!");
+               $(".item1>.timeline-item-content>p").text(new Date(parseInt(data["passtime"]) * 1000).Format("yyyy-MM-dd hh:mm:ss"));
+               $(".recent").css('color','red');
+               $(".timeline-item-head-first>i").removeClass("weui_icon weui_icon_success_no_circle timeline-item-checked").addClass("");
+               $(".item2>.timeline-item-content>p").text("");
+               break;
+
+      }
+    
+   
+    console.log($(".timeline>ul>li:last-child>.timeline-item-content>p").text());
+  }
+    // $('#cash').click(function(){
+    //   // console.log($(this).attr('vid'));
+    //     console.log($(this).attr('urll'));
+    //     $.ajax({
+    //         url:$(this).attr('urll'),
+    //         data:'id='+$(this).attr('vid'),
+    //         type:'post',
+    //         dataType:'json',
+    //         success:function(result){
+    //           console.log(result);
+    //           //
+    //             setData(result);
+    //           },
+    //           error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  
+    //           },
+    //       });
+    // });
+</script>
+</html>
+

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>房型管理</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+        <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+
+        
+        
+                    <div class="weui_cell" style="background:#64C34A;color:#FFF;">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>提示：目前版本仅支持PC端后台添加或修改房型，微信端修改请期待下一版本。</p>
+                </div>
+               
+            </div>
+{if $hotellist['hotelname'] == ""}  <br /> <br /> <br /> <br />  <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">没有查询到您的酒店</a></center>
+        </div>{else}
+        <div class="weui-form-preview">
+            <div class="weui-form-preview-hd">
+                <label class="weui-form-preview-label">酒店名</label>
+                <em class="weui-form-preview-value">{$hotellist['hotelname']}</em>
+            </div>
+            <div class="weui-form-preview-bd">
+                <p>
+                    <?php $hoteltype_sjr = ['0'=>'暂无星级(经济)','3'=>'★★★','4'=>'★★★★','5'=>'★★★★★']; ?>
+                    <label class="weui-form-preview-label">酒店星级</label>
+                    <span class="weui-form-preview-value">{$hoteltype_sjr[$hotellist['hoteltype']]}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">酒店电话</label>
+                    <span class="weui-form-preview-value">{$hotellist['tel']}</span>
+                </p>
+				 <p>
+                    <label class="weui-form-preview-label">酒店联系人</label>
+                    <span class="weui-form-preview-value">{$hotellist['hotellinkman']}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">酒店地址</label>
+                    <span class="weui-form-preview-value">{$hotellist['hoteladdress']}&nbsp;{$hotellist['hoteldetailed']}</span>
+                </p>
+                
+            </div>
+        </div>
+        <br>
+{/if}
+    {loop $roomlist $row}
+        <div class="weui-form-preview">
+            <div class="weui-form-preview-bd">
+                <p>
+                    <label class="weui-form-preview-label">房型名称</label>
+                    <span class="weui-form-preview-value">{$row['roomtype']}</span>
+                </p>
+            
+                <p>
+                    <label class="weui-form-preview-label">房型数量</label>
+                    <span class="weui-form-preview-value">{$row['roomnum']}间</span>
+                </p>
+				<p>
+                    <label class="weui-form-preview-label">房态设置</label>
+                    <span class="weui-form-preview-value">{if $row['roomstatus'] == 0}不限数量预订{/if}{if $row['roomstatus'] == 1}按房间数量预订{/if}{if $row['roomstatus'] == 2}暂停预订(关房){/if}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">房型价格</label>
+                    <span class="weui-form-preview-value">{$row['roomprice']}元</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">限时价格</label>
+                  
+                        <span class="weui-form-preview-value">{if $row['saleprice'] > 0}{$row['saleprice']}元{else}未设置活动{/if}</span>
+                  
+                </p>
+				<p>
+                    <label class="weui-form-preview-label">限时时间</label>
+                  
+                        <span class="weui-form-preview-value">{if $row['saleprice'] > 0}<?php echo date('Y/m/d H:i:s',$row['end_time']);?>截至{else}未设置活动{/if}</span>
+                  
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">付款方式</label>
+                    <?php $type=['0'=>'到店付款','1'=>'在线付款','2'=>'支付定金'];?>
+                    <span class="weui-form-preview-value">{$type[$row['paytype']]}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">显示状态</label>
+                    <?php $state_sjr = ['0'=>'显示','1'=>'隐藏']; ?>
+                    <span class="weui-form-preview-value">{$state_sjr[$row['status']]}</span>
+                </p>
+            </div>
+            <!--div class="weui-form-preview-ft">
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{php echo $this->createMobileUrl('roomedit',array('id'=>$row['id']))}">修改当前房型详情</a>
+            </div--> 
+        </div>
+		<br />
+    {/loop}
+
+
+
+</body>
+</html>
+

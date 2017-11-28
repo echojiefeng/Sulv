@@ -1,0 +1,259 @@
+<html lang="zh-CN"><style type="text/css" id="16342142732"></style><head>
+    <meta charset="utf-8">
+    <title>领券中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/yhqlist.css">
+
+  <script src="../addons/wqtgd_jiudian/template/mobile/js/Chart.js"></script>
+
+  <script>
+		
+  </script>
+
+<div id="vueContainer">
+	<div>
+		<div class="coupon_center_v2_header">
+			<img src="../addons/wqtgd_jiudian/template/mobile/img/yhqlisttop.jpg">
+			<p class="content">
+				亲爱的{$res['nickname']}，我们已经为您准备了丰富的优惠券，速速领取吧~
+			</p>
+			<a href="{php echo $this->createMobileUrl('yhqtwo')}" class="rule">我的优惠券</a>
+		</div>
+		<div class="mod_alert mod_alert_info fixed ">
+		
+		</div>
+	</div>
+	<div current-tab="0">
+		<div>
+			<section class="coupon_sec">
+			<div class="coupon_sec_head">
+				<h3>酒店通用券</h3>
+				<a href="{php echo $this->createMobileUrl('index')}">全酒店通用券</a>
+			</div>
+			<div class="coupon_sec_body">
+				<!---->
+				<div class="coupon_news">
+				{loop $res_discount $b}
+					{if $b['hotelname'] == '0'}
+						{if $b['integration']}
+							{if intval($res['integration']) > intval($b['integration'])}
+								<a onclick="imm(this,'{$b['id']}','{$b['disname']}','{$b['disprice']}','{$b['dispriceto']}','{$b['levelxz']}','{$b['hotelname']}','{$b['starttime']}','{$b['endtime']}','{$b['integration']}')" href="javascript:;" ptag="137568.2.6" class="coupon_new bg_blue "><span class="coupon_new_price"><small>¥</small>{if empty($b['dispriceto']) }{$b['disprice']}{else}{$b['disprice']}~{$b['dispriceto']}{/if}
+								</span>
+								<span class="coupon_new_des">
+								<strong>{$b['disname']}{if $b['levelxz'] != '0'}({$level[$b['levelxz']]}以上使用){/if}</strong><br>
+								{if $b['integration']}
+									<span class="coupon_new_integration" style="font-size:12px;">
+									领取所需积分:{$b['integration']}<br>
+									</span>
+								{/if}								
+								</span>
+								<span class="coupon_new_btn">({if $b['limit'] == 'to'}不限领取{else}限领取{$b['limit']}次{/if})
+								</span>
+								</a>
+							{else}
+								<a onclick="javascript:;" href="javascript:;" ptag="137568.2.6" class="coupon_new bg_blue "><span class="coupon_new_price"><small>¥</small>{if empty($b['dispriceto']) }{$b['disprice']}{else}{$b['disprice']}~{$b['dispriceto']}{/if}
+								</span>
+								<span class="coupon_new_des">
+								<strong>{$b['disname']}{if $b['levelxz'] != '0'}({$level[$b['levelxz']]}以上使用){/if}</strong><br>
+								{if $b['integration']}
+									<span class="coupon_new_integration" style="font-size:12px;">
+									领取所需积分:{$b['integration']}<br>
+									</span>
+								{/if}
+								</span>
+
+								<span class="coupon_new_btn">积分不足
+								</span>
+								</a>
+							{/if}
+						{else}
+							<a onclick="imm(this,'{$b['id']}','{$b['disname']}','{$b['disprice']}','{$b['dispriceto']}','{$b['levelxz']}','{$b['hotelname']}','{$b['starttime']}','{$b['endtime']}','{$b['integration']}')" href="javascript:;" ptag="137568.2.6" class="coupon_new bg_blue "><span class="coupon_new_price"><small>¥</small>{if empty($b['dispriceto']) }{$b['disprice']}{else}{$b['disprice']}~{$b['dispriceto']}{/if}
+							</span>
+							<span class="coupon_new_des">
+							<strong>{$b['disname']}{if $b['levelxz'] != '0'}({$level[$b['levelxz']]}以上使用){/if}</strong><br>
+							</span>
+							<span class="coupon_new_btn">({if $b['limit'] == 'to'}不限领取{else}限领取{$b['limit']}次{/if})
+							</span>
+							</a>
+						{/if}
+					{/if}
+				{/loop}
+				</div>
+			</div>
+			</section><!---->
+		</div>
+		<div>
+			{loop $hotel_discount $row}
+				{if $row != '0'}
+					<section class="coupon_sec">
+						<div class="coupon_sec_head">
+							<h3>{$row}优惠券</h3>
+							<a href="{php echo $this->createMobileUrl('roomlisttwo').'&hotelname='.$row}">使用</a>
+						</div>
+						<div class="coupon_sec_body">
+						<?php
+							$sqlyhqlist =  "select * from " . tablename('wqtgd_hotel_discount') . "where hotelname = '".$row."' ";
+							$resyhqlist = pdo_fetchall($sqlyhqlist);
+						?>
+						{loop $resyhqlist $r}
+							<a href="javascript:;" cbatchid="35539977" class="coupon_default bg_blue"><img init_src="" src='{$url}/{$r['hotelpic']}' class="coupon_default_image">
+							<p class="coupon_default_name">
+								<span>{$r['disname']}({if $r['limit'] == 'to' }不限{else}限领{$r['limit']}张{/if})
+								{if $r['levelxz'] != '0'}({$level[$r['levelxz']]}以上使用){/if}<br></span>
+							</p>
+							<span class="coupon_default_price"><em>
+							{if empty($r['dispriceto']) }
+								¥{$r['disprice']}
+							{else}
+								¥{$r['disprice']}~{$r['dispriceto']}
+							{/if}
+							</em>{if $r['miniprice'] != 'to' }满{$r['miniprice']}可用{else}不限金额使用{/if}
+							{if $r['integration']}
+							<p>
+								<span>领取所需积分:</span><span style="font-weight:bold;">{$r['integration']}</span>
+							</p>	
+							{/if}							
+							</span>
+							<div class="coupon_default_status">
+								<div>
+									<div class="coupon_default_progress" style="position: relative;">
+										<svg version="1.1" xmlns="" width="60px" height="60px" viewbox="0 0 60 60"><path d="M18 55 A25 25, 0, 1, 1, 42 55" fill="none" stroke="rgba(0,0,0,.1)" stroke-width="2"></path><path d="M18 55 A25 25, 0, 1, 1, 42 55" fill="none" stroke="#fff" stroke-width="0" stroke-linecap="round" class="coupon_default_percent_path" style="stroke-dashoffset: 0px;"></path></svg><span class="coupon_default_percent_text">剩余<em><?php echo floor(($r['stockjian']/$r['stock'])*100); ?>%</em></span>
+									</div>
+									{if $r['integration']}
+										{if intval($res['integration']) > intval($r['integration'])}
+											<span onclick="imm(this,'{$r['id']}','{$r['disname']}','{$r['disprice']}','{$r['dispriceto']}','{$r['levelxz']}','{$r['hotelname']}','{$r['starttime']}','{$r['endtime']}','{$r['integration']}')" class="coupon_default_status_btn bg_bor">立即领取</span>
+										{else}
+											<span onclick="javascript:;" class="coupon_default_status_btn bg_bor">积分不足</span>
+										{/if}
+									{else}
+									<span onclick="imm(this,'{$r['id']}','{$r['disname']}','{$r['disprice']}','{$r['dispriceto']}','{$r['levelxz']}','{$r['hotelname']}','{$r['starttime']}','{$r['endtime']}','{$r['integration']}')" class="coupon_default_status_btn bg_bor">立即领取</span>
+									{/if}
+								</div>
+							</div>
+							</a>
+						{/loop}
+						</div>
+					</section>
+				{/if}
+			{/loop}
+		</div>
+	</div>
+</div>
+
+<span id="route" receive="{$Receive}"></span>
+<script>
+	var receive = $('#route').attr('receive');
+	function imm(obj,id,disname,disprice,dispriceto,levelxz,hotelname,starttime,endtime,integration) {
+		if(integration > 0){
+		    $.confirm("确定使用"+integration+"积分领取优惠券吗?","确定领取",function(){
+				$.post(receive,{'id':id,'disprice':disprice,'dispriceto':dispriceto,'levelxz':levelxz,'starttime':starttime,'endtime':endtime,'integration':integration},function(data){
+					if (!isNaN(data)) {
+						if (hotelname == '0') {
+							hotelname = '酒店通用券';
+						}
+						$.alert('恭喜！您已成功领取'+ hotelname + '价值'+data+'元优惠劵<br /><br />快去使用吧！');
+					}else{
+						$.alert(data);
+					}
+				},'json');                
+            });
+		}else{
+			$.post(receive,{'id':id,'disprice':disprice,'dispriceto':dispriceto,'levelxz':levelxz,'starttime':starttime,'endtime':endtime,'integration':integration},function(data){
+				if (!isNaN(data)) {
+					if (hotelname == '0') {
+						hotelname = '酒店通用券';
+					}
+					$.alert('恭喜！您已成功领取'+ hotelname + '价值'+data+'元优惠劵<br /><br />快去使用吧！');
+				}else{
+					$.alert(data);
+				}
+			},'json');
+		}
+	}
+
+		var datas = [];
+		var options = [];
+		$.each($('.coupon_default_progress'), function(index, item){
+			var _svg = $(item).children('svg');
+			_svg.before('<canvas id="myChart" style="position:absolute;top: 3px;left: 5px;transform: rotate(-180deg);" width="65" height="60"></canvas>');
+
+			var remainingTime = parseInt($(item).children('.coupon_default_percent_text').children('em').text());
+			var surplus = 100 - remainingTime;
+
+			var data = [
+				{
+					value: remainingTime,
+					color:"#F7464A"
+				},
+				{
+					value: surplus,
+					color: "#fff"
+				}
+			];
+			datas.push(data);
+
+			 var option = {
+				//Boolean - Whether we should show a stroke on each segment
+				segmentShowStroke : true,
+				
+				//String - The colour of each segment stroke
+				segmentStrokeColor : "#fff",
+				
+				//Number - The width of each segment stroke
+				segmentStrokeWidth : 0,
+				
+				//The percentage of the chart that we cut out of the middle.
+				percentageInnerCutout : 80,
+				
+				//Boolean - Whether we should animate the chart	
+				animation : false,
+				
+				//Number - Amount of animation steps
+				animationSteps : 100,
+				
+				//String - Animation easing effect
+				animationEasing : "easeOutBounce",
+				
+				//Boolean - Whether we animate the rotation of the Doughnut
+				animateRotate : true,
+
+				//Boolean - Whether we animate scaling the Doughnut from the centre
+				animateScale : false,
+				
+				//Function - Will fire on animation completion.
+				onAnimationComplete : null
+			}
+			options.push(option);
+
+			// var ctx = document.getElementById("myChart").getContext("2d");
+			// new Chart(ctx).Doughnut(data, options);
+		});
+
+		
+			
+			window.onload = function(){				
+				// var ctx = document.getElementById("myChart").getContext("2d");
+				// new Chart(ctx).Doughnut(data, options);
+
+				 $.each($('.coupon_default_progress>canvas'), function(index, item){
+				 	var ctx = item.getContext("2d");
+				 	new Chart(ctx).Doughnut(datas[index], options[index]);
+				 });
+			}
+			
+
+</script>
+
+
+
+
+
+
+
+
+
+</body></html>

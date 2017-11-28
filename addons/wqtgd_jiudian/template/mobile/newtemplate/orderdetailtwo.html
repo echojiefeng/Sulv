@@ -1,0 +1,317 @@
+
+
+
+<!DOCTYPE html>
+<html >
+<head>
+    <title>酒店订单详情</title>
+    <meta name="full-screen" content="yes" />
+    <meta name="browsermode" content="application" />
+    <meta name="x5-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta content="Washington Botelho" name="author">
+    <meta content="jQuery Raty - A Star Rating Plugin" name="description">
+    <meta content="jquery,plugin,rating,raty,voto,star,staring,classificacao,classificar,votar,plugin" name="keywords">
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/mainV2.css" />
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../addons/wqtgd_jiudian/template/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">  
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/js/plugins/sweetalert/sweetalert.min.js"></script>
+</head>
+<body>
+    <div class="pages">
+        <div class="page">
+            <!--  <header class="bar bar-nav flight-order-head">
+                 <a class="icon icon-left-nav pull-left icon-back" data-rel="back" href="#" style="display: block;color: #858585"></a>
+                 <h1 class="title">酒店订单详情</h1> 
+            </header>-->
+            <div class="page-content">
+                <div class="orderdetail" id="orderdetail" value="{$orderdetail}">
+                    <article class="orderdetail-content">
+                        <section class="orderdetail-fill">
+                            <!--订单号码状态-->
+                            <div class="detail  s_bdb">
+                                <div class="detail_num">
+                                    <div class="hotel_a" data-method="orderprogress">
+                                        <div class="hotel_text">
+                                            <p>订单号码: {$orderlist['ordername']}</p>
+                                            <p>订单状态:
+                                                <span class="black">{$orderlist['order_status']}</span>
+                                            </p>
+                                            {if $orderlist['order_status'] == "驳回退款"}
+                                            <p>驳回理由:
+                                                <span class="black" style="color:red;">{$orderlist['reject_reason']}</span>
+                                            </p>        
+                                            {/if}
+                                        </div>
+                                        <i class="hotel_more"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--订单酒店信息-->
+                            <div class="detail  s_bdb">
+                                <div class="detail_hotel">
+
+                                    <div class="hotel_a">
+                                        <div class="hotel_text">
+										 <a href="{$Roomlist}&hotelname={$orderlist['hotelname']}">
+                                            <p>{$orderlist['hotelname']}</p>
+                                        </div>
+                                       <i class="hotel_more"></i></a>
+                                    </div>
+
+                                <div class="hotel_b  s_bdt">
+                                    <div class="hotel_tel">
+                                        <a href="tel:{$orderlist['hoteltel']}"><span>酒店电话：<em>{$orderlist['hoteltel']}</em></span><img src="../addons/wqtgd_jiudian/template/img/tel.png"/ style="width:22px;height:17px;margin-left:40px;margin-top:-5px;"></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--订单详细信息-->
+                        <div class="detail  s_bdb">
+                            <div class="detail_news">
+
+                                <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>入离日期：<em><?php echo date('Y-m-d',$orderlist['checkin']); ?>  至 <?php echo date('Y-m-d',$orderlist['checkout']); ?></em><span>共{$orderlist['checkday']}晚</span></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+                                 <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>入住房型：<em>{$orderlist['roomtype']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+								  <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>最晚到店：<em><?php echo date('H:i',$orderlist['arrivetime']); ?></em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+								 <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>入 住 人：<em>{$orderlist['truename']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+								 <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>联系电话：<em>{$orderlist['usertel']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+                              
+                                <div class="news_c  s_bdt">
+                                    <div class="news_content">
+                                        <p>早餐信息：
+                                            <em><?php echo $orderlist['breakfast'] == '0' ? '含早餐' : '不含早' ;
+                                            ?>
+                                            </em>
+                                        </p>
+                                    </div>
+                                    <i class="news_c_more" style="visibility:hidden"></i>
+                                </div>
+                                <div class="news_d  s_bdt">
+                                    <div class="news_content" style="width:80%">
+                                        <p>发票信息：
+                                            <span>
+                                                如需发票，请咨询前台工作人员。
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <i class="news_d_more" style="visibility:hidden"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--订单金额细信息-->
+                        <div class="detail  s_bdb">
+                            <div class="detail_date">
+
+                                <div class="hotel_a">
+                                    <div class="date_text">
+                                        <p>预订日期：<em><?php echo date('Y-m-d H:i:s',$orderlist['create_time']);?></em></p>
+                                    </div>
+                                </div>
+
+                                <div class="hotel_b  s_bdt">
+                                    <div class="date_text">
+                                        <p>订单金额：<span>￥{$orderlist['price']}</span>
+                                        &nbsp;
+                                        {if $orderlist['discount'] != ""}
+                                        折扣价：<span>￥{$orderlist['discount']}</span>
+                                        {/if}
+                                        <?php $type = ['0'=>'到店付','1'=>'在线付','2'=>'付定金'];?>
+                                         ({$type[$orderlist['paytype']]})</p>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                    </section>
+
+                    <?php if($orderlist['order_status'] == '交易完成' || $orderlist['order_status'] == '订单取消'){?>
+
+                    <div class="sub">
+                      <ul> 
+                            <li data-method="bookAgain"><a href="{$Roomlist}&hotelname={$orderlist['hotelname']}">再次预订</a></li>
+                        
+                            <li data-method="hideOrder" class="weui-form-preview-btn weui-form-preview-btn-primary" id="sd3" ><a href="javascript:;">删除订单</a></li>
+                       
+                      </ul>
+                  </div>
+                    <?php }else{?>
+                    <div class="sub">
+                      <ul> 
+                            <li data-method="bookAgain"><a href="{$Roomlist}&hotelname={$orderlist['hotelname']}">再次预订</a></li>
+                        <?php if($orderlist['order_status'] == '未付款' || $orderlist['order_status'] == '待确认'){?>  
+                            {if $roomtypedetail['cancel'] == '0'}
+                            <li data-method="hideOrder" ><a href="{$Ordercancel}&ordername={$orderlist['ordername']}" >取消订单</a></li>
+                            {elseif $roomtypedetail['cancel'] == '1'}
+                            <li data-method="hideOrder"><a href="javascript:;" style="background-color:#CCCCCC;">不可取消</a></li>
+                            {/if}
+                        <?php }elseif($orderlist['order_status'] == '预定待确认'){?>  
+                            {if $roomtypedetail['cancel'] == '0'}
+                            <li data-method="hideOrder" id="sd2"><a href="javascript:;" >取消订单</a></li>
+                            {elseif $roomtypedetail['cancel'] == '1'}
+                            <li data-method="hideOrder"><a href="javascript:;" style="background-color:#CCCCCC;">不可取消</a></li>
+                            {/if}
+                        <?php }elseif($orderlist['order_status'] == '驳回退款'){?>  
+                            <li data-method="hideOrder" ><a href="{$Ordercancel}&ordername={$orderlist['ordername']}" >再次申请退款</a></li>
+                        <?php }else{?>
+                            <li data-method="hideOrder" id="sd3"><a href="javascript:;">删除订单</a></li>
+                        <?php }?>
+                      
+                      </ul>
+                  </div>
+                  <?php }?>
+
+              <div class="yl_phone">
+                <p><a href="tel:{$setting['set_fuwutel']}"><i></i>客服电话:{$setting['set_fuwutel']}</a>  </p>
+            </div>
+        </article>
+    </div>
+</div>
+<nav class="bar record record-text"></nav>
+
+<input type="hidden" value="{$Evaluate}" order="{$Order}" id="hotel_url"  urll="{$Odac}" orderid="{$orderlist['id']}" sta="{$orderlist['order_status']}">
+
+</div>
+</div>
+<script type="text/javascript">
+var urll = $("#hotel_url").attr('urll');
+var orderid = $("#hotel_url").attr('orderid');
+var sta = $("#hotel_url").attr('sta');
+var cancel = 'cancel';
+
+   $(document).on("click", "#sd2", function() {
+        $.confirm("您确定要取消订单吗?", "确认取消?", function() {
+
+            $.ajax({
+                url: urll,
+                type:'post',
+                // dataType:'json',
+                data:"doo="+ cancel + "&orderid=" + orderid + "&order_status=" + sta,
+                success:function(result){
+                    if(result){  
+
+                        $.alert("订单已取消", function(){
+                            window.location.href=$('#hotel_url').attr('order');
+                        }); 
+                   
+                    }
+                },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+                   
+               }
+            });
+        }, function() {
+          //取消操作
+        });
+      });
+
+   $(document).on("click", "#sd3", function() {
+        $.confirm("您确定要删除订单吗?", "确认删除?", function() {
+
+            $.ajax({
+                url: urll,
+                type:'post',
+                // dataType:'json',
+                data:'doo=del&orderid='+orderid,
+                success:function(result){
+                    //alert($(result).find("code"));
+                    // console.log(result);
+                    if(result != null){
+                        //$.toast("<font color='#FFF'>订单已删除</font>");
+                        //window.location.href=$('#hotel_url').attr('order');
+                        $.alert("订单已删除", function(){
+                            window.location.href=$('#hotel_url').attr('order');
+                        }); 
+                    }
+                },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+     
+               }
+            });
+
+        }, function() {
+          //取消操作
+        });
+      });
+      
+$('#star').raty({
+  cancel    : true,
+  target    : '#hint',
+  targetKeep: true,
+  hints: ['十分不满意', '不满意', '一般', '满意', '非常满意']
+});
+ $('#star').children("img")[0].remove();
+
+
+ //提交
+ $(".btn-primary").bind("click", function(){
+    var hotelname = $(".detail_hotel>.hotel_a>.hotel_text>p").text();
+    var roomtype = $(".detail_news>.news_b>.news_content>p").text().substring(5, 9);
+    var ordername =$(".detail_num>.hotel_a>.hotel_text>p:first-child").text().substring(5);
+    var grade = $("#hint").text();
+    var eva = $("#proposal").val();
+
+    // console.log(hotelname+"  "+roomtype+"  "+ordername+"  "+grade+"  "+eva);
+    var content = "hotelname=" +  hotelname + "&roomtype=" + roomtype+ "&ordername=" + ordername + "&grade=" + grade + "&eva=" + eva;
+    // console.log(content);
+    var hotel_url = $("#hotel_url").val();
+    // console.log(hotel_url);
+    $.ajax({
+            url: hotel_url,
+            type:'post',
+            // dataType:'json',
+            data:content,
+            success:function(result){
+                //alert($(result).find("code"));
+                // console.log(result);
+                if(result != null){
+                    window.location.href=$('#orderdetail').val();
+                }
+            },
+             error: function(XMLHttpRequest, textStatus, errorThrown) {
+ // alert(XMLHttpRequest.status);
+ // alert(XMLHttpRequest.readyState);
+ // alert(errorThrown.description);
+ // alert(textStatus);
+   }
+        });
+ })
+</script>
+</html>

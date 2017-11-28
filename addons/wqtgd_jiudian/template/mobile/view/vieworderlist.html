@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/neworder.css">
+    <script type="text/javascript" src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <title>我的订单</title>
+</head>
+<style>
+  .submitzf{
+    width:80px;
+    height:26px;
+    float:right;
+    margin-right:15px;
+    border-radius:10%;
+    background:#FDE3E3;
+    border:1px solid #ED3036
+  }
+</style>
+<body>
+<div class="top" style="    background-color: #fcfcfc;
+    color: #444;
+    box-shadow: 0 1px 2px #ddd;">
+   <center> <span style="    left: 0px;">全部订单</span></center>
+</div>
+{if !empty($orderlist) }
+<div class="order_list">
+{loop $orderlist $val}
+    <div class="order">
+        <div class="title">
+            订单号：{$val['ordername']}
+            <br>
+            <span style="float:left; " class="rf">{$val['viewname']}：{$val['ticketname']}</span>
+        </div>
+        <div class="order_product">
+            <img src="{php echo $url.'/'.$val['viewpicture'];}" onerror="this.src='../addons/wqtgd_jiudian/template/mobile/img/error.png'; this.title='图片未找到.'"/> 
+            <div class="order_right">
+                <div class="order_introduce">
+                   景点：{$val['viewname']}
+					<br />预订人：{$val['username']}
+					<br />电话：{$val['usertel']}
+                </div>
+                <div class="order_data">游玩日期： <span class="num">{$val['time']}</span></div>
+            </div>
+        </div>
+        <div class="end"> <span>订单金额：</span><span>￥{$val['totalprice']}
+        </span>&nbsp;
+        {if $val['discount'] != ""}{/if}<!--         <span>折扣价：</span><span>￥{$val['discount']}</span> -->
+
+        
+                                <!--        &nbsp; <?php $type = ['0'=>'到店付','1'=>'在线付','2'=>'付定金'];?>
+                                         ({$type[$val['paytype']]}) -->
+                                         </span>
+                                      </div>
+        <div class="btn">
+                {if $val['order_status'] == '未付款'}
+                <form action="{$Viewpay}&offbox=yes" method="post">
+                  <input type="hidden" name="totalprice_list" value="{$val['totalprice']}">
+                  <input type="hidden" name="ordername_list" value="{$val['ordername']}">
+                  <input type="hidden" name="viewname_list" value="{$val['viewname']}">
+                  <input type="hidden" name="ticketname_list" value="{$val['ticketname']}">
+                  <input class="submitzf" type="submit"  value="去支付" >
+                </form>
+                {/if}
+                {if $val['order_status'] == '已付款'}<a class="submitzf" >已付款</a>{/if}
+                {if $val['order_status'] == '已退款'}<a class="submitzf" >已退款</a>{/if}
+                {if $val['order_status'] == '申请退款'}<a class="submitzf" >申请退款中</a>{/if}
+                {if $val['order_status'] == '驳回退款'}<a class="submitzf" >驳回退款</a>{/if}
+                {if $val['order_status'] == '退款失败'}<a class="submitzf" >退款失败</a>{/if}
+                {if $val['order_status'] == '已使用'}
+                  {if $val['evastatus'] == '0'}
+                  <a class="submitzf" href="{$Viewevaluate}&username={$val['username']}&usertel={$val['usertel']}&viewid={$val['viewid']}&viewname={$val['viewname']}&tickeid={$val['tickeid']}&ordername={$val['ordername']}&time={$val['time']}&tickename={$val['ticketname']}">去点评</a>
+                  {else}
+                   <a class="submitzf">已点评</a>
+                  {/if}
+                  <!-- <a class="submitzf" href="">再次预定</a> -->
+                {/if}
+     
+ 
+              <form action="{$Vieworderdetail}" method="post">
+                <input type="hidden" name="viewname" value="{$val['viewname']}">
+                <input type="hidden" name="id" value="{$val['id']}">
+
+                <input  type="submit"  value="订单详情" style="width:80px;height:26px;float:right;margin-right:15px;border-radius:10%;background:white;border:1px solid #dcd9d9;">
+              </form>
+        </div>
+    </div>
+  {/loop}
+</div>
+{else}
+    <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/>
+        <div style="margin-top:10px;">
+            <span href="">暂无订单记录</span><br>
+           
+        </div>
+        </center>
+{/if}
+
+
+</body>
+<span id="lujin" ></span>
+<script>
+</script>
+
+</html>

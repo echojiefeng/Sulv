@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的收藏</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+    <div class="help_list online-call">
+        <h2><em>我收藏的酒店</em></h2>       
+    </div>
+    <?php if(!empty($collectlist)){?>
+    {loop $collectlist $val}
+    <div class="weui-form-preview">
+        <div class="weui_panel">
+            <div class="weui_panel_hd"></div>
+            <div class="weui_panel_bd">
+                <div class="weui_media_box weui_media_text">
+                    <h4 class="weui_media_title" id="hotelname">{$val['hotelname']}</h4>
+                    <p class="weui_media_desc">{$val['hoteladdress']}</p>
+
+                    <ul class="weui_media_info">
+                        <li class="weui_media_info_meta">所含服务</li>
+                        <li class="weui_media_info_meta weui_media_info_meta_extra"><i class="fa fa-wifi"></i>&nbsp; 
+                        <i class="fa fa-product-hunt"></i>&nbsp; 
+                        <i class="fa fa-s15"></i>
+                        </li>
+                    </ul>
+                    <ul class="weui_media_info">
+                        <li class="weui_media_info_meta">酒店评论</li>
+                        <li class="weui_media_info_meta weui_media_info_meta_extra"><?php if($val['hotelgrade'] =='0' || empty($val['hotelgrade'])){
+                            echo '暂无评论';
+                        }else{
+                            echo '好评率'.$val['hotelgrade'].'分';
+                        }
+                        ?>
+                        </li>
+                       <!--  <li class="weui_media_info_meta weui_media_info_meta_extra">共计300条评价</li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="weui-form-preview-ft">
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{$Roomlist}&hotelname={$val['hotelname']}" style="width:50%;color:black;">预订酒店</a>
+                <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="javascript:;" id="sd2" style="width:50%;color:black;">取消收藏</a>
+            </div>
+        </div>
+    </div>
+    {/loop}
+    <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+            <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="width:100%;color:black;">暂无收藏记录</a>
+            <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{$Index}" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;">快去找到喜欢的酒店收藏吧！</a>
+        </div>
+
+        
+    <?php }?>
+<input type="hidden" id="acc" value="{$Colaction}">
+<input type="hidden" id="collect" value="{$Collect}">
+
+
+<script>
+
+$(document).on("click", "#sd1", function() {
+    $.alert("弹出对话框就是好", "标题");
+});
+$(document).on("click", "#sd2", function() {
+    $.confirm("您确定要取消吗?", "取消收藏提示", function() {
+
+        var can = 'doo=' + 'cancel' + '&hotelname='+ $('#hotelname').text();
+        console.log(can);
+
+         $.ajax({
+                url: $('#acc').val(),
+                type:'post',
+                // dataType:'json',
+                data:can,
+                success:function(result){
+
+                    if(result != null){
+                        $.toast("取消成功");
+                        window.location.href=$('#collect').val();
+
+                    }
+                    
+                    // 
+                // console.log(result);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                // console.log(1);
+            }
+            });
+
+        // console.log('1234');
+
+        // $.toast("取消成功");
+
+    }, function() {
+    //取消操作
+        console.log('11111');
+    });
+});
+</script>             
+
+</body>
+</html>
+

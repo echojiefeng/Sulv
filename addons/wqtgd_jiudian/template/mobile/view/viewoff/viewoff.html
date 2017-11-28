@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    
+    <title>景点核销账号</title>
+     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,minimal-ui" /> 
+    <link href="/addons/wqtgd_jiudian/template/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/addons/wqtgd_jiudian/template/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/addons/wqtgd_jiudian/template/css/animate.css" rel="stylesheet">
+    <link href="/addons/wqtgd_jiudian/template/css/style.css?v=4.1.0" rel="stylesheet">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+    <style>
+
+    .ibox-content{
+        border-width: 0px 0px;
+    }
+
+    </style>
+
+</head>
+{template share}
+<body>
+    {if $_GET['sentence'] == 'ok' }
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content" style="width:100%;height:500px;">
+                        <form   class="form-horizontal">
+                            <div class="form-group">
+                            <center>
+                                <div class="col-sm-10">
+                                <label class="control-label">景点核销订单号:</label>
+                                    <input id="offticket" value="{$_GET['ordername']}" style="width:100%;" placeholder="核销订单号"  type="text" class="form-control">
+                                    <a onclick="off()" style="width:100%;margin:20px 0;" class="btn btn-danger btn-rounded">核销</a>
+                                    <a id="scanQRCode0"  style="width:100%;height:50px;font-size:22px;" class="btn btn-info  dim btn-large-dim btn-outline">二维码核销</a>
+                                </div>
+                            </center>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/if}
+        <!-- 全局js -->
+        <script src="/addons/wqtgd_jiudian/template/js/jquery.min.js?v=2.1.4"></script>
+        <script src="/addons/wqtgd_jiudian/template/js/bootstrap.min.js?v=3.3.6"></script>
+
+        <!-- 自定义js -->
+
+
+        <!-- iCheck -->
+        <script src="/addons/wqtgd_jiudian/template/js/plugins/iCheck/icheck.min.js"></script>
+        <script src="/addons/wqtgd_jiudian/template/js/plugins/layer/layer.min.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+        <span id="url" view="{$_GET['view']}" url="{$_GET['url']}" uniacid="{$_GET[i]}" sentence="{$_GET['sentence']}"></span>
+    
+</body>
+    
+
+</html>
+
+<script>
+    var sentence = $("#url").attr('sentence');
+    if (sentence != 'ok') {
+        var url = $("#url").attr('url');
+        var uniacid = $("#url").attr('uniacid');
+        alert('请使用官方专用景点核销系统进行核销');
+        window.location= url + "app/index.php?i="+uniacid+"&c=entry&do=index&m=wqtgd_jiudian&flag=1";
+    }else{
+
+        function off() {
+            var offticket = $('#offticket').val();
+            if (offticket == '') {
+                alert('请填写订单号');
+            }else{
+                parent.layer.load(1, {
+                    shade: [0.1,'#fff'],//0.1透明度的白色背景
+                });
+                $.post('/addons/wqtgd_jiudian/template/mobile/view/viewoff/offajax.php',{'offticket':offticket},function(data){
+                    parent.layer.closeAll('loading');//关闭加载
+                    var view = data.split('-');
+                    if(view[0] != 'viewname') {
+                        switch(data){
+                            case 'no' :
+                                alert('景点订单号不存在');
+                                break;
+                            case 'ok' :
+                                alert('订单'+offticket+'核销成功');
+                                break;
+                            case '未付款' :
+                                alert('订单'+offticket+'核销失败:订单未付款');
+                                break;
+                            case '已使用' :
+                                alert('订单'+offticket+'核销失败:已使用');
+                                break;
+                            case '已退款' :
+                                alert('订单'+offticket+'核销失败:订单已退款');
+                                break;
+                            case '申请退款' :
+                                alert('订单'+offticket+'核销失败:订单正在申请退款中....');
+                                break;
+                            // case '驳回退款' :
+                            //     parent.layer.msg('订单'+offticket+'核销成功');
+                            //     break;
+                            // case '退款失败' :
+                            //     parent.layer.msg('订单'+offticket+'核销成功');
+                            //     break;
+                        }
+                    }else{
+                        alert('抱歉,并不是'+view[1]+"景点使用的核销平台");
+                    }
+                },'json');
+            }
+            
+        }
+        // //开启二维码扫描
+        document.querySelector('#scanQRCode0').onclick = function () {
+            wx.scanQRCode({
+                needResult: 1,
+                success: function (res) {
+                    var result = res.resultStr; 
+                    window.location= result + "&sentence=ok" ; 
+                } 
+            });
+        };
+    }
+</script>

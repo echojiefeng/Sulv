@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>常用信息</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+ <link rel="stlesheet" href="../addons/wqtgd_jiudian/template/mobile/css/sjbz.css"/> 
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+
+
+      <script>
+  $(function(){
+$("#date").datetimePicker({title:"选择生日",m:1});         
+$("#ssx").cityPicker({
+        title: "所在省市县"
+      });
+
+ $("#ss").cityPicker({
+        title: "选择省市",
+        showDistrict: false
+      });   
+});      
+         
+      </script>
+
+<script type="text/javascript">
+function selectmenu(n){
+var eleMore = document.getElementById("menu_"+n);
+if(eleMore.style.display=="none"){
+eleMore.style.display = 'block';
+$("#cell_"+n).removeClass("icon-74");
+$("#cell_"+n).addClass("icon-35 ");
+}else{
+eleMore.style.display = 'none';
+$("#cell_"+n).removeClass("icon-35");
+$("#cell_"+n).addClass("icon-74");
+}
+}
+</script>    
+
+</head>
+
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>常用信息编辑</em></h2>       
+    </div>
+
+
+<form id="form" action="{$Profileform}" method="post">
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$profile['name']}" name="profile[name]" placeholder="请输入姓名"/>
+                </div>
+            </div>
+			 <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">联系号码</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="tel" value="{$profile['tel']}" name="profile[tel]" placeholder="请输入手机号"/>
+                </div>
+            </div>
+			<div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">微信账号</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$profile['wechat']}" name="profile[wechat]" placeholder="你的微信账号"/>
+                </div>
+            </div>
+                 <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label" value="{$profile['cardtype']}" name="profile[cardtype]" />证件类型</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select name="cardtype" class="weui_select">
+                        <option value="1">身份证</option>
+                        <option value="2">军官证</option>
+                        <option value="3">港澳通行证</option>
+						<option value="4">护照</option>
+						<option value="5">台胞证</option>
+						<option value="6">其他</option>
+                    </select>
+             
+            </div>
+        </div>  
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">证件号码</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$profile['cardid']}" name="profile[cardid]" placeholder="请输入证件号"/>
+                </div>
+            </div>
+            
+ 
+		 <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">常在地区</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$profile['ssx']}" name="profile[ssx]" id='ssx' placeholder="常在省市县"/>
+                    
+                </div>
+              
+            </div>  
+
+              <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">具体地址</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$profile['address']}" name="profile[address]" placeholder="请输入具体地址"/>
+                </div>
+            </div>
+            
+          
+            
+                 <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">出生日期:</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" id="date" value="{$profile['brithday']}" name="profile[brithday]" />
+                    
+                </div>
+              
+            </div> 
+      
+            <div class="weui_cell weui_cell_switch">
+                <div class="weui_cell_hd weui_cell_primary">是否设为默认地址</div>
+                <div class="weui_cell_ft">
+                    <input type="hidden" name="profile[status]" value="1">
+                    <input class="weui_switch" type="checkbox" id='status' value="0" name="profile[status]">
+                </div>
+            </div>
+
+   
+  	</div>
+
+<div class="weui_btn_area">
+			 <button class="weui_btn weui_btn_primary" type="submit" id="submit" value="提交" name="submit">保存</button>
+			<input type="hidden" name="token" value="{$_W['token']}" />
+		</div>
+
+</form>
+<br />
+                    <a href="javascript:;" onclick="selectmenu('1');">
+                     
+                      <p>    &nbsp;      &nbsp;  <i class="weui_icon_info"></i>&nbsp;实名认证说明</p>
+                        
+                    </a>
+   
+        
+             <div  style="display: none;" id="menu_1">
+     <div class="weui_article"><span>为什么要实名注册？</span><br /><br />
+				根据国务院国家互联网信息办公室于2015年2月4日发布的《互联网用户账号名称管理规定》第5条规定，互联网信息服务使用者（即用户）注册账户遵守“后台实名、前台自愿”的原则，应通过真实身份信息认证后注册账号。该规定自3月1日开始施行。{$_W['uniaccount']['name']}秉持遵纪守法的原则，推行实名注册制度。请各位用户提供真实的身份信息进行注册，也请已注册会员及时提供真实的身份信息。
+			</div>
+      </div>
+    </div>
+                               
+
+<script>
+/*$(function(){
+  $("#status").change(function(){
+      if($("#status").prop("checked")){
+         $("#status").val("0");
+      }else{
+         $("#status").val("1");
+      }
+  });
+});*/
+
+var $form = $("#form");
+$form.form();
+$("#formSubmitBtn").on("click", function(){
+    $form.validate(function(error){
+        if(error){
+            
+        }else{
+            
+            $.toptips('验证通过提交','ok');
+        }
+    });
+    
+});
+</script>
+<br />
+
+</body>
+</html>
+

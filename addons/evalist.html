@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title><?php echo $_GET['hotelname'];?>酒店评价</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="'" />
+<meta name="full-screen" content="yes" />
+<meta name="browsermode" content="application" />
+<link rel="icon shortcut bookmark" href="data:;base64,iVBORw0KGgo=">
+<link rel="apple-touch-icon" href="data:;base64,iVBORw0KGgo="/>
+<link rel="dns-prefetch" href="//m.elongstatic.com">
+<link rel="preconnect" href="//m.elongstatic.com">
+
+<meta name="x5-orientation" content="portrait" />
+<meta name="x5-fullscreen" content="true" />
+<meta name="x5-page-mode" content="app" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+
+   			<link rel="stylesheet" href="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/idangerous.swiper.css?2.1" />
+			<link rel="stylesheet" href="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/mainV2.css?2.1" />
+			<link href="../addons/wqtgd_jiudian/template/mobile/css/lightbox.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+	<div class="pages">
+		<div class="page">
+			<header class="bar bar-nav flight-order-head">
+                <a class="icon icon-left-nav pull-left icon-back" data-rel="back" data-href="" href=""></a>
+                <a class="icon icon-phone pull-right" href="tel:<?php echo $_GET['hoteltely'];?>" ></a>
+                <h1 class="title"><?php echo $_GET['hotelname'];?>酒店评价</h1>
+	        </header>
+			<div class="page-content comments-content">
+				<section class="comment_con">
+					<div>
+						<div class="s_bdb">
+							<div class="praise clearfix">
+								<div class="praise_nbm">
+									<span class="u_nbm"><b class="s_nbm"><?php echo round($eva['grade']/count($eelist),1);?></b>分</span>
+									<span class="u_btn">挺好哒</span>
+								</div>
+								<ul class="praise_nbm_txt s_bdl clearfix">
+									<li><span class="s_nbm"><?php echo round($eva['facilities']/count($eelist),1);?></span><span class="s_tit">设施</span></li>
+									<li><span class="s_nbm"><?php echo round($eva['service']/count($eelist),1);?></span><span class="s_tit">服务</span></li>
+									<li><span class="s_nbm"><?php echo round($eva['Hygiene']/count($eelist),1);?></span><span class="s_tit">卫生</span></li>
+									<li><span class="s_nbm"><?php echo round($eva['position']/count($eelist),1);?></span><span class="s_tit">位置</span></li>
+									<li><span class="s_nbm"><?php echo round($eva['performance']/count($eelist),1);?></span><span class="s_tit">性价比</span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="com-wrap">
+							<ul class="com-list">
+								{loop $eelist $val}
+								<li class="s_bdt">
+									<div class="wrap">
+										<div class="tit">
+											<span  class="name">
+											{if $val['headimgurl']}
+											<img src="{php echo tomedia($val['headimgurl']);}" style="width:15px;height:15px;">
+											{/if}
+											{$val['nickname']}</span>
+											<!--style>
+												.comment_con .com-wrap .com-list li .wrap .tit .jh {
+													background: url({php echo tomedia($val['headimgurl']);}) no-repeat;
+													background-size: 100% 100%;
+												}
+											</style-->
+											<span class="jh"></span>
+											<span class="date"><?php echo date('Y-m-d H:i:s',$val['time']);?></span>
+										</div>
+										<div class="con">{$val['eva']}</div>
+										<div class="pic">
+											{php $arr = explode(",",$val["evapic"]); for($i=0;$i<count($arr)-1;$i++): }
+											<!-- <img src="{php echo $url.'/'.$arr[$i]}"  class="imgZoom" style="cursor:pointer;"/> -->
+											<a href="{php echo tomedia($arr[$i]);}" data-lightbox="data" data-title=""/>
+											<img src="{php echo tomedia($arr[$i]);}" class="" style="cursor:pointer;"></a>
+											{php endfor }
+										</div>
+										<div class="dt">
+											<span class="type">{$val['hotelname']}-{$val['roomtype']}</span>
+											<span class="user_type">
+											</span>
+										</div>
+									</div>
+								</li>
+								{/loop}
+								<!--li><a class="more">点击加载更多评论</a></li-->
+							</ul>
+						</div>
+					</div>
+				</section>
+				
+			</div>
+			<div class="backtop bar" style="display:none">
+				<div class="backtop_con">
+					<span class="top_arr"></span>
+					<span class="top_txt">顶部</span>
+				</div>
+			</div>
+			<style type="text/css">
+		.imgZoom{
+			width:300px;
+		}
+	</style>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/lightbox.js"></script>
+<script type="text/javascript" src="http://www.jq22.com/demo/imgZoom201703121922/javascripts/jquery.imgZoom.js"></script>
+<script type="text/javascript">
+	$(".imgZoom").imgZoom();
+</script>
+
+			<script type="text/javascript">
+				
+if(typeof TJObject == "undefined")
+	window["TJObject"] = {};
+var tjIgnore = {"subPath":1,"tsdScript":1}; 
+if(pageInfo.length>0 && TJObject){
+	pageInfo = pageInfo[0];
+	for(var k in pageInfo){
+		if(tjIgnore[k]==1) continue;
+		TJObject[k]=pageInfo[k];
+	}
+}
+if(typeof s == "undefined")
+	window["s"] = {};
+			</script>
+		</div>
+	</div>
+	
+	
+</body>
+		<script src="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/base.js?2.1" type="text/javascript"></script>
+	 	<script src="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/mainBeforeOrder.js?2.1" type="text/javascript"></script>
+<script type="text/javascript">
+var int = setInterval(
+	function(){
+		if(window.tjClient){
+			window.tjClient.setChannel('hotel', 'H5_review', '50096', '190000000020196808');
+			if( int ){
+				clearInterval(int);
+			}
+		}
+	}
+	,800);
+
+	// 返回上一页
+    $('.icon-back').click(function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      window.history.go(-1);
+    });
+</script>
+<!-- tj start -->
+<script type="text/javascript" src="//m.elongstatic.com/static/webapp/tj/tjmvt.js"></script>
+
+<script type="text/javascript">
+TJObject.et = "show";
+TJObject.st = new Date().getTime();
+if(TJObject.pt)
+	tjMVT.setData(TJObject);
+
+function tjClickEvent() {
+	tjClick($(this).data("tj"));
+}
+function tjClick(p){
+	TJObject.et = "click";
+	if(typeof p == "string")
+		p = JSON.parse(p);
+	p = p || {};
+	
+	for(var i in p)
+		TJObject[i] = p[i];
+	TJObject.st = new Date().getTime();
+	TJObject.idc = "hotel919";
+	if(TJObject.pt)
+		tjMVT.setData(TJObject);
+}
+$('.pages').off("click",".tjclick",tjClickEvent).on("click",".tjclick",tjClickEvent);
+</script>
+<!-- tj end -->
+</html>

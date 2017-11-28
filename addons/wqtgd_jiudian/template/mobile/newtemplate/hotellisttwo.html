@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html style="font-size:100%">
+	<head>
+	<link rel="stylesheet" type="text/css" href="http://webapi.amap.com/theme/v1.3/style1.3.28.7.css">
+        <style type="text/css">.amap-indoor-map .label-canvas{position:absolute;top:0;left:0}.amap-indoor-map .highlight-image-con *{pointer-events:none}.amap-indoormap-floorbar-control{position:absolute;margin:auto 0;bottom:165px;right:12px;width:35px;text-align:center;line-height:1.3em;overflow:hidden;padding:0 2px}.amap-indoormap-floorbar-control .panel-box{background-color:rgba(255,255,255,.9);border-radius:3px;border:1px solid #ccc}.amap-indoormap-floorbar-control .select-dock{position:absolute;top:0;left:0;width:100%;box-sizing:border-box;height:30px;border:solid #4196ff;border-width:0 2px;border-radius:2px;pointer-events:none;background:linear-gradient(to bottom,#f6f8f9 0,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%)}.amap-indoor-map .transition{transition:opacity .2s},.amap-indoormap-floorbar-control .transition{transition:top .2s,margin-top .2s}.amap-indoormap-floorbar-control .select-dock:after,.amap-indoormap-floorbar-control .select-dock:before{content:"";position:absolute;width:0;height:0;left:0;top:10px;border:solid transparent;border-width:4px;border-left-color:#4196ff}.amap-indoormap-floorbar-control .select-dock:after{right:0;left:auto;border-left-color:transparent;border-right-color:#4196ff}.amap-indoormap-floorbar-control.is-mobile{width:37px}.amap-indoormap-floorbar-control.is-mobile .floor-btn{height:35px;line-height:35px}.amap-indoormap-floorbar-control.is-mobile .select-dock{height:35px;top:36px}.amap-indoormap-floorbar-control.is-mobile .select-dock:after,.amap-indoormap-floorbar-control.is-mobile .select-dock:before{top:13px}.amap-indoormap-floorbar-control.is-mobile .floor-list-box{height:105px}.amap-indoormap-floorbar-control .floor-list-item .floor-btn{color:#555;font-family:"Times New Roman",sans-serif,"Microsoft Yahei";font-size:16px}.amap-indoormap-floorbar-control .floor-list-item.selected .floor-btn{color:#000}.amap-indoormap-floorbar-control .floor-btn{height:28px;line-height:28px;overflow:hidden;cursor:pointer;position:relative;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.amap-indoormap-floorbar-control .floor-btn:hover{background-color:rgba(221,221,221,.4)}.amap-indoormap-floorbar-control .floor-minus,.amap-indoormap-floorbar-control .floor-plus{position:relative;text-indent:-1000em}.amap-indoormap-floorbar-control .floor-minus:after,.amap-indoormap-floorbar-control .floor-plus:after{content:"";position:absolute;margin:auto;top:9px;left:0;right:0;width:0;height:0;border:solid transparent;border-width:10px 8px;border-top-color:#777}.amap-indoormap-floorbar-control .floor-minus.disabled,.amap-indoormap-floorbar-control .floor-plus.disabled{opacity:.3}.amap-indoormap-floorbar-control .floor-plus:after{border-bottom-color:#777;border-top-color:transparent;top:-3px}.amap-indoormap-floorbar-control .floor-list-box{max-height:153px;position:relative;overflow-y:hidden}.amap-indoormap-floorbar-control .floor-list{margin:0;padding:0;list-style:none}.amap-indoormap-floorbar-control .floor-list-item{position:relative}.amap-indoormap-floorbar-control .floor-btn.disabled,.amap-indoormap-floorbar-control .floor-btn.disabled *,.amap-indoormap-floorbar-control.with-indrm-loader *{-webkit-pointer-events:none!important;pointer-events:none!important}.amap-indoormap-floorbar-control .with-indrm-loader .floor-nonas{opacity:.5}.amap-indoor-map-moverf-marker{color:#555;background-color:#FFFEEF;border:1px solid #7E7E7E;padding:3px 6px;font-size:12px;white-space:nowrap;display:inline-block;position:absolute;top:1em;left:1.2em}.amap-indoormap-floorbar-control .amap-indrm-loader{-moz-animation:amap-indrm-loader 1.25s infinite linear;-webkit-animation:amap-indrm-loader 1.25s infinite linear;animation:amap-indrm-loader 1.25s infinite linear;border:2px solid #91A3D8;border-right-color:transparent;box-sizing:border-box;display:inline-block;overflow:hidden;text-indent:-9999px;width:13px;height:13px;border-radius:7px;position:absolute;margin:auto;top:0;left:0;right:0;bottom:0}@-moz-keyframes amap-indrm-loader{0%{-moz-transform:rotate(0);transform:rotate(0)}100%{-moz-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes amap-indrm-loader{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes amap-indrm-loader{0%{-moz-transform:rotate(0);-ms-transform:rotate(0);-webkit-transform:rotate(0);transform:rotate(0)}100%{-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
+		</style>
+	    <meta charset="UTF-8">
+	    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	    <title>酒店列表</title>
+	    <link rel="apple-touch-icon-precomposed" href="/Content/img/app_icon.png?CV=150311">
+	    <meta name="apple-mobile-web-app-title" content="欢乐拆包">
+	    <meta name="keywords" content="酒店列表">
+	    <meta name="apple-touch-fullscreen" content="yes">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name="x5-fullscreen" content="true">
+	    <meta name="full-screen" content="yes">
+	    <meta name="description" content="">
+	    <meta name="applicable-device" content="mobile">
+	   <!--  <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate"> -->
+
+	   <link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/newmain.css" rel="stylesheet">
+	    
+	    <link rel="stylesheet" type="text/css" href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/component.css">
+
+        <!-- 图标 -->
+        <link rel="stylesheet" type="text/css" href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/font/typicons.min.css">
+
+	    <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/pinying.js"></script>
+
+	   <style type="text/css">
+       .CnewheaderMain .main {
+            background-image: url('/addons/wqtgd_jiudian/template/mobile/newtemplate/images/search_city_header.png');
+            background-size: 100% 150%;
+        }
+        /*公共样式*/
+        .fn-hide{
+            display: none;
+        }
+         /*图标样式*/
+        .typcn-arrow-left:before {
+            color: #fff;
+        }
+        .typcn-zoom-outline:before {
+            color: #9C527F;
+            font-size: 25px;
+        }
+        .searchbtn .typcn-zoom-outline:before {
+            position: absolute;
+            top: -.4rem;
+            left: -.2rem;
+        }
+        .typcn-arrow-sorted-up:before {
+            font-size: 30px;
+        }
+        .typcn-times:before {
+            color: #BFBFBF;
+            font-size: 25px;
+        }
+        .CresultModule ul li {
+            position: relative;
+        }
+        .typcn-home:before {
+            position: absolute;
+            top: 0.79rem;
+            bottom: 1rem;
+            left: 0.65rem;
+            font-size: 20px;
+        }
+        .items-city .typcn-location:before {
+            position: absolute;
+            bottom: 1rem;
+            top: 0.79rem;
+            left: 0.65rem;
+            color: #BFBFBF;
+            font-size: 20px;
+        }
+       </style>
+       <style type="text/css">.amap-container{cursor:url(http://webapi.amap.com/theme/v1.3/openhand.cur),default;}.amap-drag{cursor:url(http://webapi.amap.com/theme/v1.3/closedhand.cur),default;}</style>
+	</head>
+
+	<body>
+    
+<header class=" Cnewheader  CnewheaderMain page_hotelList_header">
+    <div class="pure-g main">
+
+        <div class="pure-u-1-5 return">
+                <div id="usingBack">
+                    <a href="/Hotel?v=1" data-no-turbolink="true" style="padding: .300rem 0 0 0;text-align: left;">
+                        <i class="typcn typcn-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="Ldn" id="unuseBack"><a href="javascript:;"><i class="icon-back"></i></a></div>
+        </div>
+            <div class="pure-u-3-5 title Ltac page__title">
+                <h3 class="page__title-cont">酒店列表</h3>
+            <div class="twoline"><h4 class="city">广州<span class="date">06月28日-06月29日</span></h4><i class="icon-Solid-arrow2"></i></div></div>
+                <div class="pure-u-1-5 action Ltar">
+                    <div class="inn" id="filtter">
+                        <span class="action-box Lposr Ldn">
+                            <i class="icon-screen action-icon"></i><i class="action-text">筛选</i><i class="Ldn filter-number"></i>
+                        </span>
+                    </div>
+                </div>
+    </div>
+<div class="CfilterNav" style="visibility: hidden;">
+                    <div class="mainbox">
+                        <div class="edgeGap bgwhite">
+                            <div class="pure-g sortByInfo Ltac pure-item-3 sortByInfo--copy">
+                                <div class="pure-u-1-4 sort-items select" data-sortby="0" data-sortbyform="0">
+                                    <div class="inn">
+                                        <span>推荐排序</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="pure-u-1-4 sort-items price-item " data-sortby="2" data-sortbyform="0">
+                                    <div class="inn">
+                                        <span>价格</span>
+                                        <i class="icon-sort3"></i><i class="icon-sort2"></i><i class="icon-sort"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="pure-u-1-4 sort-items " data-sortby="4" data-sortbyform="0">
+                                    <div class="inn">
+                                        <span>评分</span>
+                                        <i class="icon-sort2"></i>
+                                    </div>
+                                </div>
+                                <div class="pure-u-1-4 sort-items Ldn sortByLanlng  " data-sortby="5" id="sortByLanlng" data-sortbyform="1">
+                                    <div class="inn"><span>距离</span><i class="icon-sort2"></i></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div></header>    <div class="Cload" style="display: none;">
+        <div class="Cload__icon"></div>
+    </div>
+
+    <div class="container">
+        
+
+<div class="page_hotelList">
+    <h1>广州华住酒店</h1>
+    <div class="searchwrap">
+        <div class="edgeGap">
+            <div class="CsearchModule CsearchModule--shadow">
+                    <div class="searchArea">
+                        <div class="destination__trigger center pure-g">
+                            <div class="pure-u-22-24">
+                                <span class="city">
+                                        <i class="filter">
+                                          
+                                        </i>
+                                    
+                                    
+                                    
+                                </span>
+                            </div>
+                            <div class="pure-u-2-24"><i class="typcn typcn-zoom-outline"></i></div>
+                        </div>
+                    </div>
+                <!-- 入住&离店日期-->
+                <div class="CdataSelect">
+                    <a href="javascript:;">
+                        <div class="pure-g Ltac">
+                            <div class="pure-u-10-24">
+                                <div class="dateType"><span>入住日期</span></div>
+                                <div class="time checkin"> <span></span></div>
+                            </div>
+                            <div class="pure-u-4-24"><i class="dayCount"></i></div>
+                            <div class="pure-u-10-24">
+                                <div class="dateType"><span>离店日期</span></div>
+                                <div class="time checkout"><span></span></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="riot-calendar-box">
+                <div class="edgeGap">
+                    <!-- 入住&离店日期-->
+                    <div id="calendar" class="CcardMain calendar__box CcardMain__box" style="height: 28rem;">
+                        <div class="riot-calendar-1" data-is="riot-calendar" riot-tag="riot-calendar"><div class="riot-calendar__box "> <a href="javascript:;" class="prev disable"><i></i></a> <a href="javascript:;" class="next "><i></i></a> <div class="riot-calendar__items"> <div class="riot-calendar__head"> <div class="control title">  <div class="title__cur">2017年6月</div> </div> <div class="pure-g weeks"> <div class="pure-u-1-8">日</div><div class="pure-u-1-8">一</div><div class="pure-u-1-8">二</div><div class="pure-u-1-8">三</div><div class="pure-u-1-8">四</div><div class="pure-u-1-8">五</div><div class="pure-u-1-8">六</div> </div> </div> <div class="riot-calendar__body">  
+                        <div class="riot-calendar__body--cur">
+                        </div> 
+                        </div> </div> </div> <div class="riot-calendar__foot"></div></div>
+                        <div class="calendar_invalid_tip">
+                            <div class="cbox">入住日期超过最大限制</div>
+                        </div>
+                        <div class="closeCard Ltac"><i class="typcn typcn-arrow-sorted-up"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="selectplace">
+        <div class="edgeGap">
+            <div class="CselectCard">
+                <div class="pure-g searchbtn">
+                    <div class="pure-u-22-24">
+                        <div class="wrap input-box">
+                            <i class="typcn typcn-zoom-outline"></i>
+                            <input type="text" growing-track="true" id="cityListInput" placeholder="城市/酒店名称">
+                        </div>
+                    </div>
+                    <div class="pure-u-2-24">
+                        <div class="wrap Ltar Ldn clear_input">
+                            <i class="typcn typcn-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="CcardMain destination">
+                    <div class="CcardMain__box" style="height: 28rem">
+                        <div class="inn destination__hot">
+                            <div class="Ctab_hotplace">
+                                <div class="destination__history"></div>
+                                <div class="destination__city">
+  <div class="mainedge"><h2 class="title">热门推荐</h2></div>
+  <ul class="citytabs destination__city Lcfx">
+    
+      <li data-param="{&quot;cityid&quot;:&quot;3101&quot;,&quot;cityname&quot;:&quot;上海&quot;}" data-type="city" class="">上海</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;1101&quot;,&quot;cityname&quot;:&quot;北京&quot;}" data-type="city" class="">北京</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;3301&quot;,&quot;cityname&quot;:&quot;杭州&quot;}" data-type="city" class="">杭州</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;530700&quot;,&quot;cityname&quot;:&quot;丽江&quot;}" data-type="city" class="">丽江</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;6101&quot;,&quot;cityname&quot;:&quot;西安&quot;}" data-type="city" class="">西安</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;3201&quot;,&quot;cityname&quot;:&quot;南京&quot;}" data-type="city" class="">南京</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;5101&quot;,&quot;cityname&quot;:&quot;成都&quot;}" data-type="city" class="">成都</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;4602&quot;,&quot;cityname&quot;:&quot;三亚&quot;}" data-type="city" class="">三亚</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;3702&quot;,&quot;cityname&quot;:&quot;青岛&quot;}" data-type="city" class="">青岛</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;1201&quot;,&quot;cityname&quot;:&quot;天津&quot;}" data-type="city" class="">天津</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;4201&quot;,&quot;cityname&quot;:&quot;武汉&quot;}" data-type="city" class="">武汉</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;450321&quot;,&quot;cityname&quot;:&quot;阳朔(桂林)&quot;}" data-type="city" class="">阳朔(桂林)</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;5001&quot;,&quot;cityname&quot;:&quot;重庆&quot;}" data-type="city" class="">重庆</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;8100&quot;,&quot;cityname&quot;:&quot;香港&quot;}" data-type="city" class="">香港</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;3205&quot;,&quot;cityname&quot;:&quot;苏州&quot;}" data-type="city" class="">苏州</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;2101&quot;,&quot;cityname&quot;:&quot;沈阳&quot;}" data-type="city" class="">沈阳</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;4403&quot;,&quot;cityname&quot;:&quot;深圳&quot;}" data-type="city" class="">深圳</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;330421&quot;,&quot;cityname&quot;:&quot;嘉善(嘉兴)&quot;}" data-type="city" class="">嘉善(嘉兴)</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;4401&quot;,&quot;cityname&quot;:&quot;广州&quot;}" data-type="city" class="">广州</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;3502&quot;,&quot;cityname&quot;:&quot;厦门&quot;}" data-type="city" class="">厦门</li>
+    
+      <li data-param="{&quot;cityid&quot;:&quot;3701&quot;,&quot;cityname&quot;:&quot;济南&quot;}" data-type="city" class="">济南</li>
+    
+  </ul>
+
+</div>
+                            </div>
+                        </div>
+                        <div class="inn destination__search Ldn">
+                            <div class="CresultModule items-city">
+                                <ul></ul>
+                            </div>
+                            <div class="CresultModule items-hotel">
+                                <ul></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="closeCard Ltac"><i class="typcn typcn-arrow-sorted-up"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="changeNumber" data-max="6">
+        <div class="edgeGap">
+            <div class="CselectCard CselectCard--shadow">
+                <div class="CcardMain">
+                    <div class="selected-title Ltac">
+                    <span><i>1</i>个房间</span>
+                    <span class="Lml15"><i class="peoplecount">1</i>位客人</span>
+                    </div>
+                    <div class="box">
+                        <div class="pure-g Cformline">
+                            <div class="pure-u-16-24 lable">
+                                <div class="wrap"><span>需要房间数</span></div>
+                            </div>
+                            <div class="pure-u-8-24">
+                                <div class="CnumberSelect">
+                                    <p>1</p><span class="minus disabled"><i class="icon-jian"></i></span>
+                                    <span class="plus disabled "> <i class="icon-jia">  </i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pure-g Cformline">
+                            <div class="pure-u-16-24 lable">
+                                <div class="wrap"><span>每间客房人数</span></div>
+                            </div>
+                            <div class="pure-u-8-24">
+                                <div class="CnumberSelect">
+                                    <p>1</p>
+                                    <span data-calc="-1" class="minus calc-item disabled"><i class="icon-jian"></i></span>
+                                    <span data-calc="1" class="plus calc-item "> <i class="icon-jia"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="closeCard Ltac"><i class="icon-up-arrow"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--酒店列表页-->
+    <div class="page_hotelList__list">
+        <div class="page_hotelList__list-cont">
+                <div class="CfilterNav Ldn">
+                    <div class="mainbox">
+                        <div class="edgeGap bgwhite">
+                            <div class="pure-g sortByInfo Ltac pure-item-3" id="SortbyInfo">
+                                <div class="pure-u-1-4 sort-items select" data-sortby="0" data-sortbyform="0">
+                                    <div class="inn">
+                                        <span>推荐排序</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="pure-u-1-4 sort-items price-item " data-sortby="2" data-sortbyform="0">
+                                    <div class="inn">
+                                        <span>价格</span>
+                                        <i class="icon-sort3"></i><i class="icon-sort2"></i><i class="icon-sort"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="pure-u-1-4 sort-items " data-sortby="4" data-sortbyform="0">
+                                    <div class="inn">
+                                        <span>评分</span>
+                                        <i class="icon-sort2"></i>
+                                    </div>
+                                </div>
+                                <div class="pure-u-1-4 sort-items Ldn sortByLanlng  " data-sortby="5" id="sortByLanlng" data-sortbyform="1">
+                                    <div class="inn"><span>距离</span><i class="icon-sort2"></i></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         
+
+            <div class="ChotelDetail bgwhite" data-page="1" data-total="6" data-url="/Hotel/More?v=2" data-lock="unlock">
+            
+        
+        	</div>
+
+            <!--酒店列表页-->
+            <div class="pageloading Ltac Ldn">
+                <img src="http://m.huazhu.com/Content/img/loading.gif?CV=150311" width="150">
+            </div>
+            <div class="loadmore Ltac enable">
+                <img src="http://m.huazhu.com/Content/img/loading.gif?CV=150311" width="150">
+            </div>
+
+</div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+    </div>
+    <div class="Cback Ldn">
+        <div class="Cwrap Lposr">
+            <div class="back">
+                <i class="Cicon back_small"></i>
+            </div>
+        </div>
+    </div>
+    <div id="scriptArea" data-page-id="hotel/nlist" class="Ldn">
+        <script type="text/javascript">
+            var _target = document.getElementById('scriptArea')
+            var _targetPageId = _target.getAttribute('data-page-id')
+            var width = parseInt(window.screen.width);
+            if (width > 414) {
+                width = 414
+            }
+            var fontsise = width / 3.2;
+            if (_targetPageId == 'home/index2016') {
+                if (top.location == self.location) {
+                    document.getElementsByTagName('html')[0].setAttribute("style", "font-size:" + fontsise + 'px')
+                }
+            } else {
+                document.getElementsByTagName('html')[0].setAttribute("style", "font-size:100%")
+            }
+        </script>
+        <div data-turbolinks-skip="true">
+            ;
+        
+
+        </div>
+        
+      
+
+  </div>
+
+
+<div class="amap_autocomplete amap_autocomplete_1 amap-container" style="width: 1px; height: 1px; display: none; position: relative; background: rgb(252, 249, 242);"><object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html" data="about:blank"></object><div class="amap-maps"><div class="amap-drags" style=""><div class="amap-layers" style="transform: translateZ(0px);"><div class="amap-layer" style="position: absolute; z-index: 0; top: 0px; left: 0px;"><canvas height="512" width="512" style="position: absolute; top: -242px; left: -9px; width: 256px; height: 256px; z-index: 4;"></canvas></div><canvas class="amap-labels" draggable="false" style="position: absolute; z-index: 99; height: 0px; width: 0px; top: 0px; left: 0px;" width="0" height="0"></canvas><div class="amap-markers" style="position: absolute; z-index: 120; top: 0px; left: 0px;"></div><canvas class="amap-layer" width="0" height="0" style="position: absolute; z-index: 1; height: 0px; width: 0px; top: 0px; left: 0px;"></canvas></div><div class="amap-overlays" style=""></div></div></div><div style="display: none;"></div><div class="amap-controls"></div><a class="amap-logo" href="http://m.amap.com" target="_blank"><img src="http://webapi.amap.com/theme/v1.3/mapinfo_05.png"></a><div class="amap-copyright" style="display: none;"><!--v1.3.28--> © 2017 AutoNavi <span class="amap-mcode">- GS(2016)710号</span></div></div>
+
+<input type="hidden" value="{$Roomlisttwo}&hotelname=" id="hotel_url" data-url="{$url}" newtemplatesou="{$Newtemplatesou}" HotelRefresh="{$Hotelrefresh}" save-search-history="{$Savesearchhistory}">
+
+<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/newtemplate/js/hotellist.min.js"></script>
+</body>
+
+</html>

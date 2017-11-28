@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>{$title}会员注册</title>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/base.css"/>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui.css"/>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui2.css"/>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/zepto.min.js"></script>
+</head>
+<body>
+<div class="bg_bank" style="background: url('../addons/wqtgd_jiudian/template/mobile/img/bg_bank.png')" style="height:110%">
+	<div class="re_min_infor">
+		<div class="re_logo" class="">
+		<br />
+			<span style="color:#fff;font-size:20px">注册账号</span>
+		</div>
+		<form method="" onsubmit="return false;">
+		<div class="bg_color">
+			<div class="re_min">
+				<span class="icon_phone"></span>
+				<input class="input01" id="username" name="username" type="tel" placeholder="您的手机号" pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" maxlength="11"/>
+				<div id="div1">
+				</div>
+			</div>
+			<div class="re_min">
+				<span class="icon_passwarde"></span>
+				<input class="input01" id="password" name="password" type="password" placeholder="设置密码"/>
+				<span class="the_eyes"></span>
+			</div>
+			<div class="re_min">
+				<span class="icon_passwarde"></span>
+				<input class="input01" id="password1" name="password1" type="password" placeholder="请再次设置密码"/>
+				<span class="the_eyes1"></span>
+			</div>
+			<div class="re_min">
+				<span class="icon_name"></span>
+				<input class="input01" id="nickname" name="nickname" type="text" placeholder="设置个昵称" maxlength="10"/>
+			</div>
+			<div class="re_min">
+				<span class="icon_vf_code"></span>
+				<input class="input01" class="login_btn" id="code" name="code" type="tel" placeholder="请输入验证码"  maxlength="4"/>
+				<a class="reto_code" onclick="on(this)"  style="height: 30px;line-height: 30px;cursor:pointer;"/>发送验证码</a>
+			</div>
+		</div>
+		<div class="re_regist">
+			<button class="btn_regist" id="reg" type="submit" style="border:1px solid #00e500">立即注册</button>
+		</div>
+	</form>
+	
+		<div class="re_regist02">
+			<a href="{php echo $this->createMobileUrl('login')}" style="color:#FFF">已有账户，马上登陆</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<a href="{php echo $this->createMobileUrl('yzmdl')}" style="color:#FFF">短信验证码登录</a>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="route" usepreg="{$Usepreg}" checkreg="{$Checkreg}" login="{$Login}">
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/member.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		$(document).on("click", "#reg", function(){
+			var username = $("#username").val();
+			var password = $("#password").val();
+			var password1 = $("#password1").val();
+			var nickname = $("#nickname").val();
+			var code = $("#code").val();
+			var telreg = /^1[34578]\d{9}$/;
+			var checkreg_url = $("#route").attr("checkreg");
+			var login_url = $("#route").attr("login");
+            if(username == ""){
+                $.toptips("请填写您的手机号!");
+            }else if(password == ""){
+                $.toptips("请设置您的登录密码!");
+            }else if(password1 == ""){
+				$.toptips("请再次输入您的登录密码!");
+			}else if(password != password1){
+				$.toptips("两次填写的密码不一样，请检查!");
+			}else if(nickname == ""){
+				$.toptips("请填写您的昵称!");
+			}else if(telreg.test(username) === false){
+				$.toptips("您输入的手机号不合法,请重新输入!");
+			}else if(code == ""){
+				$.toptips("请输入验证码!");
+			}else{
+				//console.log(checkreg_url);
+				$.ajax({
+					url:checkreg_url,
+					type:"post",
+					dataType:"json",
+					data:{
+						"username":username,
+						"password":password,
+						"nickname":nickname,
+						"code":code,
+					},
+					success:function(res){
+						console.log(res);
+						if(res == 1){
+							$.toptips("您输入的验证码有误!");
+						}else if(res == 2){
+							$.toptips("验证码已失效，请重新获取!");
+						}else if(res == 3){
+							$.toptips("您输入的手机号已注册!");
+						}else if(res == 4){
+							$.toptips("注册失败，请联系平台!");
+						}else if(res == 5){
+							$.toast("注册成功!");				
+                            setTimeout(function(){
+                                window.location.href = login_url;
+                            },2000);							
+						}
+					}
+				});
+			}		
+		});
+	});
+	
+function on(obj) {
+  var tel = $('#username').val();
+  if(tel == '') {
+    $.toptips("请填写您的手机号");
+  }
+  // 准备正则
+  var preg = /^1[34578]\d{9}$/;
+  var result = preg.test(tel);//验证
+  if(result){
+      var usepreg = $('#route').attr('usepreg');
+      $.post(usepreg,{'tel':tel,'op':'userbind'},function(data){
+          // alert(data);
+          console.log(data);
+		  $.toptips("验证码已经发送到您手机");
+		  /*
+		  setTimeout(function(){
+			  $.toast("验证码已经发送到您手机");
+		  },1000);
+		  */
+          //$.hideLoading();
+      },'json');
+      //必须在后面
+      var i = 60
+      $(obj).attr('onclick','');
+      $(obj).attr('id','');
+      var timer = setInterval(function(){
+      if(i < 1 ){
+        //将定时器清除
+        clearInterval(timer);
+        $(obj).html('重新发送');
+        $(obj).attr('onclick','on(this)');
+        $(obj).attr('id','show-toast-3');
+        $(obj).css({'color':''});
+      }else{
+        $(obj).html(i+'s后重发');
+        $(obj).css({'color':'#A4B4BB;'});
+      }
+      i--;
+    },1000);
+  }
+} 
+
+
+ 	// 下方为禁止分享
+	function onBridgeReady(){
+ WeixinJSBridge.call("{if $copy == '1'}ShowOptionMenu{else}hideOptionMenu{/if}");   
+}
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+   
+
+</script>
+</body>
+</html>

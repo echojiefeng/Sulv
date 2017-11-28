@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>{$title}会员登陆</title>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/base.css"/>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui.css"/>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui2.css"/>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/zepto.min.js"></script>
+</head>
+<body>
+<script type="text/javascript" charset="utf-8">
+
+	//  $(function(){
+
+	  //  $("input").addClear();
+
+	 // });
+
+	</script>
+
+
+<div class="bg_bank" style="background: url('../addons/wqtgd_jiudian/template/mobile/img/bg_bank.png');">
+	<div class="re_min_infor">
+		<div class="re_logo" class="">
+			<img src="../addons/wqtgd_jiudian/template/mobile/img/icon.png" style="width:100px;height:100px;padding:50px 0px;">
+		</div>
+		<form method="" onsubmit="return false;">
+		<div class="bg_color">
+			<div class="re_min">
+				<span class="icon_phone"></span>
+				<input class="input01" id="username" name="username" type="tel" placeholder="您的手机号" pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" maxlength="11" style=""/>
+				<div id="div1">
+				</div>
+			</div>
+			<div class="re_min">
+				<span class="icon_passwarde"></span>
+				<input class="input01" id="password" name="password" type="password" placeholder="您的密码"/>
+				<span class="the_eyes"></span>
+			</div>
+		</div>
+		<div class="re_regist">
+			<button class="btn_regist" id="login" type="submit" style="border:1px solid #00e500">立即登陆</button>
+		</div>
+		</form>
+		<br />
+		<div class="re_regist02">
+			<a href="{php echo $this->createMobileUrl('reg')}" style="color:#FFF">没有账号，马上注册</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<a href="{php echo $this->createMobileUrl('yzmdl')}" style="color:#FFF">短信验证码登录</a>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="route" index="{$Index}" checklogin="{$Checklogin}">
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/member.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(document).on("click", "#login", function(){
+			var username = $("#username").val();
+			var password = $("#password").val();
+			var telreg = /^1[34578]\d{9}$/;
+			var checklogin_url = $("#route").attr("checklogin");
+			var index_url = $("#route").attr("index");
+            if(username == ""){
+                $.toptips("请输入您的手机号!");
+            }else if(password == ""){
+                $.toptips("请输入您的登录密码!");
+            }else if(telreg.test(username) === false){
+				$.toptips("您输入的手机号不合法,请重新输入!");
+			}else{
+				$.ajax({
+					url:checklogin_url,
+					type:"post",
+					dataType:"json",
+					data:{"username":username,"password":password},
+					success:function(res){
+						console.log(res);
+						if(res == "a"){
+							$.toptips("您输入的手机号还没有注册!");
+						}else if(res == "b"){
+							$.toptips("您输入的登录密码有误!");
+						}else{
+							$.toast("登录成功!");				
+                            setTimeout(function(){
+                                window.location.href = index_url;
+                            },2000);								
+						}
+					}
+				});
+			}
+		});
+	});
+	// 下方为禁止分享
+	function onBridgeReady(){
+ WeixinJSBridge.call("{if $copy == '1'}ShowOptionMenu{else}hideOptionMenu{/if}");   
+}
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+
+</script>
+</body>
+</html>

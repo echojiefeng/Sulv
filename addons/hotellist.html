@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="android">
+<head>
+	<title>酒店列表</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="keywords" content="广州,酒店,宾馆,预订,预定">
+	<meta name="full-screen" content="yes">
+	<meta name="browsermode" content="application">
+
+	<meta name="x5-orientation" content="portrait">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="x5-page-mode" content="app">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	<link rel="stylesheet" href="//m.elongstatic.com/static/webapp/hotel/2017/03/v22/mainV2.css">
+	<link rel="stylesheet" href="/addons/wqtgd_jiudian/template/mobile/css/idangerous.swiper.css">
+	<script type="application/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/fastclick.js"></script>
+	<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/zepto.min.js"></script>
+	<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/touch.js"></script>
+
+	<style type="text/css">.validate-code-by-intercept{position:absolute;top:50%;left:50%;margin-top:-120px;margin-left:-153px;padding-top:10px;height:220px;width:306px;z-index:15000;background-color:#fff;text-align:center;font-size:16px;font-weight:700;color:#353535}.validate-code-by-intercept .form-li{clear:both;height:44px;line-height:44px;margin:3px 12px}.validate-code-by-intercept .form-li2{overflow:hidden;border-radius:5px;border:1px solid #ddd;background-clip:padding-box;margin-bottom:10px}.validate-code-by-intercept input.txt{width:100%;padding:11px 10px 11px 13px;display:block;margin:0;border:0;background:0;font:16px/1.4 Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif}.validate-code-by-intercept .submit{font-size:1.1rem;width:100%;height:40px;line-height:40px;text-align:center;color:#fff;border-radius:5px;border-width:0;background-color:#e65749;margin:0 0 10px}
+		
+		/* 查询酒店界面 */
+		.list-pop-city{
+			-webkit-animation: 'moveLeft' .2s ease-out 0s 1 alternate forwards;
+			animation: 'moveLeft' .2s ease-out 0s 1 alternate forwards;
+		}
+		@-webkit-keyframes moveLeft{
+			0%{
+				transform: translateX(180px);
+			}
+			100%{
+				transform: translateX(0px);
+			}
+		}
+		keyframes moveLeft{
+			0%{
+				transform: translateX(180px);
+			}
+			100%{
+				transform: translateX(0px);
+			}
+		}
+	
+		/* 日期界面 */
+		.cld{
+			-webkit-animation: 'upward' .2s ease-out 0s 1 alternate forwards;
+			animation: 'upward' .2s ease-out 0s 1 alternate forwards;
+		}
+		@-webkit-keyframes upward{
+			0%{
+				transform: translateY(180px);
+			}
+			100%{
+				transform: translateY(0px);
+			}
+		}
+		keyframes upward{
+			0%{
+				transform: translateY(180px);
+			}
+			100%{
+				transform: translateY(0px);
+			}
+		}
+
+		 .cld .page-content .cld-item .cld-day li.active2 {
+              background-color: #4499ff;
+              border-top-right-radius: 5px;
+              border-bottom-right-radius: 5px;
+              border-top-left-radius: 0px;
+              border-bottom-left-radius: 0px; }
+              .cld .page-content .cld-item .cld-day li.active2.work b.work, .cld .page-content .cld-item .cld-day li.active.work .work {
+              display: none; }
+            .cld .page-content .cld-item .cld-day li.active2.holiday b.holiday, .cld .page-content .cld-item .cld-day li.active.holiday .holiday {
+              display: none; }
+            .cld .page-content .cld-item .cld-day li.active2 > div {
+              height: 100%; }
+              .cld .page-content .cld-item .cld-day li.active2 > div span.active {
+                position: relative;
+                display: inline-block;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                top: 0px;
+                padding: 8px 0px;
+                width: 100%;
+                height: 100%;
+                line-height: 1;
+                color: #fff !important; }
+              .cld .page-content .cld-item .cld-day li.active2 > div span.activeText {
+                bottom: 5px;
+                color: #ffffff;
+                font-size: .625rem;
+                height: 12px;
+                line-height: 0.9; }
+			.page-list .page-list-con {
+			    padding-bottom: 0px;
+			    background: #F4F4F4;
+			}
+			.list-noresult {
+			    background: #f4f4f4;
+			    text-align: center;
+			    padding: 20px;
+			    display: none;
+			}
+			.list-noresult .icon-noresult {
+			    width: 94px;
+			    height: 53px;
+			    display: inline-block;
+			    background-image: url('http://m.elongstatic.com/static/webapp/hotel/2017/03/v22/img/detail-fac-no.png');
+			    background-repeat: no-repeat;
+			    background-size: 100% 100%;
+			}
+	</style>
+	{template share}
+</head>
+
+<body>
+	<div class="pages">
+		<div class="page page-on-center" data-blend="layer" data-blend-id="h5_list" data-url="/hotel/2001/nlist/" id="uniq22" data-title="微擎特工队移动版" data-title-id="h5_list">
+			<header class="bar bar-nav hotel-list-header">
+				<a class="icon pull-left icon-back tjclick" data-rel="back" data-href="http://x.elong.com/?t=1489731152669" data-tj=""></a>
+				<!-- <a class="icon icon-nearby pull-right tjclick" data-tj="{&quot;cspot&quot;:&quot;map&quot;}"></a> -->
+				<!-- <a class="icon icon-collectlist  collect pull-right tjclick" href="//m.elong.com/my/hotel/favorites/" data-tj="{cspotmycollection}"></a> -->
+				<h1 class="title">
+					<span class="city-area">
+						<span class="city">
+							
+						</span>
+						<span class="num" style="display:none;"></span>
+						<!-- <i class="icon-bottom"></i> -->
+					</span>
+				</h1>
+			</header>
+
+			<div class="search-field showout">
+				<div class="header-search">
+					<div class="sea-date">
+						<p>入<span>店</span>：<b class="indate" data-value="2017-03-27"></b></p>
+						<p>离<span>店</span>：<b class="outdate" data-value="2017-03-28"></b></p>
+						<span class="total">晚<i></i></span>
+					</div>
+					<div onclick="quan()" class="sea-box tjclick" data-tj="{&quot;cspot&quot;:&quot;searchbar&quot;}">
+						<label class="sea-mask"></label>
+						<i></i>
+						<input onclick="quan" type="input" value="" placeholder="酒店名称/位置不限" readonly="readonly">
+					</div>
+				</div>
+				<div class="quick-search-box" style="display: none;"><div class="quick-search"><div class="kslist"><div class="commons room-title tjclick" data-tj="{&quot;cspot&quot;:&quot;roomtypeFilter&quot;}">房型筛选</div><div class="commons sale-title tjclick" data-tj="{&quot;cspot&quot;:&quot;specialOffers&quot;}">优惠</div></div><ul class="quick-search-list"><li class="quick-search-item tjclick " data-id="100000002" data-tid="1100" data-uid="30" data-tj="{&quot;cspot&quot;:&quot;paymentInHotel&quot;}" data-keyword="到店付">到店付</li><li class="quick-search-item tjclick " data-id="139" data-tid="1100" data-uid="101" data-tj="{&quot;cspot&quot;:&quot;freeCancellation&quot;}" data-keyword="免费取消">免费取消</li><li class="quick-search-item tjclick " data-id="141" data-tid="1100" data-uid="102" data-tj="{&quot;cspot&quot;:&quot;instantConfirm&quot;}" data-keyword="立即确认">立即确认</li></ul></div></div>
+			</div>
+			<div class="page-content page-list" style="padding-top: 98px!important;">
+				<section class="page-list-con">
+					<div class="list-main">
+
+						<ul class="hotel-list">
+
+						</ul>
+						<div class="nomore"><p class="">点击加载更多酒店</p></div>
+						<!----------------------------------------搜索无结果start------------------------------------------>
+						<div class="list-noresult" style="display: none;">
+							<i class="icon-noresult"></i>
+							<p>抱歉，未找到符合您条件的酒店</p>
+						</div>
+						<!----------------------------------------搜索无结果 end ------------------------------------------>
+
+					</div>
+					<div class="tool">
+								<div class="ver"><a href="{php echo $this->createMobileUrl('user')}">个人中心</a><span>｜</span><!-- <a href="//d.elong.cn/h5_ewhtml5" class="sp">下载客户端</a><span>｜</span> --><a href="{php echo $this->createMobileUrl('indexa')}">返回首页</a></div>
+							   <div class="copy">©2009-2017 {$_W['uniaccount']['name']} 版权所有</div>
+							</div>
+						</section>
+					</div>
+
+					<!-- 附近酒店 -->
+					<div class="list-pop-city list-pop-search plugin-inited page-plugin page-on-right" splugin-show page-on-centertyle="position: absolute;"><header class="bar bar-nav flight-order-head"><a id="nearHotel" class="icon pull-left icon-back"></a><div class="search-input"><i></i><input id="souInput" type="input" value="" placeholder="输入酒店名"></div><div onclick="sou(this)"  style="font-size: 0.938rem;color:#49f;position: absolute;right:8px;top:7px;padding:8px;">搜索</div></header><div class="page-select page-content">
+					<!-- <div class="current-city"><div class="page-title"></div><div class="get-city"><i class="icon-nearby"></i>查看我附近的酒店<b></b></div></div> --><div class="search-history" style="display: none;"><div class="page-title">搜索历史<span class="sea-clear">清除历史</span></div><div class="keyword-list"><ul></ul></div></div>
+					<div class="keyword-group"><div class="page-title">酒店</div>
+						<div class="keyword-list">
+						<ul id="sou_name1" name="hotellan">
+							
+							<!-- <li class="icon-bottom"></li>
+							<li class="icon-top hide"></li> -->
+						</ul>
+
+						</div>
+					</div>
+					<div class="keyword-group"><div class="page-title">商圈</div>
+						<div class="keyword-list">
+						<ul id="sou_name1" name="business" >
+							<!-- <li class="icon-bottom"></li>
+							<li class="icon-top hide"></li> -->
+						</ul>
+
+						</div>						
+					</div>
+					<div class="keyword-group"><div class="page-title">机场/车站</div>
+						<div class="keyword-list">
+						<ul id="sou_name1" name="station" >
+							<!-- <li class="icon-bottom"></li>
+							<li class="icon-top hide"></li> -->
+						</ul>
+
+						</div>						
+					</div>
+					<div class="keyword-group"><div class="page-title">地铁站</div>
+						<div class="keyword-list">
+						<ul id="sou_name1" name="metro" >
+							<!-- <li class="icon-bottom"></li>
+							<li class="icon-top hide"></li> -->
+						</ul>
+
+						</div>
+					</div>
+					<div class="list-noresult" style="display: none;text-align: center;">
+							<i class="icon-noresult"></i>
+							<p>暂无</p>
+					</div>
+				</div>
+		</div>
+	</div>
+
+
+	<!-- 选择日期 -->
+	<div class="cld page-plugin plugin-inited"><header class="bar bar-nav"><h1 class="title">选择日期</h1><a id="chooseDate" class="icon icon-back pull-left hide-cln"></a><a class="cld-title-year pull-right icon"></a></header><div class="page-content"></div><ul class="cld-title bar"><li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li></ul></div>
+
+	<!-- 回到顶部按钮 -->
+	<div class="list-top" style="display: none;">
+		<div class="backtop"><i class="icon-top"></i></div>
+	</div>
+
+</div>
+</div>
+
+<input type="hidden" value="{$Roomlist}&hotelname=" id="hotel_url" data-url="{$url}"  >
+<span id="lujin" indexSou="{$Indexsou}" HotelRefresh="{$Hotelrefresh}" business="{$Business}" Hotellan="{$Hotellan}" hotelmetro="{$Hotelmetro}" hotelstation="{$Hotelstation}" Hotel="{$Hotel}" ></span>
+
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/calendar.js"></script>
+<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/hotelTools.js"></script>
+<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/hotelListBase.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>我的钱包</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+<div class="fakeloader"></div>
+	<div class="my-info">
+            <input type="hidden" value="{$Sign_in_url}" id="sign_in">
+            <div class="my-info-background" style="background-image: url('http://m.huazhu.com/Content/img/bg_topcolor.png?t=1122'); -webkit-filter:blur(0px)"></div>
+            <img class="my-avatar" src="{$res['headimgurl']}">
+            <span class="name">{$res['nickname']}</span>
+            <a href="javascript:;" id="showToast" {if $setting['set_integration_switch'] == "on"}style="display:block"{else}style="display:none"{/if}><span class="my-vip" style="background:none"><span class="weui-badge" id="sign" style="margin-left: 5px;    padding: 0.4em .8em;">{if $sign_status == 1}今日已签到{else}签到送积分{/if}</span></span></a>
+        </div>
+   <div class="weui_grids"  >
+            <a href="javascript:;" class="weui_grid js_grid" id="jifen">
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/wdjf.PNG" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    我的积分
+                </p>
+            </a>
+            <a href="javascript:;" class="weui_grid js_grid" id="yue">
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/wdye.PNG" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    我的余额
+                </p>
+            </a>
+			  <a href="{php echo url('entry', array('m' => 'recharge', 'do' => 'pay'));}" class="weui_grid js_grid">
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/yecz.PNG" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    余额充值
+                </p>
+            </a>
+            <a href="{php echo $this->createMobileUrl('ordertwo')}" class="weui_grid js_grid">
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/xfjl.PNG" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    消费记录
+                </p>
+            </a>
+            <a href="{php echo $this->createMobileUrl('exchangelist')}" class="weui_grid js_grid">
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/dhjl.PNG" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    兑换记录
+                </p>
+            </a>
+			<a href="{php echo $this->createMobileUrl('fanxianlog')}" class="weui_grid js_grid">
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/fxjl.PNG" alt="">
+					
+                </div>
+                <p class="weui_grid_label">
+                    返现记录
+                </p>
+            </a>
+          	<a href="{php echo $this->createMobileUrl('yhqtwo')}" class="weui_grid js_grid">
+                <div class="weui_grid_icon">
+                    <img src="/addons/wqtgd_jiudian/template/mobile/img/yhqq.png" alt="">
+					<!--div class="weui-mark-vip"><span class="weui-mark-lt bg-red">敬请期待</span></div-->
+                </div>
+                <p class="weui_grid_label">
+                    我的优惠券
+                </p>
+            </a>
+            
+        </div>
+
+<script>
+
+ $(document).on("click", "#showToast", function() {
+        // 获取当前时间的时间戳，单位为秒
+        var current_time = Math.floor(new Date().getTime()/1000);     
+        var sign_in = $("#sign_in").val();
+        $.ajax({
+            url:sign_in,
+            type:"get",
+            dataType:"json",
+            data:{"current_time":current_time},
+            success:function(json){
+               if(json == 0){
+                    $.toptips("一天只能签到一次，您已经签到过了");
+               }else if(json > 0){
+                    $.toptips("签到成功<br />获得 "+json+" 积分");
+                    $("#sign").text("今日已签到");
+               }
+            }
+        });
+      }); 
+$(document).on("click", "#jifen", function() {
+        $.alert("{php echo $integration ? $integration : 0;} 积分", "当前积分");
+      });
+$(document).on("click", "#yue", function() {
+        $.alert("{php echo $balance ? $balance : 0;} 元", "当前余额");
+      });  
+
+//$(document).on("click", "#show-toast-cancel", function() {
+        //$.toast("请期待2.0版本", "cancel");
+      //});  
+	  $(function(){
+$(document).on("click", "#error5", function() {
+        $.toptips("抱歉！优惠券功能正在开发中，请期待下一版本更新...");
+      });
+$(document).on("click", "#showLoading", function() {
+        $.showLoading();
+
+        setTimeout(function() {
+          $.hideLoading();
+        }, 3000)
+      });  
+})
+
+</script>   
+</body>
+</html>
+

@@ -1,0 +1,128 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>申请退款</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" /> 
+  <link href="../addons/wqtgd_jiudian/template/css/plugins/sweetalert/sweetalert.css" rel="stylesheet"> 
+  <script src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script>  
+  <script src="../addons/wqtgd_jiudian/template/mobile/js/lrz.mobile.min.js"></script>  
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min1.js"></script>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+  <script src="../addons/wqtgd_jiudian/template/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <style type="text/css">
+      .ffen{
+        display: none;
+      }
+    </style>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+
+<input type="hidden" id="ordername" value="{$orderInfo['ordername']}">
+<input type="hidden" id="order_cancel_url" urll="{$Ordercancelac}" order="{$Order}">
+<div class="weui_cells weui_cells_form" style="margin-top:0em;">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+
+				
+                    <textarea id="order_cancel_reason" class="weui_textarea" placeholder="亲爱的{$orderInfo['username']},请填写取消订单的理由" rows="6"></textarea>
+
+            </div>
+        </div>
+<div class="weui_cells weui_cells_form"  style="margin-top:0em;">
+</div>
+
+
+
+
+
+	<br />
+	<div class="page-bd-15">
+       <a href="javascript:;" id="refund_submit" class="weui_btn weui_btn_primary" style="background:#49f;">申请退款</a>
+ </div>       
+<br />
+    <a href="javascript:;" onclick="selectmenu('1');">
+     
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="weui_icon_info"></i>&nbsp;退款申请流程</p>
+        
+    </a>
+     <div style="display:none" id="menu_1">
+       <div class="weui_article">
+         &nbsp;&nbsp;1、发起退款申请。<br>
+         &nbsp;&nbsp;2、商家确认后退款到您的账户，如果商家未处理，请及时与商家联系。
+        </div>
+      </div>
+<br/>
+<span id="url" view="{$_GET['view']}" vieworderlist="<?php echo $this->createMobileUrl('vieworderlist'); ?>" number="{$_GET['number']}" money="{$_GET['order_money']}" ordername="{$_GET['ordername']}" ></span>
+<script>
+
+function selectmenu(n){
+  var eleMore = document.getElementById("menu_"+n);
+  if(eleMore.style.display=="none"){
+    eleMore.style.display = 'block';
+    $("#cell_"+n).removeClass("icon-74");
+    $("#cell_"+n).addClass("icon-35 ");
+  }else{
+    eleMore.style.display = 'none';
+    $("#cell_"+n).removeClass("icon-35");
+    $("#cell_"+n).addClass("icon-74");
+  }
+}   
+
+        $(document).on("click", "#refund_submit", function(){
+              var order_cancel_url = $("#order_cancel_url").attr('urll');
+              var ordername = $("#ordername").val();
+              var viewordername = $("#url").attr('ordername');
+              var order_cancel_reason = $("#order_cancel_reason").val();
+              if(order_cancel_reason == ""){
+                  $.toptips("您未填写取消订单的理由,请认真填写!");
+                  
+              }else{
+
+                  $.confirm("您确定要取消订单吗?", "确认取消?", function(){
+                  var number = $("#url").attr('number');//景点退款数量
+                  var order_money = $("#url").attr("money");//景点退款价格
+                  $.showLoading();
+                      $.ajax({
+                          url: order_cancel_url,
+                          type:'post',
+                          dataType:'json',
+                          data:{'ordername' : ordername, 'order_cancel_reason' :order_cancel_reason , 'number':number , 'order_money':order_money , 'viewordername':viewordername},
+                          success:function(result){
+                              $.hideLoading();
+                              // console.log(result);
+                              if(result == "1"){
+                                    $.alert("取消订单提交成功,请等待管理员审核!", function(){
+                                        if ($('#url').attr('view') == 'view') {
+                                          window.location.href= $('#url').attr('vieworderlist');
+                                        }else{
+                                          window.location.href=$('#order_cancel_url').attr('order'); 
+                                        }
+                                        
+                                    });                     
+                                    //alert("取消订单提交成功,请等待管理员审核!");
+                              }else if(result == "0"){
+                                    $.alert("取消订单提交失败,请联系管理员!", function(){
+                                        window.location.href=$('#order_cancel_url').attr('order');
+                                    });  
+                                    /*
+                                    swal({title:"退款操作",text: "取消订单提交失败,请联系管理员!", type:"error"},function(){
+                                        window.location.href=$('#order_cancel_url').attr('order');
+                                    }); 
+                                    */
+                                    //alert("取消订单提交失败,请联系管理员!");
+                              }
+                          }
+                      });
+                  });  
+              }
+        });
+</script>
+
+</body>
+</html>
+

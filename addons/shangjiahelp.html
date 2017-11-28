@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>   {if $_GET['admin'] != 'yes'}商家帮助中心{else}管理员帮助{/if}</title>
+	 <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+		<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+ <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/sjbz.css"/>
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+</head>
+<body>
+    <div id="body">
+        <div id="s1-1" class="content">
+            审核通过后，商家PC后台管理账号默认为您提交商家申请时候的手机号码，
+			密码默认为123456
+			<br />如申请时手机填写为13888888888  <br />登录账号即为13888888888  初始密码则为：123456<br /><br />
+			系统检测到您的后台登录账户为：<b>{$res_business['user']}</b> <br>请使用本手机号登录PC后台管理系统。
+			
+        </div>
+        <div id="s1-2" class="content">
+           请使用PC浏览器打开网址<b><a href="{$_W['siteroot']}business/">{$_W['siteroot']}business</a></b>进行后台管理账号的登录。
+        </div>
+        <div id="s1-3" class="content">
+            1. 请检查您认证时输入的账号密码是否正确。<br />
+            2. 请检查自己的网络配置是否正常。<br />
+			3. 若还是无法登录，请联系{$_W['uniaccount']['name']}进行处理。联系电话：{$setting['set_fuwutel']} 您也可以进入意见反馈处在线提交工单处理。
+        </div>
+         <div id="s1-4" class="content">
+            请登录PC端后台，进入我的酒店页面，可在我的页面进行管理员的添加！
+        </div>
+        <div id="s2-1" class="content">
+           请登录PC端后台进行房型的管理，微信端的添加修改请期待下一版本更新！（仅商家有权限进行房型的管理）
+        </div>
+        <div id="s2-2" class="content">
+           请登录PC端后台进行房型的管理，微信端的添加修改请期待下一版本更新！（仅商家有权限进行房型的管理）
+        </div>
+		
+		 <div id="tx-1" class="content">
+            进入商家管理中心，点击账户提现即可进行提现！
+        </div>
+        <div id="tx-2" class="content">
+           进入商家管理中心，点击提现进度即可查看所有提现的记录。
+        </div>
+        <div id="tx-3" class="content">
+           请登录PC端后台进行提现资料的设置，目前仅支持微信提现or支付宝提现，默认提现方式仅限选择一项！（仅商家有权限进行提现资料的管理）
+        </div>
+        
+        <div id="s7-1" class="content">
+            1. 直接点击下方联系{$_W['uniaccount']['name']}拨打客服电话{$setting['set_fuwutel']}<br />
+            2. 在线提交工单<br /><br /><br /><br />
+			<a href="{php echo $this->createMobileUrl('feedback')}">点击提交工单</a>
+        </div>
+        <div id="dd-1" class="content">
+            进入管理中心的订单管理，即可看到酒店的所有订单并进行操作
+        </div>  <div id="dd-2" class="content">
+            待确认订单为客户新下订单，但是酒店还没进行确认入住的
+        </div>
+       
+        <div id="home" class="home">
+            <div class="container">
+                <div class="hint"><img src="{$res['headimgurl']}" style="width:30px;height:30px;border-radius:100%;">&nbsp;&nbsp;{$res['nickname']}，恭喜您成功{if $_GET['admin'] != 'yes'}通过商家审核！{else}成为管理员！{/if}</div>
+                <div class="menu-wrap">
+                {if $_GET['admin'] != 'yes'}
+                    <div class="menu-group">
+                        <div class="menu-title more">账户与登录</div>
+                        <div class="menu-list">
+                            <a class="menu-item" href="#s1-1">商家登录账号？<link class="rippleJS" /></a>
+                            <a class="menu-item" href="#s1-2">商家怎样登录？<link class="rippleJS" /></a>
+                            <a class="menu-item" href="#s1-3">登录失败怎么办？<link class="rippleJS" /></a>
+                            <a class="menu-item" href="#s1-4">怎么设置管理员账号？<link class="rippleJS" /></a>
+                        </div>
+                    </div>
+                {/if}
+                    <div class="menu-group">
+                        <div class="menu-title more">房型管理</div>
+                        <div class="menu-list">
+                            <a class="menu-item" href="#s2-1">怎么管理房型？<link class="rippleJS" /></a>
+                            <a class="menu-item" href="#s2-2">怎么添加房型？<link class="rippleJS" /></a>
+                        
+                        </div>
+                    </div>
+                {if $_GET['admin'] != 'yes'}
+                    <div class="menu-group">
+                        <div class="menu-title more">提现帮助</div>
+                        <div class="menu-list">
+                            <a class="menu-item" href="#tx-1">怎么申请提现？<link class="rippleJS" /></a>
+                            <a class="menu-item" href="#tx-2">怎么查询提现进度？<link class="rippleJS" /></a>
+                            <a class="menu-item" href="#tx-3">怎么设置提现信息？<link class="rippleJS" /></a>
+                        </div>
+                    </div>
+                {/if}
+				<div class="menu-group">
+                        <div class="menu-title more">订单帮助</div>
+                        <div class="menu-list">
+                            <a class="menu-item" href="#dd-1">如何管理客户订单<link class="rippleJS" /></a>
+                            <a class="menu-item" href="#dd-2">什么叫待确认订单？<link class="rippleJS" /></a>
+                        </div>
+                    </div>
+                    <div class="menu-group">
+                        <div class="menu-title more">联系我们</div>
+                        <div class="menu-list">
+                            <a class="menu-item" href="#s7-1">如何与客服人员联系？<link class="rippleJS" /></a>
+                            <a class="menu-item" href="{php echo $this->createMobileUrl('feedback')}">意见与反馈<link class="rippleJS" /></a>
+                        </div>
+                    </div>
+
+              {if $_GET['admin'] != 'yes'}
+				<div class="menu-group" style="height: 48px">
+                        <div class="menu-title" style="padding:0; line-height:48px;color:#49f;">我的登录账号</div>
+                        <div class="menu-list" style="height: 48px;color:#49f;">
+                            <a class="menu-item" href="javascript:;" id="sd1" style="color:#49f;">请勿泄露您的登录信息<span class="weui-badge" style="margin-left: 5px;">查看账号密码</span><link class="rippleJS" /></a>
+                        </div>
+                    </div>
+                </div>
+              {/if}
+            <div class="btn-wrap tel-btn">
+                <a id="call" href="tel:{$setting['set_fuwutel']}">
+                    联系{$_W['uniaccount']['name']}
+                    <link class="rippleJS" />
+                </a>
+                <span>Copyright &copy; 2008-2017 {$_W['uniaccount']['name']}版权所有</span>
+            </div>
+        </div>
+    </div> 
+    <script language="javascript" type="text/javascript">
+        var menuTitle = document.getElementsByClassName('menu-title');
+        var menuList = document.getElementsByClassName('menu-list');
+        var aMenuTitle = Array.prototype.slice.apply(menuTitle);
+        aMenuTitle.forEach(function(ele,ind) {
+            ele.addEventListener('click', function() {
+                var classN = this.className;
+                if(classN.indexOf('active') == -1) {
+                    var len = menuList[ind].getElementsByClassName('menu-item').length;
+                    this.parentNode.style.height = (len * 48) + 'px';
+                    this.className = classN.concat(' active');
+                }else{
+                    this.parentNode.style.height = '96px';
+                    this.className = classN.replace(' active','');
+                }
+            } ,false);
+        })
+		$(document).on("click", "#sd1", function() {
+        $.alert("<br />账号：{$res_business['user']}<br /><br />密码：123456<br /><br />登录网址：{$_W['siteroot']}business", "我的登录账号");
+      });
+		$(function(){
+$(document).on("click", "#sd5", function() {
+        $.toptips("正在整理！");
+      });
+
+})
+    </script>
+	<div id="popup" class="weui-popup-container">
+  <div class="weui-popup-modal">
+  <div class="weui_article">
+    <div class="topbar">
+        <h1 class="title"><span>用户协议</span></h1>
+    </div>
+           <div class="timeline">
+ 正在整理！
+ </div>
+
+    </div>
+  <p class='page-bd-15'><a href="javascript:;" class="weui_btn weui_btn_plain_primary close-popup" id="p1">关闭</a></p>
+  </div>
+ </div> 
+ 
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>常用信息</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+ <link rel="stlesheet" href="../addons/wqtgd_jiudian/template/mobile/css/sjbz.css"/> 
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+ <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+
+
+      <script>
+  $(function(){
+$("#date").datetimePicker({title:"选择生日",m:1});         
+$("#ssx").cityPicker({
+        title: "所在省市县"
+      });
+
+ $("#ss").cityPicker({
+        title: "选择省市",
+        showDistrict: false
+      });   
+});      
+         
+      </script>
+
+<script type="text/javascript">
+function selectmenu(n){
+var eleMore = document.getElementById("menu_"+n);
+if(eleMore.style.display=="none"){
+eleMore.style.display = 'block';
+$("#cell_"+n).removeClass("icon-74");
+$("#cell_"+n).addClass("icon-35 ");
+}else{
+eleMore.style.display = 'none';
+$("#cell_"+n).removeClass("icon-35");
+$("#cell_"+n).addClass("icon-74");
+}
+}
+</script>    
+
+</head>
+
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>常用信息编辑</em></h2>       
+    </div>
+
+
+<form id="form" action="{php echo $this->createMobileUrl('Profileform',array('id'=>$data['id']))}" method="post">
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$data['name']}" name="profile[name]" placeholder="请输入姓名"/>
+                </div>
+            </div>
+			 <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">联系号码</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="tel" value="{$data['tel']}" name="profile[tel]" placeholder="请输入手机号"/>
+                </div>
+            </div>
+<!--              <div class="weui_cell weui_vcode">
+              <div class="weui_cell_hd"><label class="weui_label">验证码：</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                <input id="code" class="weui_input" type="tel" required 
+                       placeholder="请获取验证码" tips="请输入验证码" maxlength="4">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+                <a   href="javascript:;" class="weui-vcode-btn" onclick="on(this)" id="show-toast-3">获取验证码</a>
+            </div>
+        </div> -->
+			<div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">微信账号</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$data['wechat']}" name="profile[wechat]" placeholder="你的微信账号"/>
+                </div>
+            </div>
+                 <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label" value="{$data['cardtype']}" name="profile[cardtype]" />证件类型</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select name="cardtype" class="weui_select">
+                        <option value="1">身份证</option>
+                        <option value="2">军官证</option>
+                        <option value="3">港澳通行证</option>
+						<option value="4">护照</option>
+						<option value="5">台胞证</option>
+						<option value="6">其他</option>
+                    </select>
+             
+            </div>
+        </div>  
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">证件号码</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$data['cardid']}" name="profile[cardid]" placeholder="请输入证件号"/>
+                </div>
+            </div>
+            
+ 
+		 <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">常在地区</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$data['ssx']}" name="profile[ssx]" id='ssx' placeholder="常在省市县"/>
+                    
+                </div>
+              
+            </div>  
+
+              <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">具体地址</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="{$data['address']}" name="profile[address]" placeholder="请输入具体地址"/>
+                </div>
+            </div>
+            
+          
+            
+                 <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">出生日期:</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" id="date" value="{$data['brithday']}" name="profile[brithday]" />
+                    
+                </div>
+              
+            </div> 
+      
+            <div class="weui_cell weui_cell_switch">
+                <div class="weui_cell_hd weui_cell_primary">是否设为默认地址</div>
+                <div class="weui_cell_ft">
+                      <input type="hidden" name="profile[status]" value="1">
+                      <input class="weui_switch" type="checkbox" {if $data['status'] == '0'} checked {/if} value="0" id='status' name="profile[status]">
+                </div>
+            </div>
+
+   
+  	</div>
+
+<div class="weui_btn_area">
+			 <button class="weui_btn weui_btn_primary" type="submit" value="提交" name="submit">修改信息</button>
+			<input type="hidden" name="token" value="{$_W['token']}" />
+		</div>
+
+</form>
+<br />
+                    <a href="javascript:;" onclick="selectmenu('1');">
+                     
+                      <p>    &nbsp;      &nbsp;  <i class="weui_icon_info"></i>&nbsp;实名认证说明</p>
+                        
+                    </a>
+   
+        
+             <div  style="display: none;" id="menu_1">
+     <div class="weui_article"><span>为什么要实名注册？</span><br /><br />
+				根据国务院国家互联网信息办公室于2015年2月4日发布的《互联网用户账号名称管理规定》第5条规定，互联网信息服务使用者（即用户）注册账户遵守“后台实名、前台自愿”的原则，应通过真实身份信息认证后注册账号。该规定自3月1日开始施行。{$_W['uniaccount']['name']}秉持遵纪守法的原则，推行实名注册制度。请各位用户提供真实的身份信息进行注册，也请已注册会员及时提供真实的身份信息。
+			</div>
+      </div>
+    </div>
+                               
+
+<script>
+var $form = $("#form");
+$form.form();
+$("#formSubmitBtn").on("click", function(){
+    $form.validate(function(error){
+        if(error){
+            
+        }else{
+            
+            $.toptips('验证通过提交','ok');
+        }
+    });
+    
+});
+</script>
+<script>
+
+// function on(obj) {
+//   var tel = $('#tel').val();
+//   nickname = $('#tel').attr('nickname');
+//   if(tel == '') {
+//     $.toptips("请填写您的手机号");
+//   }
+//   // 准备正则
+//   var preg = /^1[34678]\d{9}$/;
+//   var result = preg.test(tel);//验证
+//   if(result){
+//        $.showLoading();
+//       var usepreg = $('#route').attr('usepreg');
+//       $.post(usepreg,{'tel':tel,'nickname':nickname},function(data){
+//           // alert(data);
+//           $.hideLoading();
+//       },'json');
+//       //必须在后面
+//       var i = 60
+//       $(obj).attr('onclick','');
+//       $(obj).attr('id','');
+//       var timer = setInterval(function(){
+//       if(i < 1 ){
+//         //将定时器清除
+//         clearInterval(timer);
+//         $(obj).html('重新发送');
+//         $(obj).attr('onclick','on(this)');
+//         $(obj).attr('id','show-toast-3');
+//         $(obj).css({'color':''});
+//       }else{
+//         $(obj).html(i+'s后重发');
+//         $(obj).css({'color':'#A4B4BB;'});
+//       }
+//       i--;
+//     },1000);
+//   }
+// } 
+
+// var $form = $("#form");
+// $form.form();
+// $("#formSubmitBtn").on("click", function(){
+//     $form.validate(function(error){
+//         if(error){
+            
+//         }else{
+//           // $.toast("账号绑定成功");
+          
+//           var code = $('#code').val();
+//           var tel = $('#tel').val();
+//           var user = $('#route').attr('user');//用户页跳转
+//           var coderoute = $('#route').attr('coderoute');
+//           $.post(coderoute,{'code':code,'tel':tel},function(data){
+//             switch(data){
+//               case 'a' :
+//                 $.toptips("验证码错误");
+//                 break;
+//               case 'b' :
+//                 $.toptips("验证失效,请重新验证");
+//                 break;
+//               case 'ok' :
+//                 // window.location.href = user;
+//                 break;
+//             }
+//           },'json');
+
+
+//         }
+//     });
+    
+// });
+</script>
+<br />
+
+</body>
+</html>
+

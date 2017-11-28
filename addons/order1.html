@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <link rel="stylesheet" href="http://www.17sucai.com/preview/522817/2016-11-14/renrenyoupin/css/gg.css">
+    <link rel="stylesheet" href="http://www.17sucai.com/preview/522817/2016-11-14/renrenyoupin/css/all_orders.css">
+    <script src="http://www.17sucai.com/preview/522817/2016-11-14/renrenyoupin/js/jquery-1.8.3.min.js"></script>
+    <!--<script src="js/all_orders.js"></script>-->
+    <script src="http://www.17sucai.com/preview/522817/2016-11-14/renrenyoupin/layer/layer.js"></script>
+    <title>我的订单</title>
+</head>
+<body>
+<div class="top">
+    <a href="javascript:history.back()" class="back lf"></a>
+    <span>全部订单</span>
+</div>
+<?php if(!empty($orderlist)){?>
+<div class="order_list">
+{loop $orderlist $val}
+    <div class="order">
+        <div class="title">
+            酒店：{$val['hotelname']}
+            <span class="rf">房型：{$val['roomtype']}</span>
+        </div>
+        <div class="order_product">
+            <img src="{php echo $url.'/'.explode(',',$val['hotelpic'])[0];}" onerror="this.src='../addons/wqtgd_jiudian/template/mobile/img/error.png'; this.title='图片未找到.'"/> 
+            <div class="order_right">
+                <div class="order_introduce">
+                    佛挡杀佛的身份对方的身份都是
+                </div>
+                <div class="order_data">入住时间： <span class="num">{php echo date('Y-m-d',$val['checkin'])} - {php echo date('Y-m-d',$val['checkout'])}</span></div>
+            </div>
+        </div>
+        <div class="end"> <span>预订人：</span><span>{$val['truename']}</span></div>
+        <div class="btn">
+            <?php if($val['order_status'] == '未付款'){?>
+                <a class="pay" href="{$Pay}&ordername={$val['ordername']}&hotelname={$val['hotelname']}&hoteltel={$VVal['hoteltel']}&hotelpic={$val['hotelpic']}&roomtype={$val['roomtype']}&price={$val['price']}&paytype={$val['paytype']}&checkin={$val['checkin']}&checkout={$val['checkout']}&checkday={$val['checkday']}&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&roomnum={$val['roomnum']}&truename={$val['truename']}&usertel={$val['usertel']}&arrivetime={$val['arrivetime']}">去支付</a>
+              <?php }elseif($val['order_status'] == '预定成功'){?>
+                <a class="pay" href="#">预定成功</a>
+              <?php }elseif($val['order_status'] == '付款成功'){?>
+                <a class="pay" href="#">付款成功</a>
+              <?php }elseif($val['order_status'] == '订单取消'){?>
+                <a class="pay" href="#">已取消</a>
+              <?php }elseif($val['order_status'] == '交易完成'){?>
+
+                <?php if($val['evastatus'] == '0'){?>
+                    <a class="pay" href="{$Evaluate}&hotelname={$val['hotelname']}&hotelpic={$val['hotelpic']}&roomtype={$val['roomtype']}&ordername={$val['ordername']}">去点评</a>
+                <?php }else{?>
+                    <a class="pay" href="{$Roomlist}&hotelname={$val['hotelname']}">再次预定</a>
+                <?php }?>
+
+
+              <?php }?>
+            <a class="cancel" href="{$Orderdetail}&ordername={$val['ordername']}">订单详情</a>
+        </div>
+    </div>
+  {/loop}
+</div>
+<?php }else{?>
+    <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/>
+        <div style="margin-top:10px;">
+            <a class="pay" href="" style="width:100%;color:black;">暂无订单记录</a><br>
+            <div class="pay"  style="margin-top:15px;width:100%;font-size:17px;color:lightgray;">快去找到喜欢的<a href="{$Index}" style="margin-top:15px;width:100%;color:red;font-size:17px;">酒店</a>下单吧！</div>
+        </div>
+        </center>
+<?php }?>
+<script>
+    $(".order_right").css("width",parseInt($(".order_product").width())-parseInt($(".order_product img").width()));
+    $(".cancel").click(function(){
+//        layer.
+    });
+</script>
+</body>
+</html>

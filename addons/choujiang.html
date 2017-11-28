@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{if $res_lottery['title'] !== ''}{$res_lottery['title']}{else}免费抽奖{/if}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content="Point" />
+    <meta name="description" content="积分抽奖"/>
+    <meta name="viewport" id="viewport" content="minimal-ui,width=device-width,height=device-height,target-densitydpi=medium-dpi,initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" /> 
+   <link type="text/css" href="http://m.elongstatic.com/promotions/wireless/H5/html/kunkka(jifen)/css/style.css?t=1.0" rel="stylesheet"/>
+   <script src="http://m.elongstatic.com/promotion/common/js/zepto.js?t=201511030215040118" type="text/javascript"></script>
+   <script type="text/javascript" src="http://m.elongstatic.com/static/webapp/bridge/bridge-1.1.1.js"></script>
+
+    <!-- 弹出框资源 -->
+   <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+
+</head>
+
+<style type="text/css">
+    
+    .Integral {
+        width: 100%;
+        height: 100%;
+        background-image: url("http://m.elongstatic.com/promotions/wireless/H5/html/kunkka(jifen)/img/bg.jpg");
+        padding: 0 5% 24%;
+    }
+
+    .padding1{
+        background: rgba(0, 0, 0, 0.44);
+    }
+
+    .padding1 .modal-body {
+        padding: 0px;
+        padding-bottom: 5px;
+        background-color:#fff;
+        border-radius:15px;
+        position: relative;
+    }
+
+    .padding1 .modal-body .img1{
+        padding: 30px;
+    }
+
+    .padding1 .modal-body .colse1 {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 26px;
+        height: 26px;
+        background: url("http://www.17sucai.com/preview/98055/2016-12-08/%E6%B5%81%E9%87%8F%E6%B4%BB%E5%8A%A81/%E6%8A%BD%E5%A5%96%E7%95%8C%E9%9D%A2/images/olympic_games10.png") no-repeat;
+    }
+
+    .padding1 .modal-body p {
+        width: 80%;
+        margin: 0px auto;
+        text-align: center;
+        font-size: 19px;
+        color: #898989;
+        padding: 10px 0px;
+    }
+
+    .padding1 .modal-body p span {
+        color: #ff4338;
+    }
+
+    .padding1 .modal-body .but5 {
+        background-color: #ff4338;
+        display: block;
+        width: 240px;
+        margin: 0px auto 20px auto;
+        padding: 6px 0px;
+        font-size: 20px;
+        color: #FFF;
+        text-align: center;
+        border: none;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+
+</style>
+
+<body class="" style="background-color:#1E0944">
+<!--微信分享start-->
+
+
+
+<input type="hidden" id="page" value="index" />
+
+    <div class="main" style="display:none;">
+        <a  class="close-1"></a>
+        <div class="close">
+            <i class="close-icon bgImg"></i>
+        </div>
+        <div class="liubai"></div>
+        <h1>免费抽奖说明</h1>
+<p>1. 活动时间2017年03月01日至2017年04月30日,每笔订单交易完成即可抽奖</p>
+<p>2.正在开发此功能。</P>
+<p>3.该活动苹果不是赞助商，并且苹果公司不会以任何形式参与其中。</P>
+        
+    </div>        
+    <br />
+    <div class="header">
+        <div class="go-back"></div>
+        <span class="back">
+        </span>
+        <p id="header_name">{$res_lottery['title']}</p>
+    </div>
+    <div class="Integral bgImg" style="">
+        
+        <div class="title">
+        <?php if(!empty($res_lottery['ordernum'])){?>
+            <p class="myInt">我的剩余抽奖次数<span id="numberr" class="number" numberr="{$userlist['number']}"><span>{$userlist['number']}</span> 次</span></p>
+        <?php }else{?>
+            <p class="myInt" id="inter" inter="{$integration}">总积分<span>{php echo intval($integration);}</span><span id="creditt" creditt="{$res_lottery['credit1']}" class="number">&nbsp;{$res_lottery['credit1']}积分/1次</span></p>
+        <?php }?>
+            <a href="{$Lotterylog}" style="color:#fff;">
+                <p class="record tjclick">我的中奖记录</p>
+            </a>
+        </div>
+        <br /><br />
+        <div class="luck bgImg">
+
+            <ul class="luck-ul clearfix">
+                <li class="good-div good-div1 color-good">
+                    <div class="good-top good-top1">
+                        <i class="good good1 bgImg" style="background-image: url({php echo tomedia($lalist[0]['awardpic'])});"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="">{$lalist[0]['awardtitle']}</p>
+                    </div>
+                </li>
+                <li class="good-div good-div2 color-good">
+                    <div class="good-top good-top2">
+                        <i class="good good2 bgImg"  style="background-image: url({php echo tomedia($lalist[1]['awardpic'])});"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="">{$lalist[1]['awardtitle']}</p>
+                    </div>
+                </li>
+                <li class="good-div good-div3 color-good">
+                    <div class="good-top good-top3">
+                        <i class="good good3 bgImg"  style="background-image: url({php echo tomedia($lalist[2]['awardpic'])});"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="">{$lalist[2]['awardtitle']}</p>
+                    </div>
+                </li>
+                <li class="good-div good-div4 color-good">
+                    <div class="good-top good-top2">
+                        <i class="good good2 bgImg"  style="background-image: url({php echo tomedia($lalist[7]['awardpic'])});"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="">{$lalist[7]['awardtitle']}</p>
+                    </div>
+                </li>
+                <li class="good-div good-div5 color-elong">
+                    <i class="elong-icon bgImg"></i>
+                </li>
+                
+                <li class="good-div good-div6 color-good">
+                    <div class="good-top good-top2">
+                        <i class="good good2 bgImg"  style="background-image: url({php echo tomedia($lalist[3]['awardpic'])});"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="w-50">{$lalist[3]['awardtitle']}</p>
+                    </div>
+                </li>
+                <li class="good-div good-div7 color-good">
+                    <div class="good-top good-top4">
+                        <i class="good good4 bgImg"  style="background-image: url({php echo tomedia($lalist[6]['awardpic'])});"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="w-39">{$lalist[6]['awardtitle']}</p>
+                    </div>
+                </li>
+                <li class="good-div good-div8 color-good">
+                    <div class="good-top good-top2">
+                        <i class="good good2 bgImg"  style="background-image: url({php echo tomedia($lalist[5]['awardpic'])});"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="w-43">{$lalist[5]['awardtitle']}</p>
+                    </div>
+                </li>
+                <li class="good-div good-div9 color-good">
+                    <div class="good-top good-top5">
+                        <i class="good good5 bgImg"  style="background-image: url({php echo tomedia($lalist[4]['awardpic'])})"></i>
+                    </div>
+                    <div class="good-bottom">
+                        <p class="w-26">{$lalist[4]['awardtitle']}</p>
+                    </div>
+                </li>
+
+                
+
+                <li id="g1" class="act good-div1" >
+                </li>
+                <li id="g2" class="act good-div2" style="display:none;">
+                </li>
+                <li id="g3" class="act good-div3" style="display:none;">
+                </li>
+                <li id="g4" class="act good-div6" style="display:none;" >
+                </li>
+                <li id="g5" class="act good-div9" style="display:none;" >
+                </li>
+                <li id="g6" class="act good-div8" style="display:none;" >
+                </li>
+                <li id="g7" class="act good-div7" style="display:none;" >
+                </li>
+                <li id="g8" class="act good-div4" style="display:none;">
+                </li>
+            </ul>
+            
+        </div>
+
+        <div id="off" class="but_act but" onclick="ddd()">
+            <p class="but-p">{if $res_lottery['text'] !== ''}{$res_lottery['text']}{else}立即抽奖{/if}</p>
+        </div>
+        <br />
+        <p class="rule"><i class="bgImg"></i>{$res_lottery['title']}活动说明</p>
+		<br />
+		  <p class="rule">*注: 为保障您能正常收到奖品，请完善<a href="{php echo $this->createMobileUrl('profile')}">我的资料</a>。（默认信息为准）</p>
+    </div>
+    <span id="lujin" winning="{$Winning}"></span>
+
+    <!-- 按钮触发模态框 -->
+    <button id="btn_lg1" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display: none;">
+        开始演示模态框
+    </button>
+    <!-- 模态框（Modal） -->
+    <div  class="modal fade modal fade padding1" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="padding: 40px">
+           <div class="modal-body">
+                       <div class="img1"><img src="" style="width: 50%;margin: 0px auto;    display: block;"></div>
+                       <p><span>奖品将于次月10日前到账，请留意查收！</span></p>
+                       <!-- <a href="#" class="colse1" data-dismiss="modal"></a> -->
+                       <button type="button" class="but5" data-dismiss="modal" data-toggle="modal">确定</button>
+                    </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 按钮触发模态框2 -->
+    <button id="btn_lg2" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2" style="display: none;">
+        开始演示模态框
+    </button>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade modal fade padding1" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top:200px">
+        <div class="modal-dialog">
+           <div class="modal-body">
+                       <p><span>为保障您能正常收到奖品，请完善<a href="{php echo $this->createMobileUrl('profile')}">我的资料</a>。（默认信息为准）</span></p>
+                       <!-- <a href="#" class="colse1" data-dismiss="modal"></a> -->
+                       <button type="button" class="but5" data-dismiss="modal" data-toggle="modal">完善资料</button>
+                    </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <input type="hidden"  id="pro" pro="{$prolist}" daylimit="$res_lottery['daylimit']
+">
+    <input type="hidden"  id="profile" pro="{$Profile}">
+
+<style>
+.elong-icon {
+    background-image: url("{php echo tomedia('headimg_'.$_W['account']['acid'].'.jpg')}?time={php echo time()}");
+    padding-bottom: 100%;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+/* Alignment */ 
+.alignleft { 
+display: inline; 
+float: left; 
+} 
+.alignright { 
+display: inline; 
+float: right; 
+} 
+.aligncenter { 
+clear: both; 
+display: block; 
+margin:auto; 
+} 
+</style>
+
+</section>
+
+
+<script>
+
+//抽奖执行
+    var circle = 0;//圈数
+    var sudu = 100;//转的速度
+    var yes = '';
+    var count = parseInt($('#numberr').attr('numberr'));//抽奖次数  
+    var numberr = parseInt($('#numberr').attr('numberr'));//抽奖次数
+    var inter = parseInt($('#inter').attr('inter'));
+    var creditt = parseInt($('#creditt').attr('creditt'));
+    function ddd(){
+        if(numberr == 0 || inter < creditt || inter == 0){
+            $('#off').attr('onclick','');
+        }else if($('#pro').attr('pro') == ''){ 
+            // $('#btn_lg2').trigger('click');
+             var _cfg = {
+                text:'为保障您能正常收到奖品，请完善我的资料。（默认信息为准）',
+                fontSize:'19px',
+                btnText:'完善资料',
+                isLuckDraw: false
+             }
+             openSecondDialog(_cfg);
+        }else{
+            off();
+        }
+    }
+    
+
+    function off() {
+        $('#off').attr('onclick','');
+        if (circle == '0') {
+            var winning = $('#lujin').attr('winning');
+            $.post(winning,function(data){
+                data = '' + data;
+                if(data.indexOf('a') == 0){
+                    var _cfg = {
+                    text:"当日中奖{$res_lottery['daylimit']}次啦，给别人留点吧！",
+                    fontSize:'14px',
+                    btnText:'我知道了',
+                    isLuckDraw: true
+                    }
+                    openSecondDialog(_cfg);
+                }else if(data.indexOf('b') == 0){
+                    var _cfg = {
+                    text:"活动期间最多抽奖{$res_lottery['cumlimit']}次",
+                    fontSize:'14px',
+                    btnText:'我知道了',
+                    isLuckDraw: true
+                    }
+                    openSecondDialog(_cfg);
+                }else{
+                    yes = data;
+                    mod(data);
+                    setText();
+                }
+            },'json');
+        }else{
+            mod(yes);
+        }
+       
+        
+
+    }
+    function mod(yes) {
+        
+        for (k=0;k<8;k++) {
+            $('#g'+k+'').css({'display':'none'});
+        }
+        circle += 1;
+        if (circle >= 2) {
+            sudu += 80;
+        }
+        var i = 1;
+        var timer = setInterval(function(){
+            $('#g8').css({'display':'none'});
+            $('#g'+i+'').css({'display':''});
+            $('#g'+(i-1)+'').css({'display':'none'});
+            i++;
+
+            if ( circle >= 4  ) {
+                // console.log(yes);
+                if ((i - 1) == yes) {
+                    clearInterval(timer);
+                    //初始化数据
+                    circle = 0;
+                    sudu = 30;
+                    $('#off').attr('onclick','off()');
+
+                   getPrizeinfo();
+                }
+            }else if(i > 8) {
+                off();
+                clearInterval(timer);
+            }
+        },sudu);
+    }
+
+    if($('#pro').attr('pro') == ''){
+         // $('#btn_lg2').trigger('click');
+          var _cfg = {
+                text:"为保障您能正常收到奖品，请完善我的资料。（默认信息为准）",
+                fontSize:'19px',
+                btnText:'完善资料',
+                isLuckDraw: false
+             }
+             openSecondDialog(_cfg);
+    }
+    //我的资料按钮
+   // function goToMydata(){
+   //      window.location.href = $('#profile').attr('pro');
+   // }
+   //抽奖活动说明
+   $('p:contains("抽奖活动说明")').bind('click', function(e){
+         e.stopPropagation();
+         e.preventDefault();
+         var _cfg = {
+            text:"截至时间：{$res_lottery['end_time']} 。 {$res_lottery['explain']}",
+            fontSize:'14px',
+            btnText:'我知道了',
+            isLuckDraw: true
+         }
+         openSecondDialog(_cfg);
+   });
+
+   function openSecondDialog(cfg){
+        var _myModal2 = $('#myModal2');
+        _myModal2.find('span').text(cfg.text);
+        _myModal2.find('span').css('font-size', cfg.fontSize);
+        _myModal2.find('.but5').text(cfg.btnText);
+        if(cfg.isLuckDraw){
+            _myModal2.find('.but5').unbind('click');
+        }else{
+            _myModal2.find('.but5').bind('click', function(){
+                window.location.href = $('#profile').attr('pro');
+            });
+        }
+        $('#btn_lg2').trigger('click');
+   }
+
+    /*获取奖品信息*/
+    function getPrizeinfo(){
+        $.each($('.act'), function(index, item){
+
+            if($(item).css("display").indexOf('none') == -1){
+
+               var _className = $(item).attr('class').substr(4);
+               var _imgUrl = $('.' + _className).find('.bgImg').css('background-image');
+               var _length =  _imgUrl.length - 5;
+               _imgUrl = _imgUrl.substr(4, _length);  
+               if( _imgUrl.substr(_imgUrl.length-1).indexOf('g') == -1){
+                    _imgUrl = _imgUrl.substr(1, _imgUrl.length-2);
+               }
+               $('.img1').children('img').attr('src', _imgUrl);
+
+               $('.img1').next().children().text( $('.' + _className).find('.good-bottom').children().text());
+
+            }
+
+        })
+        $('#btn_lg1').trigger('click');
+    }
+
+    //
+    function setText(){
+        var $p = $('.myInt');
+        if($p.text().indexOf('分') != -1){
+             var _zCreditt = $($p.children()[0]).text().substr($($p.children()[0]).text().indexOf('分') + 1);
+             var _creditt = $('#creditt').text().substr(0, $('#creditt').text().indexOf ('积分'));
+           
+             inter = parseFloat(_zCreditt) - parseFloat(_creditt);
+
+            $p.attr('inter', inter);
+            $($p.children()[0]).text(inter);
+        }else{
+            numberr--;
+            var _numberr = $('#numberr');
+            _numberr.attr('numberr', numberr);
+            _numberr.children('span').text(numberr);
+        }
+
+        setLuckDrawBtnStyle();
+       
+    }
+
+    function setLuckDrawBtnStyle(){
+        if(numberr == 0 || inter < creditt || inter == 0){
+             $('.but-p').css('background-color', '#eee');
+             $('.but-p').css('color', '#fff');
+             $('.but-p').css('border-radius', '5px');
+        }else{
+             $('.but-p').css('background-color', '#FFD738');
+             $('.but-p').css('color', '#e33a0c');
+             $('.but-p').css('border-radius', '5px');
+        }
+    }
+
+    setLuckDrawBtnStyle();
+    
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
+

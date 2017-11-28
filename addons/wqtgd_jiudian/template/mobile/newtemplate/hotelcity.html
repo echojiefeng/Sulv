@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html style="font-size:100%">
+	<head>
+	<link rel="stylesheet" type="text/css" href="http://webapi.amap.com/theme/v1.3/style1.3.28.4.css">
+    <style type="text/css">.amap-indoor-map .label-canvas{position:absolute;top:0;left:0}.amap-indoor-map .highlight-image-con *{pointer-events:none}.amap-indoormap-floorbar-control{position:absolute;margin:auto 0;bottom:165px;right:12px;width:35px;text-align:center;line-height:1.3em;overflow:hidden;padding:0 2px}.amap-indoormap-floorbar-control .panel-box{background-color:rgba(255,255,255,.9);border-radius:3px;border:1px solid #ccc}.amap-indoormap-floorbar-control .select-dock{position:absolute;top:0;left:0;width:100%;box-sizing:border-box;height:30px;border:solid #4196ff;border-width:0 2px;border-radius:2px;pointer-events:none;background:linear-gradient(to bottom,#f6f8f9 0,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%)}.amap-indoor-map .transition{transition:opacity .2s},.amap-indoormap-floorbar-control .transition{transition:top .2s,margin-top .2s}.amap-indoormap-floorbar-control .select-dock:after,.amap-indoormap-floorbar-control .select-dock:before{content:"";position:absolute;width:0;height:0;left:0;top:10px;border:solid transparent;border-width:4px;border-left-color:#4196ff}.amap-indoormap-floorbar-control .select-dock:after{right:0;left:auto;border-left-color:transparent;border-right-color:#4196ff}.amap-indoormap-floorbar-control.is-mobile{width:37px}.amap-indoormap-floorbar-control.is-mobile .floor-btn{height:35px;line-height:35px}.amap-indoormap-floorbar-control.is-mobile .select-dock{height:35px;top:36px}.amap-indoormap-floorbar-control.is-mobile .select-dock:after,.amap-indoormap-floorbar-control.is-mobile .select-dock:before{top:13px}.amap-indoormap-floorbar-control.is-mobile .floor-list-box{height:105px}.amap-indoormap-floorbar-control .floor-list-item .floor-btn{color:#555;font-family:"Times New Roman",sans-serif,"Microsoft Yahei";font-size:16px}.amap-indoormap-floorbar-control .floor-list-item.selected .floor-btn{color:#000}.amap-indoormap-floorbar-control .floor-btn{height:28px;line-height:28px;overflow:hidden;cursor:pointer;position:relative;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.amap-indoormap-floorbar-control .floor-btn:hover{background-color:rgba(221,221,221,.4)}.amap-indoormap-floorbar-control .floor-minus,.amap-indoormap-floorbar-control .floor-plus{position:relative;text-indent:-1000em}.amap-indoormap-floorbar-control .floor-minus:after,.amap-indoormap-floorbar-control .floor-plus:after{content:"";position:absolute;margin:auto;top:9px;left:0;right:0;width:0;height:0;border:solid transparent;border-width:10px 8px;border-top-color:#777}.amap-indoormap-floorbar-control .floor-minus.disabled,.amap-indoormap-floorbar-control .floor-plus.disabled{opacity:.3}.amap-indoormap-floorbar-control .floor-plus:after{border-bottom-color:#777;border-top-color:transparent;top:-3px}.amap-indoormap-floorbar-control .floor-list-box{max-height:153px;position:relative;overflow-y:hidden}.amap-indoormap-floorbar-control .floor-list{margin:0;padding:0;list-style:none}.amap-indoormap-floorbar-control .floor-list-item{position:relative}.amap-indoormap-floorbar-control .floor-btn.disabled,.amap-indoormap-floorbar-control .floor-btn.disabled *,.amap-indoormap-floorbar-control.with-indrm-loader *{-webkit-pointer-events:none!important;pointer-events:none!important}.amap-indoormap-floorbar-control .with-indrm-loader .floor-nonas{opacity:.5}.amap-indoor-map-moverf-marker{color:#555;background-color:#FFFEEF;border:1px solid #7E7E7E;padding:3px 6px;font-size:12px;white-space:nowrap;display:inline-block;position:absolute;top:1em;left:1.2em}.amap-indoormap-floorbar-control .amap-indrm-loader{-moz-animation:amap-indrm-loader 1.25s infinite linear;-webkit-animation:amap-indrm-loader 1.25s infinite linear;animation:amap-indrm-loader 1.25s infinite linear;border:2px solid #91A3D8;border-right-color:transparent;box-sizing:border-box;display:inline-block;overflow:hidden;text-indent:-9999px;width:13px;height:13px;border-radius:7px;position:absolute;margin:auto;top:0;left:0;right:0;bottom:0}@-moz-keyframes amap-indrm-loader{0%{-moz-transform:rotate(0);transform:rotate(0)}100%{-moz-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes amap-indrm-loader{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes amap-indrm-loader{0%{-moz-transform:rotate(0);-ms-transform:rotate(0);-webkit-transform:rotate(0);transform:rotate(0)}100%{-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)}}</style>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>搜索酒店</title>
+    <link rel="apple-touch-icon-precomposed" href="/Content/img/app_icon.png?CV=150311">
+    <meta name="apple-mobile-web-app-title" content="华住">
+    <meta name="keywords" content="华住、华住酒店、酒店查询、酒店价格、华住无线">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="description">
+    <meta name="applicable-device" content="mobile">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    
+   <!--  <link href="http://m.huazhu.com/Content/css/iconfonts.css" rel="stylesheet"> -->
+    <link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/newmain.css" rel="stylesheet">
+
+    <!-- 图标 -->
+    <link rel="stylesheet" type="text/css" href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/font/typicons.min.css">
+
+ 	<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/jquery-1.10.1.min.js"></script>
+ 	<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/pinying.js"></script>
+
+    <!-- 定位 -->
+      <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UmqySBHafe1uyxhWrZPXQAblBCdBSQWi"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script> 
+      <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=349a30a3edab121b7758672064950e07&plugin=AMap.Geocoder"></script>
+      <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=6FZBZ-DUZCG-LQCQN-IYLNR-74RDE-DGF5J"></script>
+
+    <!-- {template share} -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    
+<style type="text/css">
+    .CselectCityHeader .main {
+      background-image: url('/addons/wqtgd_jiudian/template/mobile/newtemplate/images/search_city_header.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center center;
+    }
+    .Cback .back_small {
+        background-position: 0 -125px;
+        display: inline-block;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        background-size: 20px auto;
+        background-image: url('/addons/wqtgd_jiudian/template/mobile/newtemplate/images/bg_icon2_small.png');
+    }
+    /*工具样式*/
+    .fn-hide{
+        display: none;
+    }
+    /*图标样式*/
+    .typcn-arrow-left:before {
+        color: #fff;
+    }
+    .typcn-zoom-outline:before {
+        color: #9C527F;
+        font-size: 25px;
+    }
+    .typcn-times:before {
+        color: #BFBFBF;
+        font-size: 25px;
+        display: none;
+    }
+    .search-first:before{
+        display: none;
+    }
+    .clickChange .typcn-zoom-outline:before{
+        display: none;
+    }
+    .clickChange .typcn-times:before,
+    .clickChange .search-first:before{
+        display: block;
+    }
+    .typcn-location:before {
+        color: #9C527F;
+        font-size: 20px;
+        position: absolute;
+        top: 12px;
+    }
+    .CresultModule ul li {
+        position: relative;
+    }
+    .typcn-home:before {
+        position: absolute;
+        top: 0.79rem;
+        bottom: 1rem;
+        left: 0.65rem;
+        font-size: 20px;
+    }
+    .items-city .typcn-location:before {
+        position: absolute;
+        bottom: 1rem;
+        top: 0.79rem;
+        left: 0.65rem;
+        color: #BFBFBF;
+        font-size: 20px;
+    }
+
+    /*占位隐藏*/
+    .vh{
+        visibility: hidden;
+    }
+
+</style>
+<style type="text/css">
+.amap-container{cursor:url(http://webapi.amap.com/theme/v1.3/openhand.cur),default;}
+.amap-drag{cursor:url(http://webapi.amap.com/theme/v1.3/closedhand.cur),default;}
+</style>
+
+</head>
+
+<body>
+<!-- <button onclick="sou()" >点击</button> -->
+<header class=" Cnewheader CselectCityHeader ">
+    <div class="pure-g main">
+
+        <div class="pure-u-4-24 return">
+                <div id="usingBack">
+                    <a href="/" data-no-turbolink="true" style="padding: .300rem 0 0 0;text-align: center;">
+                        <i class="typcn typcn-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="Ldn" id="unuseBack"><a href="javascript:;"><i class="icon-back"></i></a></div>
+        </div>
+            <div class="pure-u-20-24 search Ltac">
+                <div class="wrap">
+                    <div class="pure-g">
+                        <div class="pure-u-3-24  icon-left">
+                            <div class="inn"><i class="typcn typcn-zoom-outline search-first" style="left: 5px;"></i></div>
+                        </div>
+                        <div class="pure-u-18-24 inputbtn">
+                            <input type="text" class="Cinput_search" growing-track="true" value="" placeholder="城市/酒店名称">
+                        </div>
+                        <div class="pure-u-3-24  icon-right">
+                            <div class="inn"><i class="typcn typcn-zoom-outline" data-action="search"></i><i class="typcn typcn-times" data-action="clear" style="left: 7px;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pure-u-4-24 cancel Ltac"><span class="action-items" data-action="cancel">取消</span></div>
+    </div>
+</header>    <div class="Cload" style="display: none;">
+        <div class="Cload__icon"></div>
+    </div>
+
+    <div class="container">
+        
+
+<div class="page_selectCity">
+    <div class="wrapCity">
+            <div class="edgeGap Lmt10 bgwhite nearwayHotel">
+                <a href="javascript:;" id="fugaomap" class="item currlocation"><span class="typcn typcn-location"></span><span class="near">正在获取...</span></a>
+                <div class="Ldn" id="fugaocity" data-cityid="4401" data-cityname="广州"></div>
+            </div>
+       
+        <div class="Citywrap">
+            <div class="tab_header Lmt10">
+                <div class="CselectButton Ltac Lcfx Ldn"><a href="javascript:;" class="select" data-type="0">国内城市<i class="line left transform1"></i></a><a href="javascript:;" data-type="1" class="">国际城市<i class="line right transform1"></i></a></div>
+            </div>
+            <div class="tab_body" style="position: relative;">
+                
+                <div class="Ccity-list city-list-domestic vh" data-is="city-list" riot-tag="city-list"><div class="Ctab_hotplace Lmb10"> <div class="mainedge"> <h2 class="title">热门推荐</h2> </div> <ul class="citytabs Lcfx"> <li>上海</li><li>北京</li><li>杭州</li><li>丽江</li><li>西安</li><li>南京</li><li>成都</li><li>三亚</li><li>青岛</li><li>天津</li><li>武汉</li><li>阳朔(桂林)</li><li>重庆</li><li>香港</li><li>苏州</li><li>沈阳</li><li>深圳</li><li>嘉善(嘉兴)</li><li>广州</li><li>厦门</li><li>济南</li> </ul> </div> <dl> <div class="indexwrap" style="display: none;"> <h3 class="city-list__current-index"><span>A</span></h3> </div>  </dl></div>
+                <div class="Ccity-list city-list-oversea Ldn"></div>
+                <div class="pageloading Ltac" style="position: absolute;
+    top: 0;
+    left: 28%;">
+                    <img src="http://m.huazhu.com/Content/img/loading.gif?CV=150311" width="150">
+                </div>
+            </div>
+            <div class="city-list-nav city-list-nav-domestic Lposf active" data-is="city-list-group" style="visibility: hidden;;" riot-tag="city-list-group"><ul> <li> <a href="javascript:;" class="active">A</a> </li><li> <a href="javascript:;">B</a> </li><li> <a href="javascript:;">C</a> </li><li> <a href="javascript:;">D</a> </li><li> <a href="javascript:;">E</a> </li><li> <a href="javascript:;">F</a> </li><li> <a href="javascript:;">G</a> </li><li> <a href="javascript:;">H</a> </li><li> <a href="javascript:;">J</a> </li><li> <a href="javascript:;">K</a> </li><li> <a href="javascript:;">L</a> </li><li> <a href="javascript:;">M</a> </li><li> <a href="javascript:;">N</a> </li><li> <a href="javascript:;">P</a> </li><li> <a href="javascript:;">Q</a> </li><li> <a href="javascript:;">R</a> </li><li> <a href="javascript:;">S</a> </li><li> <a href="javascript:;">T</a> </li><li> <a href="javascript:;">W</a> </li><li> <a href="javascript:;">X</a> </li><li> <a href="javascript:;">Y</a> </li><li> <a href="javascript:;">Z</a> </li> </ul></div>
+            <div class="city-list-nav city-list-nav-oversea Lposf"></div>
+        </div>
+
+
+    </div>
+    <div class="searchResult"></div>
+    
+    <div id="citymap" class="Ldn"></div>
+    <div id="citygeomap" class="Ldn"></div>
+</div>
+
+
+    </div>
+    <div class="Cback Ldn">
+        <div class="Cwrap Lposr">
+            <div class="back">
+                <i class="Cicon back_small"></i>
+            </div>
+        </div>
+    </div>
+    <div id="scriptArea" data-page-id="nhotel/nCity" class="Ldn">
+        
+        <div data-turbolinks-skip="true">
+            ;
+           
+
+        </div>
+       </div>
+
+
+<div class="amap_autocomplete amap-container" style="width: 1px; height: 1px; display: none; position: relative; background: rgb(252, 249, 242);"><object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html" data="about:blank"></object><div class="amap-maps"><div class="amap-drags"><div class="amap-layers" style="transform: translateZ(0px);"><div class="amap-layer" style="position: absolute; z-index: 0; top: 0px; left: 0px;"><canvas height="512" width="512" style="position: absolute; top: -242px; left: -9px; width: 256px; height: 256px; z-index: 4;"></canvas></div><canvas class="amap-labels" draggable="false" style="position: absolute; z-index: 99; height: 0px; width: 0px; top: 0px; left: 0px;" width="0" height="0"></canvas><div class="amap-markers" style="position: absolute; z-index: 120; top: 0px; left: 0px;"></div><canvas class="amap-layer" width="0" height="0" style="position: absolute; z-index: 1; height: 0px; width: 0px; top: 0px; left: 0px;"></canvas></div><div class="amap-overlays"></div></div></div><div style="display: none;"></div><div class="amap-controls"></div><a class="amap-logo" href="http://m.amap.com" target="_blank"><img src="http://webapi.amap.com/theme/v1.3/mapinfo_05.png"></a><div class="amap-copyright" style="display: none;"><!--v1.3.28--> © 2017 AutoNavi <span class="amap-mcode">- GS(2016)710号</span></div></div><div class="amap_autocomplete amap_autocomplete_1 amap-container" style="width: 1px; height: 1px; display: none; position: relative; background: rgb(252, 249, 242);"><object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html" data="about:blank"></object><div class="amap-maps"><div class="amap-drags"><div class="amap-layers" style="transform: translateZ(0px);"><div class="amap-layer" style="position: absolute; z-index: 0; top: 0px; left: 0px;"><canvas height="512" width="512" style="position: absolute; top: -242px; left: -9px; width: 256px; height: 256px; z-index: 4;"></canvas></div><canvas class="amap-labels" draggable="false" style="position: absolute; z-index: 99; height: 0px; width: 0px; top: 0px; left: 0px;" width="0" height="0"></canvas><div class="amap-markers" style="position: absolute; z-index: 120; top: 0px; left: 0px;"></div><canvas class="amap-layer" width="0" height="0" style="position: absolute; z-index: 1; height: 0px; width: 0px; top: 0px; left: 0px;"></canvas></div><div class="amap-overlays"></div></div></div><div style="display: none;"></div><div class="amap-controls"></div><a class="amap-logo" href="http://m.amap.com" target="_blank"><img src="http://webapi.amap.com/theme/v1.3/mapinfo_05.png"></a><div class="amap-copyright" style="display: none;"><!--v1.3.28--> © 2017 AutoNavi <span class="amap-mcode">- GS(2016)710号</span></div></div>
+
+<span id="url-heng" room-list-url="{$Roomlisttwo}&hotelname=" newtemplatesou="{$Newtemplatesou}" Hotel="{$Hotel}" Hotellist="{$Hotellist}" Hotellisttwo="{$Hotellisttwo}" save-search-history="{$Savesearchhistory}"></span>
+
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/calendar.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/GeoUtils.js"></script>
+<script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/newtemplate/js/hotelcity.min.js"></script>
+<!-- 定位 -->
+<script type="text/javascript">
+console.log($('#diz').attr('addr'));
+
+if (sessionStorage['positionL']==='' || sessionStorage['positionL']===undefined) { 
+    getLocationTX();
+} else { 
+   $('.Ccity-list').removeClass('vh');
+   $('.city-list-nav-domestic').attr('style', '');
+   $('.pageloading').addClass('Ldn');
+   $('.near').text('附近酒店');
+} 
+
+function getLocationTX(){
+
+var shareurl = window.location.href;
+var imgUrl = "{$_W['siteroot']}/attachment/{$share_photo}"; 
+var title = "{$share}";
+var content = "{$sharetext}";  
+
+jssdkconfig = {php echo json_encode($_W['account']['jssdkconfig']);} || {};
+    // 是否启用调试
+    jssdkconfig.debug = false;
+    jssdkconfig.jsApiList = [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'showOptionMenu',
+        'closeWindow',
+        'openLocation',
+        'getLocation'
+    ];
+    wx.config(jssdkconfig);
+    var shareMeta = {
+        imgUrl: imgUrl,
+        link : shareurl,
+        desc : content,
+        title : title
+        };
+wx.checkJsApi({
+    jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+    success: function(res) {
+        // 以键值对的形式返回，可用的api值true，不可用为false
+        // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+    }
+});
+    wx.ready(function () {
+        wx.showOptionMenu();
+                wx.onMenuShareAppMessage({                    
+                    title: title,
+                    desc: content,
+                    link: shareurl,
+                    imgUrl: imgUrl,
+                    success: function () {
+                       alert('分享成功');
+                    },
+                    cancel: function () { alert("分享失败");},
+                });                 
+                wx.getLocation({
+    type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+    success: function (res) {
+        var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+        var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+        var speed = res.speed; // 速度，以米/每秒计
+        var accuracy = res.accuracy; // 位置精度
+       console.log(res.latitude+'  '+res.longitude)
+       $('.Ccity-list').removeClass('vh');
+       $('.city-list-nav-domestic').attr('style', '');
+       $('.pageloading').addClass('Ldn');
+       $('.near').text('附近酒店');
+       sessionStorage['positionL'] = res.latitude + ',' + res.longitude;
+    }
+});
+
+        wx.onMenuShareTimeline({
+                    title: title, // 分享标题
+                    desc: content, // 分享描述
+                    link: shareurl, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+    success: function () { 
+         alert('分享成功');
+    },
+    cancel: function () { 
+    alert("分享失败");
+        // 用户取消分享后执行的回调函数
+    }
+});
+                
+        //wx.onMenuShareQQ(shareMeta);
+                wx.onMenuShareQQ({
+                    title: title, // 分享标题
+                    desc: content, // 分享描述
+                    link: shareurl, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+                    success: function (res) {
+                        shareCallback('qq');
+                    },
+                    cancel: function (res) {},
+                    fail: function (res) {}
+                });                
+                
+        //wx.onMenuShareWeibo(shareMeta);
+                wx.onMenuShareWeibo({
+                    title: title,
+                    link: shareurl,
+                    imgUrl: imgUrl,
+                    trigger: function (res) {},
+                    success: function (res) {
+                        shareCallback('weibo');
+                    },
+                    cancel: function (res) {},
+                    fail: function (res) {}
+                });                
+    });
+
+ }
+    
+
+</script>
+</body>
+</html>
+<script>
+    function sou() {
+        var newtemplatesou = $("#url-heng").attr("newtemplatesou");
+        var value = 'G';
+        $.post(newtemplatesou,{'value':value},function(data){
+            console.dir(data);
+        },'json');
+    }
+</script>

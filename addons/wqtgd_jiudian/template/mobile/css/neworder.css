@@ -1,0 +1,116 @@
+/***************全局样式********************/
+*{
+	box-sizing: border-box;
+	padding:0;
+	margin: 0;
+	list-style:none;
+	text-decoration:none;
+	outline: none;
+}
+.lf{float: left}
+.rf{float: right}
+body{
+	font:14px  Helvetica Neue,Helvetica,sans-serif,"Microsoft yahei",Arial;background-color:#EFEFF4;
+}
+.top{
+    width:100%;
+    height:44px;
+    line-height: 44px;
+    background: #2F2F2F;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+    position: fixed;
+    top:0;
+    z-index: 10;
+}
+.top .back{
+    display: block;
+    width:52px;
+    height:44px;
+    background: url(../images/back.png) no-repeat 0 center;
+    background-size: 15px 20px;
+    margin-left: 15px;
+    color: #fff;
+    padding-left: 20px;
+}
+.top span{
+    position: relative;
+    left: -30px;
+}
+a{
+    color: #000000;
+}
+.order_list{
+    margin-top: 44px;
+
+}
+.order{
+    background: #fff;
+    margin-bottom: 15px;
+}
+.title{
+    overflow: hidden;
+    padding: 15px;
+}
+.title span{
+    color: #ED3036;
+}
+.order_product{
+    overflow: hidden;
+    padding: 10px 15px;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+}
+.order_product img{
+    display: block;
+    width:80px;
+    height:80px;
+    float: left;
+}
+.order_right{
+    float: left;
+    padding-left: 7px;
+}
+.order_introduce{
+    height: 64px;
+    overflow: hidden;
+}
+.order_data{
+    font: 14px "Microsoft yahei",Arial;
+}
+.end{
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #EEEEEE;
+    text-align: right;
+    padding: 0 15px;
+}
+.end b{
+    font: 14px "Microsoft yahei",Arial;
+    font-weight: 600;
+}
+.btn{
+    padding: 8px 15px;
+    overflow: hidden;
+}
+.btn a{
+    float: right;
+    width:80px;
+    height:25px;
+    line-height: 23px;
+    text-align: center;
+    border-radius: 5px;
+}
+.cancel{
+    border:1px solid #B4B4B4;
+    color: #B4B4B4;
+    background: #FFFFFF;
+    margin-right: 10px;
+}
+.pay{
+    border: 1px solid #ED3036;
+    color: #ED3036;
+    background: #FDE3E3;
+}

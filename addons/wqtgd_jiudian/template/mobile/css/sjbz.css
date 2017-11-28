@@ -1,0 +1,260 @@
+        * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: sans-serif;
+            -webkit-overflow-scrolling: touch;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #fff;
+        }
+         .clear {
+            clear: both;
+        }
+        a{
+            text-decoration: none;
+            color: #40320D;
+        }
+        #body{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #fff;
+        }
+        .home{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            box-sizing: border-box;
+            padding-bottom: 100px;
+        }
+        .home .tel-btn{
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+            height: 100px;
+            padding-bottom: 0;
+        }
+        .hint{
+            height: 30px;
+            line-height: 30px;
+            padding-left: 12px;
+            font-size: 12px;
+            color: rgba(64,50,13,0.60);
+            background: #F6F6F6;
+        }
+        .menu-wrap{
+            border-bottom: 1px solid #D8D8D8;
+        }
+        .menu-group{
+            width:100%;
+            height: 96px;
+            overflow: hidden;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;
+
+            /*-webkit-flex-direction: row;
+            flex-direction: row;*/
+            -webkit-transition: height 0.2s linear;
+            transition: height 0.2s linear;
+        }
+        .menu-title{
+            width: 80px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 16px;
+            padding-top: 35px;
+            border-top: 1px solid #D8D8D8;
+            position: relative;
+        }
+        .more::after{
+            content: '';
+            display: block;
+            width: 7px;
+            height: 7px;
+            border-left: 1px solid #40320D;
+            border-bottom: 1px solid #40320D;
+            position: absolute;
+            top: 68px;
+            left: 37px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-transition: transform 0.2s linear;
+            transition: transform 0.2s linear;
+        }
+        .menu-title.active::after{
+            -webkit-transform: rotate(-225deg);
+            transform: rotate(-225deg);
+        }
+        .menu-list{
+            -webkit-box-flex: 1;   /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex: 1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1;         /* IE 10 */  
+            flex: 1;
+            font-size: 14px;
+            color: #40320D;
+        }
+        .menu-item{
+            display: block;
+            position: relative;
+            height: 48px;
+            line-height: 48px;
+            padding-left: 15px;
+            border-top: 1px solid #D8D8D8;
+            border-left: 1px solid #D8D8D8;
+            -webkit-box-sizing: border-box;
+        }
+        .btn-wrap{
+            width: 100%;            
+            padding: 20px 16px;
+            box-sizing: border-box;
+        }
+        .btn-wrap a{
+            display: block;
+            width: 100%;
+            height: 40px;
+            background: #ffd430;
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+            border-radius: 2px;
+            position: relative;
+        }
+        .btn-wrap span{
+            display: block;
+            font-size: 12px;
+            padding: 10px 0;
+            text-align: center;
+        }
+        #call{
+            display: block;
+            width: 100%;
+            height: 48px;
+            background: #FFD900;
+            text-align: center;
+            line-height: 48px;
+            font-size: 16px;
+            position: relative;
+        }
+        #call::before{
+            display: inline-block;
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-image: url(https://common.ofo.so/about/shape.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            vertical-align: middle;
+        }
+        .content{
+            display: none;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-size: 14px;
+            line-height: 22px;
+            padding: 12px;
+            -webkit-box-sizing: border-box;
+        }
+        #home, .content:target {
+            display: block;
+        }
+        .content:target ~ #home {
+            display: none !important;
+        }
+        
+        /* insurance section */
+        .body-group {
+            display: none;
+            padding-top: 8px;
+            position: relative;
+        }
+        .body-group.content{
+            padding: 0;
+        }
+        .group-content {
+            width: 100%;
+        }
+        .footer {
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+        }
+        .space{
+            height: 16px;
+            background: #F6F6F6;
+        }
+        .con{
+            padding: 12px 16px;
+        }
+        .ins-title {
+            color: #000;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 8px 16px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        .ins-float {
+            width: 50%;
+            float: left;
+            box-sizing: border-box;
+        }
+        .ins-float.left {
+            padding-right: 8px;
+        }
+        .ins-float.right {
+            padding-left: 8px;
+        }
+        .ins-icon {
+            width: 50%;
+            margin: auto;
+            position: relative;
+            padding-top: 50%;
+            border-radius: 50%;
+            background-color: #f2f2f2;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 40%;
+        }
+        .ins-icon.a {
+            background-image: url(insurance/a.jpg);
+        }
+        .ins-icon.b {
+            background-image: url(insurance/b.jpg);
+        }
+        .ins-float a {
+            background: #ffd430;
+            font-size: 15px;
+            border-radius: 3px;
+            display: block;
+            height: 36px;
+            line-height: 36px;
+            text-decoration: none;
+            margin-top: 8px;
+            text-align: center;
+            position: relative;
+        }
+        .ins-subtitle {
+            font-size: 15px;
+            margin-bottom: 4px;
+            margin-top: 8px;
+        }

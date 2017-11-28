@@ -1,0 +1,110 @@
+{php echo register_jssdk();}
+<?php 
+    // echo  $setting['set_shareimg'];
+    // echo '<hr>';
+    // echo '<pre>';
+    // print_r($_W['account']['jssdkconfig']);
+    // echo '<hr>';
+    // echo __FILE__;
+?>
+<script language='javascript'>
+var shareurl = window.location.href;
+var imgUrl = "{$_W['siteroot']}/attachment/{$setting['set_shareimg']}"; 
+var title = "{$setting['set_share']}";
+var content = "{$setting['set_sharexq']}";  
+
+jssdkconfig = {php echo json_encode($_W['account']['jssdkconfig']);} || {};
+	// 是否启用调试
+	jssdkconfig.debug = false;
+	jssdkconfig.jsApiList = [
+		'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'showOptionMenu',
+		'closeWindow',
+		'openLocation',
+		'getLocation',
+        'scanQRCode'
+	];
+	wx.config(jssdkconfig);
+	var shareMeta = {
+		imgUrl: imgUrl,
+		link : shareurl,
+		desc : content,
+		title : title
+        };
+wx.checkJsApi({
+    jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+    success: function(res) {
+        // 以键值对的形式返回，可用的api值true，不可用为false
+        // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+    }
+});
+	wx.ready(function () {
+		wx.showOptionMenu();
+                wx.onMenuShareAppMessage({                    
+                    title: title,
+                    desc: content,
+                    link: shareurl,
+                    imgUrl: imgUrl,
+                    success: function () {
+                       alert('分享成功');
+                    },
+                    cancel: function () { alert("分享失败");},
+                });                 
+                wx.getLocation({
+    type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+    success: function (res) {
+        var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+        var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+        var speed = res.speed; // 速度，以米/每秒计
+        var accuracy = res.accuracy; // 位置精度
+        console.log(222);
+
+    }
+});
+
+
+		wx.onMenuShareTimeline({
+                    title: title, // 分享标题
+                    desc: content, // 分享描述
+                    link: shareurl, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+    success: function () { 
+         alert('分享成功');
+    },
+    cancel: function () { 
+	alert("分享失败");
+        // 用户取消分享后执行的回调函数
+    }
+});
+                
+		//wx.onMenuShareQQ(shareMeta);
+                wx.onMenuShareQQ({
+                    title: title, // 分享标题
+                    desc: content, // 分享描述
+                    link: shareurl, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+                    success: function (res) {
+                        shareCallback('qq');
+                    },
+                    cancel: function (res) {},
+                    fail: function (res) {}
+                });                
+                
+		//wx.onMenuShareWeibo(shareMeta);
+                wx.onMenuShareWeibo({
+                    title: title,
+                    link: shareurl,
+                    imgUrl: imgUrl,
+                    trigger: function (res) {},
+                    success: function (res) {
+                        shareCallback('weibo');
+                    },
+                    cancel: function (res) {},
+                    fail: function (res) {}
+                });                
+	});
+</script>

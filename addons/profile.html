@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>常用信息</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+		<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>常用信息</em></h2>       
+    </div>
+	{loop $data $row}
+	<div class="weui-form-preview">
+             <div class="weui_panel">
+            <div class="weui_panel_hd"></div>
+            <div class="weui_panel_bd">
+                <div class="weui_media_box weui_media_text">
+				
+                    <h4 class="weui_media_title">姓名：{$row['name']}</h4>
+                    <p class="weui_media_desc">常用地址：{$row['ssx']}{$row['address']}</p>
+                    <ul class="weui_media_info">
+                        <li class="weui_media_info_meta">联系电话</li>
+                        <li class="weui_media_info_meta weui_media_info_meta_extra">{$row['tel']}</li>
+                    </ul>
+					 <ul class="weui_media_info">
+                        <li class="weui_media_info_meta">微信账号</li>
+                        <li class="weui_media_info_meta weui_media_info_meta_extra">{$row['wechat']}</li>
+                    </ul>
+					 <ul class="weui_media_info">
+                        <li class="weui_media_info_meta">出生日期</li>
+                        <li class="weui_media_info_meta weui_media_info_meta_extra">{$row['brithday']}</li>
+                    </ul>
+					 <ul class="weui_media_info">
+                        <li class="weui_media_info_meta">证件类型：{if $row['cardtype'] ==1}身份证{/if}{if $row['cardtype'] ==2}军官证{/if}{if $row['cardtype'] ==3}港澳通行证{/if}{if $row['cardtype'] ==4}护照{/if}{if $row['cardtype'] ==5}台胞证{/if}{if $row['cardtype'] ==6}其他{/if}</li>
+                        <li class="weui_media_info_meta weui_media_info_meta_extra">{$row['cardid']}</li>
+                    </ul>
+					{if $row['status'] ==0}<span class="weui-badge" style="position: absolute;top: -.8em;">默认信息</span>{/if}
+                </div>
+            </div>
+            <div class="weui-form-preview-ft">
+            <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="{php echo $this->createMobileUrl('profiledit',array('id'=>$row['id']))}" style="width:50%;color:#49f;">修改信息</a>
+				<a onclick="del(this,'{$row['id']}')" class="weui-form-preview-btn weui-form-preview-btn-primary"  id="sd2" style="width:50%;color:#49f;">删除信息</a>
+            </div>
+        </div> 
+  </div>
+    {/loop}
+<?php if(!empty($data)){?>
+		 <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">未添加常用信息</a></center>
+        </div>
+<?php }?>
+		   <div class="weui_btn_area">
+		     <a href="{php echo $this->createMobileUrl('profileadd')}" class="weui_btn weui_btn_plain_default" onclick="">添加常用信息</a>
+			 
+</div>
+<br />
+<span id="lujin" profiledel="{$Profiledel}"></span>
+ <script>
+
+      function del(obj,id) {
+        $.confirm("您确定要删除吗?", "确认删除", function() {
+          $.toast("删除成功");
+          $(obj).parent().parent().remove();//删除元素
+          var profiledel = $('#lujin').attr('profiledel');
+          $.post(profiledel,{'id':id},function(data){
+              $.toast("删除成功");
+          },'json');
+        }, function() {
+          //取消操作
+        });
+         
+      }
+ </script>  
+ 
+</body>
+</html>
+

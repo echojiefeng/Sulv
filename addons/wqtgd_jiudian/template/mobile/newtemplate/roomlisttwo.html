@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html style="font-size:100%">
+<head>
+
+<style type="text/css">.amap-indoor-map .label-canvas{position:absolute;top:0;left:0}.amap-indoor-map .highlight-image-con *{pointer-events:none}.amap-indoormap-floorbar-control{position:absolute;margin:auto 0;bottom:165px;right:12px;width:35px;text-align:center;line-height:1.3em;overflow:hidden;padding:0 2px}.amap-indoormap-floorbar-control .panel-box{background-color:rgba(255,255,255,.9);border-radius:3px;border:1px solid #ccc}.amap-indoormap-floorbar-control .select-dock{position:absolute;top:0;left:0;width:100%;box-sizing:border-box;height:30px;border:solid #4196ff;border-width:0 2px;border-radius:2px;pointer-events:none;background:linear-gradient(to bottom,#f6f8f9 0,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%)}.amap-indoor-map .transition{transition:opacity .2s},.amap-indoormap-floorbar-control .transition{transition:top .2s,margin-top .2s}.amap-indoormap-floorbar-control .select-dock:after,.amap-indoormap-floorbar-control .select-dock:before{content:"";position:absolute;width:0;height:0;left:0;top:10px;border:solid transparent;border-width:4px;border-left-color:#4196ff}.amap-indoormap-floorbar-control .select-dock:after{right:0;left:auto;border-left-color:transparent;border-right-color:#4196ff}.amap-indoormap-floorbar-control.is-mobile{width:37px}.amap-indoormap-floorbar-control.is-mobile .floor-btn{height:35px;line-height:35px}.amap-indoormap-floorbar-control.is-mobile .select-dock{height:35px;top:36px}.amap-indoormap-floorbar-control.is-mobile .select-dock:after,.amap-indoormap-floorbar-control.is-mobile .select-dock:before{top:13px}.amap-indoormap-floorbar-control.is-mobile .floor-list-box{height:105px}.amap-indoormap-floorbar-control .floor-list-item .floor-btn{color:#555;font-family:"Times New Roman",sans-serif,"Microsoft Yahei";font-size:16px}.amap-indoormap-floorbar-control .floor-list-item.selected .floor-btn{color:#000}.amap-indoormap-floorbar-control .floor-btn{height:28px;line-height:28px;overflow:hidden;cursor:pointer;position:relative;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.amap-indoormap-floorbar-control .floor-btn:hover{background-color:rgba(221,221,221,.4)}.amap-indoormap-floorbar-control .floor-minus,.amap-indoormap-floorbar-control .floor-plus{position:relative;text-indent:-1000em}.amap-indoormap-floorbar-control .floor-minus:after,.amap-indoormap-floorbar-control .floor-plus:after{content:"";position:absolute;margin:auto;top:9px;left:0;right:0;width:0;height:0;border:solid transparent;border-width:10px 8px;border-top-color:#777}.amap-indoormap-floorbar-control .floor-minus.disabled,.amap-indoormap-floorbar-control .floor-plus.disabled{opacity:.3}.amap-indoormap-floorbar-control .floor-plus:after{border-bottom-color:#777;border-top-color:transparent;top:-3px}.amap-indoormap-floorbar-control .floor-list-box{max-height:153px;position:relative;overflow-y:hidden}.amap-indoormap-floorbar-control .floor-list{margin:0;padding:0;list-style:none}.amap-indoormap-floorbar-control .floor-list-item{position:relative}.amap-indoormap-floorbar-control .floor-btn.disabled,.amap-indoormap-floorbar-control .floor-btn.disabled *,.amap-indoormap-floorbar-control.with-indrm-loader *{-webkit-pointer-events:none!important;pointer-events:none!important}.amap-indoormap-floorbar-control .with-indrm-loader .floor-nonas{opacity:.5}.amap-indoor-map-moverf-marker{color:#555;background-color:#FFFEEF;border:1px solid #7E7E7E;padding:3px 6px;font-size:12px;white-space:nowrap;display:inline-block;position:absolute;top:1em;left:1.2em}.amap-indoormap-floorbar-control .amap-indrm-loader{-moz-animation:amap-indrm-loader 1.25s infinite linear;-webkit-animation:amap-indrm-loader 1.25s infinite linear;animation:amap-indrm-loader 1.25s infinite linear;border:2px solid #91A3D8;border-right-color:transparent;box-sizing:border-box;display:inline-block;overflow:hidden;text-indent:-9999px;width:13px;height:13px;border-radius:7px;position:absolute;margin:auto;top:0;left:0;right:0;bottom:0}@-moz-keyframes amap-indrm-loader{0%{-moz-transform:rotate(0);transform:rotate(0)}100%{-moz-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes amap-indrm-loader{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes amap-indrm-loader{0%{-moz-transform:rotate(0);-ms-transform:rotate(0);-webkit-transform:rotate(0);transform:rotate(0)}100%{-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
+  
+  /*me*/
+  .pret{
+    margin-top: 3px;
+    font-size: 14px;
+    color: #49f;
+    text-align: center;
+  }
+   .biao {
+    display:flex;
+    font-size: 10px;
+    color: #FF5555;
+    border: 1px solid #FF5555;
+    width: 20rem;
+    height: 16px;
+    margin-top: 2px;
+    /*margin-right: 5px;
+    padding-left: 1px;
+    padding-right: 1px;*/
+    align-items: center;
+   }
+  .checkDate{
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    z-index: -999;
+    background-color: #fff;
+    transition: all .3s ease;
+    -moz-transition: all .3s ease;  /* Firefox 4 */
+    -webkit-transition: all .3s ease; /* Safari 和 Chrome */
+    -o-transition: all .3s ease;  /* Opera */
+  }
+  .date-from-left-to-center{
+    left: 0;
+    z-index: 999;
+  }
+
+  /*图标*/
+  .moreService i {
+    display: block;
+    width: 17px;
+    height: 17px;
+    position: relative;
+    float: left;
+    margin: 2px 4px 0 0;
+    background-image: url('http://m.elongstatic.com/static/webapp/hotel/2017/03/v10/img/hotel_info_icons.png');
+    background-size: 200px 60px;
+    background-repeat: no-repeat;
+  }
+  .moreService .i1 { /*  免费停车  */
+    background-position: -42px 0;
+  }
+  .moreService .i2 { /*  免费wifi  */
+    background-position: -61px 0;
+  }
+  .moreService .i3 { /*    餐厅    */
+    background-position: -80px 0;
+  }
+  .moreService .i4 { /*  免费接机服务  */
+    background-position: -99px 0;
+  }
+  .moreService .i5 { /*   游泳池  */
+    background-position: -139px 0;
+  }
+  .moreService .i6 { /*  会议室  */
+    background-position: -159px 0;
+  }
+  .moreService .i7 { /*  健身房  */
+    background-position: -119px 0;
+  }
+  .moreService .i8 { /*  免费行李寄存  */
+    background-position: -178px 0;
+  }
+
+
+
+</style><link rel="stylesheet" type="text/css" href="http://webapi.amap.com/theme/v1.3/style1.3.28.7.css">
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>【{$hotellist['hotelname']}】地址:{$hotellist['hoteldetailed']}</title>
+    <link rel="apple-touch-icon-precomposed" href="/Content/img/app_icon.png?CV=150311">
+    <meta name="apple-mobile-web-app-title" content="华住">
+    <meta name="keywords" content="海友良品广州沙河顶地铁站酒店,海友良品广州沙河顶地铁站酒店预订,海友良品广州沙河顶地铁站酒店预定">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="description" content="海友良品广州沙河顶地铁站酒店:海友良品广州沙河顶地铁站酒店酒店详情,为您提供海友良品广州沙河顶地铁站酒店地图与周边信息,海友良品广州沙河顶地铁站酒店房型与房价,用户点评与图文介绍等详细信息。">
+    <meta name="applicable-device" content="mobile">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    
+  <!--   <link rel="canonical" href="http://hotels.huazhu.com/hotel/detail/5100005"> -->
+
+    <link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/base-min.css" rel="stylesheet">
+<link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/grids-min.css" rel="stylesheet">
+<link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/reset.css" rel="stylesheet">
+<link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/lib.css" rel="stylesheet">
+<!-- <link href="http://m.huazhu.com/Content/css/iconfonts.css" rel="stylesheet">
+ -->
+ <link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/common.css" rel="stylesheet">
+<link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/swiper.css" rel="stylesheet">
+<link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/wangchan.css" rel="stylesheet">
+<link href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/fsy0718.css" rel="stylesheet">
+
+<!-- 图标 -->
+<link rel="stylesheet" type="text/css" href="/addons/wqtgd_jiudian/template/mobile/newtemplate/css/font/typicons.min.css">
+ 
+    <!-- <script src="//hm.baidu.com/hm.js?f14fa482025352f2dded0c2e008dd278"></script><script type="text/javascript" async="" src="http://ws-www.hantinghotels.com/wa/piwik/piwik.js?v=1"></script><script async="" src="http://ws-www.hantinghotels.com/wa/ga/analytics.js?v=2"></script><script type="text/javascript" async="" src="http://dn-growing.qbox.me/vds.js"></script><script type="text/javascript" src="/Content/js/ndoo_prep.js?CV=150311"></script>
+    
+<script src="http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=416456"></script><style type="text/css">.amap-container{cursor:url(http://webapi.amap.com/theme/v1.3/openhand.cur),default;}.amap-drag{cursor:url(http://webapi.amap.com/theme/v1.3/closedhand.cur),default;}</style><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_style0_16.css?v=6aba13f0.css"> -->
+  <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/jquery-1.10.1.min.js"></script>
+  
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+
+  <style type="text/css">
+  .CnewheaderMain .main {
+      background-image: url('/addons/wqtgd_jiudian/template/mobile/newtemplate/images/search_city_header.png');
+      background-size: 100% 150%;
+  }
+  .Cnewheader .main{
+      background-image: url('/addons/wqtgd_jiudian/template/mobile/newtemplate/images/newheaderbg.jpg');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: 100% 100%;
+  }
+  .page_hotelpictures_header .main{
+     background-image: url('');
+  }
+  /*图标样式*/
+  .typcn-arrow-left:before {
+      color: #fff;
+  }
+  .page_hotelpictures_header .typcn-arrow-left:before {
+      color: #C7C7C6;
+  }
+  .typcn-image-outline:before {
+      font-size: 15px;
+      height: 1px;
+  }
+  .typcn-location:before {
+    font-size: 15px;
+  }
+  .starwrap .typcn-chevron-right{
+     font-size: 8px;
+  }
+  .typcn-phone:before {
+      font-size: 15px;
+  }
+  .typcn-phone-outline:before {
+      font-size: 30px;
+      color: #9C527F;
+  }
+  .typcn-location-arrow-outline:before {
+      font-size: 25px;
+      color: #9C527F;
+  }
+  .typcn-heart:before {
+      font-size: 30px;
+      color: #BFBFBF;
+      line-height: 3.675rem;
+  }
+  .typcn-heart-outline:before {
+      font-size: 30px;
+      color: #BFBFBF;
+      line-height: 3.675rem;
+  }
+  .Cwarnings .waringinn .twobtn .inn i {
+    margin-top: 0rem;
+  }
+  .waringinn .typcn-phone-outline:before{
+    color: #BFBFBF;
+    line-height: 3.675rem;
+  }
+  .typcn-star:before{
+      color: #EF618D;
+      font-size: 20px;
+  }
+  .typcn-star-half-outline:before,
+  .typcn-star-outline:before{
+     color: #EF618D;
+     font-size: 18px;
+  }
+  .typcn-arrow-sorted-down:before,
+  .typcn-arrow-sorted-up:before
+   {
+      font-size: 1.3rem;
+      color: #C8C8C8;
+  }
+  .expand .typcn-arrow-sorted-down:before,
+  .typcn-arrow-sorted-up:before{
+    display: none;
+  }
+  .expand .typcn-arrow-sorted-up:before{
+    display:block;
+    padding-left: 1rem;
+  }
+  .typcn-times:before{
+    font-size: 20px;
+  }
+
+  </style>
+
+</head>
+<body>
+
+	 <header class="page_hotelDetail_header Cnewheader CnewheaderMain">
+	   <div class="pure-g main">
+	    <div class="pure-u-1-5 return">
+	     <a href="/Hotel/List" data-no-turbolink="true" style="padding: .300rem 0 0 0;text-align: left;"><i class="typcn typcn-arrow-left"></i></a>
+	    </div> 
+	    <div class="pure-u-3-5 title Ltac">
+	     <h3>酒店详情页</h3>
+	    </div> 
+	    <div class="pure-u-1-5 action Ltar">
+	     <div class="inn">
+	      <span class="action-box action-icon-only Ldn"><i class="icon-SignOut action-icon"></i></span>
+	     </div>
+	    </div>
+	   </div>
+	  </header>
+
+	  <div class="Cload" style="display: none;">
+        <div class="Cload__icon"></div>
+      </div>
+
+      <div class="container">
+   <!----> 
+   <div class="page_hotelDetail">
+    <div class="CtopInfoCard">
+     <div class="edgeGap">
+      <div class="inn bgwhite">
+       <div class="pure-g hotelinfo">
+        <div class="pure-u-6-24 hotelimg">
+         <a href="javascript:void(0)">
+          <div class="imgs">
+           <img src="http://ws-p.hantinghotels.com/f/m/cwk4yy.jpg.120-120.jpg" alt="" />
+           <span><i class="typcn typcn-image-outline"></i></span>
+          </div></a>
+        </div> 
+        <div class="pure-u-18-24 hotelTitle ">
+         <div class="inner">
+          <div class="box">
+           <div class="pure-g title">
+            <div class="pure-u-22-24">
+             <h1><i class="icon_clean_0"></i> <em>{$hotellist['hotelname']}</em></h1>
+			<input type="hidden" id="roomlist_url" value="{$Roomlist}">
+			<input type="hidden" class="input_hotelname" value="{$hotellist['hotelname']}">			 
+			 <input type="hidden" class="input_indate" value="<?php echo $_GET['checkin'];?>">
+			 <input type="hidden" class="input_outdate" value="<?php echo $_GET['checkout'];?>">
+			 <input type="hidden" class="input_checkday" value="<?php echo $_GET['checkday'];?>">
+            </div> 
+            <div class="pure-u-2-24 ">
+             <i class="typcn typcn-chevron-right"></i>
+            </div>
+           </div> 
+           <p class="location"><i class="typcn typcn-location"></i>{$hotellist['hoteldetailed']}</p>
+          </div>
+         </div>
+        </div>
+       </div> 
+       <div class="CdataSelect">
+        <a href="/Hotel/Date?returnUrl=%2FHotel%2FDetail">
+         <div class="pure-g Ltac">
+          <div class="pure-u-10-24">
+           <div class="dateType">
+            <span>入住日期</span>
+           </div> 
+           <div class="time checkin" data-day="<?php echo $_GET['checkin'];?>">
+            <span><?php echo $_GET['checkin'];?></span>
+           </div>
+          </div> 
+          <div class="pure-u-4-24">
+           <i><?php echo $_GET['checkday'];?>晚</i>
+          </div> 
+          <div class="pure-u-10-24">
+           <div class="dateType">
+            <span>离店日期</span>
+           </div> 
+           <div class="time checkout" data-day="<?php echo $_GET['checkout'];?>">
+            <span><?php echo $_GET['checkout'];?></span>
+           </div>
+          </div>
+         </div></a>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="Ccommentswrap bgwhite">
+     <?php if(!empty($evaluatelist)){?>
+       <div class="pure-g">
+        <div class="pure-u-2-5 Ltar ">
+         <div class="score">
+          <span> <?php echo round($eva['grade']/count($evaluatelist),1);?><sub>分</sub></span>
+         </div>
+        </div> 
+        <div class="pure-u-3-5 Ltal">
+         <div class="starwrap">
+          <div class="Cstars">
+           <span class="starspan"><i class="typcn typcn-star-outline"></i> </span> 
+           <span class="starspan"><i class="typcn typcn-star-outline"></i></span> 
+           <span class="starspan"><i class="typcn typcn-star-outline"></i> </span> 
+           <span class="starspan"><i class="typcn typcn-star-outline"></i> </span> 
+           <span class="starspan"><i class="typcn typcn-star-outline"></i> </span>
+          </div> 
+          <a href="{$Evalist}&hotelname={$hotellist['hotelname']}&hoteltely={$hotellist['hoteltely']}"><?php echo count($evaluatelist);?>条评价<i class="typcn typcn-chevron-right"></i></a>
+         </div>
+        </div>
+       </div>
+    <?php }else{ ?>
+        <div class="pure-g">
+          <div class="pure-u-2-5 Ltar">
+            <div class="score">暂无评论</div>
+          </div>
+        </div>
+    <?php }?>
+    </div> 
+    <div class="CroomList Lmt10">
+     {loop $roomlist $val}
+
+        <?php
+			$checkin = $_GET['checkin'];
+            $result = pdo_fetch("select * from ".tablename("wqtgd_hotel_roomnumstatus")." where date = :date and hotelname = :hotelname and roomtype = :roomtype and uniacid = :uniacid",array(":date"=>$checkin,":hotelname"=>$val["hotelname"],":roomtype"=>$val["roomtype"],":uniacid"=>$uniacid)); 
+            if($result){
+                if($result["roomstatus"] == 0){
+                    $roomstatus =  0;
+                }else if($result["roomstatus"] == 1){
+                    if($result["roomnum"] <= 0){
+                        $roomstatus = 3;
+                    }else{
+                        $roomstatus = 1;
+                    }
+                }else if($result["roomstatus"] == 3){
+                    $roomstatus =  3;
+                }                 
+            }else{
+                if($val['roomstatus'] == 1){
+                    if($val["roomnum"] <= 0){
+                        $roomstatus = 3;
+                    }else{
+                        $roomstatus = 1;
+                    }
+                }else{
+                    $roomstatus = $val['roomstatus'];
+                }
+            }             
+        ?>
+        {if $roomstatus == 0}
+          <div class="eachRoom">
+        {elseif $roomstatus == 1}
+          <div class="eachRoom">
+        {elseif $roomstatus == 2}
+          <div class="eachRoom">
+        {elseif $roomstatus == 3}
+          <div class="eachRoom expand">
+        {/if}
+            <div class="roomClosed edgeGap bgwhite">
+             <div class="pure-g">
+              <div class="pure-u-12-24 roomType" idd="{$val['id']}">
+               <h4>{$val['roomtype']}{if $val['saleprice'] != "0"}&nbsp;&nbsp;<span class="clock_hb" 
+                 {if $roomstatus == 0}
+                      style="color:#FF5555;font-size:12px;" 
+                        {elseif $roomstatus == 1}
+                            style="color:#FF5555;font-size:12px;"
+                        {elseif $roomstatus == 2}
+                        style="color:#b2b2b2;font-size:12px;" 
+                      {elseif $roomstatus == 3}
+                        style="color:#b2b2b2;font-size:12px;" 
+                      {/if} >限时抢订</span>{/if}
+               </h4>
+              
+              </div> 
+              <div class="pure-u-12-24">
+               <div class="pure-g">
+                <div class="pure-u-19-24 price">
+                 <div class="inn">
+                  <div class="closePrice">
+                   <span><i class="">￥</i>
+                    <?php
+                        $result = pdo_fetch("select * from ".tablename("wqtgd_hotel_roompricestatus")." where date = :date and hotelname = :hotelname and  roomtype = :roomtype and uniacid = :uniacid",array(":date"=>$checkin,":hotelname"=>$val["hotelname"],":roomtype"=>$val["roomtype"],":uniacid"=>$uniacid)); 
+                        if($result){
+                            if($val["roomprice"] == $result["roomprice"]){
+                                $roomprice =  $val['roomprice'];
+								$saleprice = $val["saleprice"];
+                            }else{
+                                $roomprice =  $result["roomprice"];
+								$saleprice = $result["saleprice"];
+                            }                 
+                        }else{
+                            $roomprice = $val['roomprice'];
+							$saleprice = $val["saleprice"];
+                        }
+                        echo $roomprice;              
+                    ?>
+                   </span>起
+                  </div> 
+                 </div>
+                </div> 
+                <div class="pure-u-5-24 arrow Ltar">
+                 <i class="typcn typcn-arrow-sorted-up"></i>
+                 <i class="typcn typcn-arrow-sorted-down"></i>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div> 
+			{if $val["saleprice"] != "0"}
+			  <div class="roomOpend edgeGap">
+
+             <div class="pure-g list">
+              <div class="pure-u-10-24 title">
+               <div class="inn">
+                <h4>
+                  <span>
+                     <?php echo $val['breakfast'] == '0' ? '含早餐': '不含早' ;?>
+                  </span>
+                  <i class="icon-Question"></i>
+                </h4> 
+               <span style="margin-top:5px;color:#4499ff;border:1px solid #4499ff" > <?php echo $val['cancel'] == '0' ? '免费取消': "付费取消" ;?>
+                </span>
+<!--                <?php if($val['groupbuy_rooms'] != 0){?>
+   <span class="biao" style="border: 1px solid rgba(255, 85, 85, 0);">订<?php echo $val['groupbuy_rooms']?>间以上，立减<?php echo $val['groupbuy_reduce']?>元/间</span>
+<?php }?>
+<?php if($val['groupbuy_days'] != 0){?>
+  <span class="biao"  style="border: 1px solid rgba(255, 85, 85, 0);">长住<?php echo $val['groupbuy_days']?>天以上，立减<?php echo $val['groupbuy_reduce']?>元/间</span>
+<?php }?> -->
+                <!----> 
+                <!----> 
+                <!---->
+               </div>
+              </div> 
+              <div class="pure-u-3-24 breakfast">
+               <div class="inn Ltac"></div>
+              </div> 
+              <div class="pure-u-7-24 price">
+               <div class="inn Ltac">
+                <div class="money">
+                 <i class=""></i> 
+                 <?php 
+                     echo '<font size="2px">限时抢订价:</font><i class="">￥</i>&nbsp;'.$discount=$val['saleprice'];
+                ?>
+				  
+                </div> 
+               <?php if($val['fanxian'] != '0'){?>
+                 <span class="clock_hb" style="font-size:10px;color:#FF5555;border:1px solid #FF5555" >返</span>
+                 <?php if(!empty($val['credit1'])){?>
+                 <span class="clock_hb" style="font-size:10px;color:#FF5555;border:1px solid #FF5555" >积分</span>
+                 <?php }else{?>
+                 <span class="clock_hb" style="font-size:10px;color:#FF5555;border:1px solid #FF5555" >余额</span>
+                 <?php }?>
+                 <?php }?>
+                 <br>
+               </div>
+              </div> 
+			  
+              <div class="pure-u-4-24 order">
+               <div class="inn">
+               
+                {if $roomstatus == 0}
+                  <a href="#" class="btn-pay" url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&saleflag=1">
+                    <span class="text-order">限时抢</span>
+                    <span class="text-pay">
+                      <?php if($val['paytype'] == '0'){?>
+                       到店付
+                      <?php }elseif($val['paytype'] == '1'){?>
+                       预付
+                      <?php }elseif($val['paytype'] == '2'){?>
+                       付定金
+                      <?php }?>
+                    </span>
+                  </a> 
+                  <div class="pret">担保</div>
+                {elseif $roomstatus == 1}
+                  <a href="#" class="btn-pay" url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&saleflag=1">
+                    <span class="text-order">预订</span>
+                    <span class="text-pay">
+                      <?php if($val['paytype'] == '0'){?>
+                       到店付
+                      <?php }elseif($val['paytype'] == '1'){?>
+                       预付
+                      <?php }elseif($val['paytype'] == '2'){?>
+                       付定金
+                      <?php }?>
+                    </span>
+                  </a> 
+                  <div class="pret">担保</div>
+                {elseif $roomstatus == 2}
+                  <a href="javascript:void(0)" class="Cbtn disabled">关</a>
+                {elseif $roomstatus == 3}
+                  <a href="javascript:void(0)" class="Cbtn disabled">满</a>
+                {/if}
+
+               </div>
+              </div>
+             </div>
+
+            </div>
+			{/if}
+            <div class="roomOpend edgeGap">
+
+             <div class="pure-g list">
+              <div class="pure-u-10-24 title">
+               <div class="inn">
+                <h4>
+                  <span>
+                     <?php echo $val['breakfast'] == '0' ? '含早餐': '不含早' ;?>
+                  </span>
+                  <i class="icon-Question"></i>
+                </h4> 
+               <span style="margin-top:5px;color:#4499ff;border:1px solid #4499ff" > <?php echo $val['cancel'] == '0' ? '免费取消': "付费取消" ;?>
+                </span>
+               <?php if($val['groupbuy_rooms'] != 0){?>
+                  <span class="biao" style="border: 1px solid rgba(255, 85, 85, 0);">订<?php echo $val['groupbuy_rooms']?>间以上，立减<?php echo $val['groupbuy_reduce']?>元/间</span>
+               <?php }?>
+               <?php if($val['groupbuy_days'] != 0){?>
+                 <span class="biao"  style="border: 1px solid rgba(255, 85, 85, 0);">长住<?php echo $val['groupbuy_days']?>天以上，立减<?php echo $val['groupbuy_reduce']?>元/间</span>
+               <?php }?>
+                <!----> 
+                <!----> 
+                <!---->
+               </div>
+              </div> 
+              <div class="pure-u-3-24 breakfast">
+               <div class="inn Ltac"></div>
+              </div> 
+              <div class="pure-u-7-24 price">
+               <div class="inn Ltac">
+                <div class="money">
+                 <i class="">￥</i> 
+                 <?php if($dis==0){
+                      echo $discount=$roomprice;
+                  }else{
+                      echo '<font size="2px">会员尊享价:￥</font>'.$discount=number_format($dis*$roomprice*0.1,2);
+                  } ?>
+                </div> 
+               <?php if($val['fanxian'] != '0'){?>
+                 <span class="clock_hb" style="font-size:10px;color:#FF5555;border:1px solid #FF5555" >返</span>
+                 <?php if(!empty($val['credit1'])){?>
+                 <span class="clock_hb" style="font-size:10px;color:#FF5555;border:1px solid #FF5555" >积分</span>
+                 <?php }else{?>
+                 <span class="clock_hb" style="font-size:10px;color:#FF5555;border:1px solid #FF5555" >余额</span>
+                 <?php }?>
+                 <?php }?>
+                 <br>
+               </div>
+              </div> 
+			  
+              <div class="pure-u-4-24 order">
+               <div class="inn">
+               
+                {if $roomstatus == 0}
+                  <a href="#" class="btn-pay" url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&groupbuy_rooms={$val['groupbuy_rooms']}&groupbuy_days={$val['groupbuy_days']}&groupbuy_reduce={$val['groupbuy_reduce']}">
+                    <span class="text-order">预订</span>
+                    <span class="text-pay">
+                      <?php if($val['paytype'] == '0'){?>
+                       到店付
+                      <?php }elseif($val['paytype'] == '1'){?>
+                       预付
+                      <?php }elseif($val['paytype'] == '2'){?>
+                       付定金
+                      <?php }?>
+                    </span>
+                  </a> 
+                  <div class="pret">担保</div>
+                {elseif $roomstatus == 1}
+                  <a href="#" class="btn-pay" url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&groupbuy_rooms={$val['groupbuy_rooms']}&groupbuy_days={$val['groupbuy_days']}&groupbuy_reduce={$val['groupbuy_reduce']}">
+                    <span class="text-order">预订</span>
+                    <span class="text-pay">
+                      <?php if($val['paytype'] == '0'){?>
+                       到店付
+                      <?php }elseif($val['paytype'] == '1'){?>
+                       预付
+                      <?php }elseif($val['paytype'] == '2'){?>
+                       付定金
+                      <?php }?>
+                    </span>
+                  </a> 
+                  <div class="pret">担保</div>
+                {elseif $roomstatus == 2}
+                  <a href="javascript:void(0)" class="Cbtn disabled">关</a>
+                {elseif $roomstatus == 3}
+                  <a href="javascript:void(0)" class="Cbtn disabled">满</a>
+                {/if}
+
+               </div>
+              </div>
+             </div>
+
+            </div>
+           </div>
+    
+     {/loop}
+
+    </div> 
+    <!----> 
+    <!----> 
+    <div class="Conservice bgwhite">
+     <h3 class="Ctitle Ltac">服务</h3> 
+     <!----> 
+     <div class="moreService pure-g Ltac edgeGap">
+      <?php 
+         $facilities = explode(',' , rtrim($hotellist['facilities'] , ',' ));
+      ?>
+      {if in_array('免费停车' , $facilities)}
+        <div style="width: 5.5%;padding-left:6%;">
+         <i class="i1"></i>
+        </div>
+      {/if}
+      {if in_array('免费wifi' , $facilities)}
+         <div style="width: 5.5%;padding-left:6%;">
+           <i class="i2"></i>
+          </div>
+      {/if}
+      {if in_array('餐厅' , $facilities)}
+         <div style="width: 5.5%;padding-left:6%;">
+           <i class="i3"></i>
+          </div>
+      {/if}
+      {if in_array('免费接机服务' , $facilities)}
+        <div style="width: 5.5%;padding-left:6%;">
+         <i class="i4"></i>
+        </div>
+      {/if}
+      {if in_array('游泳池' , $facilities)}
+         <div style="width: 5.5%;padding-left:6%;">
+           <i class="i5"></i>
+          </div>
+      {/if}
+      {if in_array('会议室' , $facilities)}
+         <div style="width: 5.5%;padding-left:6%;">
+           <i class="i6"></i>
+          </div>
+      {/if}
+      {if in_array('健身房' , $facilities)}
+         <div style="width: 5.5%;padding-left:6%;">
+           <i class="i7"></i>
+          </div>
+      {/if}
+      {if in_array('免费行李寄存' , $facilities)}
+         <div style="width: 5.5%;padding-left:6%;">
+           <i class="i8"></i>
+          </div>
+      {/if}
+
+      
+     </div>
+    </div> 
+    <div id="mainMap" class="Ldn" data-lat="23.148" data-lng="113.308" class="Cmaps amap-container" data-init="inited" style="background: rgb(252, 249, 242);">
+     <div class="hotelLocation">
+      <div class="edgeGap">
+       <div class="CmapInfo pure-g">
+        <div class="pure-u-18-24 left">
+         <div class="edgeGap wrap ">
+          <p> {$hotellist['hoteldetailed']}<i class="typcn typcn-location"></i></p>
+         </div>
+        </div> 
+        <div class="pure-u-6-24 right ">
+         <a href="/Hotel/surround?hotelid=5100005" class="Ltac"><i class="icon-map"></i><span>去这里</span></a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html" data="about:blank"></object>
+     <div class="amap-maps">
+      <div class="amap-drags">
+       <div class="amap-layers" style="transform: translateZ(0px);">
+        <div class="amap-layer" style="position: absolute; z-index: 0; top: 105px; left: 207px;">
+         <canvas height="512" width="512" style="position: absolute; top: 6px; left: -48px; width: 256px; height: 256px; z-index: 17;"></canvas>
+         <canvas height="512" width="512" style="position: absolute; top: -250px; left: -48px; width: 256px; height: 256px; z-index: 17;"></canvas>
+         <canvas height="512" width="512" style="position: absolute; top: 6px; left: -304px; width: 256px; height: 256px; z-index: 17;"></canvas>
+         <canvas height="512" width="512" style="position: absolute; top: -250px; left: -304px; width: 256px; height: 256px; z-index: 17;"></canvas>
+        </div>
+        <canvas class="amap-labels" draggable="false" style="position: absolute; z-index: 99; height: 210px; width: 414px; top: 0px; left: 0px;" width="828" height="420"></canvas>
+        <div class="amap-markers" style="position: absolute; z-index: 120; top: 105px; left: 207px;">
+         <div class="amap-marker" style="top: -45px; left: -18px; z-index: 100; transform: rotate(0deg); transform-origin: 18px 45px 0px; display: block;">
+          <div class="amap-icon" style="position: absolute; width: 60px; height: 45px; opacity: 1;">
+           <img src="/Content/img/map_mark_brand.png?CVS=150311" style="width: 60px; height: 850px; top: -150px; left: 0px;" />
+          </div>
+         </div>
+        </div>
+        <canvas class="amap-layer" width="828" height="420" style="position: absolute; z-index: 1; height: 210px; width: 414px; top: 0px; left: 0px;"></canvas>
+       </div>
+       <div class="amap-overlays"></div>
+      </div>
+     </div>
+     <div style="display: none;"></div>
+     <div class="amap-controls"></div>
+    </div> 
+    <div class="Cwarnings bgwhite">
+     <div class="edgeGap waringinn">
+      <div class="pure-g twobtn Ltac">
+        <?php if($collectlist['status'] == '0'){?>
+         <div data-login="/Account/Login?returnUrl=http%3A%2F%2Fm.huazhu.com%2FHotel%2FDetail%3FhotelId%3D5100005%26checkInDate%3D07%252F05%252F2017%252016%253A02%253A45%26checkOutDate%3D07%252F06%252F2017%252000%253A00%253A00" data-collect="/Hotel/collecthotel" data-hotelid="5100005" class="pure-u-1-2 left">
+          <div class="inn Lflr ">
+           <i class="icon-like_solid"></i> 
+           <i class="typcn typcn-heart"></i>
+          </div>
+         </div> 
+        <?php }else{?>
+           <div data-login="/Account/Login?returnUrl=http%3A%2F%2Fm.huazhu.com%2FHotel%2FDetail%3FhotelId%3D5100005%26checkInDate%3D07%252F05%252F2017%252016%253A02%253A45%26checkOutDate%3D07%252F06%252F2017%252000%253A00%253A00" data-collect="/Hotel/collecthotel" data-hotelid="5100005" class="pure-u-1-2 left">
+            <div class="inn Lflr ">
+             <i class="icon-like_solid"></i> 
+             <i class="typcn typcn-heart-outline"></i>
+            </div>
+         </div> 
+        <?php }?>
+       <div class="pure-u-1-2 right">
+        <a href="tel:{$hotellist['tel']}">
+         <div class="inn Lfll ">
+          <i class="typcn typcn-phone-outline"></i>
+         </div></a>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="CnearHotels Ldn">
+     <h3 class="Ctitle Ltac">附近酒店</h3> 
+     <div class="Cscroll">
+      <div class="scrollWrap">
+       <div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper">
+         <div class="swiper-slide swiper-slide-active" style="width: 233.125px; margin-right: 10px;">
+          <a href="/Hotel/Detail?hotelId=5105073">
+           <div class="inn">
+            <h4>汉庭广州火车东站沙河酒店</h4>
+            <span class="distance">距离此店1.0公里</span> 
+            <div class="bottom">
+             <span class="left">4.7<i>分</i></span>
+             <span class="right">212元<i>起</i></span>
+            </div>
+           </div></a>
+         </div>
+         <div class="swiper-slide swiper-slide-next" style="width: 233.125px; margin-right: 10px;">
+          <a href="/Hotel/Detail?hotelId=5106202">
+           <div class="inn">
+            <h4>全季广州天河北酒店</h4>
+            <span class="distance">距离此店1.1公里</span> 
+            <div class="bottom">
+             <span class="left">4.8<i>分</i></span>
+             <span class="right">356元<i>起</i></span>
+            </div>
+           </div></a>
+         </div>
+         <div class="swiper-slide" style="width: 233.125px; margin-right: 10px;">
+          <a href="/Hotel/InterDetail?hotelId=6318">
+           <div class="inn">
+            <h4>广州圣丰索菲特酒店</h4>
+            <span class="distance">距离此店1.3公里</span> 
+            <div class="bottom">
+             <span class="left">4.6<i>分</i></span>
+             <span class="right">800元<i>起</i></span>
+            </div>
+           </div></a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="Cshare" style="display: none;">
+     <div class="inner">
+      <div class="content Ltac">
+       <h3>酒店分享</h3> 
+       <ul data-tag="share_1" class="Lcfx bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1499247897632">
+        <li><a version="1.0" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http%3A%2F%2Fm.huazhu.com%2FHotel%2FDetail%3FhotelId%3D5100005%26amp%3BcheckInDate%3D07%252F05%252F2017%252016%253A02%253A45%26amp%3BcheckOutDate%3D07%252F06%252F2017%252000%253A00%253A00&amp;showcount=0&amp;desc=%E6%B5%B7%E5%8F%8B%E8%89%AF%E5%93%81%E5%B9%BF%E5%B7%9E%E6%B2%99%E6%B2%B3%E9%A1%B6%E5%9C%B0%E9%93%81%E7%AB%99%E9%85%92%E5%BA%97(%E5%86%85%E5%AE%BE)&amp;summary=%20&amp;title=%E6%88%91%E5%9C%A8%E6%B5%B7%E5%8F%8B%E8%89%AF%E5%93%81%E5%B9%BF%E5%B7%9E%E6%B2%99%E6%B2%B3%E9%A1%B6%E5%9C%B0%E9%93%81%E7%AB%99%E9%85%92%E5%BA%97(%E5%86%85%E5%AE%BE)%EF%BC%8C%E5%9C%B0%E5%9D%80%3A%E5%B9%BF%E5%B7%9E%E5%B8%82%E5%A4%A9%E6%B2%B3%E5%8C%BA%E5%85%88%E7%83%88%E4%B8%9C%E8%B7%AF%E6%B2%99%E6%B2%B3%E9%A1%B6%E6%96%B0%E4%B8%80%E8%A1%9724%E5%8F%B7%EF%BC%8C%E7%94%B5%E8%AF%9D020-87253828%20%EF%BC%8C%E5%8D%8E%E4%BD%8F%E8%A7%A6%E5%B1%8F%E7%89%88%20http%3A%2F%2Fm.huazhu.com%2FHotel%2FDetail%3FhotelId%3D5100005%26amp%3BcheckInDate%3D07%252F05%252F2017%252016%253A02%253A45%26amp%3BcheckOutDate%3D07%252F06%252F2017%252000%253A00%253A00&amp;site=&amp;pics=http%3A%2F%2Fws-p.hantinghotels.com%2Ff%2Fm%2Fcwk4yy.jpg&amp;style=203&amp;width=98&amp;height=22" id="qzone" class="qzone"></a></li> 
+        <li><a href="javascript:;" data-cmd="sqq" class="bds_tqq qq"></a></li> 
+        <li><a href="javascript:;" data-cmd="weixin" class="bds_weixin wx"></a></li>
+       </ul>
+      </div>
+     </div>
+    </div> 
+    <div class="followhz bgwhite">
+     <div class="box pure-g" style="border: 0px solid #e8e6e5; 
+    text-align: center;">
+      <div class="pure-u-2-5 wx Ldn">
+       <img src="/Content/img/hzweixin.jpg" alt="" />
+      </div> 
+      <div class="pure-u-5-5 text">
+      <!--  <img src="/Content/img/wx_text.png" alt="" />  -->
+       <p>Copyright © 2008-2017 {$_W['uniaccount']['name']} 版权所有</p>
+      </div>
+     </div>
+    </div>
+   </div> 
+   <div style="display: none;">
+    <header class="page_hotelpictures_header Cnewheader">
+     <div class="pure-g main">
+      <div class="pure-u-1-5 return">
+       <a href="javascript:void(0)" style="padding: .300rem 0 0 0;text-align: left;"><i class="typcn typcn-arrow-left"></i></a>
+      </div> 
+      <div class="pure-u-3-5 title Ltac"></div> 
+      <div class="pure-u-1-5 action Ltar">
+       <div class="inn"></div>
+      </div>
+     </div>
+    </header> 
+    <div class="hotel-pictures">
+     <div class="hotel-pictures__list">
+      
+     </div> 
+     <div class="hotel-pictures__pagination">
+      <span>1</span>/10 
+     </div>
+    </div>
+   </div> 
+   <div style="display: none;">
+    <header class="Cnewheader">
+     <div class="pure-g main">
+      <div class="pure-u-1-5 return">
+       <a href="javascript:void(0)" style="padding: .300rem 0 0 0;text-align: left;"><i class="typcn typcn-arrow-left"></i></a>
+      </div> 
+      <div class="pure-u-3-5 title Ltac">
+       <h3>酒店介绍</h3>
+      </div> 
+      <div class="pure-u-1-5 action Ltar">
+       <div class="inn"></div>
+      </div>
+     </div>
+    </header> 
+    <div class="page_hotelInfo">
+     <div class="topDetail edgeGap Lmt15">
+      <div class="inn bgwhite">
+       <div class="details edgeGap">
+        <h2>{$hotellist['hotelname']}</h2> 
+        <div class="line"></div>
+       </div> 
+       <div class="CmapInfo pure-g hotelPhone">
+        <div class="pure-u-18-24 left">
+         <div class="edgeGap wrap">
+          <div class="phone">
+           <p>{$hotellist['tel']}<i class="typcn typcn-phone"></i></p>
+          </div> 
+          <div class="supportPay Lmt5 Ldn">
+           <p> 微信、支付宝、银行卡、信用卡<i class="icon-money"></i></p>
+          </div>
+         </div>
+        </div> 
+        <div class="pure-u-6-24 right ">
+         <a href="tel:{$hotellist['tel']}" class="Ltac"><i class="typcn typcn-phone-outline"></i><span>联系酒店</span></a>
+        </div>
+       </div> 
+       <div id="infoMap" data-lat="23.148" data-lng="113.308" class="map Lposr amap-container" data-init="inited" style="background: rgb(252, 249, 242);">
+        <div class="hotelLocation">
+         <div class="CmapInfo pure-g">
+          <div class="pure-u-18-24 left">
+           <div class="edgeGap wrap ">
+            <p> {$hotellist['hoteldetailed']}<i class="typcn typcn-location"></i></p>
+           </div>
+          </div> 
+          <div class="pure-u-6-24 right ">
+           <a href="/Hotel/surround?hotelid=5100005" class="Ltac"><i class="typcn typcn-location-arrow-outline"></i><span>去这里</span></a>
+          </div>
+         </div>
+        </div>
+        <object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html" data="about:blank"></object>
+        <div class="amap-maps Ldn">
+         <div class="amap-drags">
+          <div class="amap-layers" style="transform: translateZ(0px);">
+           <div class="amap-layer" style="position: absolute; z-index: 0; top: 65px; left: 187px;">
+            <canvas height="512" width="512" style="position: absolute; top: 6px; left: -48px; width: 256px; height: 256px; z-index: 17;"></canvas>
+            <canvas height="512" width="512" style="position: absolute; top: -250px; left: -48px; width: 256px; height: 256px; z-index: 17;"></canvas>
+            <canvas height="512" width="512" style="position: absolute; top: 6px; left: -304px; width: 256px; height: 256px; z-index: 17;"></canvas>
+            <canvas height="512" width="512" style="position: absolute; top: -250px; left: -304px; width: 256px; height: 256px; z-index: 17;"></canvas>
+           </div>
+           <canvas class="amap-labels" draggable="false" style="position: absolute; z-index: 99; height: 130px; width: 374px; top: 0px; left: 0px;" width="748" height="260"></canvas>
+           <div class="amap-markers" style="position: absolute; z-index: 120; top: 65px; left: 187px;">
+            <div class="amap-marker" style="top: -45px; left: -18px; z-index: 100; transform: rotate(0deg); transform-origin: 18px 45px 0px; display: block;">
+             <div class="amap-icon" style="position: absolute; width: 60px; height: 45px; opacity: 1;">
+              <img src="/Content/img/map_mark_brand.png?CVS=150311" style="width: 60px; height: 850px; top: -150px; left: 0px;" />
+             </div>
+            </div>
+           </div>
+           <canvas class="amap-layer" width="748" height="260" style="position: absolute; z-index: 1; height: 130px; width: 374px; top: 0px; left: 0px;"></canvas>
+          </div>
+          <div class="amap-overlays"></div>
+         </div>
+        </div>
+          <div class="right" style="position: absolute;
+                right: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                margin-top: 0;">
+              <div class="map_c" style="position: relative;
+                  height: 100%;
+                  overflow: hidden;">
+                <img style="position: absolute;
+                  top: 50%;
+                  right: 31%;
+                  margin-right: -109px;
+                  margin-top: -160px;" src="http://apis.map.qq.com/ws/staticmap/v2/?center=<?php echo explode('-',$hotellist['hotelaccuracy'])[1];?>,<?php echo explode('-',$hotellist['hotelaccuracy'])[0];?>&zoom=12&key=4BCBZ-OGQWX-3PE4P-ZNP3C-EU77E-QGF3Z&size=500*250&scale=2" width="100%" height="180">
+                  <i class="map_icons" style="position: absolute;
+                          left: 50%;
+                          bottom: 30%;
+                          display: inline-block;
+                          height: 18px;
+                          width: 18px;
+                          background: url('http://m.elongstatic.com/static/webapp/hotel/2017/06/v30/img/location.png');
+                          background-size: 18px 18px;
+                          transform: translate(-50%,-115%);">
+                  </i>
+              </div>
+
+          </div>
+        </div>
+        <div style="display: none;"></div>
+        <div class="amap-controls"></div>
+       </div>
+      </div>
+     </div> 
+     <div class="bottomInfo bgwhite">
+      <h3 class="Ctitle Ltac">酒店介绍</h3> 
+      <div class="edgeGap content">
+       <p>{$hotellist['hoteldetails']}</p>
+      </div>
+     </div>
+    </div>
+   </div> 
+   <!----> 
+   <div id="routeMap" data-lat="23.148" data-lng="113.308" class="page_hotelguide" style="display: none;">
+    <div class="Cmapnav" style="padding: .300rem 0 0 0;text-align: left;">
+     <i class="typcn typcn-arrow-left"></i>
+    </div> 
+    <div class="content">
+     <div class="position edgeGap">
+      <div class="CmapInfo pure-g">
+       <div class="pure-u-1 left">
+        <div class="edgeGap wrap">
+         <p>{$hotellist['hoteldetails']}<i class="typcn typcn-location"></i></p>
+        </div>
+       </div>
+      </div>
+     </div> 
+     <div class="placeListwrap bgwhite">
+      <div class="Cnone Ltac">
+       <img src="/Content/img/noHotelRoute.png" alt="" /> 
+       <p>暂无交通路线</p>
+      </div>
+     </div>
+    </div>
+   </div> 
+   <!----> 
+   <!----> 
+  </div>
+
+  <div class="Cback Ldn">
+    <div class="Cwrap Lposr">
+        <div class="back">
+            <i class="Cicon back_small"></i>
+        </div>
+    </div>
+  </div>
+
+  <div class="checkDate" style="display: none;">
+    <div class="container"> 
+   <header class="Cnewheader"> 
+    <div class="pure-g main"> 
+     <div class="pure-u-1-5 return">
+      <a href="/Hotel/Detail/?v=1" style="padding: .300rem 0 0 0;text-align: left;"><i class="typcn typcn-arrow-left"></i></a>
+     </div> 
+     <div class="pure-u-3-5 title Ltac"> 
+      <h3>请选择入住日期</h3> 
+     </div> 
+     <div class="pure-u-1-5 action Ltar"> 
+      <div class="inn"> 
+      </div> 
+     </div> 
+    </div> 
+   </header> 
+   <div data-date="1499616000000" class="CD_main"> 
+    <div class="inner">
+     <div class="calendarbox-2016">
+      <div class="week pure-g">
+       <div class="pure-u-1-8">
+        日
+       </div>
+       <div class="pure-u-1-8">
+        一
+       </div>
+       <div class="pure-u-1-8">
+        二
+       </div>
+       <div class="pure-u-1-8">
+        三
+       </div>
+       <div class="pure-u-1-8">
+        四
+       </div>
+       <div class="pure-u-1-8">
+        五
+       </div>
+       <div class="pure-u-1-8">
+        六
+       </div>
+      </div>  
+     </div>
+    </div> 
+    <div class="inputtips inputtips2016" style="display: none;"> 
+     <div class="cbox">
+      请选择入住日期
+     </div> 
+    </div> 
+   </div> 
+  </div>
+  </div>
+
+  <input type="hidden" id="acc" value="{$Colaction}" data="<?php 
+  foreach ($hotellist as $key=> $val){
+  $hotel[] = $key.'->'.$val;
+  }
+  echo implode('/',$hotel);
+  ?>"  urll="{$Roomlistac}" data-url="{$url}" data-img="{$hotellist['hotelphotoDuo']}" calendartwo="{$Calendartwo}" >
+  <input type="hidden" id="tpl1" value="<?php echo explode('-',$hotellist['hotelaccuracy'])[0];?>">
+  <input type="hidden" id="tpl2" value="<?php echo explode('-',$hotellist['hotelaccuracy'])[1];?>">
+
+  <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/newtemplate/js/roomlist.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	console.log(sessionStorage["stayTime"]);
+});
+</script>
+</body>
+</html>

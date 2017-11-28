@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>意见反馈</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+		<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>意见反馈</em></h2>       
+    </div>
+<form action="{$Feedbackadd}" method="post">
+  <div class="weui_cells weui_cells_form">
+  <div class="weui_cell">
+                <div class="weui_cell_hd"><img src="{php echo tomedia($res['headimgurl']);}" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p><span class="weui_input">{$res['nickname']}，请认真填写~</span></p>
+                </div>
+                <div class="weui_cell_ft">说明文字</div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input required="" class="weui_input" type="text" name="realname" placeholder="请输入姓名"/>
+                </div>
+            </div>
+            
+           <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input required=""
+
+                     class="weui_input" type="tel" name="tel" maxlength="11" placeholder="请输入手机号" required pattern="^1[34678]\d{9}$" emptyTips="请输入手机号" notMatchTips="请输入正确的手机号" value="{$res['tel']}"/>
+                </div>
+            </div>
+</div>   
+<div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <textarea required="" id="text" class="weui_textarea" name="feedxxq" placeholder="亲，欢迎提出遇到的系统问题或功能建议，我们会尽快回复" rows="7"></textarea>
+                
+                </div>
+            </div>
+        </div>
+</div>
+    </div>
+    <div class="weui_btn_area">
+        <button id="submit" href="javascript:;" class="weui_btn weui_btn_primary" style="background-color:#49f">提交反馈</button>
+		{if $setting['set_fuwutel'] !== ''}<a href="tel:{$setting['set_fuwutel']}" class="weui_btn weui_btn_warn">直接联系{$_W['uniaccount']['name']}客服</a>{/if}
+    </div>
+</form>
+
+	 <span id="ol" tel="{$tel}"></span>
+	 <script>
+		if ($('#ol').attr('tel') == 'ok') {
+			$.toast("反馈成功！");
+		}
+    if ($('#ol').attr('tel') == 'no') {
+      $.toast("反馈失败！");
+    }
+    // console.log($('#ol').attr('tel'));
+	</script>
+	<script>
+// $(document).on("click", "#submit", function() {
+//         $.toast("反馈成功！");
+//       }); 
+</script>
+	
+<br /><br />
+ <div class="weui-footer">
+          
+            <p class="weui-footer-text">Copyright &copy; 2008-2017 {$_W['uniaccount']['name']}版权所有</p>
+        </div>
+
+</body>
+</html>
+

@@ -1,0 +1,125 @@
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>我的优惠券</title>
+<link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/jqqd.css" />
+<link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/yhq.css" charset="gbk"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+ <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+<div class="mod-love-value_head"> <div class="mod-love-value_head_user"> <img width="98" height="98" src="{$res['headimgurl']}"> <span class="name">{$res['nickname']}</span><span class="my-vip" style="background:none">目前可使用优惠券：{$num_pick}张</span></div> 
+<div class="mod-love-value_head_button clearfix"></div> </div>  
+<style>
+.fenge
+{
+padding-bottom: 1px;
+}
+.coupon-a font{
+	color:#A79E9E;
+}
+</style>
+<ul class="coupon-list">
+{loop $res_pick $row}
+<!-- 	<?php echo "<pre>";
+	var_dump($res_pick);
+?> -->
+   {if $row['status'] == '0'}<li class="coupon-blue">{/if}
+	{if $row['status'] == '1'}<li class="coupon-red">{/if}
+	{if $row['status'] == '2'}<li class="coupon-red">{/if}
+		<a class="coupon-a" {if $row['disid'][0]['hotelname'] == '0'}href="{php echo $this->createMobileUrl('index')}"{else}href="{php echo $this->createMobileUrl('roomlisttwo')}&hotelname={$row['disid'][0]['hotelname']}"{/if}>
+			<div class="coupon-left" >
+				<div class="img-div-backg">
+					<div class="img-div">
+						<img src="{if empty($row['disid'][0]['hotelpic'])}{$_W['siteroot']}/addons/wqtgd_jiudian/image/default_yhq.jpg{else}{$url}/{$row['disid'][0]['hotelpic']}{/if}" style="border-radius: 9999px;">
+					</div>
+				</div>
+				<div class="pro-content">
+					<span class="pro-info">{$row['disid'][0]['disname']}<br><span style="color:#AAAAAA;">{if $row['disid'][0]['hotelname'] == '0'}酒店通用券{else}仅限{$row['disid'][0]['hotelname']}使用{/if}</span></span>
+	<!-- 			<span class="instructions"><font size="2px">使用说明：{$row['disid'][0]['instructions']}</font></span><br>		 -->
+					<span class=""><font size="2px">{$row['disid'][0]['starttime']}~{$row['disid'][0]['endtime']}</font></span>
+					<div class="pro-price">
+						<span class="big-price">{$row['disprice']}元</span>
+						<span class="price-info">{if $row['disid'][0]['miniprice'] == 'to' }不限金额使用{else}满{$row['disid'][0]['miniprice']}可用{/if}</span>
+						<br>
+						<span class="price-info instructions" >使用说明</span>
+					</div>
+				</div>
+
+			</div>
+			<div class="coupon-right">
+				<div class="triangle-border-right"><em class="circular0"></em><em class="circular1"></em><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				</div>
+				<div class="change-block">
+					<i
+					{if $row['status'] == '0'}class="had"{/if}
+					{if $row['status'] == '1'}class="ysy"{/if}
+					{if $row['status'] == '2'}class="ygq"{/if}
+					>
+					</i>
+					{if $row['status'] == '0'}<span class="coupon-btn">立即使用</span>{/if}
+					{if $row['status'] == '1'}<span class="coupon-btn"  style="background-color: #715B5B;">已使用</span>{/if}
+					{if $row['status'] == '2'}<span class="coupon-btn"  style="background-color: #715B5B;">已过期</span>{/if}
+				</div>
+			</div>
+		</a>
+
+	</li>
+        <div class="box" style="width:80%;height:auto;padding:20px;border-radius:5px;background:#ffffff;position:absolute;display:none;top:20%;left:10%;z-index:999;">
+            <br><center><span style="font-size:20px;color:orange;">使用说明</span></center><br>
+			<span class="">{php echo htmlspecialchars_decode($row['disid'][0]['instructions']);}</span>
+            <br>
+			<a onclick="win(1)" id="win" class="btn btn-default" row-toggle="tooltip" row-placement="bottom" style="float:left;width:100%;margin-top:20px;"  >确定</a>
+        </div>	
+        <div class="box-background" style="height:100%;width:100%;display:none;background:rgba(0,0,0,0.2);z-index:990;position:absolute;top:0;left:0;"></div>
+	<div class="fenge"></div>
+{/loop}
+</ul>
+
+  <?php if(!empty($res_pick)){?>
+		 <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> 
+        <div style="margin-top:10px;">
+          
+           <center> <span class="weui-form-preview-btn weui-form-preview-btn-primary" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">您没有任何优惠券</span></center>
+        </div>
+<?php }?>
+</body>
+<script type="text/javascript">
+/*	$(function(){
+		$.each($('.coupon-a'), function(index, item){
+			var height = $(item).find('.instructions').height();
+			$(item).css('height', $(item).height() + height - 15);
+		});
+	});*/
+	function win(k) {
+
+	    if (k == '1') {
+
+	        $('.box').fadeOut(1000);//渐变隐藏
+	        setTimeout(function(){
+	        	 $(".box-background").hide();
+	        }, 1100);
+	    }else{
+
+	        $('.box').fadeIn(1000);//渐变显示
+	    }
+	        
+	}
+	$(function(){
+
+		$(".instructions").click(function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			$(".box-background").show();
+			$(this).parent().parent().parent().parent().parent().next().fadeIn(1000);
+		});
+
+	});
+</script>
+</html>

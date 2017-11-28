@@ -1,0 +1,661 @@
+{if $setting['duodian_switch'] == "on"}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>{if $setting['set_title'] == null}首页{else}{$setting['set_title']}{/if}</title>
+    <link rel="apple-touch-icon-precomposed" href="/Content/img/app_icon.png?CV=150311" />
+    <meta name="apple-mobile-web-app-title" content="{$setting['set_title']}" />
+    <meta name="keywords" content="{$setting['set_title']}酒店,{$setting['set_title']}酒店无线官网,{$setting['set_title']}酒店预订,{$setting['set_title']}酒店预定,{$setting['set_title']}酒店集团" />
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="description" content="{$setting['set_title']}无线官网:提供酒店查询、酒店预订服务,通过手机即预订{$setting['set_title']}旗下六大品牌:“禧玥酒店”、“漫心度假酒店”及“全季酒店”、“星程酒店”、“汉庭酒店”、“海友酒店”,让您酒店订房更轻松快捷,还不赶快登录{$setting['set_title']}手机无线官网!" />
+    <meta name="applicable-device" content="mobile">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="../addons/wqtgd_jiudian/template/mobile/newtemplate/css/indexstyle.css" rel="stylesheet"/>
+
+    <!-- 图标 -->
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/newtemplate/css/font/typicons.min.css"> 
+
+  <!--   <script type="text/javascript" src="/jiazai/ndoo_prep.js?CV=150311"></script> -->
+    <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery-1.10.1.min.js"></script>
+
+    <style type="text/css">
+      
+     /*图标样式*/
+    .typcn-user:before,
+    .typcn-clipboard:before {
+        font-size: 1.30rem;
+    }
+    .typcn-zoom-outline:before{
+       font-size: 2.5rem;
+    }
+    .page_home header .searchHotel a .zoomup{
+        height: 100%;
+    }
+    .typcn-chevron-right:before {
+        font-size: 18px;
+        color: #878787;
+    }
+
+    @media screen and (max-width: 375px){
+        .page_home header .searchHotel.animate--middle {
+            -webkit-transform: translate3d(0,11.125rem,0);
+            transform: translate3d(0,11.125rem,0);
+        }
+        .page_home header .hz_logo.animate--middle {
+            -webkit-transform: translate3d(0,4.1875rem,0);
+            transform: translate3d(0,4.1875rem,0);
+        }
+    }
+
+     @media screen and (max-width: 360px){
+        .page_home header .searchHotel.animate--middle {
+            -webkit-transform: translate3d(0,9.125rem,0);
+            transform: translate3d(0,9.125rem,0);
+        }
+        .page_home header .hz_logo.animate--middle {
+            -webkit-transform: translate3d(0,2.1875rem,0);
+            transform: translate3d(0,2.1875rem,0);
+        }
+    }
+
+    @media screen and (max-width: 320px){
+        .page_home header .searchHotel.animate--middle {
+            -webkit-transform: translate3d(0,9.125rem,0);
+            transform: translate3d(0,9.125rem,0);
+        }
+        .page_home header .hz_logo.animate--middle {
+            -webkit-transform: translate3d(0,2.1875rem,0);
+            transform: translate3d(0,2.1875rem,0);
+        }
+    }
+
+    @media screen and (min-width: 411px){
+        .page_home header .searchHotel.animate--middle {
+            -webkit-transform: translate3d(0,12.125rem,0);
+            transform: translate3d(0,11.125rem,0);
+        }
+        .page_home header .hz_logo.animate--middle {
+            -webkit-transform: translate3d(0,4.1875rem,0);
+            transform: translate3d(0,4.1875rem,0);
+        }
+    }
+
+
+     @media screen and (min-width: 414px){
+        .page_home header .searchHotel.animate--middle {
+            -webkit-transform: translate3d(0,12.125rem,0);
+            transform: translate3d(0,12.125rem,0);
+        }
+        .page_home header .hz_logo.animate--middle {
+            -webkit-transform: translate3d(0,4.1875rem,0);
+            transform: translate3d(0,4.1875rem,0);
+        }
+    }
+
+
+    </style>
+    
+</head>
+<body>
+        <div class="Cload" style="display: none;">
+        <div class="Cload__icon"></div>
+    </div>
+
+    <div class="container">
+        
+
+<div class="page_home">
+    <header>
+        <div class="myInfo Lcfx">
+            <a href="{$User}" class="m_center Lfll Lml10"><i class="typcn typcn-user"></i><span>个人中心</span></a>
+            <a href="{$Order}" class="m_order Lflr Lmr10"><i class="typcn typcn-clipboard"></i><span>我的订单</span></a>
+        </div>
+        <div class="hz_logo <?php echo $s_h_data_num > 0 ? 'animate--middle' : '' ?>"><img src="http://omqgqtpsh.bkt.clouddn.com/images/14/2017/06/aDzfFF9o9dM4MmOmfolzm5mXQqmdmD.png" alt="">
+		<br /><br /><span style="color:#FFF;font-size:30px">酒店预订 | 景点门票</span>
+		</div>
+        <div class="searchHotel <?php echo $s_h_data_num > 0 ? 'animate--middle' : '' ?>">
+            <a href="javascript:;" id="showSelectCity" class="pure-g">
+                <div class="content pure-u-4-5"><span>多个城市酒店等你探索！</span></div>
+                <div class="zoomup pure-u-1-5 Ltac"><i class="typcn typcn-zoom-outline" style="background-image: -webkit-linear-gradient(-74deg,#a21764 0%,#d2386e 100%);"></i></div>
+            </a>
+        </div>
+        <section class="search_history bgwhite <?php echo $s_h_data_num > 0 ? 'animate' : '' ?>">
+            <div class="recommend Lcfx">
+                <div class="list list--no-label list--large">
+                    <ul class="Ldfx">
+                        <li>
+                            <div class="searchhistory wrap">
+                                {loop $s_h_data $item}
+                                  <div class="item pure-g" data-type="suggest" link-url="{$item['linkurl']}" checkin="{$item['checkintime']}" checkout="{$item['checkouttime']}" link-type="{$item['type']}">
+                                    <div class="pure-u-5-24 sh_title">
+                                      <h3>{$item['name']}</h3>
+                                    </div>
+                                    <div class="pure-u-12-24 sh_date Ltac">
+                                      <span><?php echo explode("-", $item['checkintime'])[1];?>月<?php echo explode("-", $item['checkintime'])[2];?>日-<?php echo explode("-", $item['checkouttime'])[1];?>月<?php echo explode("-", $item['checkouttime'])[2];?>日</span>
+                                    </div>
+                                    <div class="pure-u-4-24 sh_nights Ltac">
+                                      <span>{$item['stayday']}晚</span>
+                                    </div>
+                                    <div class="pure-u-3-24 sh_arrow Ltar">
+                                      <i class="typcn typcn-chevron-right"></i>
+                                    </div>
+                                  </div>
+                                {/loop}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="recommend__loading">
+                    <div class="recommend__loading--icon"></div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    {if count($nav)!=0}
+    <section class="activity bgwhite edgeGap">
+    {else}
+    <section class="activity bgwhite edgeGap" style="margin-top: 25px;">
+    {/if}
+    {if count($nav)!=0}
+        <div class="Cactivity">
+            <div class="pure-g Ltac">
+                   {loop $nav $item}
+                    <div class="pure-u-1-4">
+					<a href="{$item['link']}" rel="nofollow"><img src="{$_W['siteroot']}attachment/{$item['thumb']}" width="28px" height="28px" style="border-radius:100%"/><span>{$item['name']}</span></a></div>
+                    {/loop} 
+					
+            </div>
+        </div>
+    {/if}
+    </section>
+    <section class="banners edgeGap bgwhite Ltac">
+        <div class="titlebox Ldn">
+            <h3 class="b_title">12大品牌</h3>
+        </div>
+        <div class="swiper-container Ldn">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><span>美爵</span><i class="fa fa-qq"></i></a></div>
+                <div class="swiper-slide"><span>禧玥</span><i class="xiyue"></i></a></div>
+                <div class="swiper-slide"><span>漫心</span><i class="manxin"></i></a></div>
+                <div class="swiper-slide"><span> 诺福特</span><i class="novotel"></i></a></div>
+                <div class="swiper-slide"><span>美居</span><i class="meiju"></i></a></div>
+                <div class="swiper-slide"><span>桔子水晶</span><i class="crystal"></i></a></div>
+                <div class="swiper-slide"><span>全季</span><i class="quanji"></i></a></div>
+                <div class="swiper-slide"><span>星程</span><i class="xingc"></i></a></div>
+                <div class="swiper-slide"><span>ibis尚品</span><i class="ibisstyles"></i></a></div>
+                <div class="swiper-slide"><span>ibis</span><i class="ibis"></i></a></div>
+                <div class="swiper-slide"><span>汉庭</span><i class="hant"></i></a></div>
+                <div class="swiper-slide"><span>怡莱</span><i class="elan"></i></a></div>
+                <div class="swiper-slide"><span>海友</span><i class="haiyou"></i></a></div>
+
+            </div>
+            <div class="button-next"><i class="fa fa-angle-right"></i></div>
+            <div class="button-prev"><i class="fa fa-angle-left"></i></div>
+         </div>
+
+    </section>
+	
+    <section class="hotcitys edgeGap">
+       <h2 class="Ltac title">限时抢购</h2>
+        <div class="Chotcitys">
+		 {loop $data $row}
+            <a href="{$Roomlist}&hotelname={$row['hotelname']}&checkin={php echo date('Y-m-d');}&checkout={php echo date('Y-m-d',strtotime('+1 day'));}&checkday=1">
+                <div class="itemCity pure-g">
+                    <div class="pure-u-8-24 cityImg"><img src="{php echo $url.'/'.explode(',',$row['roompic'])[0];}" alt=""></div>
+                    <div class="pure-u-16-24 cityInfo bgwhite">
+                        <div class="citybox">
+                            <div class="inn">
+                                <h3>{$row['roomtype']}<span>(<i> ￥{$row['saleprice']} </i>元)</span></h3>
+                                <p class="ontime1 seck_timer" endtime="{$end_time}" qid="{$row['id']}" time="<?php echo date('Y/m/d H:i:s',$row['end_time']);?>">{$row['promotions']}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+          {/loop}
+        </div>
+		
+        <!--h2 class="Ltac title">城市酒店</h2>
+        <div class="Cothercitys">
+            <ul class="Lcfx Ltac">
+
+                    <li><a href="http://m.huazhu.com/hotel/list/xian">西安</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/nanjing">南京</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/tianjin">天津</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/suzhou">苏州</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/shenyang">沈阳</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/guangzhou">广州</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/dalian">大连</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/wuxi">无锡</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/qingdao">青岛</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/chongqing">重庆</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/shenzhen">深圳</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/jinan">济南</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/zhengzhou">郑州</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/haerbin">哈尔滨</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/wuhan">武汉</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/ningbo">宁波</a></li>
+                    <li><a href="http://m.huazhu.com/hotel/list/chengdu">成都</a></li>
+            </ul>
+        </div-->
+
+        <h2 class="Ltac title">热门城市</h2>
+        <div class="Cothercitys">
+            <ul class="Lcfx Ltac">
+			    <li><a href="javascript:;">乌鲁木齐</a></li>
+                <li><a href="javascript:;">北京</a></li>
+                <li><a href="javascript:;">上海</a></li>
+                <li><a href="javascript:;">广州</a></li>
+                <li><a href="javascript:;">西安</a></li>
+                <li><a href="javascript:;">南京</a></li>
+                <li><a href="javascript:;">天津</a></li>
+                <li><a href="javascript:;">苏州</a></li>
+                <li><a href="javascript:;">沈阳</a></li>
+                <li><a href="javascript:;">大连</a></li>
+                <li><a href="javascript:;">无锡</a></li>
+                <li><a href="javascript:;">青岛</a></li>
+                <li><a href="javascript:;">重庆</a></li>
+                <li><a href="javascript:;">深圳</a></li>
+                <li><a href="javascript:;">济南</a></li>
+                <li><a href="javascript:;">郑州</a></li>
+                <li><a href="javascript:;">哈尔滨</a></li>
+                <li><a href="javascript:;">武汉</a></li>
+                <li><a href="javascript:;">宁波</a></li>
+                <li><a href="javascript:;">成都</a></li>
+            </ul>
+        </div>
+    </section>
+	
+    <footer class="Ltac edgeGap">
+        <div class="inn">
+            <div class="pure-g">
+            <a class="pure-u-1-3 Ldn" href="{$Catalog}">网站地图</a>
+            
+                <a href="{$City}" class="pure-u-1-3 Ldn">城市酒店预订</a>
+                <a href="tel:{$setting['set_fuwutel']}" class="pure-u-1-3" style="margin: 0 auto;">联系客服</a>
+            </div>
+            <p>Copyright &copy; 2017 {$_W['uniaccount']['name']}</p>
+        </div>
+    </footer>
+</div>
+</div>
+<script type="text/javascript">
+
+
+// $(".swiper-jingxuan").bind("touchmove", function(){
+// 	$.each($(".ontime1"), function(index, item){
+//   		$(item).bind("ontime1", function(e){
+// 			getRTime((this));
+// 		});
+//   	});
+// })
+
+	
+//   	$.each($(".ontime1"), function(index, item){
+//   		$(item).bind("ontime1", function(e){
+// 			getRTime((this));
+// 		});
+//   	});
+
+//   	var buying = $('#buying').attr('buying');
+//   	function tOnTime1(){
+// 		$.each($(".ontime1"), function(index, item){
+//   			$(item).trigger("ontime1");
+//   		});
+//   		$('.ontime1').each(function(i){
+//    		var d = $(this).children().children()[0].innerHTML;
+//    		var h = $(this).children().children()[1].innerHTML;
+//    		var i = $(this).children().children()[2].innerHTML;
+//    		var s = $(this).children().children()[3].innerHTML;
+//    		var ymd = Number(d.substr(0,d.length-1)) + Number(h.substr(0,h.length-1)) + Number(i.substr(0,i.length-1)) +　Number(s.substr(0,s.length-1));
+
+//    		if (ymd <= -4) {
+//    			var endtime = $(this).attr('endtime');
+//    			if (endtime != '0') {
+// 	   			id = $(this).attr('qid');
+// 	   			$(this).parent().css({'display':'none'});
+// 	   			$.post(buying,{'id':id},function(data){
+// 					// console.log(data);
+// 				},'json');
+// 	   		}
+//    		}
+//    	});
+// 	}
+	
+//     function getRTime(elem){
+//         var EndTime= new Date($(elem).attr("time")); //截止时间 
+//         var NowTime = new Date();
+//         var t =EndTime.getTime() - NowTime.getTime();
+//         var d=Math.floor(t/1000/60/60/24);
+//         var h=Math.floor(t/1000/60/60%24);
+//         var m=Math.floor(t/1000/60%60);
+//         var s=Math.floor(t/1000%60);
+
+//         // document.getElementById("t_d1").innerHTML = d;
+//         // document.getElementById("t_h1").innerHTML = h;
+//         // document.getElementById("t_m1").innerHTML = m;
+//         // document.getElementById("t_s1").innerHTML = s;
+
+//         $(elem).children(".hour").children("span").text(d+'天');
+//         $(elem).children(".minute").children("span").text(h+'时');
+//         $($(elem).children(".second")[0]).children("span").text(m+'分');
+//        	$($(elem).children(".second")[1]).children("span").text(s+'秒');
+//     }
+//    	setInterval(tOnTime1,1000);
+
+   
+
+    </script>
+    <div class="Cback Ldn">
+        <div class="Cwrap Lposr">
+            <div class="back">
+                <i class="Cicon back_small"></i>
+            </div>
+        </div>
+    </div>
+    <div id="scriptArea" data-page-id="home/nindex" class="Ldn">
+        <script type="text/javascript">
+            var _target = document.getElementById('scriptArea')
+            var _targetPageId = _target.getAttribute('data-page-id')
+            var width = parseInt(window.screen.width);
+            if (width > 414) {
+                width = 414
+            }
+            var fontsise = width / 3.2;
+            if (_targetPageId == 'home/index2016') {
+                if (top.location == self.location) {
+                    document.getElementsByTagName('html')[0].setAttribute("style", "font-size:" + fontsise + 'px')
+                }
+            } else {
+                document.getElementsByTagName('html')[0].setAttribute("style", "font-size:100%")
+            }
+        </script>
+        <div data-turbolinks-skip="true">
+            ;
+           <!--  <script src="http://m.huazhu.com/Content/js/newmain.js?v=B7FPUcDxChkzdU0w5hn7IKlkhgb8Knopg-vpB8o_Eic1"></script> -->
+
+        </div>
+        
+        
+         <!--    <script type="text/javascript" data-track-script="true" src="http://ws-www.hantinghotels.com/wa/site/m_huazhu_track.js"></script>
+        <script>
+            var wa_member_id = ndoo.vars.memberid = "0";
+
+            if (window.Turbolinks && Turbolinks.supported) {
+                ndoo.storage('useTurbolinks', true);
+            }
+
+            ndoo.init();
+        </script> -->
+
+    </div>
+    <input type="hidden" id="url" hotelcity="{$Hotelcity}" Hotel="{$Hotel}" Hotellisttwo="{$Hotellisttwo}" save-search-history="{$Savesearchhistory}"/>
+  <!--   <script src="/addons/wqtgd_jiudian/template/mobile/newtemplate/js/commons.js" charset="utf-8"></script> -->
+    <script src="/addons/wqtgd_jiudian/template/mobile/newtemplate/js/cp.min.js" charset="utf-8"></script>
+   
+</body>
+</html>
+{else}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$setting['duodian_data_duodian']}</title>
+    <!--meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--库-->
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/amazeui.css">
+    <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/amazeui.js"></script>
+    <!-- 样式 -->
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/styleA.css">
+</head>
+
+<body>
+<div id="index">
+    <!-----------首页头部----------->
+    <div class="index_head">
+		
+		<!----------------搜索------------------>
+		<center><span style="line-height: 30px;
+    font-size: 20px;">{$setting['duodian_data_duodian']}</span></center>
+		{loop $hotelteldd $row}<a href="tel:{$row['hoteltely']}"class="phone">
+			<img src="/addons/wqtgd_jiudian/template/mobile/img/phone.png">
+		</a>
+		{/loop}
+    </div>
+    
+    <div id="index_banner">
+        <div class="am-slider am-slider-default">
+            <ul class="am-slides">
+			{loop $adv $row} 
+                <li><a title="" href="{$row['link']}"><img src="{php echo tomedia($row['thumb'])}" style="height: 210px" /></a></li>
+               {/loop}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="order_nav">
+        <ul class="box_nav am-avg-sm-4">
+		{loop $nav $item}
+            <li>
+                <a title="" href="{$item['link']}">
+                    <img src="{php echo tomedia($item['thumb'])}"/>
+                    <p>{$item['name']}</p>
+                </a>
+            </li>
+           {/loop}
+            <div class="clear"></div>
+        </ul>
+    </div>
+	
+	
+	
+	<div id="trip_list" style="width:100%;overflow:hidden;">
+		
+			<ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-2">
+				<li class="am-active" style="    width: 100%;"><a href="#tab1">选择预订</a></li>
+			</ul>
+
+			<div class="am-tabs-bd">
+				<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+					<ul>
+					{loop $hotelyong $list}
+						<li class="view">
+							<div class="pic">
+								<img src="{php echo $url.'/'.explode(',',$list['roompic'])[0];}" style="height: 150px">
+								<div class="cont">
+									<a title="" class="button" href="{$Roomlist}&hotelname={$list['hotelname']}">立即预订</a>
+									<div class="num">
+										<p><span>仅剩</span>{$list['roomnum']} 间</p>
+										<p>预订价格<span>{$list['roomprice']}</span></p>
+									</div>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="con">
+								<span>{$list['roomtype']}</span>
+								<p>{$list['promotions']}</p>
+							</div>
+						</li>
+						{/loop}
+					</ul>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/indexnav.css" />
+   <div class="nav_bottom">
+		<ul class="nav_list">
+		
+			<li>
+				<a href="{$User}" style="text-align:center;    text-decoration: none;">会员中心</a>
+			</li>
+			<li>
+				<a href="{$Order}" style="text-align:center;    text-decoration: none;">订单中心</a>
+			</li>
+			<li>
+				<a href="javascript:;" id="tel" style="text-align:center;    text-decoration: none;">联系{$_W['uniaccount']['name']}</a>
+			</li>
+		</ul>
+	 	<a class="order_nav_trigger" id="order_nav"  style="border-radius:100%">
+			Menu<span></span>
+		</a> 
+	</div>
+	<br />
+<div class="weui-footer" style="text-align: ">          
+    <p class="weui-footer-text">Copyright © 2008-2017 {$_W['uniaccount']['name']}版权所有</p>
+</div>
+  <script type="text/javascript">
+$(function(){
+	
+	//栏目显示隐藏
+	$('.mc_title').on('click',function(){
+		var fontIcon = $(this).children('.title_icon').children('i').attr('class');/*获取图标i的class*/
+		var icon = $(this).children('.title_icon').children('i');/*获取图标i标签*/
+		//上下箭头切换
+		if(fontIcon=='iconfont icon-xiangshang'){
+			icon.attr('class','iconfont icon-xiangxia');
+		}else if(fontIcon=='iconfont icon-xiangxia'){
+			icon.attr('class','iconfont icon-xiangshang');
+		};
+		//内容切换
+		$(this).next('div.mc_list').toggle(500);
+	});
+	
+	//右导航显示隐藏
+	$('#order_nav').on('click',function(){
+		var obj = $(this);
+		if( obj.hasClass('menu_open')){
+			obj.removeClass('menu_open');
+			$('.nav_list').removeClass('is-visible');
+		}else{
+			$('.nav_list').addClass('is-visible');
+			obj.addClass('menu_open');
+		}	
+	});
+	
+});
+</script> 
+<script>   
+						$(document).on("click", "#tel", function() {
+							$.actions({
+								title: "拨打电话 {$setting['set_fuwutel']}",
+								onClose: function() {
+								},
+								actions: [
+								{
+									text: "{$_W['uniaccount']['name']}",
+									className: "color-primary",
+									onClick: function() {
+										{
+											window.location.href = "tel:{$setting['set_fuwutel']}";
+										}
+									}
+								},
+									{text: "{$setting['duodian_data_duodian']}",
+									className: "color-primary",
+									onClick: function() {
+										{
+											{loop $hotelteldd $row}window.location.href = "tel:{$row['hoteltely']}"{/loop};
+										}
+									}
+								},
+								{if $setting['set_meiqia'] == null}{else}{
+									text: "在线客服",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{$setting['set_meiqia']}";
+										}
+									}
+								},{/if}
+								{
+									text: "意见反馈",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{php echo $this->createMobileUrl('feedback')}";
+										}
+									}
+								},
+								
+								]
+							});
+						});    
+					</script>
+<script>
+    $(function () {
+        $('.am-slider').flexslider({
+            controlNav: true,               // Boolean: 是否创建控制点
+            directionNav: false,             // Boolean: 是否创建上/下一个按钮（previous/next）
+            touch: true,                    // Boolean: 允许触摸屏触摸滑动滑块
+        });
+    });
+</script>
+<style>
+.order_nav_trigger {
+    position: fixed;
+    bottom: 62px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 0.25em;
+    box-shadow: 0 0 10px rgba(40, 155, 213, 0.6);
+    -moz-box-shadow: 0 0 10px rgba(40, 155, 213, 0.6);
+    -webkit-box-shadow: 0 0 10px rgba(40, 155, 213, 0.6);
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    z-index: 999999;
+}
+.nav_list {
+    position: fixed;
+    width: 40%;
+    max-width: 200px;
+    right: 10px;
+    bottom: 91px;
+    background: #FFF;
+    overflow: hidden;
+    z-index: 99999;
+    border: #ddd 1px solid;
+    box-shadow: 0px 0px 8px 0px rgba(51,51,51,0.3);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+    -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+    transition: transform 0.3s, visibility 0s 0.3s;
+}
+</style>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+	<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+    <script src="/addons/wqtgd_jiudian/template/mobile/newtemplate/js/cp.min.js" charset="utf-8"></script>
+</body>
+</html>
+{/if}

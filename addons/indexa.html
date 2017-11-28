@@ -1,0 +1,911 @@
+{if $setting['duodian_switch'] == "on"}
+<!DOCTYPE html>
+<html class="android" style>
+<head>
+	<title>{if $setting['set_title'] == null}首页{else}{$setting['set_title']}{/if}</title>
+	<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+	<meta name="full-screen" content="yes" />
+	<meta name="browsermode" content="application" />
+	<meta name="x5-orientation" content="portrait" />
+	<meta name="x5-fullscreen" content="true" />
+	<meta name="x5-page-mode" content="app" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+	<script type="application/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/fastclick.js"></script>
+	<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/swipe.js"></script>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/homepage.css" />
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/indexnav.css" />
+	<!-- <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/touch.js"></script> -->
+	<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/pinying.js"></script>
+	   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UmqySBHafe1uyxhWrZPXQAblBCdBSQWi"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script> 
+	  <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=349a30a3edab121b7758672064950e07&plugin=AMap.Geocoder"></script>
+	  <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=6FZBZ-DUZCG-LQCQN-IYLNR-74RDE-DGF5J"></script>
+
+    <!-- <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script> -->
+	
+	<!-- {template share} -->
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<style>
+		.slide .dot .cur{
+			background-color:#FFF;
+			border:1px solid #FFF;
+		}
+	</style>
+<script>
+		$(function(){
+			$('#slide1').swipeSlide({
+		autoSwipe:true,//自动切换默认是
+		speed:3000,//速度默认4000
+		index:0,
+		continuousScroll:true,//默认否
+		transitionType:'cubic-bezier(0.22, 0.69, 0.72, 0.88)',//过渡动画linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier
+		lazyLoad:true,//懒加载默认否
+		firstCallback : function(i,sum,me){
+			me.find('.dot').children().first().addClass('cur');
+		},
+		callback : function(i,sum,me){
+			me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+		}
+	});  
+		});    
+	</script>
+
+	<style type="text/css">
+	
+	.hotelnames{
+		/*display: inline-block;*/
+	    font-size: 14px;
+	    height: 12px;
+	    line-height: 12px;
+	    text-align: center;
+	    padding: 0 2px;
+	    color: #fff;
+	    position: absolute;
+	    top: 70px;
+	    right: 5px;
+	    background: #7A44FB; 
+	  }
+	  .roomtypes{
+	  	font-size: 9px;
+	    height: 12px;
+	    line-height: 12px;
+	    text-align: center;
+	    padding: 0 2px;
+	    color: #fff;
+	    position: absolute;
+	    top: 85px;
+	    right: 5px;
+	    background-color: red; 
+	  }
+
+	  .seck_timer {
+	  	width: 100%;
+	  	margin-left: 0px;
+		 text-align: center;
+	}
+	  .seck_time {
+	    width: 18px;
+	    line-height: 12px;
+	    border: 1px solid #f0f0f0;
+	    text-align: center;
+	}
+	.seck_time span {
+	    display: inline-block;
+	    margin-top: 2px;
+	    font-size: 12px;
+	    color: #232326;
+	}
+	.seck_timer span.time-space {
+	    font-size: 12px;
+	    color: #232326;
+	    font-weight: 400;
+	}
+	.fn-hide {
+	    display: none !important;
+	}
+	</style>
+
+</head>
+
+<body style="height: 200px;">
+<?php if(!empty($adv)){?>
+		<div class="slide" id="slide1">
+		<ul>
+		{loop $adv $row} 
+			<li>
+				<a href="{$row['link']}">
+					<img src="{php echo tomedia($row['thumb'])}" data-src="{php echo tomedia($row['thumb'])}" alt="">
+				</a>
+				<div class="slide-desc" style="text-align: left;">{$row['advname']}</div>
+			</li>
+			 {/loop}
+		</ul>
+		
+		<div class="dot">
+		{loop $adv $row} 	<span></span>	  {/loop}			
+		</div>
+
+	</div>
+	 <?php }else{ ?>
+      
+<?php }?> 
+	<!-- <div class="bgback" style=""></div> -->
+	<div class="pages">
+		<div class="page">
+			<!-- 首页 -->
+			<div class="page-content page-search">
+				<span class="logo"></span>
+				<div class="container">
+					
+				</div>
+
+				<div class="search-wrap">
+					<div class="search-lb">
+						<ul class="search-list">
+							<li class="addr">
+								<i class="addr"></i>
+								<p id="diz" class="cityname tjclick" city-id=""  data-tj='{"cspot":"city","if":"110000","ch":"h5city"}' addr=""></p>
+								<!-- right: 9px -->
+								<i class="icon-left" style=""></i>
+								<b class="right isnearby tjclick" data-tj='{"cspot":"mylocation","if":"110013","ch":"mylocation"}'><i class="icon-nearby"></i><span>附近</span></b>
+							</li>
+							<li class="date">
+								<i class="icon-time"></i>
+								<div class="d1 tjclick" data-tj='{"cspot":"checkindate","if":"110000","ch":"h5hotelgeneral"}'><p class="type">入住<span class="night">深夜</span></p><p><span class="indate" data-value=""></span><span class="startweek"></span></p></div>
+								<div class="d2"></div>
+								<div class="d3 tjclick" data-tj='{"cspot":"checkoutdate","if":"110000","ch":"h5hotelgeneral"}'><p class="type">离店</p><p><span class="outdate" data-value=""></span><span class="endweek"></span></p></div>
+								<div class="d4 total"></div>
+								<i class="icon-left"></i>
+							</li>
+							<li onclick=""  class="name"><!--输入内容添加on-->
+								<div class="sea-box">
+									<i class="name"></i>
+									<input   type="input" value="" placeholder="酒店名称/位置不限" readonly="readonly">
+									<i class="icon-left"></i>
+								</div>
+								<span class="close" onclick='clearInput($(this), false)'><i class="icon-cross"></i></span>
+							</li>
+							<li class="pri">
+								<div class="price-star-btn tjclick"  data-tj='{"cspot":"priceandstar","if":"110000","ch":"h5hotelgeneral"}'>
+									<i class="pri"></i>
+									<input class="title-phone" type="input" value="" placeholder="价格星级不限" readonly="readonly">
+									<i class="icon-left"></i>
+								</div>
+								<span class="close" onclick='clearInput($(this), true)'><i class="icon-cross"></i></span></li>
+							</ul>
+							<div class="search-btn tjclick" data-tj='{"cspot":"search","if":"110018","ch":"h5hotelgeneral"}' style="    font-size: 18px;" onclick="getToHotelList()">搜索酒店</div>
+						</div>
+					</div>
+					
+					
+					<div class="index-box">
+						
+						<ul class="clearfix quicksearchlist">
+							{loop $nav $item}
+							<li><a href="{$item['link']}" style="    text-decoration: none;"><img src="{php echo tomedia($item['thumb'])}" width="40" height="40"><p>{$item['name']}</p></a></li>
+                            {/loop}
+
+						</ul>
+					</div>
+<br />
+</div>
+<?php if(!empty($data)){?>
+ <!--限时抢购-->
+  <div class="wy-Module">
+    <div class="wy-Module-tit"><span><img src="/addons/wqtgd_jiudian/template/mobile/img/xsfq.png" alt="" width="69" height="27"></span></div>
+    <div class="wy-Module-con">
+      <div class="swiper-container swiper-jingxuan" style="padding-top:34px;">
+        <div class="swiper-wrapper">
+          {loop $data $row}
+          <div class="swiper-slide" style="position: relative;"><a href="{$Roomlist}&hotelname={$row['hotelname']}"><img src="{php echo $url.'/'.explode(',',$row['roompic'])[0];}" style="width: 130px;
+    height: 100px;
+    margin-right: 2px;
+    margin-left: 2px;"/>
+		<span class="hotelnames">{$row['hotelname']}</span>
+		<span class="roomtypes">{$row['roomtype']}</span>
+    </a>
+    <span class="now_price">
+									<center><del><em>¥</em>
+			                        <?php
+			                            $result = pdo_fetch("select * from ".tablename("wqtgd_hotel_roompricestatus")." where date = :date and hotelname = :hotelname and  roomtype = :roomtype and uniacid = :uniacid",array(":date"=>$today,":hotelname"=>$row["hotelname"],":roomtype"=>$row["roomtype"],":uniacid"=>$uniacid)); 
+
+			                            if($result){
+			                                if($row["roomprice"] == $result["roomprice"]){
+			                                    $roomprice =  $row['roomprice'];
+			                                }else{
+			                                    $roomprice =  $result["roomprice"];
+			                                }                 
+			                            }else{
+			                                $roomprice = $row['roomprice'];
+			                            }    
+			                            echo $roomprice;              
+			                        ?>
+									元</del>
+								</span><p></p><span class="old_price">
+									<font color="red">抢订价：¥ {$row['saleprice']} 元</font>
+								</span></center>
+
+						<div class="ontime1 seck_timer" endtime="{$end_time}" qid="{$row['id']}" time="<?php echo date('Y/m/d H:i:s',$row['end_time']);?>" style="box-sizing:border-box;">
+                        <div class="seck_time hour">
+								<span id="t_d1">00</span>
+                               </div>
+							<span class="time-space">:</span>
+							<div class="seck_time minute">
+							 <span id="t_h1">00</span>
+							</div>
+							<span class="time-space">:</span>
+							<div class="seck_time second">
+							  <span id="t_m1">00</span>
+							</div>
+							<span class="time-space">:</span>
+							<div class="seck_time second">
+							      <span id="t_s1">00</span>
+							</div></div>
+
+		</div>
+
+          {/loop}
+
+		  
+        </div>
+        <div class="swiper-pagination jingxuan-pagination"></div>
+      </div>
+    </div>
+  </div>
+<style>
+.secku {
+    width: 8000px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+</style>
+		 <?php }else{ ?>
+      
+<?php }?> 
+  <div class="secku" style="width:100%"></div>
+<br />
+<div class="weui-footer" style="text-align: ">    
+    <p class="weui-footer-text">Copyright © 2008-2017 {$_W['uniaccount']['name']}版权所有</p>
+</div>
+<span id="buying" buying="{$Buying}"></span>
+<script type="text/javascript">
+
+
+$(".swiper-jingxuan").bind("touchmove", function(){
+	$.each($(".ontime1"), function(index, item){
+  		$(item).bind("ontime1", function(e){
+			getRTime((this));
+		});
+  	});
+})
+
+	
+  	$.each($(".ontime1"), function(index, item){
+  		$(item).bind("ontime1", function(e){
+			getRTime((this));
+		});
+  	});
+
+  	var buying = $('#buying').attr('buying');
+  	function tOnTime1(){
+		$.each($(".ontime1"), function(index, item){
+  			$(item).trigger("ontime1");
+  		});
+  		$('.ontime1').each(function(i){
+   		var d = $(this).children().children()[0].innerHTML;
+   		var h = $(this).children().children()[1].innerHTML;
+   		var i = $(this).children().children()[2].innerHTML;
+   		var s = $(this).children().children()[3].innerHTML;
+   		var ymd = Number(d.substr(0,d.length-1)) + Number(h.substr(0,h.length-1)) + Number(i.substr(0,i.length-1)) +　Number(s.substr(0,s.length-1));
+
+   		if (ymd <= -4) {
+   			var endtime = $(this).attr('endtime');
+   			if (endtime != '0') {
+	   			id = $(this).attr('qid');
+	   			$(this).parent().css({'display':'none'});
+	   			$.post(buying,{'id':id},function(data){
+					// console.log(data);
+				},'json');
+	   		}
+   		}
+   	});
+	}
+	
+    function getRTime(elem){
+        var EndTime= new Date($(elem).attr("time")); //截止时间 
+        var NowTime = new Date();
+        var t =EndTime.getTime() - NowTime.getTime();
+        var d=Math.floor(t/1000/60/60/24);
+        var h=Math.floor(t/1000/60/60%24);
+        var m=Math.floor(t/1000/60%60);
+        var s=Math.floor(t/1000%60);
+
+        // document.getElementById("t_d1").innerHTML = d;
+        // document.getElementById("t_h1").innerHTML = h;
+        // document.getElementById("t_m1").innerHTML = m;
+        // document.getElementById("t_s1").innerHTML = s;
+
+        $(elem).children(".hour").children("span").text(d+'天');
+        $(elem).children(".minute").children("span").text(h+'时');
+        $($(elem).children(".second")[0]).children("span").text(m+'分');
+       	$($(elem).children(".second")[1]).children("span").text(s+'秒');
+    }
+   	setInterval(tOnTime1,1000);
+
+   
+
+    </script>
+<br />
+<style>
+.weui-footer {
+    color: #999999;
+    font-size: 14px;
+    text-align: center;
+}
+.weui-footer-text {
+    font-size: 12px;
+    padding: 0 0.34em;
+}
+</style>
+<!--分类导航开始-->
+	<div class="nav_bottom">
+		<ul class="nav_list">
+		
+			<li>
+				<a href="{$User}" style="text-align:center;    text-decoration: none;">会员中心</a>
+			</li>
+			<li>
+				<a href="{$Order}" style="text-align:center;    text-decoration: none;">订单中心</a>
+			</li>
+			<li>
+				<a href="javascript:;" id="tel" style="text-align:center;    text-decoration: none;">联系{$_W['uniaccount']['name']}</a>
+			</li>
+		</ul>
+	 	<a class="order_nav_trigger" id="order_nav"  style="border-radius:100%">
+			Menu<span></span>
+		</a> 
+	</div>
+	<!--分类导航结束-->
+					<script>   
+						$(document).on("click", "#tel", function() {
+							$.actions({
+								title: "拨打电话 {$setting['set_fuwutel']}",
+								onClose: function() {
+								},
+								actions: [
+								{
+									text: "{$_W['uniaccount']['name']}",
+									className: "color-primary",
+									onClick: function() {
+										{
+											window.location.href = "tel:{$setting['set_fuwutel']}";
+										}
+									}
+								},
+								{if $setting['set_meiqia'] == null}{else}{
+									text: "在线客服",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{$setting['set_meiqia']}";
+										}
+									}
+								},{/if}
+								{
+									text: "意见反馈",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{php echo $this->createMobileUrl('feedback')}";
+										}
+									}
+								},
+								
+								]
+							});
+						});    
+					</script>
+				</div>
+                <!-- 选择城市 -->
+				<div class="advance-city plugin-inited page-plugin page-on-right" style="position: absolute;"><header class="bar bar-nav flight-order-head"><a id="city" class="icon pull-left icon-back"></a><div class="search-input1"><i class="icon-search"></i><input type="input" value="" placeholder="请输入城市名、行政区或景区"></div></header><div class="page-content page-select"><div class="current-city"><div class="page-title"></div><div class="get-city"><i class="icon-position"></i>点击获取当前城市</div></div><div class="search-history" style="display: none;"><div class="page-title">搜索历史</div><div class="city-list"><ul></ul></div></div><div class="hot-city"><div class="page-title">热门城市</div><div class="city-list"><ul><li city-id="0101" area-type="" area-id="" sug-origin="" class="on"><span>北京</span></li><li city-id="0201" area-type="" area-id="" sug-origin="" class=""><span>上海</span></li><li city-id="2001" area-type="" area-id="" sug-origin="" class=""><span>广州</span></li><li city-id="1201" area-type="" area-id="" sug-origin="" class=""><span>杭州</span></li><li city-id="2003" area-type="" area-id="" sug-origin="" class=""><span>深圳</span></li><li city-id="1801" area-type="" area-id="" sug-origin="" class=""><span>武汉</span></li><li city-id="2301" area-type="" area-id="" sug-origin="" class=""><span>成都</span></li><li city-id="2701" area-type="" area-id="" sug-origin="" class=""><span>西安</span></li><li city-id="1101" area-type="" area-id="" sug-origin="" class=""><span>南京</span></li><li city-id="0401" area-type="" area-id="" sug-origin="" class=""><span>重庆</span></li><li city-id="1901" area-type="" area-id="" sug-origin="" class=""><span>长沙</span></li><li city-id="1401" area-type="" area-id="" sug-origin="" class=""><span>厦门</span></li><li city-id="0301" area-type="" area-id="" sug-origin="" class=""><span>天津</span></li><li city-id="3201" area-type="" area-id="" sug-origin="" class=""><span>香港</span></li><li city-id="1001" area-type="" area-id="" sug-origin="" class=""><span>哈尔滨</span></li><li city-id="1701" area-type="" area-id="" sug-origin="" class=""><span>郑州</span></li><li city-id="1102" area-type="" area-id="" sug-origin="" class=""><span>苏州</span></li><li city-id="1301" area-type="" area-id="" sug-origin="" class=""><span>合肥</span></li><li city-id="1602" area-type="" area-id="" sug-origin="" class=""><span>济南</span></li><li city-id="2201" area-type="" area-id="" sug-origin="" class=""><span>三亚</span></li><!--li city-id="2201" area-type="" area-id="" sug-origin="" class=""><span><b>全部酒店</b></span></li--></ul></div></div><div class="all-city"><div class="page-title">全部城市</div><div class="letter-list"><ul><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li><li class="mr0">F</li><li>G</li><li>H</li><li>J</li><li>K</li><li>L</li><li class="mr0">M</li><li>N</li><li>P</li><li>Q</li><li>R</li><li>S</li><li class="mr0">T</li><li>W</li><li>X</li><li>Y</li><li>Z</li></ul></div><div class="city-list"><ul class="city-list-ul"></ul></div></div></div><div class="page-content page-search" style="display: none;"><ul></ul></div><div class="inner-mask"></div></div>
+			</div>
+
+			<!-- 选择日期 -->
+			<div class="cld page-plugin plugin-inited"><header class="bar bar-nav"><h1 class="title">选择日期</h1><a id="chooseDate" class="icon icon-back pull-left hide-cln"></a><a class="cld-title-year pull-right icon"></a></header><div class="page-content"></div><ul class="cld-title bar"><li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li></ul></div>
+
+			<div class="mask-layer" style="display: none;"></div>
+		</div>
+	</div>
+
+	<!-- 附近酒店 -->
+	<div class="list-pop-city list-pop-search plugin-inited page-plugin page-on-right" splugin-show page-on-centertyle="position: absolute;"><header class="bar bar-nav flight-order-head"><a id="nearHotel" class="icon pull-left icon-back"></a><div class="search-input1"><i></i><input id="souInput" type="input" value="" placeholder="输入酒店名"></div><div onclick="sou()"  style="font-size: 0.938rem;color:#49f;position: absolute;right:8px;top:7px;padding:8px;">搜索</div></header><div class="page-select page-content">
+	<!-- <div class="current-city">
+	<div class="page-title"></div>
+	<div class="get-city" onclick="" data-tj='{"cspot":"mylocation","if":"110013","ch":"mylocation"}'><i class="icon-nearby"></i>查看我附近的酒店<b></b>
+	</div>
+	</div>  -->
+	<div class="search-history" style="display: none;"><div class="page-title">搜索历史<span class="sea-clear">清除历史</span></div><div class="keyword-list"><ul></ul></div>
+	</div>
+	<div class="keyword-group"><div class="page-title">酒店</div>
+		<div class="keyword-list">
+		<ul id="sou_name1" name="hotellan">
+			
+			<!-- <li class="icon-bottom"></li>
+			<li class="icon-top hide"></li> -->
+		</ul>
+
+		</div>
+	</div>
+	<div class="keyword-group"><div class="page-title">商圈</div>
+		<div class="keyword-list">
+		<ul id="sou_name1" name="business" >
+			<!-- <li class="icon-bottom"></li>
+			<li class="icon-top hide"></li> -->
+		</ul>
+
+		</div>
+	</div>
+	<div class="keyword-group"><div class="page-title">机场/车站</div>
+		<div class="keyword-list">
+		<ul id="sou_name1" name="station" >
+			<!-- <li class="icon-bottom"></li>
+			<li class="icon-top hide"></li> -->
+		</ul>
+
+		</div>
+	</div>
+	<div class="keyword-group"><div class="page-title">地铁站</div>
+		<div class="keyword-list">
+		<ul id="sou_name1" name="metro" >
+			<!-- <li class="icon-bottom"></li>
+			<li class="icon-top hide"></li> -->
+		</ul>
+
+		</div>
+	</div>
+	<div class="list-noresult" style="display: none;text-align: center;">
+			<i class="icon-noresult"></i>
+			<p>暂无</p>
+	</div>
+</div>
+</div>
+
+<!-- 按星级价格选择 -->
+<div class="filter-sp plugin-inited page-transitioning" style=""><span class="arrow"></span><div class="sp-content"><div class="star"><div class="sp-tit">星级（可多选）</div><ul class="star-list"><li sn="-1" class="on">不限</li><li sn="12" class="">经济/客栈</li><li sn="3" class="">三星/舒适</li><li sn="4" class="">四星/高档</li><li sn="5" class="">五星/豪华</li></ul></div><div class="price"><div class="sp-tit">价格（仅单选）</div><ul class="price-list"><li class="on" price-value="0">不限</li><li price-value="0-150" class="">0-150</li><li price-value="150-300" class="">150-300</li><li price-value="300-450" class="">300-450</li><li price-value="450-700" class="">450-700</li><li price-value="700" class="">700以上</li></ul></div></div><!--s--><div class="bot-btn bar"><ul><li id="filter-reset">重置</li><li class="on" id="starprice-submit">确定</li></ul></div><!--e--></div>
+<span id="lujin" indexsou="{$Indexsou}" hotel="{$Hotel}" Hotellist="{$Hotellist}" business="{$Business}" Hotellan="{$Hotellan}" hotelmetro="{$Hotelmetro}" hotelstation="{$Hotelstation}" jssdkconfig="{php echo json_encode($_W['account']['jssdkconfig']);}"></span>
+
+<!-- 定位 -->
+<script type="text/javascript">
+console.log($('#diz').attr('addr'));
+
+	function getLocationTX(e, obj){
+
+		var shareurl = window.location.href;
+var imgUrl = "{$_W['siteroot']}/attachment/{$share_photo}"; 
+var title = "{$share}";
+var content = "{$sharetext}";  
+
+jssdkconfig = {php echo json_encode($_W['account']['jssdkconfig']);} || {};
+	// 是否启用调试
+	jssdkconfig.debug = false;
+	jssdkconfig.jsApiList = [
+		'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'showOptionMenu',
+		'closeWindow',
+		'openLocation',
+		'getLocation'
+	];
+	wx.config(jssdkconfig);
+	var shareMeta = {
+		imgUrl: imgUrl,
+		link : shareurl,
+		desc : content,
+		title : title
+        };
+wx.checkJsApi({
+    jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+    success: function(res) {
+        // 以键值对的形式返回，可用的api值true，不可用为false
+        // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+    }
+});
+	wx.ready(function () {
+		wx.showOptionMenu();
+                wx.onMenuShareAppMessage({                    
+                    title: title,
+                    desc: content,
+                    link: shareurl,
+                    imgUrl: imgUrl,
+                    success: function () {
+                       alert('分享成功');
+                    },
+                    cancel: function () { alert("分享失败");},
+                });                 
+                wx.getLocation({
+    type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+    success: function (res) {
+        var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+        var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+        var speed = res.speed; // 速度，以米/每秒计
+        var accuracy = res.accuracy; // 位置精度
+       console.log(res.latitude+'  '+res.longitude)
+        obj.getAddrTX(res.latitude, res.longitude, e);
+
+    }
+});
+
+		wx.onMenuShareTimeline({
+                    title: title, // 分享标题
+                    desc: content, // 分享描述
+                    link: shareurl, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+    success: function () { 
+         alert('分享成功');
+    },
+    cancel: function () { 
+	alert("分享失败");
+        // 用户取消分享后执行的回调函数
+    }
+});
+                
+		//wx.onMenuShareQQ(shareMeta);
+                wx.onMenuShareQQ({
+                    title: title, // 分享标题
+                    desc: content, // 分享描述
+                    link: shareurl, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+                    success: function (res) {
+                        shareCallback('qq');
+                    },
+                    cancel: function (res) {},
+                    fail: function (res) {}
+                });                
+                
+		//wx.onMenuShareWeibo(shareMeta);
+                wx.onMenuShareWeibo({
+                    title: title,
+                    link: shareurl,
+                    imgUrl: imgUrl,
+                    trigger: function (res) {},
+                    success: function (res) {
+                        shareCallback('weibo');
+                    },
+                    cancel: function (res) {},
+                    fail: function (res) {}
+                });                
+	});
+
+	}
+
+</script>
+
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/calendar.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/GeoUtils.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/hotelTools.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/hotelBase.js"></script>
+
+<!-- 幻灯片 -->
+<script type="text/javascript">
+	
+
+
+</script>
+
+<script type="text/javascript">
+$(function(){
+	
+	//栏目显示隐藏
+	$('.mc_title').on('click',function(){
+		var fontIcon = $(this).children('.title_icon').children('i').attr('class');/*获取图标i的class*/
+		var icon = $(this).children('.title_icon').children('i');/*获取图标i标签*/
+		//上下箭头切换
+		if(fontIcon=='iconfont icon-xiangshang'){
+			icon.attr('class','iconfont icon-xiangxia');
+		}else if(fontIcon=='iconfont icon-xiangxia'){
+			icon.attr('class','iconfont icon-xiangshang');
+		};
+		//内容切换
+		$(this).next('div.mc_list').toggle(500);
+	});
+	
+	//右导航显示隐藏
+	$('#order_nav').on('click',function(){
+		var obj = $(this);
+		if( obj.hasClass('menu_open')){
+			obj.removeClass('menu_open');
+			$('.nav_list').removeClass('is-visible');
+		}else{
+			$('.nav_list').addClass('is-visible');
+			obj.addClass('menu_open');
+		}	
+	});
+	
+});
+</script>
+
+
+ 
+<script src="../addons/wqtgd_jiudian/template/mobile/js/swiper.js"></script>
+<script>
+// $(document).on("click", "#showLoading", function() {
+//         $.showLoading();
+
+//         setTimeout(function() {
+//           $.hideLoading();
+//         }, 3000)
+//       }); 
+	 $(".swiper-jingxuan").swiper({
+		pagination: '.swiper-pagination',
+		loop: false,
+		paginationType:'fraction',
+        slidesPerView:3,
+        paginationClickable: true,
+        spaceBetween: 2
+      });
+
+
+</script>
+{else}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$setting['duodian_data_duodian']}</title>
+    <!--meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--库-->
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/amazeui.css">
+    <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/amazeui.js"></script>
+    <!-- 样式 -->
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/styleA.css">
+</head>
+
+<body>
+<div id="index">
+    <!-----------首页头部----------->
+    <div class="index_head">
+		
+		<!----------------搜索------------------>
+		<center><span style="line-height: 30px;
+    font-size: 20px;">{$setting['duodian_data_duodian']}</span></center>
+		{loop $hotelteldd $row}<a href="tel:{$row['hoteltely']}"class="phone">
+			<img src="/addons/wqtgd_jiudian/template/mobile/img/phone.png">
+		</a>
+		{/loop}
+    </div>
+    
+    <div id="index_banner">
+        <div class="am-slider am-slider-default">
+            <ul class="am-slides">
+			{loop $adv $row} 
+                <li><a title="" href="{$row['link']}"><img src="{php echo tomedia($row['thumb'])}" style="height: 210px" /></a></li>
+               {/loop}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="order_nav">
+        <ul class="box_nav am-avg-sm-4">
+		{loop $nav $item}
+            <li>
+                <a title="" href="{$item['link']}">
+                    <img src="{php echo tomedia($item['thumb'])}"/>
+                    <p>{$item['name']}</p>
+                </a>
+            </li>
+           {/loop}
+            <div class="clear"></div>
+        </ul>
+    </div>
+	
+	
+	
+	<div id="trip_list" style="width:100%;overflow:hidden;">
+		
+			<ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-2">
+				<li class="am-active" style="    width: 100%;"><a href="#tab1">选择预订</a></li>
+			</ul>
+
+			<div class="am-tabs-bd">
+				<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+					<ul>
+					{loop $hotelyong $list}
+						<li class="view">
+							<div class="pic">
+								<img src="{php echo $url.'/'.explode(',',$list['roompic'])[0];}" style="height: 150px">
+								<div class="cont">
+									<a title="" class="button" href="{$Roomlist}&hotelname={$list['hotelname']}">立即预订</a>
+									<div class="num">
+										<p><span>仅剩</span>{$list['roomnum']} 间</p>
+										<p>预订价格<span>{$list['roomprice']}</span></p>
+									</div>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="con">
+								<span>{$list['roomtype']}</span>
+								<p>{$list['promotions']}</p>
+							</div>
+						</li>
+						{/loop}
+					</ul>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/indexnav.css" />
+   <div class="nav_bottom">
+		<ul class="nav_list">
+		
+			<li>
+				<a href="{$User}" style="text-align:center;    text-decoration: none;">会员中心</a>
+			</li>
+			<li>
+				<a href="{$Order}" style="text-align:center;    text-decoration: none;">订单中心</a>
+			</li>
+			<li>
+				<a href="javascript:;" id="tel" style="text-align:center;    text-decoration: none;">联系{$_W['uniaccount']['name']}</a>
+			</li>
+		</ul>
+	 	<a class="order_nav_trigger" id="order_nav"  style="border-radius:100%">
+			Menu<span></span>
+		</a> 
+	</div>
+	<br />
+<div class="weui-footer" style="text-align: ">          
+    <p class="weui-footer-text">Copyright © 2008-2017 {$_W['uniaccount']['name']}版权所有</p>
+</div>
+  <script type="text/javascript">
+$(function(){
+	
+	//栏目显示隐藏
+	$('.mc_title').on('click',function(){
+		var fontIcon = $(this).children('.title_icon').children('i').attr('class');/*获取图标i的class*/
+		var icon = $(this).children('.title_icon').children('i');/*获取图标i标签*/
+		//上下箭头切换
+		if(fontIcon=='iconfont icon-xiangshang'){
+			icon.attr('class','iconfont icon-xiangxia');
+		}else if(fontIcon=='iconfont icon-xiangxia'){
+			icon.attr('class','iconfont icon-xiangshang');
+		};
+		//内容切换
+		$(this).next('div.mc_list').toggle(500);
+	});
+	
+	//右导航显示隐藏
+	$('#order_nav').on('click',function(){
+		var obj = $(this);
+		if( obj.hasClass('menu_open')){
+			obj.removeClass('menu_open');
+			$('.nav_list').removeClass('is-visible');
+		}else{
+			$('.nav_list').addClass('is-visible');
+			obj.addClass('menu_open');
+		}	
+	});
+	
+});
+</script> 
+<script>   
+						$(document).on("click", "#tel", function() {
+							$.actions({
+								title: "拨打电话 {$setting['set_fuwutel']}",
+								onClose: function() {
+								},
+								actions: [
+								{
+									text: "{$_W['uniaccount']['name']}",
+									className: "color-primary",
+									onClick: function() {
+										{
+											window.location.href = "tel:{$setting['set_fuwutel']}";
+										}
+									}
+								},
+									{text: "{$setting['duodian_data_duodian']}",
+									className: "color-primary",
+									onClick: function() {
+										{
+											{loop $hotelteldd $row}window.location.href = "tel:{$row['hoteltely']}"{/loop};
+										}
+									}
+								},
+								{if $setting['set_meiqia'] == null}{else}{
+									text: "在线客服",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{$setting['set_meiqia']}";
+										}
+									}
+								},{/if}
+								{
+									text: "意见反馈",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{php echo $this->createMobileUrl('feedback')}";
+										}
+									}
+								},
+								
+								]
+							});
+						});    
+					</script>
+<script>
+    $(function () {
+        $('.am-slider').flexslider({
+            controlNav: true,               // Boolean: 是否创建控制点
+            directionNav: false,             // Boolean: 是否创建上/下一个按钮（previous/next）
+            touch: true,                    // Boolean: 允许触摸屏触摸滑动滑块
+        });
+    });
+</script>
+<style>
+.order_nav_trigger {
+    position: fixed;
+    bottom: 62px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 0.25em;
+    box-shadow: 0 0 10px rgba(40, 155, 213, 0.6);
+    -moz-box-shadow: 0 0 10px rgba(40, 155, 213, 0.6);
+    -webkit-box-shadow: 0 0 10px rgba(40, 155, 213, 0.6);
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    z-index: 999999;
+}
+.nav_list {
+    position: fixed;
+    width: 40%;
+    max-width: 200px;
+    right: 10px;
+    bottom: 91px;
+    background: #FFF;
+    overflow: hidden;
+    z-index: 99999;
+    border: #ddd 1px solid;
+    box-shadow: 0px 0px 8px 0px rgba(51,51,51,0.3);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+    -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+    transition: transform 0.3s, visibility 0s 0.3s;
+}
+</style>
+<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+	<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+</body>
+</html>
+{/if}

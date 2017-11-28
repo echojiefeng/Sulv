@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>兑换记录</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+</head>
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>积分兑换记录</em></h2>       
+    </div>
+  {loop $res $v}  
+  <div class="weui-img-box" >
+    <div class="weui-img" style="background-color:#E30C26;"></div>
+    <div class="weui-img-title" >{$v["description"]}<br> <span class="weui-img-time">消耗积分：{$v['credits']}积分</span> <br> <span class="weui-img-time">{if $v['status'] == 1}兑换状态：兑换成功{elseif $v['status'] == 2}兑换失败{else}处理中{/if}</span> <br> <span class="weui-img-time">兑换时间：{php echo date("Y-m-d h:i:s",floor($v['endtimestamp']/1000))}</span> 
+    </div> 
+  </div>
+  <div class="weui_cells weui_cells_access" style="    margin-top: 0em;">
+            <a class="weui_cell " href="./index.php?i={$_W['uniacid']}&c=entry&do=exchange&m=wqtgd_jiudian">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>马上去兑换更多好礼</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+            </a>
+            
+
+        </div>
+
+  <br />
+  {/loop}
+  <?php if(!empty($res)){?>
+		 <?php }else{ ?>
+       <br />  <br />  <br />  <br />  <br />  <br />  <br /> <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+        <div style="margin-top:10px;">
+          
+           <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">暂无积分兑换记录</a><br />
+		   <a href="./index.php?i={$_W['uniacid']}&c=entry&do=exchange&m=wqtgd_jiudian" class="weui_btn weui_btn_mini weui_btn_default"> 立即去兑换好礼 </a></center>
+        </div>
+<?php }?>
+</body>
+</html>
+

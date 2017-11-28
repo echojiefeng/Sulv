@@ -1,0 +1,436 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>酒店入驻申请</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+  <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+
+
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min.js"></script>
+	<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker.js"></script>
+	<script src="../addons/wqtgd_jiudian/template/mobile/css/weui/picker-city.js"></script>
+    <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/lrz.min.js"></script>
+      <script src="../addons/wqtgd_jiudian/template/mobile/css/weui/select.js"></script>
+    <!-- 图片上传 -->
+    <script src="../addons/wqtgd_jiudian/template/mobile/js/lrz.mobile.min.js"></script>  
+
+
+<script>
+    $(function(){
+       $("#hoteldate").datetimePicker({title:"酒店成立日期",m:1}); 
+        $("#hoteladdress").cityPicker({
+            title: "酒店所在省市县"
+        });
+    });      
+         
+</script>
+
+</head>
+
+<body ontouchstart style="background-color: #f8f8f8;">
+   <div class="help_list online-call">
+        <h2><em>酒店入驻申请</em></h2>
+        
+    </div>
+	<form id="form">
+    <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">酒店名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="hotelname" class="weui_input" type="text" placeholder="请输入酒店名称"/>
+                </div>
+            </div>
+			
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">酒店星级</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" id="hoteltype">
+                        <option value="0">暂无星级（经济型）</option>
+                        <option value="3">三星级酒店</option>
+                        <option value="4">四星级酒店</option>
+                        <option value="5">五星级酒店</option>
+                    </select>
+             
+                </div>
+            </div>   
+            
+   
+ 
+		    <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">酒店地区</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="hoteladdress" class="weui_input" type="text" value="" placeholder="酒店所在省市县"/>
+                    
+                </div>
+              
+            </div>  
+
+              <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">具体地址</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="hoteldetailed" class="weui_input" type="text" placeholder="请输入具体地址"/>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">联系姓名</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="hotellinkman" class="weui_input" type="text" placeholder="联系人姓名"/>
+                </div>
+            </div>  
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">酒店电话</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="hoteltel" class="weui_input" type="number" placeholder="酒店电话"/>
+                </div>
+            </div>           
+            
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">成立日期</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="hoteldate" class="weui_input" type="date" value="" placeholder="酒店成立日期"/>
+                </div>
+            </div>
+            
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <div class="weui_uploader">
+                        <div class="weui_uploader_hd weui_cell">
+                            <div class="weui_cell_bd weui_cell_primary">上传营业执照与负责人身份证正反面图片</div>
+                            <div class="weui_cell_ft">仅限3张</div>
+                        </div>
+                        <div class="weui_uploader_bd">
+                            <ul class="weui_uploader_files" id='img2'> 
+                            </ul>
+                            <div class="weui_uploader_input_wrp" id="file2">
+
+                                <input class="weui_uploader_input" type="file" accept="image/jpg,image/jpeg,image/png,image/gif"  id='headimgurl2' onchange="previewImage1(this)" multiple />
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="weui_cell">
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <div class="weui_uploader">
+                                <div class="weui_uploader_hd weui_cell">
+                                    <div class="weui_cell_bd weui_cell_primary">上传酒店图片</div>
+                                    <div class="weui_cell_ft">仅限10张</div>
+                                </div>
+                                <div class="weui_uploader_bd">
+                                    <ul class="weui_uploader_files" id='img3'> 
+                                    </ul>
+                                    <div class="weui_uploader_input_wrp" id="file2">
+
+                                        <input class="weui_uploader_input" type="file" accept="image/jpg,image/jpeg,image/png,image/gif"  id='headimgurl3' onchange="previewImage3(this)" multiple />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">酒店设施:</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="" id='d3' placeholder="选择酒店设施"/>
+                    
+                </div>
+              
+            </div> 
+
+            </div>
+     <script>
+  $(function(){
+      $("#d3").select({
+        title: "酒店设施（多选）",
+        multi: true,
+        split:',',
+        closeText:'完成',
+        items: [
+          {
+            title: "免费停车",
+            value: '免费停车'
+          },
+          {
+            title: "免费wifi",
+            value: '免费wifi'
+          },
+          {
+            title: "餐厅",
+            value: '餐厅'
+          },
+          {
+            title: "健身房",
+            value: '健身房'
+          },
+          {
+            title: "游泳池",
+            value: '游泳池'
+          },
+          {
+            title: "免费接机服务",
+            value: '免费接机服务'
+          },
+          {
+            title: "会议室",
+            value: '会议室'
+          },
+          {
+            title: "免费行李寄存",
+            value: '免费行李寄存'
+          },
+        ],
+       
+      });
+	  });    
+      
+      </script>
+
+<script>
+             
+  
+  var img_arr = new Array();
+  function previewImage1(file) {
+    var files = document.querySelector("#headimgurl2").files;
+     var _tLength = files.length + $('#img2>li').length;
+    if(_tLength <= 3){
+         if (window.File && window.FileList){
+         for(var i = 0; i < files.length; i++) {
+         lrz(files[i],{quality:0.5},function(rst){
+         img_arr.push(rst.base64);
+        //$('#img2').append('<li class="weui_uploader_file" style="background-image:url(' + rst.base64 + ')"></li>');
+         $('#img2').append('<li onclick="var delimg=$(this);$.confirm(\'您确定要删除吗?\', \'确认删除?\', function() {delimg.remove();},function(){$.toast(\'取消操作\', \'cancel\');});" class="weui_uploader_file weui_uploader_status" style="background-image:url('+rst.base64+')"><div class="weui_uploader_status_content"><i class="weui_icon_cancel"></i></div></li>');         
+        });
+      }
+    }  
+    }else{
+        alert('只需上传营业执照，身份证正面，身份证反面三张图片');
+    }
+   
+  }
+    var img_arr3 = new Array();
+    function previewImage3(file) {
+         var files = document.querySelector("#headimgurl3").files;
+         var _tLength = files.length + $('#img3>li').length;
+        if(_tLength <= 10){
+            if (window.File && window.FileList){
+            for(var i = 0; i < files.length; i++) {
+                lrz(files[i],{quality:0.5},function(rst){
+                img_arr3.push(rst.base64);
+                //$('#img2').append('<li class="weui_uploader_file" style="background-image:url(' + rst.base64 + ')"></li>');
+                 $('#img3').append('<li onclick="var delimg=$(this);$.confirm(\'您确定要删除吗?\', \'确认删除?\', function() {delimg.remove();},function(){$.toast(\'取消操作\', \'cancel\');});" class="weui_uploader_file weui_uploader_status" style="background-image:url('+rst.base64+')"><div class="weui_uploader_status_content"><i class="weui_icon_cancel"></i></div></li>');         
+                    });
+                }
+            }  
+        }else{
+            alert("只能上传10张图片！");
+        }
+       
+    }   
+
+</script> 
+
+    
+ 
+<script>
+$(function(){
+  var max = $('#count_max').text();
+  $('#textarea').on('input', function(){
+     var text = $(this).val();
+     var len = text.length;   
+     $('#count').text(len);    
+     if(len > max){
+       $(this).closest('.weui_cell').addClass('weui_cell_warn');
+     }
+     else{
+       $(this).closest('.weui_cell').removeClass('weui_cell_warn');
+     }     
+  });
+})
+</script>       
+    <div class="weui_cells_title">验证真实性</div> 
+    <div class="weui_cells weui_cells_form">
+	
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">手机号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input id="tel" class="weui_input" type="tel" required pattern="[0-9]{11}" maxlength="11" placeholder="输入你现在的手机号" value="{$res['tel']}" emptyTips="请输入手机号" notMatchTips="请输入正确的手机号">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+            </div>
+        </div>
+        <div class="weui_cell weui_vcode">
+            <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input id="code" class="weui_input" type="tel" required 
+                       placeholder="请输入验证码" tips="请输入验证码">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+                <a  href="javascript:;" onclick="on(this)"  class="weui-vcode-btn"><font color="#49f">获取验证码</font></a>
+            </div>
+        </div>
+    </div>
+
+       <div class="weui_cells_title">其他补充</div>     
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <textarea id="other" id="textarea" class="weui_textarea" placeholder="如您有其他补充，请在这里输入" rows="3"></textarea>
+                    <div class="weui_textarea_counter"><span id='count'>备注</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui_cells weui_cells_form">
+        
+            
+<!--             <div class="weui_cell weui_cell_switch">
+                <div class="weui_cell_hd weui_cell_primary">是否保证信息真实有效</div>
+                <div class="weui_cell_ft">
+                    <input id="state" value="" class="weui_switch" type="checkbox"/>
+                </div>
+            </div> -->
+            
+        </div>
+    
+    </div>
+
+        <div class="weui_btn_area">
+            <a  class="weui_btn weui_btn_primary" href="javascript:" id="formSubmitBtn" style="background-color:#49f">提交入驻审核</a>
+        </div>  
+		<div class="weui_btn_area">
+		     <a  id="reset" href="javascript:" class="weui_btn weui_btn_plain_default" onclick="document.getElementById('form').reset();">重置</a>
+        </div>
+</form>
+<span id="luji" Settledadd="{$Settledadd}" hotelapply="{$hotelapply}"></span>
+<span id="route" usepreg="{$Usepreg}"></span>
+<script>
+function on(obj) {
+  var tel = $('#tel').val();
+  nickname = $('#tel').attr('nickname');
+  if(tel == '') {
+    $.toptips("请填写您的手机号");
+  }
+  // 准备正则
+  var preg = /^1[34678]\d{9}$/;
+  var result = preg.test(tel);//验证
+  if(result){
+       $.showLoading();
+      var usepreg = $('#route').attr('usepreg');
+      $.post(usepreg,{'tel':tel,'nickname':nickname},function(data){
+          // alert(data);
+          $.hideLoading();
+      },'json');
+      //必须在后面
+      var i = 60
+      $(obj).attr('onclick','');
+      $(obj).attr('id','');
+      var timer = setInterval(function(){
+      if(i < 1 ){
+        //将定时器清除
+        clearInterval(timer);
+        $(obj).html('重新发送');
+        $(obj).attr('onclick','on(this)');
+        $(obj).attr('id','show-toast-3');
+        $(obj).css({'color':''});
+      }else{
+        $(obj).html(i+'s后重发');
+        $(obj).css({'color':'#A4B4BB;'});
+      }
+      i--;
+    },1000);
+  }
+} 
+
+
+
+
+var $form = $("#form");
+
+$form.form();
+$("#formSubmitBtn").on("click", function(){
+    var SettledAdd = $('#luji').attr('SettledAdd');//路径
+    var hotelname = $('#hotelname').val();//酒店名
+    var hoteltype = $('#hoteltype').val();//星级
+    var hoteladdress = $('#hoteladdress').val();//地区
+    var hoteldetailed = $('#hoteldetailed').val();//具体地址
+    var hotellinkman = $('#hotellinkman').val();//联系人
+    var hoteltel = $('#hoteltel').val();//酒店电话
+    var hoteldate = $('#hoteldate').val();//成立日期
+    var license = img_arr;//图片
+    var hotelphotoDuo = img_arr3;//酒店图片
+    var tel = $('#tel').val();//手机
+    var code = $('#code').val();//验证码
+    var other = $('#other').val();//其他补充
+    var state = 0; //$('#state').val();//是否保证
+    var facilities = $('#d3').val();//酒店设施
+    $form.validate(function(error){
+        if(error){
+
+        }else{
+            var ok = true;
+            if(hotelname == ''){
+                ok=false; var toast = "请填写酒店名";
+            }else if(hoteltype == ''){
+                ok=false; var toast = "请填写酒店星级";
+            }else if(hoteladdress == ''){
+                ok=false; var toast = "请填写酒店地区";
+            }else if(hoteldetailed == ''){
+                ok=false; var toast = "请填写具体地址";
+            }else if(hotellinkman == ''){
+                ok=false; var toast = "请填写联系人";
+            }else if(hoteltel == ''){
+                ok=false; var toast = "请填写酒店电话";
+            }else if(hoteldate == ''){
+                ok=false; var toast = "请填写成立日期";
+            }else if(hotelname == ''){
+                ok=false; var toast = "请填写您的手机";
+            }
+
+            // else if(hotelname == ''){
+            //     ok=false;$.toast("请上传1张以上图片！");
+            // }
+
+            if (ok) {
+                $.showLoading();
+                var Settledadd = $('#luji').attr('Settledadd')
+                var hotelapply = $('#luji').attr('hotelapply');
+               $.post(Settledadd,{'hotelname':hotelname,'hoteltype':hoteltype,'hoteladdress':hoteladdress,'hoteldetailed':hoteldetailed,'hotellinkman':hotellinkman,'hoteltel':hoteltel,'hoteldate':hoteldate,'license':license,'hotelphotoDuo':hotelphotoDuo,'tel':tel,'other':other,'state':state,'facilities':facilities,'code':code},function(data){
+                    $.hideLoading();
+                    switch(data){
+                        case 'a' :
+                            $.toptips("验证码错误");
+                            break;
+                        case 'b' :
+                            $.toptips("验证失效,请重新验证");
+                            break;
+                        case 'on' :
+                            $.toast("入驻失败,请联系客服","cancel");
+                            break;
+                        case 'ok' :
+                            window.location.href = hotelapply;
+                            break;
+                    }
+                    
+                },'json');
+            }else{
+                $.toptips(toast);
+            }
+
+        }
+    });
+});
+</script>
+<br />
+
+</body>
+</html>
+

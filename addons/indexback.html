@@ -1,0 +1,503 @@
+{if $setting['set_site_switch']  ==  null}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网站维护中</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+  <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+</head>
+<body ontouchstart="" style="background-color: #f8f8f8;overflow: hidden;height: 600px;">
+<div class="weui_icon_area" style="    padding-top: 36px;
+    text-align: center;margin-bottom: 30px;"><i class="weui_icon_msg weui_icon_warn"></i></div>
+        <div class="weui_text_area" style="    margin-bottom: 25px;
+    padding: 0 20px;">
+            <center><h2 class="weui_msg_title" style="    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 20px;">网站正在维护...</h2><br />
+            <p class="weui_msg_desc" style="font-size: 14px;
+    color: #888;
+}">维护原因:  <br />{$setting['set_close_reason']}</p></center>
+        </div>
+        <div class="weui_opr_area">
+            <p class="weui_btn_area">
+                <a href="tel:{$setting['set_fuwutel']}" class="weui_btn weui_btn_primary">联系客服</a>
+               
+            </p>
+        </div>
+        <div class="weui_extra_area">
+    </div>
+<br /><br />
+ <div class="weui-footer">
+          
+            <p class="weui-footer-text">Copyright &copy; 2008-2017 {$_W['uniaccount']['name']}版权所有</p>
+        </div>
+
+</body>
+</html>
+{else}
+<!DOCTYPE html>
+<html class="android" style>
+<head>
+	<title>{if $setting['set_title'] == null}首页{else}{$setting['set_title']}{/if}</title>
+	<meta name="full-screen" content="yes" />
+	<meta name="browsermode" content="application" />
+	<meta name="x5-orientation" content="portrait" />
+	<meta name="x5-fullscreen" content="true" />
+	<meta name="x5-page-mode" content="app" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/homepage.css" />
+	<link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/indexnav.css" />
+	<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/touch.js"></script>
+	<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/pinying.js"></script>
+	  <script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=UmqySBHafe1uyxhWrZPXQAblBCdBSQWi&v=1.0"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>  
+<script>
+		$(function(){
+			$('#slide1').swipeSlide({
+		autoSwipe:true,//自动切换默认是
+		speed:3000,//速度默认4000
+		index:0,
+		continuousScroll:true,//默认否
+		transitionType:'cubic-bezier(0.22, 0.69, 0.72, 0.88)',//过渡动画linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier
+		lazyLoad:true,//懒加载默认否
+		firstCallback : function(i,sum,me){
+			me.find('.dot').children().first().addClass('cur');
+		},
+		callback : function(i,sum,me){
+			me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+		}
+	});  
+		});    
+	</script>
+</head>
+<body style="height: 200px;">
+<section class="banner swiper-container" id="bannerHeight"><ul class="swiper-wrapper">
+{loop $adv $row} 
+<li  class="swiper-slide"><a href="{$row['link']}" params="sy-3281477-1"><img src="{$_W['siteroot']}attachment/{$row['thumb']}" class="img" height="160"/></a></li> {/loop}</ul>
+</section>
+	<!-- <div class="bgback" style=""></div> -->
+	<div class="pages">
+		<div class="page">
+			<!-- 首页 -->
+			<div class="page-content page-search">
+				<span class="logo"></span>
+				<div class="container">
+					
+				</div>
+
+				<div class="search-wrap">
+					<div class="search-lb">
+						<ul class="search-list">
+							<li class="addr">
+								<i class="addr"></i>
+								<p class="cityname tjclick" city-id=""  data-tj='{"cspot":"city","if":"110000","ch":"h5city"}'></p>
+								<!-- right: 9px -->
+								<i class="icon-left" style=""></i>
+								<b class="right isnearby tjclick" onclick="geoFindMe()" data-tj='{"cspot":"mylocation","if":"110013","ch":"mylocation"}'><i class="icon-nearby"></i><span>附近</span></b>
+							</li>
+							<li class="date">
+								<i class="icon-time"></i>
+								<div class="d1 tjclick" data-tj='{"cspot":"checkindate","if":"110000","ch":"h5hotelgeneral"}'><p class="type">入住<span class="night">深夜</span></p><p><span class="indate" data-value=""></span><span class="startweek"></span></p></div>
+								<div class="d2"></div>
+								<div class="d3 tjclick" data-tj='{"cspot":"checkoutdate","if":"110000","ch":"h5hotelgeneral"}'><p class="type">离店</p><p><span class="outdate" data-value=""></span><span class="endweek"></span></p></div>
+								<div class="d4 total"></div>
+								<i class="icon-left"></i>
+							</li>
+							<li class="name"><!--输入内容添加on-->
+								<div class="sea-box">
+									<i class="name"></i>
+									<input  type="input" value="" placeholder="酒店名称/位置不限" readonly="readonly">
+									<i class="icon-left"></i>
+								</div>
+								<span class="close"><i class="icon-cross"></i></span>
+							</li>
+							<li class="pri">
+								<div class="price-star-btn tjclick"  data-tj='{"cspot":"priceandstar","if":"110000","ch":"h5hotelgeneral"}'>
+									<i class="pri"></i>
+									<input class="title-phone" type="input" value="" placeholder="价格星级不限" readonly="readonly">
+									<i class="icon-left"></i>
+								</div>
+								<span class="close"><i class="icon-cross"></i></span></li>
+							</ul>
+							<div class="search-btn tjclick" data-tj='{"cspot":"search","if":"110018","ch":"h5hotelgeneral"}' style="    font-size: 18px;">搜索酒店</div>
+						</div>
+					</div>
+					
+					
+					<div class="index-box">
+						
+						<ul class="clearfix quicksearchlist">
+							{loop $nav $item}
+							<li><a href="{$item['link']}"><img src="{$_W['siteroot']}attachment/{$item['thumb']}" width="40" height="40"><p>{$item['name']}</p></a></li>
+                            {/loop}
+
+												</ul>
+					</div>
+<br />
+</div>
+<section class="module rush_buy clearfix">
+<div class="rush_title">
+<h3>20点场</h3>
+<div class="gm_timer" data-seconds-left="8747" data-type="under3"></div>
+<a class="sale_tips" href="/rushbuy.html?from=1&intcmp=sy-3281480-t"><span>好货秒抢</span><i data-icon="&#x00A3"></i></a>
+</div>
+<div class="rush_buy_slider">
+<div class="rush_goods swiper-container">
+<ul class="swiper-wrapper"><li class="swiper-slide">
+<a href="/rushbuy.html?itemid=Q8800393327&from=1&intcmp=sy-3281480-1" params="sy-3281480-1">
+<div class="goods_info">
+<div class="picture">
+<img src="//app.gomein.net.cn/plus/images/index/11.png" data-lazyload="//gfs1.gomein.net.cn/T1DkDTB7DT1RCvBVdK_160.jpg">
+<span class="corner">推荐</span>
+</div>
+<div class="price clearfix">
+<span>￥4588</span>
+<!--<span class="discount">推荐</span>-->
+</div>
+<p class="inventory">仅剩:935件</p>
+</div>
+</a>
+</li><li class="redirect" data-pageurl="/rushbuy.html?from=1">
+<div class="more box center">
+<span class="arrow_icon" data-icon=">"></span>
+<span class="desc">左滑更多</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+				
+				<!--div class="seck_timer" id="CountMsg">
+							<div class="seck_time hour">
+								<span id="t_d1">00</span>
+                               </div>
+							<span class="time-space">:</span>
+							<div class="seck_time minute">
+							 <span id="t_h1">00</span>
+							</div>
+							<span class="time-space">:</span>
+							<div class="seck_time second">
+							  <span id="t_m1">00</span>
+							</div>
+							<span class="time-space">:</span>
+							<div class="seck_time second">
+							      <span id="t_s1">00</span>
+							</div>
+						</div-->
+<div class="weui-footer">          
+    <p class="weui-footer-text">Copyright © 2008-2017 {$_W['uniaccount']['name']}版权所有</p>
+	
+</div>
+<style>
+.module rush_buy clearfix{font-size: 62.5%}
+.img{display:block;width:100%}
+/****原有的base文件*****/
+</style>
+
+<link rel="stylesheet" href="//css.gomein.net.cn/plus/style/??gomeUI/swipe/css/swipe.4ddc79496d.css,gomeUI/UI/button/css/button.92abe8afd7.css,gomeUI/UI/size_pic/css/size_pic.5601244657.css,gomeUI/UI/floor_pic/css/floor_pic.ca3bb28b79.css,index/css/new_index.a193d31b1e.css,shop_search_list/css/search_yh.07478c0991.css">
+
+</head>
+<!--抢购-->
+<script type="text/javascript">
+var app_cdn_ip = "//app.gomein.net.cn/plus/images";
+var cookie_domain = 'm.gome.com.cn';
+var so = {pageName:"主页", channel:"主页", prop1:"主页", prop2:"主页", prop3:"主页", prop4:"主页"};
+</script>
+
+<script type='text/javascript'>
+if(typeof __require__ == 'undefined'){
+    var __require__ = {
+        requireArray:[],
+        config: function(param){
+            this.requireArray.push(param)
+        }
+    }
+}
+__require__.config({
+    baseUrl: '//js.gomein.net.cn/plus/js',
+    deps: {"gomeUI/core/js/zepto.min.js":"6dd045ec94","gomeUI/swipe/js/zepto.swipe.js":"4cefc39f26","gomeUI/timer/js/zepto.timer.js":"c203883b65","gomeUI/extend/zepto.lazyload.js":"ecadebfa71","gomeUI/extend/zepto.cookie.js":"b5597d0e87","gomeUI/msgbox/js/zepto.msgbox.js":"ef1fbe46e0","gomeUI/extend/zepto.location.js":"e0808cd257","gomeUI/load_more/js/zepto.loadmore.js":"7a4b9a98dc","gomeUI/extend/zepto.lazyload.adapter.js":"e00178071b","gomeUI/go_top/js/zepto.gotop.js":"bfd6c706bb","gomeUI/app_start/js/zepto.appstart.js":"edade2a717","index/new_index.js":"bd407edc2a"},
+})</script>
+<script src="//js.meixincdn.com/gas/js/gaxflightpage.min.js"></script>
+<script type="text/javascript" src="//js.gomein.net.cn/plus/js/public/lsrequire.js?t=2017041202"></script>
+
+
+<script type="text/javascript">
+    function getRTime(){
+        var EndTime= new Date('2017/05/1 10:00:00'); //截止时间 前端路上 http://www.51xuediannao.com/qd63/
+        var NowTime = new Date();
+        var t =EndTime.getTime() - NowTime.getTime();
+        /*var d=Math.floor(t/1000/60/60/24);
+        t-=d*(1000*60*60*24);
+        var h=Math.floor(t/1000/60/60);
+        t-=h*60*60*1000;
+        var m=Math.floor(t/1000/60);
+        t-=m*60*1000;
+        var s=Math.floor(t/1000);*/
+
+        var d=Math.floor(t/1000/60/60/24);
+        var h=Math.floor(t/1000/60/60%24);
+        var m=Math.floor(t/1000/60%60);
+        var s=Math.floor(t/1000%60);
+
+        document.getElementById("t_d1").innerHTML = d + "天";
+        document.getElementById("t_h1").innerHTML = h + "时";
+        document.getElementById("t_m1").innerHTML = m + "分";
+        document.getElementById("t_s1").innerHTML = s + "秒";
+    }
+    setInterval(getRTime,1000);
+    </script>
+<br />
+<style>
+.weui-footer {
+    color: #999999;
+    font-size: 14px;
+    text-align: center;
+}
+.weui-footer-text {
+    font-size: 12px;
+    padding: 0 0.34em;
+}
+</style>
+<!--分类导航开始-->
+	<div class="nav_bottom">
+		<ul class="nav_list">
+		
+			<li>
+				<a href="{$User}">会员中心</a>
+			</li>
+			<li>
+				<a href="{$Order}">订单中心</a>
+			</li>
+			<li>
+				<a href="javascript:;" id="tel">联系{$_W['uniaccount']['name']}</a>
+			</li>
+			
+		</ul>
+	 	<a class="order_nav_trigger" id="order_nav"  style="border-radius:100%">
+			Menu<span></span>
+		</a> 
+	</div>
+	<!--分类导航结束-->
+					<script>   
+						$(document).on("click", "#tel", function() {
+							$.actions({
+								title: "拨打电话 {$setting['set_fuwutel']}",
+								onClose: function() {
+								},
+								actions: [
+								{
+									text: "{$_W['uniaccount']['name']}",
+									className: "color-primary",
+									onClick: function() {
+										{
+											window.location.href = "tel:{$setting['set_fuwutel']}";
+										}
+									}
+								},
+								{if $setting['set_meiqia'] == null}{else}{
+									text: "在线客服",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{$setting['set_meiqia']}";
+										}
+									}
+								},{/if}
+								{
+									text: "意见反馈",
+									className: "color-warning",
+									onClick: function() {
+										{
+											window.location.href = "{php echo $this->createMobileUrl('feedback')}";
+										}
+									}
+								},
+								
+								]
+							});
+						});    
+					</script>
+				</div>
+                <!-- 选择城市 -->
+				<div class="advance-city plugin-inited page-plugin page-on-right" style="position: absolute;"><header class="bar bar-nav flight-order-head"><a id="city" class="icon pull-left icon-back"></a><div class="search-input1"><i class="icon-search"></i><input type="input" value="" placeholder="请输入城市名、行政区或景区"></div></header><div class="page-content page-select"><div class="current-city"><div class="page-title"></div><div class="get-city"><i class="icon-position"></i>点击获取当前城市</div></div><div class="search-history" style="display: none;"><div class="page-title">搜索历史</div><div class="city-list"><ul></ul></div></div><div class="hot-city"><div class="page-title">热门城市</div><div class="city-list"><ul><li city-id="0101" area-type="" area-id="" sug-origin="" class="on"><span>北京</span></li><li city-id="0201" area-type="" area-id="" sug-origin="" class=""><span>上海</span></li><li city-id="2001" area-type="" area-id="" sug-origin="" class=""><span>广州</span></li><li city-id="1201" area-type="" area-id="" sug-origin="" class=""><span>杭州</span></li><li city-id="2003" area-type="" area-id="" sug-origin="" class=""><span>深圳</span></li><li city-id="1801" area-type="" area-id="" sug-origin="" class=""><span>武汉</span></li><li city-id="2301" area-type="" area-id="" sug-origin="" class=""><span>成都</span></li><li city-id="2701" area-type="" area-id="" sug-origin="" class=""><span>西安</span></li><li city-id="1101" area-type="" area-id="" sug-origin="" class=""><span>南京</span></li><li city-id="0401" area-type="" area-id="" sug-origin="" class=""><span>重庆</span></li><li city-id="1901" area-type="" area-id="" sug-origin="" class=""><span>长沙</span></li><li city-id="1401" area-type="" area-id="" sug-origin="" class=""><span>厦门</span></li><li city-id="0301" area-type="" area-id="" sug-origin="" class=""><span>天津</span></li><li city-id="3201" area-type="" area-id="" sug-origin="" class=""><span>香港</span></li><li city-id="1001" area-type="" area-id="" sug-origin="" class=""><span>哈尔滨</span></li><li city-id="1701" area-type="" area-id="" sug-origin="" class=""><span>郑州</span></li><li city-id="1102" area-type="" area-id="" sug-origin="" class=""><span>苏州</span></li><li city-id="1301" area-type="" area-id="" sug-origin="" class=""><span>合肥</span></li><li city-id="1602" area-type="" area-id="" sug-origin="" class=""><span>济南</span></li><li city-id="2201" area-type="" area-id="" sug-origin="" class=""><span>三亚</span></li></ul></div></div><div class="all-city"><div class="page-title">全部城市</div><div class="letter-list"><ul><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li><li class="mr0">F</li><li>G</li><li>H</li><li>J</li><li>K</li><li>L</li><li class="mr0">M</li><li>N</li><li>P</li><li>Q</li><li>R</li><li>S</li><li class="mr0">T</li><li>W</li><li>X</li><li>Y</li><li>Z</li></ul></div><div class="city-list"><ul class="city-list-ul"></ul></div></div></div><div class="page-content page-search" style="display: none;"><ul></ul></div><div class="inner-mask"></div></div>
+			</div>
+
+			<!-- 选择日期 -->
+			<div class="cld page-plugin plugin-inited"><header class="bar bar-nav"><h1 class="title">选择日期</h1><a id="chooseDate" class="icon icon-back pull-left hide-cln"></a><a class="cld-title-year pull-right icon"></a></header><div class="page-content"></div><ul class="cld-title bar"><li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li></ul></div>
+
+			<div class="mask-layer" style="display: none;"></div>
+		</div>
+	</div>
+
+	<!-- 附近酒店 -->
+	<div class="list-pop-city list-pop-search plugin-inited page-plugin page-on-right" splugin-show page-on-centertyle="position: absolute;"><header class="bar bar-nav flight-order-head"><a id="nearHotel" class="icon pull-left icon-back"></a><div class="search-input1"><i></i><input id="souInput" type="input" value="" placeholder="输入酒店名"></div><div onclick="sou()"  style="font-size: 0.938rem;color:#49f;position: absolute;right:8px;top:7px;padding:8px;">搜索</div></header><div class="page-select page-content">
+	<div class="current-city"><div class="page-title"></div><!--div class="get-city" onclick="geoFindMe()" data-tj='{"cspot":"mylocation","if":"110013","ch":"mylocation"}'><i class="icon-nearby"></i>查看我附近的酒店<b></b></div--></div> <div class="search-history" style="display: none;"><div class="page-title">搜索历史<span class="sea-clear">清除历史</span></div><div class="keyword-list"><ul></ul></div></div><div class="keyword-group"><div class="page-title">所有酒店</div><div class="keyword-list">
+	<ul id="sou_name1">
+		{loop $hotel_data $row}
+		<li   iskeyword="" name-cn="{$row['hotelname']}" type-id="5" ><span>{$row['hotelname']}</span></li>
+		{/loop}
+		
+		<!-- <li class="icon-bottom"></li>
+		<li class="icon-top hide"></li> -->
+	</ul>
+</div>
+<div class="list-noresult" style="display: none;text-align: center;">
+				<i class="icon-noresult"></i>
+				<p>暂无酒店</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 按星级价格选择 -->
+<div class="filter-sp plugin-inited page-transitioning" style=""><span class="arrow"></span><div class="sp-content"><div class="star"><div class="sp-tit">星级（可多选）</div><ul class="star-list"><li sn="-1" class="on">不限</li><li sn="12" class="">经济/客栈</li><li sn="3" class="">三星/舒适</li><li sn="4" class="">四星/高档</li><li sn="5" class="">五星/豪华</li></ul></div><div class="price"><div class="sp-tit">价格（仅单选）</div><ul class="price-list"><li class="on" price-value="0">不限</li><li price-value="0-150" class="">0-150</li><li price-value="150-300" class="">150-300</li><li price-value="300-450" class="">300-450</li><li price-value="450-700" class="">450-700</li><li price-value="700" class="">700以上</li></ul></div></div><!--s--><div class="bot-btn bar"><ul><li id="filter-reset">重置</li><li class="on" id="starprice-submit">确定</li></ul></div><!--e--></div>
+<span id="lujin" indexsou="{$Indexsou}" hotel="{$Hotel}" Hotellist="{$Hotellist}"></span>
+
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/GeoUtils.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/hotelTools.js"></script>
+<script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/hotelBase.js"></script>
+
+<!-- 幻灯片 -->
+<script type="text/javascript">
+	function sou(obj) {
+		var indexsou = $('#lujin').attr('indexsou');
+		var souInput = $('#souInput').val();
+		if (souInput != '') {
+			$.get(indexsou,{'souInput':souInput},function(data){
+				console.log(data);
+				$('#sou_name1').html(data);
+			$(".keyword-list>ul>li>span").bind("click", function(){
+			$(".sea-box>input").attr("value",$(this).text());
+			//调用重置按钮样式方法2
+			selectedBtn(".keyword-list>ul>li");
+			$(this).parent().addClass("on");
+			$(".sea-box").parent().addClass("on");
+			closeCityAndNearAnimat(".list-pop-city");
+		})
+			//没有酒店的时候提示
+		if($("#sou_name1>li").length <= 0){
+			$(".list-noresult").attr("style", "display: block;text-align: center;");
+			$(".list-noresult>p").text("抱歉，这个酒店没入驻");
+		}else{
+			$(".list-noresult").attr("style", "display: none;text-align: center;");
+		}
+			},'json');
+		// 	var _ul = $("#sou_name");
+		// 	var _li = "";
+		// 	var _names = $("#sou_name>li>span");
+		// 	_ul.empty();
+		// 	$.each(_names, function(index, item){
+		// 		var _name = $(item).text();
+		// 		console.log(_name.indexOf(souInput));
+		// 		if(_name.indexOf(souInput) != -1){
+		// 			_li = $("<li iskeyword='' name-cn='" + _name + "' type-id='5'><span>" + _name + "</span></li>");
+		// 			_ul.append(_li);
+		// 			console.log(_name);
+		// 		}
+
+		// 	})
+			$(".keyword-list>ul>li>span").bind("click", function(){
+			$(".sea-box>input").attr("value",$(this).text());
+			//调用重置按钮样式方法2
+			selectedBtn(".keyword-list>ul>li");
+			$(this).parent().addClass("on");
+			$(".sea-box").parent().addClass("on");
+			closeCityAndNearAnimat(".list-pop-city");
+		})
+
+
+		}else{
+			// location.reload();
+		}
+	}
+
+	function geoFindMe() {
+  //var output = document.getElementById("out");
+  if (!navigator.geolocation){
+    // output.innerHTML = "<p>您的浏览器不支持地理位置</p>";
+    alert("1");
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    //alert('latitude: ' + latitude + '   longitude: ' + longitude);
+    //alert('longitude: ' + longitude);
+   // getCityName(longitude, latitude);
+   	var point = new BMap.Point(latitude,longitude);
+   	alert(BMapLib.GeoUtils);
+   	var mPoint = new BMap.Point(latitude,longitude);
+
+   	var circle = new BMap.Circle(mPoint,1000);
+
+   	if(BMapLib.GeoUtils.isPointInCircle(point,circle)){
+    	alert("该point在circle内");
+	}
+  };
+
+  function error() {
+    // output.innerHTML = "无法获取您的位置";
+    alert("无法获取您的位置");
+  };
+
+ 
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+
+function getCityName(longitude, latitude){
+       var map = new BMap.Map("allmap");
+        var point = new BMap.Point(longitude, latitude);
+        var gc = new BMap.Geocoder();
+        gc.getLocation(point, function(rs){
+         var addComp = rs.addressComponents;
+         alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+     });
+}
+</script>
+
+<script type="text/javascript">
+$(function(){
+	
+	//栏目显示隐藏
+	$('.mc_title').on('click',function(){
+		var fontIcon = $(this).children('.title_icon').children('i').attr('class');/*获取图标i的class*/
+		var icon = $(this).children('.title_icon').children('i');/*获取图标i标签*/
+		//上下箭头切换
+		if(fontIcon=='iconfont icon-xiangshang'){
+			icon.attr('class','iconfont icon-xiangxia');
+		}else if(fontIcon=='iconfont icon-xiangxia'){
+			icon.attr('class','iconfont icon-xiangshang');
+		};
+		//内容切换
+		$(this).next('div.mc_list').toggle(500);
+	});
+	
+	//右导航显示隐藏
+	$('#order_nav').on('click',function(){
+		var obj = $(this);
+		if( obj.hasClass('menu_open')){
+			obj.removeClass('menu_open');
+			$('.nav_list').removeClass('is-visible');
+		}else{
+			$('.nav_list').addClass('is-visible');
+			obj.addClass('menu_open');
+		}	
+	});
+	
+});
+</script>
+
+</body>
+</html>
+{/if}

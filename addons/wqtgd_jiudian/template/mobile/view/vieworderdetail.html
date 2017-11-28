@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>{$_POST['viewname']}景点订单详情</title>
+    <meta name="full-screen" content="yes" />
+    <meta name="browsermode" content="application" />
+    <meta name="x5-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta content="Washington Botelho" name="author">
+    <link rel="stylesheet" href="../addons/wqtgd_jiudian/template/mobile/css/mainV2.css" />
+    <link rel="stylesheet" href="/addons/wqtgd_jiudian/template/mobile/css/weui/weui.css"/>
+    <link rel="stylesheet" href="/addons/wqtgd_jiudian/template/mobile/css/weui/weui2.css"/>
+    <!-- <link rel="stylesheet" href="/addons/wqtgd_jiudian/template/mobile/css/weui/weui3.css"> -->
+    <link rel="stylesheet" type="text/css" href="../addons/wqtgd_jiudian/template/mobile/css/help.css" />
+    <link href="../addons/wqtgd_jiudian/template/css/plugins/sweetalert/sweetalert.css" rel="stylesheet"> 
+
+    <script src="../addons/wqtgd_jiudian/template/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+
+<style>
+    .number_container {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        line-height: 32px;
+        height: 32px;
+        right: 12px;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .number_input {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #333333;
+        height: 32px;
+        width: 32px;
+        border: #b2b2b2 1px solid;
+        border-radius: 0px;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0px;
+        text-align: center;
+    }
+    .minus-disable {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        height: 32px;
+        width: 32px;
+        font-size: 12px;
+        color: #dddddd;
+        border-top: #dddddd 1px solid;
+        border-bottom: #dddddd 1px solid;
+        border-left: #dddddd 1px solid;
+        border-right: transparent;
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+        text-align: center;
+    }
+    .minus-enable {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        height: 32px;
+        width: 32px;
+        font-size: 12px;
+        color: #b2b2b2;
+        border-top: #b2b2b2 1px solid;
+        border-bottom: #b2b2b2 1px solid;
+        border-left: #b2b2b2 1px solid;
+        border-right: transparent;
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+        text-align: center;
+    }
+    .plus-enable {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        height: 32px;
+        width: 32px;
+        font-size: 12px;
+        color: #b2b2b2;
+        border-top: #b2b2b2 1px solid;
+        border-bottom: #b2b2b2 1px solid;
+        border-left: transparent;
+        border-right: #b2b2b2 1px solid;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+        text-align: center;
+    }
+    .plus-disable {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        height: 32px;
+        width: 32px;
+        font-size: 12px;
+        color: #dddddd;
+        border-top: #dddddd 1px solid;
+        border-bottom: #dddddd 1px solid;
+        border-left: transparent;
+        border-right: #dddddd 1px solid;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+        text-align: center;
+    }
+</style>
+
+</head>
+<body>
+    <div class="pages">
+        <div class="page">
+            <!--  <header class="bar bar-nav flight-order-head">
+                 <a class="icon icon-left-nav pull-left icon-back" data-rel="back" href="#" style="display: block;color: #858585"></a>
+                 <h1 class="title">酒店订单详情</h1> 
+            </header>-->
+            <div class="page-content">
+                <div class="orderdetail" id="orderdetail" value="{$orderdetail}">
+                    <article class="orderdetail-content">
+                        <section class="orderdetail-fill">
+                            <!--订单号码状态-->
+                            <div class="detail  s_bdb">
+                                <div class="detail_num">
+                                    <div class="hotel_a" data-method="orderprogress">
+                                        <div class="hotel_text">
+                                            <p>订单号码: {$res['ordername']}</p>
+                                            <p>订单状态:
+                                                <span class="black">{$res['order_status']}</span>
+                                            </p>
+                                            {if $res['order_status'] == "驳回退款"}
+                                            <p>驳回理由:
+                                                <span class="black" style="color:red;">{$res['reject_reason']}</span>
+                                            </p>        
+                                            {/if}
+                                        </div>
+                                        <i class="hotel_more"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--订单酒店信息-->
+                            <div class="detail  s_bdb">
+                                <div class="detail_hotel">
+
+                                    <div class="hotel_a">
+                                        <div class="hotel_text">
+										 <a href="{$Roomlist}&hotelname={$res['hotelname']}">
+                                            <p>{$res['viewname']}【{$res['ticketname']}】</p>
+                                        </div>
+                                       <i class="hotel_more"></i></a>
+                                    </div>
+
+                                <div class="hotel_b  s_bdt">
+                                    <div class="hotel_tel">
+                                        <a href="tel:{$res['hoteltel']}"><span>用户手机：<em>{$usertel['tel']}</em></span><img src="../addons/wqtgd_jiudian/template/img/tel.png"/ style="width:22px;height:17px;margin-left:40px;margin-top:-5px;"></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--订单详细信息-->
+                        <div class="detail  s_bdb">
+                            <div class="detail_news">
+
+                                <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>游玩时间：<em>{$res['time']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+                                 <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>门票：<em>{$res['ticketname']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+                                <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>票价：<em>{$res['ticketprice']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+								 <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>购买数：<em>{$res['num']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+
+                                <div class="news_a">
+                                    <div class="hnews_text">
+                                        <?php $paymodearray = ['未支付','余额','支付宝','微信']; ?>
+                                        <p>支付方式：<em>{$paymodearray[$res['paymode']]}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+
+								 <div class="news_a">
+                                    <div class="hnews_text">
+                                        <p>联系电话：<em>{$res['usertel']}</em></p>
+                                    </div>
+                                    <i class="news_more"></i>
+                                </div>
+                            
+                                <div class="news_d  s_bdt">
+                                    <div class="news_content" style="width:80%">
+                                        <p>发票信息：
+                                            <span>
+                                                如需发票，请咨询前台工作人员。
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <i class="news_d_more" style="visibility:hidden"></i>
+                                </div>
+                                {if $res['order_status'] == '已付款'}
+                                <div class="news_d  s_bdt">
+                                    <div class="news_content" style="width:80%">
+                                        <p>景点核销二维码：
+                                            <span>
+                                                <div style="margin-top:20px"  id="code"></div>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <i class="news_d_more" style="visibility:hidden"></i>
+                                </div>
+                                {/if}
+                            </div>
+
+                        </div>
+                        <!--订单金额细信息-->
+                        <div class="detail  s_bdb">
+                            <div class="detail_date">
+
+                                <div class="hotel_a">
+                                    <div class="date_text">
+                                        <p>预订日期：<em><?php echo date('Y-m-d H:i:s',$res['createtime']);?></em></p>
+                                    </div>
+                                </div>
+
+                                <div class="hotel_b  s_bdt">
+                                    <div class="date_text">
+                                        <p>总金额：<span>￥{$res['totalprice']}</span>
+                                        &nbsp;
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <div class="sub">
+                      <ul> 
+                            {if $res['order_status'] == '未付款'}
+                                <li data-method="hideOrder" onclick="cancel('{$res['id']}')"><a>取消订单</a></li>
+                            {/if}
+                            {if $res['order_status'] == '已付款'}
+                                <li data-method="hideOrder" onclick="openRefund()"><a>申请退款</a></li>
+                            {/if}
+                            {if $res['order_status'] == '已使用' || $res['order_status'] == '已退款' }
+                                <li data-method="hideOrder" onclick="del('{$res['id']}')" ><a href="javascript:;">删除订单</a></li>
+                            {/if}
+                            {if $res['order_status'] == '申请退款'}
+                                <li data-method="hideOrder"><a>申请退款中...</a></li>
+                            {/if}
+                            {if $res['order_status'] == '驳回退款'}
+                                <li data-method="hideOrder" onclick="openRefund()"><a >再次申请退款</a></li>
+                            {/if}
+
+                      
+                      </ul>
+                  </div>
+
+
+              <div class="yl_phone">
+                <p><a href="tel:{$setting['set_fuwutel']}"><i></i>客服电话:{FUWUTEL}</a>  </p>
+            </div>
+        </article>
+    </div>
+</div>
+<nav class="bar record record-text"></nav>
+
+<input type="hidden" value="{$Evaluate}" order="{$Order}" id="hotel_url"  urll="{$Odac}" orderid="{$res['id']}" sta="{$res['order_status']}" >
+
+</div>
+</div>
+
+<div class="weui_msg_img" id="msg4" style="opacity: 1; display: none;">
+  <div class="weui_msg_com">
+  <div onclick="$('#msg4').fadeOut();" class="weui_msg_close" style="padding-top: 5px;z-index: 999;"><i class="icon icon-95"></i></div>
+      <div class="weui_msg_src">
+   <div class="weui_panel weui_panel_access">
+            <div class="weui_panel_hd">退票数量</div>
+            <div class="weui_panel_bd">
+                <div class="weui_media_box weui_media_text">
+                   <div class="number_container" style="padding-left: 19%;">
+                       <span class="minus-disable">-</span>
+                       <input type="number" min="1" max="10" class="number_input ej-tag-input" value="1" style="width: 50%;
+        height: 32px;margin-bottom: 0px;border-radius: 0px;">
+                       <span class="plus-enable">+</span>
+                   </div>
+                   
+                </div>
+              
+            </div>
+            <div>
+               <a href="javascript:;" class="weui_btn bg-blue" style="width: 200px;margin: 0 0 5px 0;margin-left: auto;
+    margin-right: auto;background-color: #18b4ed;">确定</a>
+             </div>
+        </div>       
+
+      
+      </div>
+  </div>
+
+ <!-- 二维码 -->
+ <script src="/addons/wqtgd_jiudian/template/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="/addons/wqtgd_jiudian/template/js/jquery.qrcode.min.js"></script>
+<span id="url" del="{$Vieworderdatadel}" vieworderlist="{$Vieworderlist}" cancel="{$Vieworderdatacancel}" url="{$_W['siteroot']}" uniacid="{$_W['uniacid']}" ordername="{$res['ordername']}" ></span>
+<script src="/addons/wqtgd_jiudian/template/mobile/css/weui/zepto.min1.js"></script>
+
+<!-- 选择退票数量 -->
+<script>
+
+    var ticketNum = parseInt($($('.hnews_text')[3]).find('em').text());
+    if(ticketNum == 1)
+         $('.plus-enable').addClass('plus-disable');
+ 
+    function openRefund(){
+
+        $('#msg4').fadeIn();
+
+    }
+
+
+//设置购买数量input框数据
+    $('.number_input').blur(function(){
+
+        var _value = parseInt($(this).val());
+
+        if($(this).val() == ''){
+
+            _value = 1;
+            $(this).attr('value', _value);
+            $(this).val(_value);
+            $(this).prev().addClass('minus-disable').removeClass('minus-enable');
+
+            return;
+
+        }
+
+        if ($(this).val().indexOf('.') != -1) {
+
+            _value = parseInt($(this).val());
+            $(this).attr('value', _value);
+            $(this).val(_value);
+
+        }
+
+        if(_value <= 0 || _value > ticketNum){
+
+            _value = 1;
+            $(this).attr('value', _value);
+            $(this).val(_value);
+            $(this).prev().addClass('minus-disable').removeClass('minus-enable');
+            if(ticketNum != 1)
+              $('.plus-enable').removeClass('plus-disable');
+
+        }else if(_value == ticketNum){
+
+             $(this).prev().removeClass('minus-disable').addClass('minus-enable');
+            $('.plus-enable').addClass('plus-disable');
+
+            $(this).attr('value', _value);
+
+        }else{
+
+            $(this).attr('value', _value);
+            $('.minus-enable').removeClass('minus-disable');
+
+        }
+
+    });
+
+    //增加购买数量
+    $('.plus-enable').bind('click', function(e){
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        var _value = parseInt($(this).prev().attr('value'));
+
+        if(_value < ticketNum){
+
+            _value++;
+
+            $(this).prev().attr('value', _value);
+            $(this).prev().val(_value);
+            $(this).prev().prev().addClass('minus-enable').removeClass('minus-disable');
+
+            if(_value == ticketNum){
+
+                $(this).addClass('plus-disable');
+
+            }
+
+        }
+
+    });
+
+    //减少购买数量
+    $('.number_input').prev().bind('click', function(e){
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        var _value = parseInt($(this).next().attr('value'));
+
+        if(_value > 1){
+
+            _value--;
+
+            $(this).next().attr('value', _value);
+            $(this).next().val(_value);
+            $('.plus-enable').removeClass('plus-disable');
+
+            if(_value == 1){
+
+                $(this).addClass('minus-disable').removeClass('minus-enable');
+
+            }
+
+        }
+
+    }); 
+
+    //确定按钮
+    $('.weui_btn:contains("确定")').bind('click', function(e){
+
+        e.stopPropagation();
+        e.preventDefault();
+
+       var _num = $('.number_input').val();
+       var _price = _num * $($('.hnews_text')[2]).find('em').text();
+
+       var _url = './index.php?i=14&c=entry&do=ordercancel&m=wqtgd_jiudian&ordername='+ $($('.hotel_text').children('p')[0]).text().substr(6) +'&view=view&number='+ _num +'&order_money=' + _price;
+
+       window.location.href = _url;
+
+    });           
+
+</script>
+
+<script type="text/javascript">
+
+    //取消订单
+    function cancel(id) {
+        $.confirm("您确定要取消订单吗?", "确认 删除?", function() {
+            var cancel = $('#url').attr('cancel');
+            $.ajax({
+                url: cancel,
+                type:'post',
+                // dataType:'json',
+                data:{'id':id},
+                success:function(result){
+
+                    var vieworderlist = $('#url').attr('vieworderlist');
+                    window.location.href = vieworderlist;
+   
+                },
+            });
+
+        }, function() {
+          //取消操作
+        });
+    }
+    //删除订单
+    function del(id) {
+        $.confirm("您确定要删除订单吗?", "确认删除?", function() {
+            var del = $('#url').attr('del');
+            $.ajax({
+                url: del,
+                type:'post',
+                // dataType:'json',
+                data:{'id':id},
+                success:function(result){
+
+                    var vieworderlist = $('#url').attr('vieworderlist');
+                    window.location.href = vieworderlist;
+
+                },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+     
+               }
+            });
+
+        }, function() {
+          //取消操作
+        });
+    }
+      
+
+
+    var url = $('#url').attr('url');
+    var uniacid = $('#url').attr('uniacid');
+    var ordername = $('#url').attr('ordername');
+    // 二维码
+    jQuery(function(){
+        var url_show = url + "app/index.php?&i="+ uniacid +"&c=entry&do=viewoff&m=wqtgd_jiudian" + "&ordername=" + ordername + "&url=" + url ;
+        jQuery('#code').qrcode({
+            'text' : url_show,
+            'width' : 150,
+            'height': 150,
+        });
+
+    }) 
+</script>
+</html>

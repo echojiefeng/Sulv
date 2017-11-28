@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title><?php echo $view['viewname'];?>景点评价</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="'" />
+<meta name="full-screen" content="yes" />
+<meta name="browsermode" content="application" />
+<link rel="icon shortcut bookmark" href="data:;base64,iVBORw0KGgo=">
+<link rel="apple-touch-icon" href="data:;base64,iVBORw0KGgo="/>
+<link rel="dns-prefetch" href="//m.elongstatic.com">
+<link rel="preconnect" href="//m.elongstatic.com">
+
+<meta name="x5-orientation" content="portrait" />
+<meta name="x5-fullscreen" content="true" />
+<meta name="x5-page-mode" content="app" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+
+   			<link rel="stylesheet" href="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/idangerous.swiper.css?2.1" />
+			<link rel="stylesheet" href="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/mainV2.css?2.1" />
+</head>
+<body>
+
+	<div class="pages">
+		<div class="page">
+			<header class="bar bar-nav flight-order-head">
+                <a class="icon icon-left-nav pull-left icon-back" data-rel="back" data-href="" href=""></a>
+                <a class="icon icon-phone pull-right" href="tel:<?php echo $_GET['hoteltely'];?>" ></a>
+                <h1 class="title"><?php echo $view['viewname'];?>景点评价</h1>
+	        </header>
+			<div class="page-content comments-content">
+				<section class="comment_con">
+					<div>
+						<div class="s_bdb">
+							<div class="praise clearfix">
+								<div class="praise_nbm">
+									<span class="u_nbm"><b class="s_nbm">{if empty($resid)}暂无{else}{$score}{/if}</b>分</span>
+									<span class="u_btn">总评</span>
+								</div>
+
+							</div>
+						</div>
+						<div class="com-wrap">
+							<ul class="com-list">
+								{loop $resid $val}
+								<li class="s_bdt">
+									<div class="wrap">
+										<div class="tit">
+											<span  class="name">{$val['nickname']}</span>
+											<!--style>
+.comment_con .com-wrap .com-list li .wrap .tit .jh {
+    background: url({$res['headimgurl']}) no-repeat;
+    background-size: 100% 100%;
+}
+</style-->
+											<span class="jh"></span>
+											<span class="date"><?php echo date('Y-m-d H:i:s',$val['addtime']);?></span>
+										</div>
+										<div class="con">{$val['evaluate']}</div>
+										<div class="pic">
+											{php $arr = explode(",",$val["evaluatepicture"]); for($i=0;$i<count($arr)-1;$i++): }
+											<img src="{php echo $url.'/'.$arr[$i]}"  class="imgZoom" style="cursor:pointer;"/>
+											{php endfor }
+
+										</div>
+										<div class="dt">
+											<span class="type">游玩时间:{$val['time']}</span>
+											<span class="user_type">
+											</span>
+										</div>
+									</div>
+								</li>
+								{/loop}
+								<!--li><a class="more">点击加载更多评论</a></li-->
+							</ul>
+						</div>
+					</div>
+				</section>
+				
+			</div>
+			<div class="backtop bar" style="display:none">
+				<div class="backtop_con">
+					<span class="top_arr"></span>
+					<span class="top_txt">顶部</span>
+				</div>
+			</div>
+			<style type="text/css">
+		.imgZoom{
+			width:300px;
+		}
+	</style>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://www.jq22.com/demo/imgZoom201703121922/javascripts/jquery.imgZoom.js"></script>
+<script type="text/javascript">
+
+	$('.icon-back').bind('click', function(e){
+
+		e.stopPropagation();
+		e.preventDefault();
+
+		window.history.back();
+
+	})
+
+</script>
+	
+</body>
+		
+</html>

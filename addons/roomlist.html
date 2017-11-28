@@ -1,0 +1,4020 @@
+
+
+
+
+<!DOCTYPE html>
+
+
+
+<html>
+
+
+
+<head>
+
+
+
+    <title>【{$hotellist['hotelname']}】地址:{$hotellist['hoteldetailed']}</title>
+
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta name="keywords" content="{$hotellist['hotelname']},{$hotellist['hoteldetailed']},{$hotellist['hoteltely']}" />
+
+
+
+    <meta name="description" content="'{$hotellist['hotelname']}。地址:{$hotellist['hoteldetailed']}。电话:{$hotellist['hoteltely']}。{$hotellist['hoteldetails']}" />
+
+
+
+    <meta name="location" content="province={$hotellist['dzA']};city={$hotellist['dzB']};coord={$hotellist['hotelaccuracy']}">
+
+
+
+    <meta name="full-screen" content="yes" />
+
+
+
+    <meta name="browsermode" content="application" />
+
+
+
+    <link rel="icon shortcut bookmark" href="data:;base64,iVBORw0KGgo=">
+
+
+
+    <link rel="apple-touch-icon" href="data:;base64,iVBORw0KGgo="/>
+
+
+
+    <link rel="dns-prefetch" href="//m.elongstatic.com">
+
+
+
+    <link rel="preconnect" href="//m.elongstatic.com">
+
+
+
+
+
+
+
+    <meta name="x5-orientation" content="portrait" />
+
+
+
+    <meta name="x5-fullscreen" content="true" />
+
+
+
+    <meta name="x5-page-mode" content="app" />
+
+
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+    <meta name="format-detection" content="telephone=no" />
+
+
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+
+
+
+    <link rel="stylesheet" href="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/mainV2.css?2.1" />
+
+
+
+    <link rel="stylesheet" href="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/idangerous.swiper.css?2.1" />
+
+
+
+    <link rel="stylesheet" type="text/css" href="/addons/wqtgd_jiudian/template/mobile/css/slick.css"/>
+
+
+
+
+
+
+
+    <script type="application/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/fastclick.js"></script>
+
+
+
+     <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/jquery.min.js"></script>
+
+
+
+  <!--   <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/zepto.min.js"></script>
+
+
+
+    <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/touch.js"></script> -->
+
+
+
+
+
+
+
+   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+
+
+
+<script>
+
+
+
+function onBridgeReady(){
+
+
+
+ WeixinJSBridge.call('hideOptionMenu');   //  使用这个就是禁止 
+
+
+
+}
+
+
+
+
+
+
+
+if (typeof WeixinJSBridge == "undefined"){
+
+
+
+    if( document.addEventListener ){
+
+
+
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+
+
+
+    }else if (document.attachEvent){
+
+
+
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+
+
+
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+
+
+
+    }
+
+
+
+}else{
+
+
+
+    onBridgeReady();
+
+
+
+}
+
+
+
+</script>
+
+
+
+    <style type="text/css">
+
+
+
+
+
+
+
+        /* 日期界面 */
+
+
+
+        .cld{
+
+
+
+            -webkit-animation: 'upward' .2s linear 0s 1 alternate forwards;
+
+
+
+            animation: 'upward' .2s linear 0s 1 alternate forwards;
+
+
+
+        }
+
+
+
+        @-webkit-keyframes upward{
+
+
+
+            0%{
+
+
+
+                transform: translateY(180px);
+
+
+
+            }
+
+
+
+            100%{
+
+
+
+                transform: translateY(0px);
+
+
+
+            }
+
+
+
+        }
+
+
+
+        keyframes upward{
+
+
+
+            0%{
+
+
+
+                transform: translateY(180px);
+
+
+
+            }
+
+
+
+            100%{
+
+
+
+                transform: translateY(0px);
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+        .slick-dots {
+
+
+
+            position: absolute;
+
+
+
+            bottom: 0px;
+
+
+
+            list-style: none;
+
+
+
+            display: block;
+
+
+
+            text-align: center;
+
+
+
+            padding: 0px;
+
+
+
+            width: 100%;
+
+
+
+        }
+
+
+
+        .slick-slider {
+
+
+
+            margin-bottom: 0px;
+
+
+
+        }
+
+
+
+        .slick-track{
+
+
+
+            height: 250px;
+
+
+
+        }
+
+
+
+
+
+
+
+        .pages .page .none_backg .icon-hascollect:before {
+
+
+
+            color: #FE769C;
+
+
+
+        }
+
+
+
+        .icon-hascollect:before {
+
+
+
+            content: "\e62c";
+
+
+
+            color: #FE769C;
+
+
+
+        }
+
+
+
+        .detail-mainNew .type ul li.rooms.no::after {
+
+
+
+            content: "满房";
+
+
+
+            position: absolute;
+
+
+
+            display: block;
+
+
+
+            right: -27px;
+
+
+
+            top: -27px;
+
+
+
+            width: 55px;
+
+
+
+            height: 55px;
+
+
+
+            line-height: 90px;
+
+
+
+            font-size: .618rem;
+
+
+
+            text-align: center;
+
+
+
+            color: #fff;
+
+
+
+            background-color: #ccc;
+
+
+
+            transform: rotate(45deg);
+
+
+
+            -ms-transform: rotate(45deg);
+
+
+
+            -moz-transform: rotate(45deg);
+
+
+
+            -webkit-transform: rotate(45deg);
+
+
+
+            -o-transform: rotate(45deg);
+
+
+
+        }
+
+
+
+        .detail-main .type ul li.no .wrap .right .price span {
+
+
+
+            color: #999;
+
+
+
+        }
+
+
+
+        .detail-main .type ul li.off .wrap .right .price span {
+
+
+
+            color: #999;
+
+
+
+        }
+
+
+
+        .detail-mainNew .type ul li.rooms.off::after {
+
+
+
+            content: "暂停";
+
+
+
+            position: absolute;
+
+
+
+            display: block;
+
+
+
+            right: -27px;
+
+
+
+            top: -27px;
+
+
+
+            width: 55px;
+
+
+
+            height: 55px;
+
+
+
+            line-height: 90px;
+
+
+
+            font-size: .618rem;
+
+
+
+            text-align: center;
+
+
+
+            color: #fff;
+
+
+
+            background-color: #ccc;
+
+
+
+            transform: rotate(45deg);
+
+
+
+            -ms-transform: rotate(45deg);
+
+
+
+            -moz-transform: rotate(45deg);
+
+
+
+            -webkit-transform: rotate(45deg);
+
+
+
+            -o-transform: rotate(45deg);
+
+
+
+        }
+
+
+
+
+
+
+
+        .cld .page-content .cld-item .cld-day li.active2 {
+
+
+
+          background-color: #4499ff;
+
+
+
+          border-top-right-radius: 5px;
+
+
+
+          border-bottom-right-radius: 5px;
+
+
+
+          border-top-left-radius: 0px;
+
+
+
+          border-bottom-left-radius: 0px; }
+
+
+
+          .cld .page-content .cld-item .cld-day li.active2.work b.work, .cld .page-content .cld-item .cld-day li.active.work .work {
+
+
+
+              display: none; }
+
+
+
+              .cld .page-content .cld-item .cld-day li.active2.holiday b.holiday, .cld .page-content .cld-item .cld-day li.active.holiday .holiday {
+
+
+
+                  display: none; }
+
+
+
+                  .cld .page-content .cld-item .cld-day li.active2 > div {
+
+
+
+                      height: 100%; }
+
+
+
+                      .cld .page-content .cld-item .cld-day li.active2 > div span.active {
+
+
+
+                        position: relative;
+
+
+
+                        display: inline-block;
+
+
+
+                        bottom: 0px;
+
+
+
+                        left: 0px;
+
+
+
+                        right: 0px;
+
+
+
+                        top: 0px;
+
+
+
+                        padding: 8px 0px;
+
+
+
+                        width: 100%;
+
+
+
+                        height: 100%;
+
+
+
+                        line-height: 1;
+
+
+
+                        color: #fff !important; }
+
+
+
+                        .cld .page-content .cld-item .cld-day li.active2 > div span.activeText {
+
+
+
+                            bottom: 5px;
+
+
+
+                            color: #ffffff;
+
+
+
+                            font-size: .625rem;
+
+
+
+                            height: 12px;
+
+
+
+                            line-height: 0.9; }
+
+
+
+                        .biao {
+
+
+
+                            display:flex;
+
+
+
+                            font-size: 10px;
+
+
+
+                            color: #FF5555;
+
+
+
+                            border: 1px solid #FF5555;
+
+
+
+                            height: 16px;
+
+
+
+                            margin-right: 5px;
+
+
+
+                            padding-left: 1px;
+
+
+
+                            padding-right: 1px;
+
+
+
+                            align-items: center;
+
+
+
+                        }
+
+
+
+
+
+
+
+
+
+
+                        </style>
+
+
+
+
+
+
+
+                    </head>
+
+
+
+                    <body>
+
+
+
+                        <div class="pages">
+
+
+
+                            <div class="page">
+
+
+
+                                <!-- 详情页优化，渠道定制去头 -->
+
+
+
+                                <header class="bar bar-nav flight-order-head none_backg">
+
+
+
+                                  <a class="icon icon-left-nav pull-left icon-back tjclick" data-rel="back" href="javascript:history.back(-1);"  data-tj=""></a>
+
+
+
+                                  <?php if($collectlist['status'] == '0'){?> 
+
+
+
+                                  <a id="col" col="true" style="" class="icon  icon-hascollect collect  pull-right tjclick" data-tj='{"cspot":"mycollection"}'></a>
+
+
+
+                                  <?php }else{?>
+
+
+
+                                  <a id="col" col="false" class="icon    icon-collect  collect  pull-right tjclick" data-tj='{"cspot":"mycollection"}'></a>
+
+
+
+                                  <?php }?>
+
+
+
+
+
+
+
+                                  <h1 class="title" style="font-size:0.9rem;">{$hotellist['hotelname']}酒店详情</h1>
+								  
+
+
+                              </header>
+
+
+
+
+
+
+
+                              <div class="page-content new_detailst mvt_161125">
+
+
+
+                                <section class="detail-main detail-mainNew">
+
+
+
+
+
+
+
+                                    <div class="hotel-info">
+
+
+
+                                        <div class="pic-wrap tjclick" data-tj='{"cspot":"image"}'>
+
+
+
+
+
+
+
+                                            <i class="picbg" data-img="{$hotellist['hotelphotoDuo']}" data-url="{$url}"></i>
+
+
+
+
+
+
+
+                                            <h1 class="name">
+
+
+
+                                                <em id="hotelname" type="{$hotellist['hoteltype']}">{$hotellist['hotelname']}</em>
+												<input type="hidden" id="roomlist_url" value="{$Roomlist}">
+												<input type="hidden" class="input_hotelname" value="{$hotellist['hotelname']}">
+
+                                            </h1>
+
+
+
+                                            <div class="star icon-star"><b style="width:60%" class="icon-star"></b></div>
+
+
+
+                                            <!--div class="num"><i></i></div-->
+
+
+
+                                        </div>
+
+
+
+                                        <div class="info">
+
+
+
+                                            <div class="map"><span src-url="//apis.map.qq.com/ws/staticmap/v2/?center=23.026354,113.328980&zoom=12&key=4BCBZ-OGQWX-3PE4P-ZNP3C-EU77E-QGF3Z&size=180*180"></span></div>
+
+
+
+                                            <ul>
+
+
+
+                                                <!--酒店地址-->
+
+
+
+                                                <li class="info_mn">
+
+
+
+                                                    <div class="col_tb">
+
+
+
+                                                        <div class="posi">
+
+
+
+                                                            <div class="addr" id="hoteladdress">{$hotellist['hoteldetailed']}</div>
+
+
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+
+                                                    <div class="map_bg"></div>
+
+
+
+                                                    <div class="right">
+
+
+
+                                                        <div class="map_c">
+
+
+
+                                                            <img src="http://apis.map.qq.com/ws/staticmap/v2/?center=<?php echo explode('-',$hotellist['hotelaccuracy'])[1];?>,<?php echo explode('-',$hotellist['hotelaccuracy'])[0];?>&zoom=12&key=4BCBZ-OGQWX-3PE4P-ZNP3C-EU77E-QGF3Z&size=180*180" width="180" height="180">
+
+
+
+                                                            <i class="map_icons"></i>
+
+
+
+                                                        </div>
+
+
+
+
+
+
+
+                                                    </div>
+
+
+
+                                                </li>
+
+
+
+
+
+
+
+                                                <!--住客评价-->
+
+
+
+                                                <li class="choose">
+
+
+
+                                                    <div class="titles">
+
+
+
+                                                        <ul>
+
+
+
+                                                            <li class=" active ">住客评价</li>
+
+
+
+                                                            <li class="hoteldetail   tjclick" data-tj='{"cspot":"hoteldetailchange"}'>酒店详情</li>
+
+
+
+                                                        </ul>
+
+
+
+                                                        <span class="line "></span>
+
+
+
+                                                    </div>
+
+
+
+
+
+
+
+                                                    <?php if(!empty($evaluatelist)){?>
+
+
+
+
+
+
+
+                                                    <div class="text1 tabcomment all-com tjclick text_comments" data-tj='{"cspot":"comment"}' style="display:block;">
+
+
+
+                                                        <div class="left_c">
+
+
+
+                                                            <div class="praise_nbm">
+
+
+
+                                                                <span class="u_nbm"><b class="s_nbm"><?php echo round($eva['grade']/count($evaluatelist),1);?></b>分</span>
+
+
+
+                                                                <span class="u_btn">平均分</span>
+
+
+
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+
+                                                        <div class="right_c"> 
+
+
+
+                                                            <h1>{$evaluatelist[0]['nickname']}
+
+
+
+                                            <!--span class="ping">
+
+
+
+                                                <span class="level2">点评达人</span>
+
+
+
+                                            </span-->
+
+
+
+                                        </h1> 
+
+
+
+                                        <p>{$evaluatelist[0]['eva']}</p> 
+
+
+
+                                    </div>
+
+
+
+                                    <p class="more_p info-comments"><a href="{$Evalist}&hotelname={$hotellist['hotelname']}&hoteltely={$hotellist['hoteltely']}">查看<?php echo count($evaluatelist);?>条住客评价<i></i></a></p>
+
+
+
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+                                <?php }else{ ?>
+
+
+
+                                <div class="text1 tabcomment all-com tjclick text_comments"     data-tj='{"cspot":"comment"}' style="display:block;">
+
+
+
+                                    <div class="left_c" style="width:59%">
+
+
+
+                                        <div class="praise_nbm">
+
+
+
+                                            <h5>暂无评论</h5> 
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+
+
+
+                                <?php }?>
+
+
+
+
+
+
+
+                                <div class="text1 tabdetails tjclick"  style="display:none;"  data-tj='{"cspot":"hoteldetail"}'>
+                                    <?php 
+                                       $facilities = explode(',' , rtrim($hotellist['facilities'] , ',' ));
+                                    ?>
+
+
+                                    <div class="mid2">
+
+
+
+                                        <ul>
+
+
+
+                                            <li class="{if in_array('免费停车' , $facilities)}{else}no{/if}">
+
+
+
+                                                <span class="icon-parking"></span>
+
+
+
+                                                <span>停车场</span>
+
+
+
+                                            </li>
+
+
+
+                                            <li class="{if in_array('免费wifi' , $facilities)}{else}no{/if}">
+
+
+
+                                                <span class="icon-wifi"></span>
+
+
+
+                                                <span>无线wifi</span>
+
+
+
+                                            </li>
+
+
+
+                                            <li class="{if in_array('健身房' , $facilities)}{else}no{/if}">
+
+
+
+                                                <span class="icon-bui"></span>
+
+
+
+                                                <span>健身房</span>
+
+
+
+                                            </li>
+
+
+
+                                            <li class="{if in_array('餐厅' , $facilities)}{else}no{/if}">
+
+
+
+                                                <span class="icon-bra"></span>
+
+
+
+                                                <span>餐厅</span>
+
+
+
+                                            </li>
+
+
+
+                                        </ul>
+
+
+
+                                    </div>
+
+
+
+                                    <!--  <a class="more_p" href="{$roomdetail}">查看全部信息<i></i></a> -->
+
+
+
+                                    <p class="more_p">查看全部信息<i></i></p>
+
+
+
+                                </div>
+
+
+
+                            </li>
+
+
+
+                        </ul>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <!-- mvt 20161125 日历控件dom start-->
+
+
+
+                <div class="stickys indexnew">
+
+
+
+                    <div class="ht_day detail-date detail-hotel">
+
+
+
+                        <div class="getin_room_a">
+
+
+
+                            <span class="c8">入住</span>
+
+
+
+                            <span class="indate"><?php if(strtotime($_GET['checkin']) < strtotime(date('Y-m-d'))){echo date('Y-m-d');}else{echo $_GET['checkin'];}?></span>
+
+							<input type="hidden" class="input_indate" value="<?php echo $_GET['checkin'];?>">
+
+                            <span class="night" style="display:none;">深夜</span>
+
+                            <span class="c8">离店</span>
+
+
+
+                            <span class="outdate"><?php if(strtotime($_GET['checkout']) < strtotime(date('Y-m-d',strtotime('+1 day')))){echo date('Y-m-d',strtotime('+1 day'));}else{echo $_GET['checkout'];}?></span>
+
+							<input type="hidden" class="input_outdate" value="<?php echo $_GET['checkout'];?>">
+
+                        </div>
+
+
+
+                        <div class="getin_room_b">
+
+
+
+                            <span class="count_day">共<span class="count_nmb"><?php echo $_GET['checkday'];?>晚</span><i></i></span>
+
+							<input type="hidden" class="input_checkday" value="<?php echo $_GET['checkday'];?>">
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+
+            <!-- <div class="fastchoose">
+
+
+
+                <div class="choice tjclick" data-tj='{"cspot":"roomtypeFilter"}'>筛选<i class="getin"></i></div>
+
+
+
+                <ul></ul>
+
+
+
+            </div> -->
+
+
+
+        </div>
+
+
+
+        <!-- mvt 20161125 日历控件dom end-->   
+
+
+
+        
+
+
+
+        <div class="type">
+
+
+
+            <ul>
+
+
+
+                {loop $roomlist $val}
+                <?php
+					$checkin = $_GET['checkin'];
+                    $result = pdo_fetch("select * from ".tablename("wqtgd_hotel_roomnumstatus")." where date = :date and hotelname = :hotelname and roomtype = :roomtype and uniacid = :uniacid",array(":date"=>$checkin,":hotelname"=>$val["hotelname"],":roomtype"=>$val["roomtype"],":uniacid"=>$uniacid)); 
+
+                    if($result){
+                        if($result["roomstatus"] == 0){
+                            $roomstatus =  0;
+                        }else if($result["roomstatus"] == 1){
+                            if($result["roomnum"] <= 0){
+                                $roomstatus = 3;
+                            }else{
+                                $roomstatus = 1;
+                            }
+                        }else if($result["roomstatus"] == 3){
+                            $roomstatus =  3;
+                        }                 
+                    }else{
+                        if($val['roomstatus'] == 1){
+                            if($val["roomnum"] <= 0){
+                                $roomstatus = 3;
+                            }else{
+                                $roomstatus = 1;
+                            }
+                        }else{
+                            $roomstatus = $val['roomstatus'];
+                        }
+                    }             
+                ?>
+                {if $roomstatus == 0}
+                <li class="rooms ">
+                {elseif $roomstatus == 1}
+                    <li class="rooms">
+                {elseif $roomstatus == 2}
+                <li class="rooms off">
+                {elseif $roomstatus == 3}
+                <li class="rooms no">
+                {/if}
+                    <div class="wrap ">
+                        <div class="left rpDetail tjclick" onclick="openRpDetail(this)" data-tj='{"cspot":"roomdetail"}' style="background-image: url('');">
+                            <div class="pic tjclick" data-tj='{"cspot":"roomimage"}' style="background-image: url('');">
+                                <img src="{php echo $url.'/'.explode(',',$val['roompic'])[0];}" onerror="../addons/wqtgd_jiudian/template/mobile/img/error.png"/>
+                            </div>
+
+                            <div class="picroom-info">
+                                <div class="room" id="roomid" idd="{$val['id']}">{$val['roomtype']}{if $val['saleprice'] != "0"}&nbsp;&nbsp;<span class="clock_hb" 
+                                {if $roomstatus == 0}
+                                style="color:#FF5555;font-size:12px;" 
+                                {elseif $roomstatus == 1}
+                                style="color:#FF5555;font-size:12px;"
+                                {elseif $roomstatus == 2}
+                                style="color:#b2b2b2;font-size:12px;" 
+                                {elseif $roomstatus == 3}
+                                style="color:#b2b2b2;font-size:12px;" 
+                                {/if}
+                                >限时抢订</span>{/if}</div>
+                                <div class="room-info"><span>{$val['roomsize']}平米</span><span>床{$val['bedsize']}米</span></div>
+                                <div class="icon icon-hs">
+                                 <?php if($val['fanxian'] != '0'){?>
+                                 <span class="clock_hb" style="color:#FF5555;border:1px solid #FF5555" >返</span>
+                                 <?php if(!empty($val['credit1'])){?>
+                                 <span class="clock_hb" style="color:#FF5555;border:1px solid #FF5555" >积分</span>
+                                 <?php }else{?>
+                                 <span class="clock_hb" style="color:#FF5555;border:1px solid #FF5555" >余额</span>
+                                 <?php }?>
+                                 <?php }?>
+
+                                 <br>
+
+                                 <?php if($val['groupbuy_rooms'] != 0){?>
+                                 <span class="biao" style="border: 1px solid rgba(255, 85, 85, 0);">订<?php echo $val['groupbuy_rooms']?>间以上，立减<?php echo $val['groupbuy_reduce']?>元/间</span>
+                                 <?php }?>
+                                 <?php if($val['groupbuy_days'] != 0){?>
+                                 <span class="biao"  style="border: 1px solid rgba(255, 85, 85, 0);">长住<?php echo $val['groupbuy_days']?>天以上，立减<?php echo $val['groupbuy_reduce']?>元/间</span>
+                                 <?php }?>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="right">
+                        <div class="price"><span>￥</span><span class="num">
+                        <?php
+                            $result = pdo_fetch("select * from ".tablename("wqtgd_hotel_roompricestatus")." where date = :date and hotelname = :hotelname and  roomtype = :roomtype and uniacid = :uniacid",array(":date"=>$checkin,":hotelname"=>$val["hotelname"],":roomtype"=>$val["roomtype"],":uniacid"=>$uniacid)); 
+
+
+                            if($result){
+                                if($val["roomprice"] == $result["roomprice"]){
+                                    $roomprice =  $val['roomprice'];
+                                }else{
+                                    $roomprice =  $result["roomprice"];
+                                }        
+                            }else{
+                                $roomprice = $val['roomprice'];
+                            }
+                            
+                            echo $roomprice;              
+                        ?></span>起</div>
+                    </div>
+
+                    <div class="de-btn" >
+                        <i class="den"></i>
+                    </div>
+
+                    <div class="rigit_activebg tjclick" data-tj='{"cspot":"rateplanlist1"}'></div>
+
+                </div>
+
+
+
+                <div class="info-list" >
+                    <ul>
+                        {if $roomstatus == 0}
+                        <li class="" >
+                        {elseif $roomstatus == 1}
+                            <li class="">
+                        {elseif $roomstatus == 2}
+                        <li class="off full_no" >
+                        {elseif $roomstatus == 3}
+                        <li class="no full_no">
+                        {/if}
+                            <div class="left tjclick" >
+                                <div class="bra clearfix">
+                                    <?php echo $val['breakfast'] == '0' ? '含早餐': '不含早' ;
+                                    ?>
+                                </div>
+                                   <div class="act">
+                                            <span style="color:#4499ff;border:1px solid #4499ff" > <?php echo $val['cancel'] == '0' ? '免费取消': "付费取消" ;
+                                        ?></span>
+                                        </div> 
+                                    </div>
+
+                                    <div class="value">
+                                        <div class="price">
+                                            <span><?php if($dis==0){
+                                                echo '￥'.$discount=$roomprice;
+                                            }else{
+                                                echo '<font size="2px">会员尊享价:￥</font>'.$discount=number_format($dis*$roomprice*0.1,2);
+                                            } ?></span>
+                                        </div>
+                                        <!--div class="return">
+                                            <span>
+                                                会员价{$val['saleprice']}
+                                            </span>
+                                        </div-->
+                                    </div>
+
+                                    <div class="book tjclick" data-tj='{"cspot":"booking"}'>
+                                    {if $roomstatus == 0}
+                                        <div class="btn2 btn-submit" onclick='openOrderForm(this)' url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&groupbuy_rooms={$val['groupbuy_rooms']}&groupbuy_days={$val['groupbuy_days']}&groupbuy_reduce={$val['groupbuy_reduce']}">
+
+                                            <span>订</span>
+                                            <?php if($val['paytype'] == '0'){?>
+                                            <p>到店付</p>
+                                            <?php }elseif($val['paytype'] == '1'){?>
+                                            <p>预付</p>
+                                            <?php }elseif($val['paytype'] == '2'){?>
+                                            <p>付定金</p>
+                                            <?php }?>
+                                            <div class="pret">担保</div>
+                                        </div>
+
+                                    {elseif $roomstatus == 1}
+                                        <div class="btn2 btn-submit" onclick='openOrderForm(this)' url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&groupbuy_rooms={$val['groupbuy_rooms']}&groupbuy_days={$val['groupbuy_days']}&groupbuy_reduce={$val['groupbuy_reduce']}">
+
+                                            <span>订</span>
+                                            <?php if($val['paytype'] == '0'){?>
+                                            <p>到店付</p>
+                                            <?php }elseif($val['paytype'] == '1'){?>
+                                            <p>预付</p>
+                                            <?php }elseif($val['paytype'] == '2'){?>
+                                            <p>付定金</p>
+                                            <?php }?>
+                                            <div class="pret">担保</div>
+                                        </div>                                                                
+                                    {elseif $roomstatus == 2}
+                                        <div class="btn3 btn2_center">关</div>
+                                    {elseif $roomstatus == 3}
+                                        <div class="btn3 btn2_center">满</div>
+                                    {/if}
+
+                                    </div>
+
+                                </li>
+                                {if $val["saleprice"] != "0"}
+                                    {if $roomstatus == 0}
+                                    <li class="" >
+                                    {elseif $roomstatus == 1}
+                                        <li class="">
+                                    {elseif $roomstatus == 2}
+                                    <li class="off full_no" >
+                                    {elseif $roomstatus == 3}
+                                    <li class="no full_no">
+                                    {/if}
+                                        <div class="left tjclick" >
+                                            <div class="bra clearfix">
+                                                <?php echo $val['breakfast'] == '0' ? '含早餐': '不含早' ;
+                                                ?>
+                                            </div>
+
+                                           <div class="act">                                
+                                                    <span style="color:#4499ff;border:1px solid #4499ff" > <?php echo $val['cancel'] == '0' ? '免费取消': "付费取消" ;
+                                                ?></span>
+                                                </div> 
+                                            </div>
+
+                                            <div class="value">
+                                                <div class="price">
+                                                    <span><?php 
+                                                        echo '<font size="2px">限时抢订价:</font>￥'.$discount=$val['saleprice'];
+                                                     ?></span>
+                                                </div>
+
+                                                <!--div class="return">
+                                                    <span>
+                                                        会员价{$val['saleprice']}
+                                                    </span>
+                                                </div-->
+                                            </div>
+                                            <div class="book tjclick" data-tj='{"cspot":"booking"}'>
+                                            {if $roomstatus == 0}
+                                                <div class="btn2 btn-submit" onclick='openOrderForm(this)' url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&saleflag=1">
+                                                    <span>订</span>
+                                                    <?php if($val['paytype'] == '0'){?>
+                                                    <p>到店付</p>
+                                                    <?php }elseif($val['paytype'] == '1'){?>
+                                                    <p>预付</p>
+                                                    <?php }elseif($val['paytype'] == '2'){?>
+                                                    <p>付定金</p>
+                                                    <?php }?>
+                                                    <div class="pret">担保</div>
+                                                </div>
+                                            {elseif $roomstatus == 1}
+                                                <div class="btn2 btn-submit" onclick='openOrderForm(this)' url2="{$Orderform}&hotelname={$hotellist['hotelname']}&hoteltel={$hotellist['hoteltely']}&hotelpic={$hotellist['hotelphotoDuo']}&roomtype={$val['roomtype']}&roomprice={$roomprice}&paytype={$val['paytype']}&checkin=<?php echo $_GET['checkin'];?>&checkout=<?php echo $_GET['checkout'];?>&checkday=<?php echo $_GET['checkday'];?>&breakfast={$val['breakfast']}&cancel={$val['cancel']}&fanxian={$val['fanxian']}&credit1={$val['credit1']}&credit2={$val['credit2']}&discount={$discount}&dis={$dis}&saleflag=1">
+                                                    <span>订</span>
+                                                    <?php if($val['paytype'] == '0'){?>
+                                                    <p>到店付</p>
+                                                    <?php }elseif($val['paytype'] == '1'){?>
+                                                    <p>预付</p>
+                                                    <?php }elseif($val['paytype'] == '2'){?>
+                                                    <p>付定金</p>
+                                                    <?php }?>
+                                                    <div class="pret">担保</div>
+                                                </div>                                     
+                                            {elseif $roomstatus == 2}
+                                                <div class="btn3 btn2_center">关</div>
+                                            {elseif $roomstatus == 3}
+                                                <div class="btn3 btn2_center">满</div>
+                                            {/if}
+                                            </div>
+                                    </li>
+                                {/if}
+                            </ul>
+                        </div>
+                    </li>
+                    {/loop}
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </section>
+
+
+
+        <section class="detail-sider">
+
+
+
+               <!--  <div class="look">
+
+
+
+                    <dl class="list">
+
+
+
+                        <dt><i class="clock icon-clock"></i>历史浏览</dt>
+
+
+
+                    </dl>
+
+
+
+                </div> -->
+
+
+
+
+
+
+
+            </section>
+
+
+
+            <!-- 高铁管家定制 -->
+
+
+
+            <?php if(!empty($roomlist)){?>
+
+
+
+            <?php }else{ ?>
+
+
+
+            <br />  <center><img src="../addons/wqtgd_jiudian/template/img/null1.png" style="width:100px;height:100px;margin-top:10px;"/></center>
+
+
+
+            <div style="margin-top:10px;">
+
+
+
+
+
+
+
+             <center> <a class="weui-form-preview-btn weui-form-preview-btn-primary" href="" style="margin-top:15px;width:100%;color:black;font-size:17px;color:lightgray;text-align:center;">该酒店暂无房型</a></center>
+
+
+
+         </div>
+
+
+
+         <?php }?>
+
+
+
+         <section class="tool">
+
+
+
+
+
+
+
+
+
+
+
+            <div class="copy">Copyright &copy; 2008-2017 {$_W['uniaccount']['name']}版权所有</div>
+
+
+
+        </section>
+
+
+
+    </div>
+
+
+
+    <div class="advanced-mask-layer" style="display: none;"></div>
+
+
+
+    <nav class="bar record record-text" style="display:none;">收藏酒店【{$hotellist['hotelname']}】成功</nav>
+
+
+
+    <div class="dialog plugin-inited page-transitioning"><div class="content">确定要取消收藏【{$hotellist['hotelname']}】酒店？</div><div class="item-btn item-btn2" style="background: rgb(255, 255, 255); color: rgb(68, 153, 255);">放弃</div><div class="item-btn item-btn2" style="background: rgb(68, 153, 255);">确定</div></div>
+
+
+
+
+
+
+
+    <!-- 选择日期 -->
+
+
+
+    <div class="cld page-plugin plugin-inited"><header class="bar bar-nav"><h1 class="title">选择日期</h1><a id="chooseDate" class="icon icon-back pull-left hide-cln"></a><a class="cld-title-year pull-right icon"></a></header><div class="page-content"></div><ul class="cld-title bar"><li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li></ul></div>
+
+
+
+
+
+
+
+    <!-- 房间详情 -->
+
+
+
+<div class="type-pop-box roomTypeInfo newdetailhsize plugin-inited page-transitioning" style="display: none;"><div class="toptitle swiper-container"><p><span class="htitle">商务房B</span></p><div class="htclose"><i class="cancel-icon"></i></div></div><div class="wrap page-content" style=""><!--  <div class="swiper-container hpic_show">
+
+
+
+<div class="swiper-wrapper">
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+<div class="swiper-slide" style="width: 345px;"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg"></div>
+
+
+
+    </div>
+
+
+
+    <div class="swiper-pagination"></div>
+
+
+
+    
+
+
+
+</div> -->
+
+
+
+   <!--  <div class="slider fade sf2">
+
+
+
+                   <div><div class="image"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg" style="height: 250px"/></div></div>
+
+
+
+
+
+
+
+                    <div><div class="image"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg" style="height: 250px"/></div></div>
+
+
+
+
+
+
+
+                    <div><div class="image"><img src="//pavo.elongstatic.com/i/mobile750_448/0006kWOk.jpg" style="height: 250px"/></div></div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+            -->
+
+
+
+
+
+
+
+
+
+
+
+    <div class="type-list"><p class="faclist"> <span><i class="detail_fac_v1"></i>有窗</span><span><i class="detail_fac_v2"></i></span><span><i class="detail_fac_v3"></i></span><span><i class="detail_fac_v4"></i></span><!-- <span><i class="detail_fac_v5"></i>可入住2人</span> --><span><i class="detail_fac_v6"></i></span></p><p class="tip"></p></div><div class="discount u-bt discountRoomInfo"><p class="clearfix"><span class="dct_tit">客房设施：</span><span class="dct_txt">空调</span></p><p class="clearfix"><span class="dct_tit">浴室：</span><span class="dct_txt">室内卫生间,室内洗浴间,免费提供一次性洗漱用品,淋浴</span></p><p class="clearfix"><span class="dct_tit">食品饮品：</span><span class="dct_txt">电热水壶</span></p><p class="clearfix"><span class="dct_tit">媒体科技：</span><span class="dct_txt">电视</span></p> <p class="clearfix"><span class="dct_tit">促销信息：</span><span class="dct_txt promotions"></span></p></div></div><div class="bottom_btn tjclick" data-tj="{&quot;cspot&quot;:&quot;rateplanlist2&quot;}"><span>查看房型报价</span></div></div>
+
+
+
+
+
+
+
+<!-- 酒店详情 -->
+
+
+
+<div class="hotel_info_facbox plugin-inited page-plugin page-on-right"> <header class="bar bar-nav"> <a class="icon pull-left icon-back"></a> <a class="icon icon-phone pull-right" href="tel:{$hotellist['hoteltely']}"></a> <h1 class="title" style="font-size:0.9rem;">酒店详情</h1> </header> <div class="page-content" style=""> <section class="info-pop-box"> <div class="na clearfix"> <div class="na_lf"> <div class="name">{$hotellist['hotelname']}</div> <div class="addr"><i></i>{$hotellist['hoteldetailed']}</div> </div>  </div>  <div class="facilities_con"> <dl class="facilities"> <dt>酒店设施</dt>
+
+    <dd class="{if in_array('免费停车' , $facilities)}{else}no{/if} "> <i class="i1"></i> <p>  免费停车  </p> </dd>
+    <dd class="{if in_array('免费wifi' , $facilities)}{else}no{/if}"> <i class="i2"></i> <p>  免费wifi  </p> </dd>
+    <dd class="{if in_array('餐厅' , $facilities)}{else}no{/if}"> <i class="i3"></i> <p>  餐厅  </p> </dd>  
+    <dd class="{if in_array('健身房' , $facilities)}{else}no{/if}"> <i class="i7"></i> <p>  健身房  </p> </dd>  
+    <dd class="{if in_array('游泳池' , $facilities)}{else}no{/if}"> <i class="i5"></i> <p>  游泳池  </p> </dd>  
+    <dd class="{if in_array('免费接机服务' , $facilities)}{else}no{/if}"> <i class="i4"></i> <p>  免费接机服务  </p> </dd>  
+    <dd class="{if in_array('会议室' , $facilities)}{else}no{/if}"> <i class="i6"></i> <p>  会议室  </p> </dd>  
+    <dd class="{if in_array('免费行李寄存' , $facilities)}{else}no{/if}"> <i class="i8"></i> <p>  免费行李寄存  </p> </dd>   
+    </dl>  <!-- <div class="fac_txt"> <div class="fac_txtc"> <div class="fac_txtc_h"> <p>免费停车,有电梯,免费wifi,酒店,叫车服务,房间消毒,多种语言服务人员,管家服务,收费接机服务,叫醒服务,洗衣服务,送餐服务,旅游服务,租车服务,专职行李员,行李寄存,票务服务,夜床服务,24小时前台接待服务,雨伞租借服务,商务中心,会议设施,安全消防系统,大堂吧,公共区域闭路电视监控系统,残障人客房,咖啡厅,酒吧,电子结账系统,大堂报纸,无障碍通道,24小时热水,中餐厅,西餐厅,公共区域空调,宴会厅,放映厅,公共音响系统,桑拿浴室,健身中心,台球室,儿童乐园,空中花园,室外游泳池,行政酒廊,商旅之家,培训学习,长住更省,免费接机服务,租借笔记本电脑,无烟楼层,入住时间,离店时间</p> </div> </div> <div class="fac_more">查看更多</div> </div> --> </div>   <!-- <div class="other"> <dl> <dt>温馨提示</dt>  <dd class="clearfix"> <span class="dct_tit">入离通知：</span> <span class="dct_txt">  入住时间:12点以后,离店时间:12点以前   </span> </dd>  </dl> </div> -->  <div class="intro"> <div class="tit">酒店简介</div> <div class="intro_con">  <div class="ht_txt clearfix">  <div class="dct_con"> <span class="dct_tit">开业时间：</span> <span class="dct_txt">{$hotellist['hoteldate']}</span> </div>  <!--  <div class="dct_con"> <span class="dct_tit">装修时间：</span> <span class="dct_txt">2015-02-01</span> </div> -->  </div>   <div class="text_con_h" style="max-height: 126px;">  <div class="text">{$hotellist['hoteldetails']}</div>   <!-- <div class="ht_dct clearfix"> <span class="dct_tit">支持卡种：</span> <span class="dct_txt">Visacard,牡丹卡,金穗卡,长城卡,龙卡,太平洋卡,东方卡,万事达卡,运通卡,大莱卡,JCBcard</span> </div> -->  </div>   </div> <div class="fac_more">查看更多</div> </div> <!-- <div class="periphery"><div class="tit">酒店周边</div> <div class="preiphety_con">  <div class="distance_lst clearfix"> <div class="prpy_icon">  <i class="hcz_icons"></i>  </div> <div class="prpy_distance">  <p class="clearfix"> <span class="ads_txt">广州北站</span> <span class="dtc_txt">直线距离11.3公里</span> </p>  <p class="clearfix"> <span class="ads_txt">广州东站</span> <span class="dtc_txt">直线距离31.2公里</span> </p>  <p class="clearfix"> <span class="ads_txt">广州站</span> <span class="dtc_txt">直线距离31.7公里</span> </p>  <p class="clearfix"> <span class="ads_txt">广州西站</span> <span class="dtc_txt">直线距离32.8公里</span> </p>  <p class="clearfix"> <span class="ads_txt">广州南站</span> <span class="dtc_txt">直线距离49.0公里</span> </p>  </div> </div>  <div class="distance_lst clearfix"> <div class="prpy_icon">  <i class="jc_icons"></i>  </div> <div class="prpy_distance">  <p class="clearfix"> <span class="ads_txt">新白云机场</span> <span class="dtc_txt">直线距离4.8公里</span> </p>  </div> </div>  </div></div> --> <div class="btn_con"> <a href="#" class="btn">返回并继续预订</a> </div> </section> </div> </div>
+
+
+
+
+
+
+
+<div class="mask-layer" style="display: none"></div>
+
+
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="hidden" id="acc" value="{$Colaction}" data="<?php 
+
+
+
+foreach ($hotellist as $key=> $val){
+
+
+
+$hotel[] = $key.'->'.$val;
+
+
+
+}
+
+
+
+echo implode('/',$hotel);
+
+
+
+?>"  urll="{$Roomlistac}">
+
+
+
+<input type="hidden" id="tpl1" value="<?php echo explode('-',$hotellist['hotelaccuracy'])[0];?>">
+
+
+
+<input type="hidden" id="tpl2" value="<?php echo explode('-',$hotellist['hotelaccuracy'])[1];?>">
+
+
+
+
+
+
+
+
+
+
+
+   <!--  <script src="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/base.js?2.1" type="text/javascript"></script>
+
+
+
+   <script src="//m.elongstatic.com/static/webapp/hotel/2017/03/v10/mainBeforeOrder.js?2.1" type="text/javascript"></script> -->
+
+
+
+   <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/slick.js"></script>
+
+
+
+   <!--  <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/scripts.js"></script> -->
+
+
+
+   <script type="text/javascript" src="../addons/wqtgd_jiudian/template/mobile/js/calendar.js"></script>
+
+
+
+   <script type="text/javascript" src="/addons/wqtgd_jiudian/template/mobile/js/hotelTools2.js"></script>
+
+
+   <script type="text/javascript">
+
+
+
+
+
+
+
+   //   function getTotalPrice(){
+
+
+
+   //     $.each($(".value"), function(index, item){
+
+
+
+   //      var _span = $(this).children(".price").children("span");
+
+
+
+   //      var _price = parseFloat(_span.text());
+
+
+
+   //      var _day = parseInt($(".count_nmb").text().substr(0, $(".count_nmb").text().length - 1));
+
+
+
+   //      console.log(_price*_day);
+
+
+
+   //      _span.text(_price*_day);
+
+
+
+   //  })
+
+
+
+   // }
+
+
+
+
+
+
+
+   // getTotalPrice();
+
+
+
+   
+
+
+
+var html = $('html');
+
+
+
+//获取界面动画对象
+
+
+
+var interFaceAnimTool = hotelTools.toolsFactory('InterFaceAnim');
+
+
+
+//获取日期界面对象
+
+
+
+var dateInterfaceTool = hotelTools.toolsFactory('DateInterface');
+
+
+
+//获取日期界面对象
+
+
+
+var btnResetTool = hotelTools.toolsFactory('BtnReset');
+
+
+
+   
+
+
+
+//启动 FastClick
+
+
+
+FastClick.attach(document.body);
+
+
+
+
+
+
+
+    //滚动显示或隐藏导航条
+
+
+
+    $(".page>.new_detailst").scroll(function(){
+
+
+
+        if($(this).scrollTop() > 105){
+
+
+
+            $(".flight-order-head").removeClass("none_backg");
+
+
+
+        }else{
+
+
+
+           $(".flight-order-head").addClass("none_backg")
+
+
+
+       }
+
+
+
+   });
+
+
+
+
+
+
+
+    //获取酒店详细数据
+
+
+
+    var hotel_details = $("#acc").attr("data").split("/");
+
+
+
+    var json_hotel_details = '{';
+
+
+
+    $.each(hotel_details, function(index, item){
+
+
+
+        var _key = item.split("->")[0];
+
+
+
+        var _value = item.split("->")[1];
+
+
+
+        json_hotel_details += '"' + _key + '"' + ':' + '"' + _value + '"' + ',';
+
+
+
+
+
+
+
+    })
+
+
+
+    json_hotel_details = json_hotel_details.substr(0, json_hotel_details.length-1);
+
+
+
+    json_hotel_details += '}';
+
+    //console.log(json_hotel_details);
+    //json_hotel_details = JSON.parse(json_hotel_details);
+
+
+
+    // console.log(json_hotel_details);
+
+
+
+    //设置酒店数据到酒店详细界面
+
+
+
+/*    function setHotelDetails(data){
+
+
+
+        $(".na_lf>.name").text(data["hotelname"]); //酒店名字
+
+
+
+        $(".na_lf>.addr").empty();                 //酒店地址
+
+
+
+        $(".na_lf>.addr").append($("<i></i>"));
+
+
+
+        $(".na_lf>.addr").append(data["hoteldetailed"]);
+
+
+
+        $(".ht_txt>.dct_con>.dct_txt").text(data["hoteldate"]);     //开业时间
+
+
+
+        $(".text_con_h>.text").text(data["hoteldetails"]);          //酒店设施介绍
+
+
+
+        var _facilities =  $(".facilities").children("dd");    //酒店设施图标显示
+
+
+
+        var nums = [];
+
+
+
+        var _dataFacilities = data["facilities"].split(",");
+
+
+
+        var _hotelFacilitiesItem = $(".mid2>ul>li").addClass("no");
+
+
+
+        $.each(_facilities, function(fIndex, fItem){
+
+
+
+            $(fItem).addClass("no");
+
+
+
+            $.each(_dataFacilities, function(sIndex, sItem){
+
+
+
+                if($(fItem).text().indexOf(sItem) > 0){
+
+
+
+                    nums.push(fIndex);
+
+
+
+                }
+
+
+
+            });
+
+
+
+        });
+
+
+
+        $.each(_facilities, function(fIndex, fItem){
+
+
+
+            $.each(nums, function(sIndex, sItem){
+
+
+
+                if(fIndex == sItem){
+
+
+
+                    $(fItem).removeClass("no");
+
+
+
+                }
+
+
+
+            });
+
+
+
+        });
+
+
+
+        $.each(_hotelFacilitiesItem, function(fIndex, fItem){
+
+
+
+            $.each(nums, function(sIndex, sItem){
+
+
+
+                if(fIndex == sItem){
+
+
+
+                    $(fItem).removeClass("no");
+
+
+
+                }
+
+
+
+            });
+
+
+
+        });
+
+
+
+    }*/
+
+
+
+    //setHotelDetails(json_hotel_details);
+
+
+
+    //酒店更多按钮
+
+
+
+    $(".intro>.fac_more").bind("click", function(e){
+
+
+
+        e.stopPropagation();
+
+
+
+        e.preventDefault();
+
+
+
+        if($(this).attr("class").indexOf("fac_more_hide") == -1){
+
+
+
+            $(this).addClass("fac_more_hide").text("收起");
+
+
+
+            $(".text_con_h").addClass("show");
+
+
+
+        }else{
+
+
+
+           $(this).removeClass("fac_more_hide").text("查看更多");
+
+
+
+           $(".text_con_h").removeClass("show");
+
+
+
+       }
+
+
+
+   })
+
+
+
+
+
+
+
+    //酒店星级
+
+
+
+    var hotel_type = $("#hotelname").attr("type");
+
+
+
+    var hotel_stars = $(".star>b");
+
+
+
+    switch(hotel_type){
+
+
+
+        case '1': 
+
+
+
+        $(".star").remove();
+
+
+
+        $(".pic-wrap").append($("<span class='hotel-type'>商务型</span>"));
+
+
+
+        break;
+
+
+
+        case '3': 
+
+
+
+        hotel_stars.attr("style", "width: 60%;"); 
+
+
+
+        break;
+
+
+
+        case '4': 
+
+
+
+        hotel_stars.attr("style", "width: 80%;"); 
+
+
+
+        break;
+
+
+
+        case '5': 
+
+
+
+        hotel_stars.attr("style", "width: 100%;"); 
+
+
+
+        break;
+
+        case '6': 
+            $(".star").remove();
+            $(".pic-wrap").append($("<span class='hotel-type'>舒适型</span>"));
+        break;
+        case '7': 
+            $(".star").remove();
+            $(".pic-wrap").append($("<span class='hotel-type'>豪华型</span>"));
+        break;
+
+
+    }
+
+
+
+
+
+
+
+    /*打开房间详情界面*/
+
+
+
+    function openRoomDetails(arg){
+
+
+
+        $(".mask-layer").attr("style", "display: block;");
+
+
+
+        arg.unbind();
+
+
+
+        arg.fadeIn(100, function(){
+
+
+
+             // arg.attr("style", "display: block;");
+
+
+
+              arg.addClass("box-active plugin-show");
+
+
+
+        });
+
+
+
+    }
+
+
+
+    /*关闭选择房间数或入住时间界面*/
+
+
+
+    function closeRoomDetails(arg){
+
+
+
+        arg.bind('webkitTransitionEnd', function(){
+
+
+
+                 $(this).attr("style", "display: none;");           
+
+
+
+        })
+
+
+
+            arg.removeClass("box-active plugin-show");
+
+
+
+            $(".mask-layer").attr("style", "display: none;");
+
+
+
+    }
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    var sf2_div = "";
+
+
+
+      //酒店详情页幻灯片
+
+
+
+        // console.log($(".picbg").attr("data-img"));
+
+
+
+        // console.log($(".picbg").attr("data-url"));
+
+
+
+        sf2_div = createRoomDetailImg($(".picbg").attr("data-img"), $(".picbg").attr("data-url"), 1);
+
+
+
+        $(".picbg").after(sf2_div);
+
+
+
+
+
+
+
+        $('.sf1').slick({
+
+
+
+            autoplay:true,
+
+
+
+            dots: true,
+
+
+
+            infinite: true,
+
+
+
+            speed: 500,
+
+
+
+            fade: true,
+
+
+
+            slide: 'div',
+
+
+
+            cssEase: 'linear'
+
+
+
+        });
+
+
+
+        /*创建酒店详情房间图片*/
+
+
+
+        function createRoomDetailImg(roompic, url, num){
+
+
+
+            var _imgs = roompic.split(",");
+
+
+
+            var _url = "";
+
+
+
+            if (num == 1) {
+
+
+
+                sf2_div = $("<div class='slider fade swiper-wrapper focuspic sf1'></div>");
+
+
+
+            }else{
+
+
+
+                sf2_div = $("<div class='slider fade sf2'></div>");
+
+
+
+            }
+
+
+
+
+
+
+
+            $.each(_imgs, function(index, item){
+
+
+
+                if(item != ""){
+
+
+
+                    var url = $(".picbg").attr("data-url");
+
+
+
+                    data_url = url + "/" + item;
+
+
+
+                    sf2_div.append("<div><div class='image'><img src=" + data_url + " style='min-width:100%;height: 179px;'/></div></div>");
+
+
+
+                }        
+
+
+
+            });
+
+
+
+
+
+
+
+            return sf2_div;
+
+
+
+        }
+
+
+
+        /*设置房间详细信息界面数据*/
+
+
+
+        function setRoomDetailsData(data, arg){
+
+
+        
+
+
+
+
+        $(".htitle").text(data["roomtype"]);   //房间名称
+
+
+        //$(".promotions").text(data["promotions"]);   //促销信息
+        $(".dct_txt").eq(4).text(data["promotions"]);
+
+
+
+
+        //房间图片
+
+
+
+        sf2_div = createRoomDetailImg(data["roompic"], data["url"], 2);
+
+
+
+        
+
+
+
+        $(".type-pop-box>.wrap>.type-list").before(sf2_div);
+
+
+
+
+
+
+
+        $('.sf2').slick({
+
+
+
+            autoplay:true,
+
+
+
+            dots: true,
+
+
+
+            infinite: true,
+
+
+
+            speed: 500,
+
+
+
+            fade: true,
+
+
+
+            slide: 'div',
+
+
+
+            cssEase: 'linear'
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+        var _faclist = $(".faclist").children();          //详细信息
+
+
+
+        //.text("<i class='detail_fac_v2'></i>" + data["floor"] + " 层");
+
+
+
+        //层
+
+
+
+        var _floor = $(_faclist[1]);
+
+
+
+        _floor.empty();
+
+
+
+        _floor.append($("<i class='detail_fac_v2'></i>"));
+
+
+
+        _floor.append(data["floor"] + " 层");
+
+
+
+        //房间大小
+
+
+
+        var _roomsize = $(_faclist[2]);
+
+
+
+        _roomsize.empty();
+
+
+
+        _roomsize.append($("<i class='detail_fac_v3'></i>"));
+
+
+
+        _roomsize.append(data["roomsize"]);
+
+
+
+        //床大小
+
+
+
+        var _bedsize = $(_faclist[3]);
+
+
+
+        _bedsize.empty();
+
+
+
+        _bedsize.append($("<i class='detail_fac_v4'></i>"));
+
+
+
+        _bedsize.append(data["bedsize"]);
+
+
+
+        //wifi
+
+
+
+        var _wifi = data["wifi"];
+
+
+
+        var _w = "";
+
+
+
+        switch(_wifi){
+
+
+
+            case '0': _w = "有wifi"; break;
+
+
+
+            case '1': _w = "无wifi"; break;
+
+
+
+        }
+
+
+
+        var _wifi1 = $(_faclist[4]);
+
+
+
+        _wifi1.empty();
+
+
+
+        _wifi1.append($("<i class='detail_fac_v6'></i>"));
+
+
+
+        _wifi1.append(_w);
+
+
+
+
+
+
+
+        $(".bottom_btn").unbind();
+
+
+
+        $(".bottom_btn").bind("click", function(e){
+
+
+
+            if(sf2_div != ""){
+
+
+
+                sf2_div.remove();
+
+
+
+            }
+
+
+
+            e.stopPropagation();
+
+
+
+            e.preventDefault(); 
+
+
+
+            if(arg.attr("class").indexOf("on") == -1){
+
+
+
+                arg.addClass("on");
+
+
+
+            }
+
+
+
+            closeRoomDetails($(".roomTypeInfo"));
+
+
+
+        });
+
+
+
+    }
+
+
+
+
+
+
+
+    //打开房间详情
+
+
+
+    function openRpDetail(elem){
+
+
+
+        var that = elem;
+
+
+
+        $.ajax({
+
+
+
+            url:$('#acc').attr('urll'),
+
+
+
+            type:'post',
+
+
+
+            data:'id='+$(that).children(".picroom-info").children("#roomid").attr('idd'),
+
+
+
+            dataType:'json',
+
+
+
+            success:function(result){
+
+
+
+                // console.log(result);
+
+
+
+                // console.log(result["hotelname"]);  
+
+
+
+                setRoomDetailsData(result, $(that).parent().parent());
+
+
+
+            },
+
+
+
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+
+
+                // console.log(1);
+
+
+
+            }
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+        openRoomDetails($(".roomTypeInfo"));
+
+
+
+    }
+
+
+
+    //关闭房间详情
+
+
+
+    $(".htclose").bind("click", function(e){
+
+
+
+       if(sf2_div != ""){
+
+
+
+        sf2_div.remove();
+
+
+
+    }
+
+
+
+
+
+
+
+    e.stopPropagation();
+
+
+
+    e.preventDefault();
+
+
+
+    closeRoomDetails($(".roomTypeInfo"));
+
+
+
+})
+
+
+
+    //关闭房间详情
+
+
+
+    $(".mask-layer").bind("click", function(e){
+
+
+
+       if(sf2_div != ""){
+
+
+
+        sf2_div.remove();
+
+
+
+    }
+
+
+
+
+
+
+
+    e.stopPropagation();
+
+
+
+    e.preventDefault();
+
+
+
+    closeRoomDetails($(".roomTypeInfo"));
+
+
+
+})
+
+
+
+
+
+
+
+    $(".info_mn").bind("click", function(){
+
+
+
+        var _key = "349a30a3edab121b7758672064950e07";
+
+
+
+        var _lonAndLat = $("#tpl2").val() + ',' + $("#tpl1").val();
+
+
+
+        var _hotelname = $("#hotelname").text();
+
+
+
+        var _addr = $("#hoteladdress").text();
+
+
+
+        var _url = "http://m.amap.com/navi/?dest=" + _lonAndLat +"&destName=" + _hotelname + "&hideRouteIcon=1&key=" + _key;
+
+
+
+        var _url2 = "http://3gimg.qq.com/lightmap/v1/marker/?type=0&marker=coord:"+_lonAndLat+";title:"+_hotelname+";addr:"+_addr+"&key=4BCBZ-OGQWX-3PE4P-ZNP3C-EU77E-QGF3Z&referer=myelong"
+
+
+
+
+
+
+
+        window.location.href = _url2;
+
+
+
+    }) 
+
+
+
+
+
+
+
+
+
+
+
+    // $(".btn2").click(function(event){
+
+
+
+    //     var url = $(this).attr("url");
+
+
+
+    //     window.location.href=url;
+
+
+
+    // });
+
+
+
+    /*打开相应房型订单页面*/
+
+
+
+    function openOrderForm(that){
+
+
+
+        var url2 = $(that).attr("url2");
+
+
+
+        window.location.href=url2;
+
+
+
+    }
+
+
+
+
+
+
+
+    //监听收藏成功div结束动画事件
+
+
+
+    $(".record").bind("webkitAnimationEnd", function(){
+
+
+
+        $(this).removeClass("record-active").attr("style", "display: none;");
+
+
+
+    })
+
+
+
+    //关闭取消收藏框
+
+
+
+    $($(".dialog>.item-btn")[0]).bind("click", function(e){
+
+
+
+        openOrCloseCollectionBox(true);
+
+
+
+    })
+
+
+
+    //取消收藏
+
+
+
+    $($(".dialog>.item-btn")[1]).bind("click", function(e){
+
+
+
+       var name = 'doo=' + 'collect' + '&hotelname='+ $('#hotelname').text()+ '&hoteladdress=' +  $('#hoteladdress').text() + '&hotelgrade=' + $('.s_nbm').text();
+
+
+
+       var can = 'doo=' + 'cancel' + '&hotelname='+ $('#hotelname').text();
+
+
+
+       $.ajax({
+
+
+
+        url: $('#acc').val(),
+
+
+
+        type:'post',
+
+
+
+                // dataType:'json',
+
+
+
+                data:can,
+
+
+
+                success:function(result){
+
+
+
+                    // console.log(result);
+
+
+
+
+
+
+
+                    if(result != null){
+
+
+
+                     openOrCloseCollectionBox(true);
+
+
+
+                     $("#col").addClass("icon-collect").removeClass("icon-hascollect");
+
+
+
+                 }
+
+
+
+
+
+
+
+                    // $.toast("取消收藏");
+
+
+
+                // console.log(result);
+
+
+
+            },
+
+
+
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+
+
+                // console.log(1);
+
+
+
+            }
+
+
+
+        });
+
+
+
+   })
+
+
+
+    /*打开话关闭取消收藏框*/
+
+
+
+    function openOrCloseCollectionBox(isOpen){
+
+
+
+        if(isOpen){
+
+
+
+            $(".advanced-mask-layer").attr("style", "display: none");
+
+
+
+            $(".dialog").removeClass("dialog-active plugin-show");
+
+
+
+        }else{
+
+
+
+           $(".advanced-mask-layer").attr("style", "display: block");
+
+
+
+           $(".dialog").addClass("dialog-active plugin-show");
+
+
+
+       }
+
+
+
+   }
+
+
+
+
+
+
+
+   console.log($('#acc').val());
+
+
+
+
+
+
+
+
+
+
+
+   $("#col").bind("click",function(){
+
+
+
+    var colClass = $("#col").attr("class");
+
+
+
+
+
+
+
+    var name = 'doo=' + 'collect' + '&hotelname='+ $('#hotelname').text()+ '&hoteladdress=' +  $('#hoteladdress').text() + '&hotelgrade=' + $('.s_nbm').text();
+
+
+
+    var can = 'doo=' + 'cancel' + '&hotelname='+ $('#hotelname').text();
+
+
+
+    // console.log(name);
+
+
+
+    //$(this).css({'background':'#f55'});
+
+
+
+    if(colClass.indexOf("icon-collect") != -1){
+
+
+
+        $.ajax({
+
+
+
+            url: $('#acc').val(),
+
+
+
+            type:'post',
+
+
+
+                // dataType:'json',
+
+
+
+                data:name,
+
+
+
+                success:function(result){
+
+
+
+                    console.log(result);
+
+
+
+                    if(result != null){
+
+
+
+
+
+
+
+                        // console.log(123);
+
+
+
+                        $("#col").removeClass("icon-collect").addClass("icon-hascollect");
+
+
+
+                        $(".record").addClass("record-active").attr("style", "display: block");
+
+
+
+
+
+
+
+
+
+
+
+                        // $.toast("收藏成功");
+
+
+
+                    }
+
+
+
+                    
+
+
+
+                // console.log(result);
+
+
+
+            },
+
+
+
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+
+
+                // console.log(1);
+
+
+
+            }
+
+
+
+        });
+
+
+
+    }else{
+
+
+
+
+
+
+
+        openOrCloseCollectionBox(false);
+
+
+
+
+
+
+
+    }
+
+
+
+    
+
+
+
+    
+
+
+
+//     
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //打开关闭订房div
+
+
+
+        $(".rigit_activebg").bind("click", function(e){
+
+
+
+            // console.log($(this).parent().parent().attr("class"));
+
+
+
+            var ul_class = $(this).parent().parent().attr("class");
+
+
+
+            if(ul_class.indexOf("on") == -1){
+
+
+
+                $(this).parent().parent().addClass("on");
+
+
+
+            }else{
+
+
+
+                $(this).parent().parent().removeClass("on");
+
+
+
+            }    
+
+
+
+        })
+
+
+
+
+
+
+
+        //切换酒店详情
+
+
+
+        $(".choose>.titles>ul>li:first-child").bind("click", function(e){
+
+
+
+           e.stopPropagation();
+
+
+
+           e.preventDefault();
+
+
+
+           if($(this).attr("class").indexOf("active") == -1){
+
+
+
+            $(this).addClass("active");
+
+
+
+            $(".hoteldetail").removeClass("active");
+
+
+
+            $(".line").removeClass("left");
+
+
+
+            $(".tabcomment").attr("style", "display:block");
+
+
+
+            $(".tabdetails").attr("style", "display:none");
+
+
+
+        }
+
+
+
+    })
+
+
+
+        $(".choose>.titles>ul>li:last-child").bind("click", function(e){
+
+
+
+            e.stopPropagation();
+
+
+
+            e.preventDefault();
+
+
+
+            if($(this).attr("class").indexOf("active") == -1){
+
+
+
+                $(this).addClass("active");
+
+
+
+                $(".choose>.titles>ul>li:first-child").removeClass("active");
+
+
+
+                $(".line").addClass("left");
+
+
+
+                $(".tabdetails").attr("style", "display:block");
+
+
+
+                $(".tabcomment").attr("style", "display:none");
+
+
+
+            }
+
+
+
+        })
+
+
+
+
+
+
+
+        /*入住日期界面*/
+
+
+
+        //打开入住日期界面
+
+
+
+        $(".ht_day").bind("click", function(e){
+
+
+
+            e.stopPropagation();
+
+
+
+            e.preventDefault();
+
+
+
+            //启动打开动画
+
+
+
+            interFaceAnimTool.openAnim(html, $('.cld'), "cld-active plugin-show", "");
+
+
+
+        })
+
+
+
+       //关闭入住日期界面
+
+
+
+       $('#chooseDate').bind("click", function(e){
+
+
+
+        e.stopPropagation();
+
+
+
+        e.preventDefault();
+
+
+
+        //启动关闭动画
+		
+
+        interFaceAnimTool.closeAnim(html, $('.cld'), "cld-active plugin-show", "", hotelTools.DATE);
+
+		
+		
+
+        })
+
+
+
+       //创建日期列表
+
+
+
+        dateInterfaceTool.createDateList(1, true);
+
+
+
+        dateInterfaceTool.createDateList(2, false);
+
+
+
+        dateInterfaceTool.createDateList(3, false);
+
+
+
+        dateInterfaceTool.createDateList(4, false);
+
+
+
+        dateInterfaceTool.createDateList(5, false);
+
+
+
+        dateInterfaceTool.createDateList(6, false);
+
+
+
+        //
+
+
+
+        btnResetTool.resetDateBtn($(".cld-item").children("ul").children("li"),  dateInterfaceTool.setDataItemStyle);
+
+
+
+        //初始化日期参数
+
+
+
+        dateInterfaceTool.init($(".indate").text().replace(/-/g, "/"), $(".outdate").text().replace(/-/g, "/"));
+
+
+
+        //初始化日期界面
+
+
+
+       dateInterfaceTool.setDateInterface($(".cld-item"));
+
+
+
+       //调用保存入住离开时间方法
+
+
+
+        dateInterfaceTool.saveCheckInAndOutDateR(dateInterfaceTool.this_li, dateInterfaceTool.next_li);
+
+
+
+
+
+
+
+        //入住离开时间
+
+
+
+        $(".cld-day>li").bind("click", function(e){
+
+
+
+            e.stopPropagation();
+
+
+
+            e.preventDefault();
+
+
+
+            dateInterfaceTool.chooseDate(html, $(this), "cld-active plugin-show", hotelTools.DATE, 2);
+			
+
+
+        })
+
+
+
+        
+
+
+
+        var isOpen = false;
+
+
+
+        /*打开关闭酒店详情界面*/
+
+
+
+        function openOrCloseHotelDetails(isOpen){
+
+
+
+            if(isOpen){
+
+
+
+                $(".mvt_161125").attr("style", "");
+
+
+
+                $(".page").removeClass("fixed");
+
+
+
+                $(".hotel_info_facbox").addClass("page-from-center-to-right").removeClass("page-on-center");
+
+
+
+            }else{
+
+
+
+                $(".mvt_161125").attr("style", "overflow: hidden !important;");
+
+
+
+                $(".page").addClass("fixed");
+
+
+
+                $(".hotel_info_facbox").addClass("page-from-right-to-center plugin-show").removeClass("page-on-right");
+
+
+
+            }
+
+
+
+        }
+
+
+
+         //监听打开或关闭酒店详情动画
+
+
+
+         $(".hotel_info_facbox").bind("webkitAnimationEnd", function(){
+
+
+
+            if(isOpen){
+
+
+
+                $(this).removeClass("page-from-center-to-right plugin-show").addClass("page-on-right");
+
+
+
+            }else{
+
+
+
+                $(this).removeClass("page-from-right-to-center").addClass("page-on-center");
+
+
+
+            }
+
+
+
+        });
+
+
+
+        //打开酒店详情界面
+
+
+
+        $(".tabdetails>.more_p").bind("click", function(e){
+
+
+
+            e.stopPropagation();
+
+
+
+            e.preventDefault();
+
+
+
+            isOpen = false;
+
+
+
+            console.log(1);
+
+
+
+            openOrCloseHotelDetails(false);
+
+
+
+        })
+
+
+
+        //关闭酒店详情界面
+
+
+
+        $(".hotel_info_facbox>.bar>.pull-left").bind("click", function(e){
+
+
+
+            e.stopPropagation();
+
+
+
+            e.preventDefault();
+
+
+
+            isOpen = true;
+
+
+
+            openOrCloseHotelDetails(true);
+
+
+
+        })
+
+
+
+        //返回并继续预订按钮
+
+
+
+        $(".btn_con>.btn").bind("click", function(e){
+
+
+
+            e.stopPropagation();
+
+
+
+            e.preventDefault();
+
+
+
+            isOpen = true;
+
+
+
+            openOrCloseHotelDetails(true);
+
+
+
+        })
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>
